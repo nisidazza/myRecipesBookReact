@@ -1,8 +1,8 @@
 {
-  "name": "myRecipesBook",
+  "name": "my-recipes-book-react",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nisidazza/myRecipesBook.git"
+    "url": "git+https://github.com/nisidazza/myRecipesBookReact.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nisidazza/myRecipesBook/issues"
+    "url": "https://github.com/nisidazza/myRecipesBookReact/issues"
   },
-  "homepage": "https://github.com/nisidazza/myRecipesBook#readme",
+  "homepage": "https://github.com/nisidazza/myRecipesBookReact#readme",
   "dependencies": {
     "express": "^4.17.1",
     "knex": "^0.20.1",
