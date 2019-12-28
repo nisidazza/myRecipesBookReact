@@ -16,6 +16,14 @@ router.get('/recipes', (req, res) => {
 })
 
 
-
+router.get('/ingredients', (req,res) => {
+    db.getListIngredients()
+    .then(ingredients => {
+        res.json(ingredients)
+    })
+    .catch(err => {
+        res.status(500).json({message: 'Something is broken'})
+    })
+})
 
 module.exports = router
