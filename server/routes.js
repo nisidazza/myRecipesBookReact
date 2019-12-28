@@ -1,9 +1,10 @@
 const express = require('express')
+const router = express.Router()
 
 const db = require('./db/db')
 
-const router = express.Router()
 
+//GET /api/v1/recipes
 router.get('/recipes', (req, res) => {
     db.getListRecipes()
         .then(recipes => {
@@ -15,7 +16,7 @@ router.get('/recipes', (req, res) => {
         })
 })
 
-
+// GET /api/v1/ingredients
 router.get('/ingredients', (req,res) => {
     db.getListIngredients()
     .then(ingredients => {

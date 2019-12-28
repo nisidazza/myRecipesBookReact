@@ -1,7 +1,4 @@
-const environment = process.env.NODE_ENV || 'development'
-const config = require('../../knexfile')[environment]
-const connection = require('knex')(config)
-
+const connection = require('./connection')
 
 function getListRecipes(db = connection) {
     return db('recipes')

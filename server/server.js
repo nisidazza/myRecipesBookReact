@@ -1,5 +1,4 @@
 const express = require('express')
-
 const routes = require('./routes')
 
 const server = express()
@@ -8,7 +7,7 @@ const server = express()
 
 server.use(express.urlencoded({extended: true}))
 
-
+server.use(express.json)
 // Serve static files
 server.use(express.static('public'))
 
