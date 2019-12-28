@@ -35,6 +35,8 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-
+*.sqlite3
 dev.sqlite3
 dev.sqlite3-journal
+
+bundle.js*
