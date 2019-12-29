@@ -15,7 +15,7 @@ server.use(express.static('public'))
 // Routes
 
 //server.use('/api/v1/recipes', recipeRoutes)
-server.use('/api/v1/ingredients', routes)
+server.use('/api/v1', routes)
 
 
 
