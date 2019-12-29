@@ -20,10 +20,10 @@ const db = require('./db/db')
 router.get('/', (req,res) => {
     db.getListIngredients()
     .then(ingredients => {
-        res.send(ingredients)
+        res.json(ingredients)
     })
     .catch(err => {
-        res.status(500).send({message: 'Something is broken'})
+        res.status(500).json({message: 'Something is broken'})
     })
 })
 
