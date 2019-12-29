@@ -7,7 +7,7 @@
     "client": "webpack-dev-server --hot --inline",
     "dev": "node server & webpack --watch",
     "server": "node server",
-    "start": "webpack && node serve",
+    "start": "webpack & node server",
     "postinstall": "knex migrate:latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -34,14 +34,14 @@
   "homepage": "https://github.com/nisidazza/myRecipesBookReact#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "knex": "^0.20.4",
-    "pg": "^7.12.1",
+    "knex": "^0.20.5",
+    "pg": "^7.16.1",
     "superagent": "^5.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
-    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "babel-core": "^6.26.3",
