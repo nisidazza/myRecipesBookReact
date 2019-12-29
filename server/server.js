@@ -3,17 +3,20 @@ const routes = require('./routes')
 
 const server = express()
 
+
 // Middleware
 
 server.use(express.urlencoded({extended: true}))
 
-server.use(express.json)
+server.use(express.json())
 // Serve static files
 server.use(express.static('public'))
 
 // Routes
 
-server.use('/', routes)
+//server.use('/api/v1/recipes', recipeRoutes)
+server.use('/api/v1/ingredients', routes)
+
 
 
 module.exports = server

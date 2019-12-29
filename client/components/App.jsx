@@ -1,11 +1,49 @@
 import React from 'react'
+import { apiGetIngredients } from '../apis/recipes'
+
 
 class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            ingredients: []
+        }
+        console.log(this.state)
+    }
+    
+
+    componentDidMount() {
+        this.refreshIngredients
+    }
+
+    refreshIngredients = () => {
+        apiGetIngredients()
+        .then(ingredients => {
+            this.setState(
+                {
+                    ingredients:ingredients
+                }
+            )
+        })
+    }
+
+
     render() {
-        return(
-            <h1>Welcome to my Page!</h1>
+        return (
+            <div>
+                <h1>Welcome to my Page!</h1>
+                <ul>
+                    {this.state.ingredients.map(ingredient => {
+                        return (
+                            <>
+                                <li>{ingredient.name}</li>
+                            </>
+                        )
+                    })}
+                </ul>
+            </div>
         )
-        
+
     }
 }
 
