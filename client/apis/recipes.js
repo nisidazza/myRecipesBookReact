@@ -8,5 +8,8 @@ const ingredientsUrl = '/api/v1/ingredients'
 // }
 export function apiGetIngredients() {
     return request.get(ingredientsUrl)
-        .then(res => console.log(res.body))
+        .then(res => res.body)
+        .catch(() => {
+            throw Error ('you need to implement an API route for /api/v1/ingredients')
+        })
 }

@@ -5,33 +5,32 @@ import { apiGetIngredients } from '../apis/recipes'
 class App extends React.Component {
     constructor(props) {
         super(props)
+
         this.state = {
             ingredients: []
         }
-        console.log(this.state)
+        console.log(this.state.ingredients)
     }
-    
+
 
     componentDidMount() {
-        this.refreshIngredients
+        this.fetchIngredients()
     }
 
-    refreshIngredients = () => {
+    fetchIngredients = () => {
         apiGetIngredients()
-        .then(ingredients => {
-            this.setState(
-                {
-                    ingredients:ingredients
-                }
-            )
-        })
+            .then(ingredients => {
+                this.setState({
+                    ingredients: ingredients
+                })
+            })
     }
 
 
     render() {
         return (
             <div>
-                <h1>Welcome to my Page!</h1>
+                <h1>Ingredients List</h1>
                 <ul>
                     {this.state.ingredients.map(ingredient => {
                         return (
@@ -43,7 +42,6 @@ class App extends React.Component {
                 </ul>
             </div>
         )
-
     }
 }
 
