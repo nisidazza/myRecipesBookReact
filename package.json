@@ -7,8 +7,8 @@
     "client": "webpack-dev-server --hot --inline",
     "dev": "node server & webpack --watch",
     "server": "node server",
-    "start": "webpack & node server",
-    "postinstall": "knex migrate:latest",
+    "start": "node server",
+    "postinstall": "knex migrate:latest & webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "babel": {
