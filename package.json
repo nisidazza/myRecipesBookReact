@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "client": "webpack-dev-server --hot --inline",
-    "dev": "node server & webpack --watch",
+    "dev": "nodemon server & webpack --watch",
     "server": "node server",
     "start": "node server",
     "postinstall": "knex migrate:latest",
@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/nisidazza/myRecipesBookReact#readme",
   "dependencies": {
+    "authenticare": "^0.4.6",
     "express": "^4.17.1",
     "knex": "^0.20.5",
     "pg": "^7.16.1",
