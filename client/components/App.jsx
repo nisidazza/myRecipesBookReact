@@ -1,6 +1,6 @@
 import React from 'react'
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
-import Search from './IngredientsList'
+import IngredientsList from './IngredientsList'
 import RecipesList from './RecipesList'
 
 
