@@ -5,7 +5,7 @@ class RecipesList extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
+        this.loginData = {
             recipes: []
         }
     }
@@ -28,7 +28,7 @@ class RecipesList extends React.Component {
             <div>
                 <h2>Recipes List</h2>
                 <ul>
-                    {this.state.recipes.map(recipe => {
+                    {this.loginData.recipes.map(recipe => {
                         return (
                             <>
                                 <li>{recipe.title}</li>

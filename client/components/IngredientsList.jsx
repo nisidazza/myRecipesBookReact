@@ -5,10 +5,10 @@ class IngredientsList extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
+        this.loginData = {
             ingredients: []
         }
-        console.log(this.state.ingredients)
+        console.log(this.loginData.ingredients)
     }
 
     componentDidMount() {
@@ -30,7 +30,7 @@ class IngredientsList extends React.Component {
             <div>
                 <h1>Ingredients List</h1>
                 <ul>
-                    {this.state.ingredients.map(ingredient => {
+                    {this.loginData.ingredients.map(ingredient => {
                         return (
                             <>
                                 <li>{ingredient.name}</li>
