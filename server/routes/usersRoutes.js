@@ -3,7 +3,7 @@ const router = express.Router()
 const db = require('../db/dbUsers')
 
 
-// POST /api/v1/users/newUser
+
 router.post('/newUser', (req, res) => {
     const user = req.body
     db.createUser(user)
