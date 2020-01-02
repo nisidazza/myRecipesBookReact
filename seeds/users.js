@@ -11,5 +11,7 @@ exports.seed = knex =>
                     id: 1,
                     username: "Pippo",
                     hash: hashedPassword
-                }])
+                }]).then(()=> {
+                    knex.raw('SELECT setval("ingredients_id_seq", (SELECT MAX(id) from "test"))')                
+                })
         )
