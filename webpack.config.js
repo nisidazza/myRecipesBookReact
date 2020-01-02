@@ -1,5 +1,6 @@
 const path = require('path')
 const Dotenv = require('dotenv-webpack')
+const InjectEnvironmentPlugin = require('webpack-inject-environment-variables');
 
 module.exports = {
     entry: './client/index.js',
@@ -19,7 +20,8 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
     plugins: [
-        new Dotenv()
+        new Dotenv(),
+        new InjectEnvironmentPlugin({regex: /^PUBLIC/i}),
     ],
     devtool: 'source-map',
     devServer: {

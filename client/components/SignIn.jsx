@@ -19,7 +19,7 @@ class SignIn extends React.Component {
         signIn(
             this.loginData,
             {
-                baseUrl: process.env.BASE_API_URL // see .env and webpack.config.js
+                baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
             }
         ).then((token) => {
             if (isAuthenticated()) {
