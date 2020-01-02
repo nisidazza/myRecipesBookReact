@@ -6,14 +6,19 @@
   "scripts": {
     "client": "webpack-dev-server --hot --inline",
     "server": "node server",
-    "start": "node server",
+
     "postinstall": "knex migrate:latest",
     "build": "webpack",
+    "start": "node server",
+    
     "dev": "npm-run-all --parallel watch:build watch:server",
-    "watch:build": "webpack --watch",
-    "watch:server": "nodemon --nolazy --inspect=9229 server",
     "debug": "node --nolazy --inspect-brk=9229 server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch:build": "webpack --watch",
+    "watch:server": "nodemon --nolazy --inspect=9229 server",    
+
+    "test": "jest tests",
+    "test:dev": "jest --verbose tests",
+    "test:dev:watch": "npm run test:dev -- --watch" 
   },
   "babel": {
     "presets": [
@@ -53,6 +58,9 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "dotenv-webpack": "^1.7.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.4",
     "npm-run-all": "^4.1.5",
     "react": "^16.12.0",
