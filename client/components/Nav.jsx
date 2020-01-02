@@ -19,7 +19,7 @@ export default function Nav() {
             <Link to='/'>Home</Link>
             <IfAuthenticated>
                 <Link to='#' onClick={logOff}>Log Off</Link>
-                <p>Hi, {getUserName()}!</p>
+                <p>Welcome, {getUserName()}!</p>
             </IfAuthenticated>
             <IfNotAuthenticated>
                 <Link to='/register'>Register</Link>
