@@ -29,7 +29,7 @@ describe('My Test Suite', () => {
 let pathMap = {}
 describe('routes using array of routers', () => {
     beforeAll(() => {
-        const wrapper = shallow(<App />);        
+        const wrapper = shallow(<App />)      
         console.log("wrapper: ")
         console.log(wrapper)
         pathMap = wrapper.find(Route).reduce((pathMap, route) => {

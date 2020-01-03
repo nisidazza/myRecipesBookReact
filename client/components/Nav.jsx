@@ -22,8 +22,8 @@ export default function Nav() {
                 <p>Welcome, {getUserName()}!</p>
             </IfAuthenticated>
             <IfNotAuthenticated>
-                <Link to='/register'>Register</Link>
-                <Link to='signin'>Sign In</Link>
+                <Link to='/register' >Register</Link>
+                <Link to='/signin'>Sign In</Link>
             </IfNotAuthenticated>
         </>
     )

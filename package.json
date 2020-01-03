@@ -14,7 +14,9 @@
     "watch:build": "webpack --watch",
     "watch:server": "nodemon --nolazy --inspect=9229 server",
     "test": "jest tests",
-    "test:dev": "jest --verbose tests",
+    "test:file": "jest --verbose",
+    "test:file:watch": "npm run test:file --watch",
+    "test:dev": "npm run test:file -- tests",
     "test:dev:watch": "npm run test:dev -- --watch"
   },
   "babel": {
