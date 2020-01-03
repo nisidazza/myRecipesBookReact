@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Test Suite renders correctly 1`] = `
+Array [
+  <h1>
+    My Recipes Book
+  </h1>,
+  <a
+    href="#/"
+    onClick={[Function]}
+  >
+    Home
+  </a>,
+  <a
+    href="#/register"
+    onClick={[Function]}
+  >
+    Register
+  </a>,
+  <a
+    href="#/signin"
+    onClick={[Function]}
+  >
+    Sign In
+  </a>,
+]
+`;

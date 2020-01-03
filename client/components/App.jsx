@@ -7,18 +7,19 @@ import Register from './Register'
 import SignIn from './SignIn'
 
 
-export function App() {
-
-    return (
-        <Router>
-            <h1>My Recipes Book</h1>
-            <Route path='/' component={Nav} />
-            <Route path='/register' component={Register} />
-            <Route path='/signin' component={SignIn}/>
-            <Route path='/ingredients' component={IngredientsList} />
-            <Route path='/recipes' component={RecipesList} />
-        </Router>
-    )
+class App extends React.Component {
+    render() {
+        return (
+            <Router>
+                <h1>My Recipes Book</h1>
+                <Route path='/' component={Nav} />
+                <Route path='/register' component={Register} />
+                <Route path='/signin' component={SignIn} />
+                <Route path='/ingredients' component={IngredientsList} />
+                <Route path='/recipes' component={RecipesList} />
+            </Router>
+        )
+    }
 }
 
 export default App
