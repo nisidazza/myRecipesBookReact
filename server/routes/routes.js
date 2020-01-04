@@ -12,19 +12,31 @@ router.get('/recipes', (req, res) => {
             res.json(recipes)
         })
         .catch(err => {
-            res.status(500).json({message: 'Something is broken'})
+            res.status(500).json({ message: 'Something is broken' })
         })
 })
 
 // GET /api/v1/ingredients
-router.get('/ingredients', (req,res) => {
+router.get('/ingredients', (req, res) => {
     db.getListIngredients()
-    .then(ingredients => {
-        res.json(ingredients)
-    })
-    .catch(err => {
-        res.status(500).json({message: 'Something is broken'})
-    })
+        .then(ingredients => {
+            res.json(ingredients)
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+})
+
+// GET /api/v1/recipes/:id
+router.get('/recipes/:id', (req, res) => {
+    let { id } = req.params
+    db.getRecipe(id)
+        .then(recipe => {
+            res.json(recipe)
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
 })
 
 module.exports = router
