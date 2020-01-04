@@ -8,7 +8,7 @@ export function apiGetRecipes() {
     return request.get(recipesUrl)
     .then(res => res.body)
     .catch(() => {
-        throw Error ('you need to implement an API route for /api/v1/ingredients')
+        throw Error ('you need to implement an API route for /api/v1/recipes')
     })
 }
 
@@ -19,3 +19,4 @@ export function apiGetIngredients() {
             throw Error ('you need to implement an API route for /api/v1/ingredients')
         })
 }
+
