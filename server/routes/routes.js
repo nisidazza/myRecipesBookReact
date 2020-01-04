@@ -39,4 +39,11 @@ router.get('/recipes/:id', (req, res) => {
         })
 })
 
+router.delete('/recipes/:id', (req,res) => {
+    const {id} = req.params
+    db.deleteRecipe(id)
+    .then(recipeId => res.json(recipeId))
+
+})
+
 module.exports = router

@@ -1,6 +1,6 @@
 import React from 'react'
-import { apiGetRecipes } from '../apis/recipesApi'
-import { Link } from 'react-router-dom'
+import { apiGetRecipes, apiDeleteRecipe } from '../apis/recipesApi'
+
 
 class RecipesList extends React.Component {
     constructor(props) {
@@ -12,7 +12,9 @@ class RecipesList extends React.Component {
     }
 
     componentDidMount() {
+
         this.fetchRecipes()
+        
     }
 
     fetchRecipes = () => {
@@ -24,6 +26,15 @@ class RecipesList extends React.Component {
             })
     }
 
+    deleteRecipe() {
+        apiDeleteRecipe(this.state.recipes.id)
+            .then(this.props.fetchRecipes)
+            .then(() => this.props.history.push('/recipes'))
+            .catch(err => this.setState({ error: err.message }))
+    }
+
+
+
     render() {
         return (
             <div>
@@ -32,10 +43,15 @@ class RecipesList extends React.Component {
                     {this.state.recipes.map(recipe => {
                         return (
                             <div key={recipe.id}>
-                                <li>{recipe.title}</li>
-                                <p>{recipe.category}</p>
-                                <p>{recipe.notes}</p>
-                                <p>{recipe.link}</p>
+                                <div>
+                                    <li>{recipe.title}</li>
+                                    <p>{recipe.category}</p>
+                                    <p>{recipe.notes}</p>
+                                    <p>{recipe.link}</p>
+                                </div>
+                                <div>
+                                    <button onClick={this.deleteRecipe}>Delete</button>
+                                </div>
                             </div>
                         )
                     })}
