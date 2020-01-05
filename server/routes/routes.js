@@ -31,8 +31,11 @@ router.get('/ingredients', (req, res) => {
 router.get('/recipes/:id', (req, res) => {
     let { id } = req.params
     db.getRecipe(id)
-        .then(recipe => {
-            res.json(recipe)
+        .then(recipeInfo => {
+            db.getIngredients(id) 
+            .then(recipeIngredients => {
+                res.json({recipeInfo, recipeIngredients})
+            })
         })
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
@@ -53,7 +56,8 @@ router.delete('/recipes/:id', (req, res) => {
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
         })
-
 })
+
+
 
 module.exports = router
