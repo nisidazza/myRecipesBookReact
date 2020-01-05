@@ -39,10 +39,20 @@ router.get('/recipes/:id', (req, res) => {
         })
 })
 
-router.delete('/recipes/:id', (req,res) => {
-    const {id} = req.params
+// DELETE /api/v1/recipes/delete
+router.delete('/recipes/:id', (req, res) => {
+    const { id } = req.params
     db.deleteRecipe(id)
-    .then(recipeId => res.json(recipeId))
+        .then(hasBeenDeleted => {
+            if(hasBeenDeleted) {
+                res.sendStatus(200)
+            } else {
+                res.sendStatus(404)
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
 
 })
 
