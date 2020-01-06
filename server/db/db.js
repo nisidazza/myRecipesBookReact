@@ -87,7 +87,16 @@ function getRecipesByIngredient(ingredientId, db=connection) {
 }
 
 
-
+function editRecipe(id, recipe, db=connection) {
+    return db('recipes')
+    .where('id', id)
+    .update({
+        title: recipe.title,
+        category: recipe.category,
+        link: recipe.link,
+        notes: recipe.notes
+    })
+}
 
 module.exports = {
     getListRecipes,
@@ -97,5 +106,6 @@ module.exports = {
     linkRecipeIngredients,
     getListIngredients,
     deleteRecipe,
-    getRecipesByIngredient
+    getRecipesByIngredient,
+    editRecipe
 }
