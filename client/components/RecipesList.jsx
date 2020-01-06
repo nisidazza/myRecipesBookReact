@@ -1,5 +1,6 @@
 import React from 'react'
 import { apiGetRecipes, apiDeleteRecipe } from '../apis/recipesApi'
+import { Link } from 'react-router-dom'
 
 
 class RecipesList extends React.Component {
@@ -21,15 +22,13 @@ class RecipesList extends React.Component {
                 this.setState({
                     recipes: recipes
                 })
-                console.log(recipes)
             })
     }
 
     deleteRecipe = (id, i) => {
         apiDeleteRecipe(id)
-            .then(hasBeenDeleted =>{
-                console.log(hasBeenDeleted)
-                if(hasBeenDeleted) {
+            .then(hasBeenDeleted => {
+                if (hasBeenDeleted) {
                     this.state.recipes.splice(i, 1)
                     this.setState({
                         recipes: this.state.recipes
@@ -39,7 +38,6 @@ class RecipesList extends React.Component {
                 }
             })
             .catch(err => this.setState({ error: err.message }))
-        console.log("pluto " + i)
     }
 
     render() {
@@ -58,6 +56,9 @@ class RecipesList extends React.Component {
                                     <p>{recipe.id}</p>
                                     <div>
                                         <button onClick={() => this.deleteRecipe(recipe.id, i)}>Delete</button>
+                                        <Link to={`/recipe/${recipe.id}`}>
+                                            <button>View Details</button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

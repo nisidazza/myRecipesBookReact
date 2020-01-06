@@ -16,7 +16,7 @@ export default function Nav() {
 
     return (
         <>
-            <Link to='/'>Home</Link>
+            <Link to='/recipes'>Home</Link>
             <IfAuthenticated>
                 <Link to='#' onClick={logOff}>Log Off</Link>
                 <p>Welcome, {getUserName()}!</p>

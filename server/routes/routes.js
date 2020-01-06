@@ -27,14 +27,14 @@ router.get('/ingredients', (req, res) => {
         })
 })
 
-// GET /api/v1/recipes/:id
-router.get('/recipes/:id', (req, res) => {
+// GET /api/v1/recipe/:id
+router.get('/recipe/:id', (req, res) => {
     let { id } = req.params
     db.getRecipe(id)
-        .then(recipeInfo => {
+        .then(recipeDetail => {
             db.getIngredients(id) 
             .then(recipeIngredients => {
-                res.json({recipeInfo, recipeIngredients})
+                res.json({recipeDetail, recipeIngredients})
             })
         })
         .catch(err => {
