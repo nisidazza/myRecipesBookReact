@@ -1,13 +1,16 @@
 import React from 'react'
 import { apiGetRecipeDetails } from '../apis/recipesApi'
-import {Link} from 'react-router-dom'
+import ViewRecipe from './ViewRecipe'
+import EditRecipe from './EditRecipe'
+
 
 class Recipe extends React.Component {
     constructor(props) {
         super(props)
         //console.log(props)
         this.state = {
-            recipe: null
+            recipe: null,
+            mode: "view"
         }
     }
 
@@ -16,7 +19,7 @@ class Recipe extends React.Component {
         this.fetchRecipeDetail(id)
     }
 
-    fetchRecipeDetail = (id) => {
+    fetchRecipeDetail(id) {
         apiGetRecipeDetails(id)
             .then(response => {
                 this.setState({
@@ -24,45 +27,52 @@ class Recipe extends React.Component {
                 })
                 console.log(response)
             })
-
     }
-
 
     render() {
         if (this.state.recipe == null) {
-            return ("")
+            return ""
         }
-
-        const recipeInfo = this.state.recipe.recipeDetail
+        
         const ingredientsInfo = this.state.recipe.recipeIngredients
-        console.log(recipeInfo)
-        console.log(ingredientsInfo)
+        let ingredients = (
+            <section>
+                <h4>Ingredients</h4>
+                {ingredientsInfo.map((ingredient, j) => {
+                    return (
+                        <div key={j}>
+                            <li>{ingredient.ingredient_name}: {ingredient.ingredient_quantity}</li>
+                        </div>
+                    )
+                })}
+            </section>
+        )
+
         return (
             <>
-                <section>
-                    <h2>{recipeInfo.title}</h2>
-                    <p>Category: {recipeInfo.category}</p>
-                    <p>Link: <a href={recipeInfo.link} target='_blank'>{recipeInfo.link}</a></p>
-                    <p>Notes: {recipeInfo.notes}</p>
-                </section>
-                <section>
-                    <h4>Ingredients</h4>
-                    {ingredientsInfo.map((ingredient, j) => {
-                        return (
-                            <div key={j}>
-                                <li>{ingredient.ingredient_name}: {ingredient.ingredient_quantity}</li>
-                            </div>
-                        )
-                    })}
-                </section>
-                    <Link to={`/edit/${recipeInfo.id}`}>
-                        <button>Edit</button>
-                    </Link>
-
+                {this.renderRecipeFields()}
+                {ingredients}
             </>
         )
     }
 
+    renderRecipeFields() {
+        if (this.state.mode == "edit") {
+            return (
+                <>
+                    <EditRecipe recipe={this.state.recipe} />
+                    <button onClick={() => this.setState({ mode: "view" })}>Save</button>
+                </>
+            )
+        } else if (this.state.mode == "view") {
+            return (
+                <>
+                    <ViewRecipe recipe={this.state.recipe} />
+                    <button onClick={() => this.setState({ mode: "edit" })}>Edit</button>
+                </>
+            )
+        }
+    }
 }
 
 
