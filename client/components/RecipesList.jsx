@@ -50,17 +50,16 @@ class RecipesList extends React.Component {
                         return (
                             <div key={i}>
                                 <div>
-                                    <li>{recipe.title}</li>
-                                    <p>{recipe.category}</p>
-                                    <p>{recipe.notes}</p>
-                                    <a href={recipe.link}><p>{recipe.link}</p></a>
-                                    <p>{recipe.id}</p>
+                                    <li><strong>{recipe.title}</strong></li>
+                                    <p>Category: {recipe.category}</p>
+                                    {/* <p>{recipe.id}</p> */}
                                     <div>
                                         <button onClick={() => this.deleteRecipe(recipe.id, i)}>Delete</button>
                                         <Link to={`/recipe/${recipe.id}`}>
                                             <button>View Details</button>
                                         </Link>
                                     </div>
+                                    <hr></hr>
                                 </div>
                             </div>
                         )

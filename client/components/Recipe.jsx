@@ -38,8 +38,24 @@ class Recipe extends React.Component {
         console.log(ingredientsInfo)
         return (
             <>
-                <h1>Hello</h1>
-                <p>{recipeInfo.title}</p>
+                <section>
+                    <h2>{recipeInfo.title}</h2>
+                    <p>Category: {recipeInfo.category}</p>
+                    <p>Link: <a href={recipeInfo.link} target='_blank'>{recipeInfo.link}</a></p>
+                    <p>Notes: {recipeInfo.notes}</p>
+                </section>
+                <section>
+                    <h4>Ingredients</h4>
+                    {ingredientsInfo.map((ingredient, j) => {
+                        return (
+                            <div key={j}>
+                                <li>{ingredient.ingredient_name}: {ingredient.ingredient_quantity}</li>
+                            </div>
+                        )
+                    })}
+                </section>
+
+
             </>
         )
     }
