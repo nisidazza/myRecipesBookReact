@@ -98,6 +98,23 @@ function editRecipe(id, recipe, db=connection) {
     })
 }
 
+function addIngredientToRecipe(recipe_id, ingredient_id, quantity, db=connection) {
+    return db('recipes_ingredients')
+    .insert({
+        recipe_id,
+        ingredient_id,
+        quantity
+    })
+}
+
+function deleteIngredientFromRecipe() {
+    return db('recipes_ingredients')
+    .where('recipe_id', recipe_id)
+    .where('ingredient_id', ingredient_id)
+    .delete()
+}
+
+
 module.exports = {
     getListRecipes,
     getRecipe,
@@ -107,5 +124,7 @@ module.exports = {
     getListIngredients,
     deleteRecipe,
     getRecipesByIngredient,
-    editRecipe
+    editRecipe,
+    addIngredientToRecipe,
+    deleteIngredientFromRecipe
 }

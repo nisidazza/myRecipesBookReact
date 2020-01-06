@@ -48,7 +48,7 @@ router.delete('/recipes/:id', (req, res) => {
     db.deleteRecipe(id)
         .then(hasBeenDeleted => {
             if(hasBeenDeleted) {
-                res.sendStatus(200)
+                res.sendStatus(204)
             } else {
                 res.sendStatus(404)
             }
@@ -57,6 +57,10 @@ router.delete('/recipes/:id', (req, res) => {
             res.status(500).json({ message: 'Something is broken' })
         })
 })
+
+// router.patch('/edit/:id', (req,res) => {
+//     db.
+// })
 
 
 
