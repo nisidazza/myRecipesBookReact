@@ -24,6 +24,7 @@ class RecipesList extends React.Component {
                 })
             })
     }
+    
 
     deleteRecipe = (id, i) => {
         apiDeleteRecipe(id)
