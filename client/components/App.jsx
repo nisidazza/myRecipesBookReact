@@ -6,6 +6,7 @@ import Nav from './Nav'
 import Register from './Register'
 import SignIn from './SignIn'
 import Recipe from './Recipe'
+import EditRecipe from './EditRecipe'
 
 
 class App extends React.Component {
@@ -19,6 +20,7 @@ class App extends React.Component {
                 <Route path='/ingredients' component={IngredientsList} />
                 <Route path='/recipes' component={RecipesList} />
                 <Route path='/recipe/:id' component={Recipe} />
+                <Route path='/edit/:id' component={EditRecipe} />
             </Router>
         )
     }

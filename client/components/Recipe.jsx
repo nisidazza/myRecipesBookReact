@@ -1,5 +1,6 @@
 import React from 'react'
 import { apiGetRecipeDetails } from '../apis/recipesApi'
+import {Link} from 'react-router-dom'
 
 class Recipe extends React.Component {
     constructor(props) {
@@ -54,7 +55,9 @@ class Recipe extends React.Component {
                         )
                     })}
                 </section>
-
+                    <Link to={`/edit/${recipeInfo.id}`}>
+                        <button>Edit</button>
+                    </Link>
 
             </>
         )
