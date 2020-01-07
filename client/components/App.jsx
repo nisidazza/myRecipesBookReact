@@ -6,7 +6,6 @@ import Nav from './Nav'
 import Register from './Register'
 import SignIn from './SignIn'
 import Recipe from './Recipe'
-import EditRecipe from './EditRecipe'
 
 
 class App extends React.Component {
