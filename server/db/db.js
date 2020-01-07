@@ -13,7 +13,7 @@ function getListIngredients(db = connection) {
 }
 
 function getIngredients(id, db = connection) {
-    return db.select('ingredients.name AS ingredient_name', 'recipes_ingredients.quantity AS ingredient_quantity')
+    return db.select('recipes_ingredients.ingredient_id AS id', 'ingredients.name', 'recipes_ingredients.quantity')
         .from('recipes')
         .innerJoin('recipes_ingredients', 'recipes_ingredients.recipe_id', 'recipes.id')
         .innerJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
@@ -36,82 +36,99 @@ function addRecipe(title, category, link, notes, db = connection) {
         }, 'id')
 }
 
-async function linkRecipeIngredients(newRecipeId, ingredient_ids, ingredient_quantities, new_ingredients, db = connection) {    
-    if (new_ingredients){
-        if (!ingredient_ids){        
+async function linkRecipeIngredients(newRecipeId, ingredient_ids, ingredient_quantities, new_ingredients, db = connection) {
+    if (new_ingredients) {
+        if (!ingredient_ids) {
             ingredient_ids = [];
-            for(var i = 0; i < length; i++) {
+            for (var i = 0; i < length; i++) {
                 ingredient_ids.push(-1);
             }
         }
 
-        for(let i=0; i<new_ingredients.length; i++) {
-            let name =  new_ingredients[i].trim()
-            if(name != "") {
+        for (let i = 0; i < new_ingredients.length; i++) {
+            let name = new_ingredients[i].trim()
+            if (name != "") {
                 await db('ingredients')
                     .insert({ name }, 'id')
                     .then(id => {
                         ingredient_ids[i] = id[0]
-                    })                
+                    })
             }
         }
     }
 
     var newRows = []
-    
-    if (ingredient_ids){
-        for(var i=0;i<ingredient_ids.length;i++){
+
+    if (ingredient_ids) {
+        for (var i = 0; i < ingredient_ids.length; i++) {
             newRows.push({
-                recipe_id : newRecipeId,
-                ingredient_id : ingredient_ids[i],
-                quantity : ingredient_quantities[i]
+                recipe_id: newRecipeId,
+                ingredient_id: ingredient_ids[i],
+                quantity: ingredient_quantities[i]
             })
         }
-    }   
+    }
 
     return db('recipes_ingredients')
         .insert(newRows)
 }
 
-function deleteRecipe(id, db=connection) {
+function deleteRecipe(id, db = connection) {
     return db('recipes')
-    .where('id', id).first()
-    .delete()
+        .where('id', id).first()
+        .delete()
 }
 
-function getRecipesByIngredient(ingredientId, db=connection) {
+function getRecipesByIngredient(ingredientId, db = connection) {
     return db('recipes_ingredients')
-    .innerJoin('recipes', 'recipes.id','recipes_ingredients.recipe_id')
-    .where('recipes_ingredients.ingredient_id', ingredientId)
-    .select('recipes.id', 'recipes.title')
+        .innerJoin('recipes', 'recipes.id', 'recipes_ingredients.recipe_id')
+        .where('recipes_ingredients.ingredient_id', ingredientId)
+        .select('recipes.id', 'recipes.title')
 }
 
 
-function editRecipe(id, recipe, db=connection) {
+function editRecipe(id, newRecipe, db = connection) {
     return db('recipes')
-    .where('id', id)
-    .update({
-        title: recipe.title,
-        category: recipe.category,
-        link: recipe.link,
-        notes: recipe.notes
-    })
+        .where('id', id)
+        .select()
+        .then(oldRecipe => {
+            if (oldRecipe.length == 0) return {hasBeenUpdated:false}            
+            return db('recipes')
+                .where('id', id)
+                .update({
+                    title: newRecipe.title ? newRecipe.title : oldRecipe[0].title,
+                    category: newRecipe.category ? newRecipe.category : oldRecipe[0].category,
+                    link: newRecipe.link ? newRecipe.link : oldRecipe[0].link,
+                    notes: newRecipe.notes ? newRecipe.notes : oldRecipe[0].notes
+                })                
+                .then(hasBeenUpdated =>{
+                    return db('recipes')
+                        .where('id', id)
+                        .select()
+                        .then(newRecipe => {
+                            return {
+                                hasBeenUpdated,
+                                newRecipe: newRecipe[0]        
+                            }
+                        })
+                })
+        })        
 }
 
-function addIngredientToRecipe(recipe_id, ingredient_id, quantity, db=connection) {
+function addIngredientToRecipe(recipe_id, ingredient_id, quantity, db = connection) {
     return db('recipes_ingredients')
-    .insert({
-        recipe_id,
-        ingredient_id,
-        quantity
-    })
+        .insert({
+            recipe_id,
+            ingredient_id,
+            quantity
+        })
 }
 
 function deleteIngredientFromRecipe() {
     return db('recipes_ingredients')
-    .where('recipe_id', recipe_id)
-    .where('ingredient_id', ingredient_id)
-    .delete()
+        .where('recipe_id', recipe_id)
+        .where('ingredient_id', ingredient_id)
+        .delete()
 }
 
 

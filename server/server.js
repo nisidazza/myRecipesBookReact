@@ -15,6 +15,4 @@ server.use('/api/v1', routes)
 server.use('/api/v1', authRoutes)
 server.use('/api/v1/users', usersRoutes)
 
-
-
 module.exports = server

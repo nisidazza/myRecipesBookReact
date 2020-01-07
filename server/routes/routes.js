@@ -33,8 +33,8 @@ router.get('/recipe/:id', (req, res) => {
     db.getRecipe(id)
         .then(recipeDetail => {
             db.getIngredients(id)
-                .then(recipeIngredients => {
-                    res.json({ recipeDetail, recipeIngredients })
+                .then(ingredients => {
+                    res.json({ ...recipeDetail, ingredients })
                 })
         })
         .catch(err => {
@@ -62,16 +62,15 @@ router.patch('/recipe/:id', (req, res) => {
     const { id } = req.params
     const recipe = req.body
     db.editRecipe(id, recipe)
-        .then(hasBeenUpdated => {
+        .then(({hasBeenUpdated, newRecipe}) => {
             if (hasBeenUpdated) {
-                res.sendStatus(200)
+                res.status(200).json(newRecipe)
             } else {
-                res.sendStatus(204)
+                res.sendStatus(404)
             }
         })
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
-
         })
 })
 
