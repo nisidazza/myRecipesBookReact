@@ -1,5 +1,5 @@
 import React from 'react'
-import { apiEditRecipeDetails } from '../apis/recipesApi'
+
 
 class RecipeIngredient extends React.Component {
     constructor(props) {
@@ -61,7 +61,7 @@ class RecipeIngredient extends React.Component {
         this.setState({
             mode : 'view'
         })
-        apiEditRecipeDetails(this.state.ingredient)
+        //TO DO IMPLEMENT
     }
 }
 

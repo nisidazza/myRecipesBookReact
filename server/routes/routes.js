@@ -27,8 +27,8 @@ router.get('/ingredients', (req, res) => {
         })
 })
 
-// GET /api/v1/recipe/:id
-router.get('/recipe/:id', (req, res) => {
+// GET /api/v1/recipes/:id
+router.get('/recipes/:id', (req, res) => {
     let { id } = req.params
     db.getRecipe(id)
         .then(recipeDetail => {
@@ -58,11 +58,11 @@ router.delete('/recipes/:id', (req, res) => {
         })
 })
 
-router.patch('/recipe/:id', (req, res) => {
+router.patch('/recipes/:id', (req, res) => {
     const { id } = req.params
     const recipe = req.body
     db.editRecipe(id, recipe)
-        .then(({hasBeenUpdated, newRecipe}) => {
+        .then(({ hasBeenUpdated, newRecipe }) => {
             if (hasBeenUpdated) {
                 res.status(200).json(newRecipe)
             } else {
@@ -72,6 +72,23 @@ router.patch('/recipe/:id', (req, res) => {
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
         })
+})
+
+router.delete('/recipes/:recipe_id/ingredients/:ingredient_id', (req, res) => {
+    const { recipe_id } = req.params
+    const { ingredient_id } = req.params
+    db.deleteIngredientFromRecipe(recipe_id, ingredient_id)
+        .then(hasBeenDeleted => {
+            if (hasBeenDeleted) {
+                res.sendStatus(204)
+            } else {
+                res.sendStatus(404)
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+
 })
 
 

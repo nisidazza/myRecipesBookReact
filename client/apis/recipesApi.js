@@ -2,7 +2,7 @@ import request from 'superagent'
 
 const recipesUrl = 'api/v1/recipes'
 const ingredientsUrl = 'api/v1/ingredients'
-const recipeDetailsUrl = 'api/v1/recipe'
+
 
 
 export function apiGetRecipes() {
@@ -37,15 +37,15 @@ export function apiDeleteRecipe(id) {
 }
 
 export function apiGetRecipeDetails(id) {
-    return request.get(`${recipeDetailsUrl}/${id}`)
+    return request.get(`${recipesUrl}/${id}`)
         .catch(() => {
-            throw Error('you need to implement an API route for /api/v1/recipe/:id')
+            throw Error('you need to implement an API route for /api/v1/recipes/:id')
         })
         .then(res => res.body)
 }
 
 export function apiEditRecipeDetails(recipe) {
-    return request.patch(`${recipeDetailsUrl}/${recipe.id}`)
+    return request.patch(`${recipesUrl}/${recipe.id}`)
         .send(recipe)
         .catch(() => {
             throw Error('API route not found')
