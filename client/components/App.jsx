@@ -20,7 +20,6 @@ class App extends React.Component {
                 <Route path='/ingredients' component={IngredientsList} />
                 <Route path='/recipes' component={RecipesList} />
                 <Route path='/recipe/:id' component={Recipe} />
-                <Route path='/edit/:id' component={EditRecipe} />
             </Router>
         )
     }

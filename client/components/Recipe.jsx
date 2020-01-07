@@ -25,7 +25,7 @@ class Recipe extends React.Component {
                 this.setState({
                     recipe: response
                 })
-                console.log(response)
+                //console.log(response)
             })
     }
 

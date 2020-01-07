@@ -32,10 +32,10 @@ router.get('/recipe/:id', (req, res) => {
     let { id } = req.params
     db.getRecipe(id)
         .then(recipeDetail => {
-            db.getIngredients(id) 
-            .then(recipeIngredients => {
-                res.json({recipeDetail, recipeIngredients})
-            })
+            db.getIngredients(id)
+                .then(recipeIngredients => {
+                    res.json({ recipeDetail, recipeIngredients })
+                })
         })
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
@@ -47,7 +47,7 @@ router.delete('/recipes/:id', (req, res) => {
     const { id } = req.params
     db.deleteRecipe(id)
         .then(hasBeenDeleted => {
-            if(hasBeenDeleted) {
+            if (hasBeenDeleted) {
                 res.sendStatus(204)
             } else {
                 res.sendStatus(404)
@@ -58,9 +58,22 @@ router.delete('/recipes/:id', (req, res) => {
         })
 })
 
-// router.patch('/edit/:id', (req,res) => {
-//     db.
-// })
+router.patch('/recipe/:id', (req, res) => {
+    const { id } = req.params
+    const recipe = req.body
+    db.editRecipe(id, recipe)
+        .then(hasBeenUpdated => {
+            if (hasBeenUpdated) {
+                res.sendStatus(200)
+            } else {
+                res.sendStatus(204)
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+
+        })
+})
 
 
 

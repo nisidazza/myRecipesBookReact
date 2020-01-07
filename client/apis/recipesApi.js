@@ -26,8 +26,8 @@ export function apiGetIngredients() {
 export function apiDeleteRecipe(id) {    
     return request.delete(`${recipesUrl}/${id}`)
         .then(res =>  {
-            if (res.status <= 299) return true;
-            if (res.status == 404) return false;
+            if (res.status <= 299) return true
+            if (res.status == 404) return false
             //TODO: what should we do in case of redirect?
             throw Error('Unexpected HTTP Code ' + res.status)
         })
@@ -41,5 +41,18 @@ export function apiGetRecipeDetails(id) {
     .then(res => res.body)
     .catch(() => {
         throw Error ('you need to implement an API route for /api/v1/recipe/:id')
+    })
+}
+
+export function apiEditRecipeDetails(recipe) {
+    return request.patch(`${recipeDetailsUrl}/${id}`)
+    .send(recipe)
+    .then(res => {
+        if(res.status == 200) return true
+        if(res.status == 304) return false
+        throw Error('Unexpected HTTP Code ' + res.status)
+    })
+    .catch(() => {
+        throw Error('API route not found')
     })
 }
