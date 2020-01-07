@@ -1,6 +1,7 @@
 import React from 'react'
 import { apiGetRecipeDetails } from '../apis/recipesApi'
 import RecipeDetails from './RecipeDetails'
+import RecipeIngredient from './RecipeIngredient'
 
 
 class Recipe extends React.Component {
@@ -49,9 +50,7 @@ class Recipe extends React.Component {
                 <h4>Ingredients</h4>
                 {ingredientsInfo.map((ingredient, j) => {
                     return (
-                        <div key={j}>
-                            <li>{ingredient.name}: {ingredient.quantity}</li>
-                        </div>
+                        <RecipeIngredient ingredient={ingredient}/>
                     )
                 })}
             </section>
