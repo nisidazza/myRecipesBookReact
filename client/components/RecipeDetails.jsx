@@ -22,6 +22,15 @@ class RecipeDetail extends React.Component {
                             <label>Title:</label>
                             <input name="title" value={recipeInfo.title} onChange={this.handleChange} />
                             <br/>
+                            <label>Category:</label>
+                            <input name="category" value={recipeInfo.category} onChange={this.handleChange} />
+                            <br/>
+                            <label>Link:</label>
+                            <input name="link" value={recipeInfo.link} onChange={this.handleChange} />
+                            <br/>
+                            <label>Notes:</label>
+                            <input name="notes" value={recipeInfo.notes} onChange={this.handleChange} />
+                            <br/>
                             <input type="submit" value="Save"></input>
                         </form>
                     </div>
