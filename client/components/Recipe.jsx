@@ -39,24 +39,23 @@ class Recipe extends React.Component {
         return (
             <>
                 <RecipeDetails recipe = {recipeDetails}/>
-                {this.renderIngredients(ingredients)}
+                {renderIngredients(ingredients, recipeDetails.id)}
             </>
         )
-    }    
-
-    renderIngredients(ingredientsInfo){
-        return (
-            <section>
-                <h4>Ingredients</h4>
-                {ingredientsInfo.map((ingredient, j) => {
-                    return (
-                        <RecipeIngredient ingredient={ingredient}/>
-                    )
-                })}
-            </section>
-        )
-    }    
+    }       
 }
 
+function  renderIngredients(ingredients, recipeId){
+    return (
+        <section>
+            <h4>Ingredients</h4>
+            {ingredients.map((ingredient, j) => {
+                return (
+                    <RecipeIngredient ingredient={ingredient} recipeId={recipeId} />
+                )
+            })}
+        </section>
+    )
+} 
 
 export default Recipe

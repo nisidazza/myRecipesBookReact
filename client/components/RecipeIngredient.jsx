@@ -1,4 +1,5 @@
 import React from 'react'
+import {apiUpdateIngredientInRecipe} from '../apis/recipesApi'
 
 
 class RecipeIngredient extends React.Component {
@@ -11,47 +12,11 @@ class RecipeIngredient extends React.Component {
         }
     }
 
-    render() {
-        const ingredientDetail = this.state.ingredient
-        let ingredientForm;
-        if (this.state.mode == 'edit') {
-            ingredientForm = (
-                <>
-                    <div>
-                        <form onSubmit={this.handleSubmit}>
-                            <input name="name" value={ingredientDetail.name} onChange={this.handleChange} />
-                            <input name="quantity" value={ingredientDetail.quantity} onChange={this.handleChange} />
-                            <input type="submit" value="Save"></input>
-                        </form>
-                    </div>
-                </>
-            )
-        } else if (this.state.mode == 'view') {
-            ingredientForm = (
-                <>
-                    <div key={ingredientDetail.id}>
-                        <li>{ingredientDetail.name}: {ingredientDetail.quantity}</li>
-                    </div>
-                    <div>
-                        <button onClick={() => this.setState({ mode: "edit" })}>Edit</button>
-                        <button>Delete</button>
-                    </div>
-                </>
-            )
-        }
-
-        return (
-            <>
-                {ingredientForm}
-            </>
-        )
-    }
-
     handleChange = (e) => {
         this.setState({
-            ingredient : {
+            ingredient: {
                 ...this.state.ingredient,
-                [e.target.name] : e.target.value
+                [e.target.name]: e.target.value
             }
         })
     }
@@ -59,10 +24,56 @@ class RecipeIngredient extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.setState({
-            mode : 'view'
+            mode: 'view'
         })
-        //TO DO IMPLEMENT
+        apiUpdateIngredientInRecipe(this.props.recipeId, this.state.ingredient)
+    } 
+    
+    handleEditClick = () => {
+        this.setState({ mode: "edit" })
+    }    
+
+    render() {
+        const ingredientDetail = this.state.ingredient
+        let ingredientForm;
+        if (this.state.mode == 'edit') {
+            ingredientForm = renderEditMode(this.handleSubmit, this.handleChange, ingredientDetail); 
+        } else if (this.state.mode == 'view') {
+            ingredientForm = renderViewMode(this.handleEditClick, ingredientDetail) 
+        }
+        return (
+            <>
+                {ingredientForm}
+            </>
+        )
     }
+}
+
+function renderEditMode(handleSubmit, handleChange, ingredientDetail){
+    return (
+        <>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    {ingredientDetail.name}: <input name="quantity" value={ingredientDetail.quantity} onChange={handleChange} />
+                    <input type="submit" value="Save"></input>
+                </form>
+            </div>
+        </>
+    )
+}
+
+function renderViewMode(handleEditClick, ingredientDetail){
+    return (
+        <>
+            <div key={ingredientDetail.id}>
+                <li>{ingredientDetail.name}: {ingredientDetail.quantity}</li>
+            </div>
+            <div>
+                <button onClick={handleEditClick}>Edit</button>
+                <button>Delete</button>
+            </div>
+        </>
+    )
 }
 
 export default RecipeIngredient

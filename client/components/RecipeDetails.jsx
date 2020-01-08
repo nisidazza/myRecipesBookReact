@@ -1,5 +1,5 @@
 import React from 'react'
-import { apiEditRecipeDetails } from '../apis/recipesApi'
+import { apiUpdateRecipeDetails } from '../apis/recipesApi'
 
 class RecipeDetail extends React.Component {
     constructor(props) {
@@ -62,10 +62,10 @@ class RecipeDetail extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({ mode: "view" })
-        apiEditRecipeDetails(this.state.recipe)
+        apiUpdateRecipeDetails(this.state.recipe)
             .catch((error) => {
                 this.setState({
-                    recipe: this.props.recipe,
+                    recipe: this.props.pippo,
                     errormessage: error.message
                 })
             })
