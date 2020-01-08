@@ -1,5 +1,5 @@
 import React from 'react'
-import {apiUpdateIngredientInRecipe} from '../apis/recipesApi'
+import { apiUpdateIngredientInRecipe, apiDeleteIngredientFromRecipe } from '../apis/recipesApi'
 
 
 class RecipeIngredient extends React.Component {
@@ -27,29 +27,39 @@ class RecipeIngredient extends React.Component {
             mode: 'view'
         })
         apiUpdateIngredientInRecipe(this.props.recipeId, this.state.ingredient)
-    } 
-    
+    }
+
     handleEditClick = () => {
-        this.setState({ mode: "edit" })
-    }    
+        this.setState({ mode: 'edit' })
+    }
+
+
+    handleDeleteClick = () => {
+        this.setState({ mode: 'deleted' })
+        apiDeleteIngredientFromRecipe(this.props.recipeId, this.state.ingredient.id)
+    }
 
     render() {
         const ingredientDetail = this.state.ingredient
         let ingredientForm;
-        if (this.state.mode == 'edit') {
-            ingredientForm = renderEditMode(this.handleSubmit, this.handleChange, ingredientDetail); 
-        } else if (this.state.mode == 'view') {
-            ingredientForm = renderViewMode(this.handleEditClick, ingredientDetail) 
+        if (this.state.mode == 'deleted') {
+            return ""
+        } else {
+            if (this.state.mode == 'edit') {
+                ingredientForm = renderEditMode(this.handleSubmit, this.handleChange, ingredientDetail);
+            } else if (this.state.mode == 'view') {
+                ingredientForm = renderViewMode(this.handleEditClick, this.handleDeleteClick, ingredientDetail)
+            }
+            return (
+                <>
+                    {ingredientForm}
+                </>
+            )
         }
-        return (
-            <>
-                {ingredientForm}
-            </>
-        )
     }
 }
 
-function renderEditMode(handleSubmit, handleChange, ingredientDetail){
+function renderEditMode(handleSubmit, handleChange, ingredientDetail) {
     return (
         <>
             <div>
@@ -62,7 +72,7 @@ function renderEditMode(handleSubmit, handleChange, ingredientDetail){
     )
 }
 
-function renderViewMode(handleEditClick, ingredientDetail){
+function renderViewMode(handleEditClick, handleDeleteClick, ingredientDetail) {
     return (
         <>
             <div key={ingredientDetail.id}>
@@ -70,7 +80,7 @@ function renderViewMode(handleEditClick, ingredientDetail){
             </div>
             <div>
                 <button onClick={handleEditClick}>Edit</button>
-                <button>Delete</button>
+                <button onClick={handleDeleteClick}>Delete</button>
             </div>
         </>
     )

@@ -64,3 +64,16 @@ export function apiUpdateIngredientInRecipe(recipe_id, ingredient) {
             throw Error('Unexpected HTTP Code ' + res.status)
         })
 }
+
+export function apiDeleteIngredientFromRecipe(recipe_id, ingredient_id) {
+    return request.delete(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
+        .catch(() => {
+            throw Error('API route not found')
+        })
+        .then(res => {
+            if (res.status <= 299) return true
+            if (res.status == 404) return false
+            //TODO: what should we do in case of redirect?
+            throw Error('Unexpected HTTP Code ' + res.status)
+        })
+}
