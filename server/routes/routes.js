@@ -91,6 +91,26 @@ router.delete('/recipes/:recipe_id/ingredients/:ingredient_id', (req, res) => {
 
 })
 
+router.patch('/recipes/:recipe_id/ingredients/:ingredient_id', (req, res) => {
+    const { recipe_id } = req.params
+    const { ingredient_id } = req.params
+    const quantity = req.body.quantity
+    if (quantity == null || quantity == undefined) {
+        res.status(400).json({message: "'quantity' is required"})
+        return
+    }
+    db.updateIngredientInRecipe(recipe_id, ingredient_id, quantity)
+        .then(hasBeenUpdated => {
+            if (hasBeenUpdated) {
+                res.status(200).json(req.body)
+            } else {
+                res.sendStatus(404)
+            }
+        }).catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+})
+
 
 
 module.exports = router

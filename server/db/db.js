@@ -131,7 +131,14 @@ function deleteIngredientFromRecipe(recipe_id, ingredient_id, db = connection ) 
         .delete()
 }
 
-function updateIngredientInRecipe(recipe_id, ingredient_id, db = connection ) {}
+function updateIngredientInRecipe(recipe_id, ingredient_id, quantity, db = connection ) {
+    return db('recipes_ingredients')
+    .where('recipe_id', recipe_id)
+    .where('ingredient_id', ingredient_id)
+    .update({
+        quantity
+    })
+}
 
 
 module.exports = {
