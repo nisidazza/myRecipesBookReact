@@ -92,7 +92,7 @@ function editRecipe(id, newRecipe, db = connection) {
         .where('id', id)
         .select()
         .then(oldRecipe => {
-            if (oldRecipe.length == 0) return {hasBeenUpdated:false}            
+            if (oldRecipe.length == 0) return { hasBeenUpdated: false }
             return db('recipes')
                 .where('id', id)
                 .update({
@@ -100,44 +100,64 @@ function editRecipe(id, newRecipe, db = connection) {
                     category: newRecipe.category ? newRecipe.category : oldRecipe[0].category,
                     link: newRecipe.link ? newRecipe.link : oldRecipe[0].link,
                     notes: newRecipe.notes ? newRecipe.notes : oldRecipe[0].notes
-                })                
-                .then(hasBeenUpdated =>{
+                })
+                .then(hasBeenUpdated => {
                     return db('recipes')
                         .where('id', id)
                         .select()
                         .then(newRecipe => {
                             return {
                                 hasBeenUpdated,
-                                newRecipe: newRecipe[0]        
+                                newRecipe: newRecipe[0]
                             }
                         })
                 })
-        })        
+        })
 }
 
 function addIngredientToRecipe(recipe_id, ingredient_id, quantity, db = connection) {
     return db('recipes_ingredients')
-        .insert({
-            recipe_id,
-            ingredient_id,
-            quantity
+        .where('recipe_id', recipe_id)
+        .where('ingredient_id', ingredient_id)
+        .select()
+        .then(rows => {
+            if (rows.length == 0) {
+                return db('recipes_ingredients')
+                    .insert({
+                        recipe_id,
+                        ingredient_id,
+                        quantity
+                    })
+            } else {
+                throw new Error('INGREDIENT_CONFLICT')
+            }
         })
+
 }
 
-function deleteIngredientFromRecipe(recipe_id, ingredient_id, db = connection ) {
+function deleteIngredientFromRecipe(recipe_id, ingredient_id, db = connection) {
     return db('recipes_ingredients')
         .where('recipe_id', recipe_id)
         .where('ingredient_id', ingredient_id)
         .delete()
 }
 
-function updateIngredientInRecipe(recipe_id, ingredient_id, quantity, db = connection ) {
+function updateIngredientInRecipe(recipe_id, ingredient_id, quantity, db = connection) {
     return db('recipes_ingredients')
-    .where('recipe_id', recipe_id)
-    .where('ingredient_id', ingredient_id)
-    .update({
-        quantity
-    })
+        .where('recipe_id', recipe_id)
+        .where('ingredient_id', ingredient_id)
+        .update({
+            quantity
+        })
+}
+
+function getIngredientInRecipe(recipeId, ingredientId, db = connection) {
+    return db.select('recipes_ingredients.ingredient_id AS id', 'ingredients.name', 'recipes_ingredients.quantity')
+    .from('recipes')
+    .innerJoin('recipes_ingredients', 'recipes_ingredients.recipe_id', 'recipes.id')
+    .innerJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
+    .where('recipes.id', recipeId)
+    .where('ingredients.id', ingredientId)
 }
 
 
@@ -153,5 +173,6 @@ module.exports = {
     editRecipe,
     addIngredientToRecipe,
     deleteIngredientFromRecipe,
-    updateIngredientInRecipe
+    updateIngredientInRecipe,
+    getIngredientInRecipe
 }

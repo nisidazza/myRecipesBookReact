@@ -126,6 +126,24 @@ router.delete('/recipes/:recipe_id/ingredients/:ingredient_id', (req, res) => {
         })
 })
 
-
+router.post('/recipes/:recipe_id/ingredients/:ingredient_id', (req, res) => {
+    const { recipe_id } = req.params
+    const { ingredient_id } = req.params
+    const quantity = req.body.quantity
+    db.addIngredientToRecipe(recipe_id, ingredient_id, quantity)
+        .then(hasBeenAdded => {
+            if (hasBeenAdded) {
+                res.status(201).json(req.body)
+            } else {
+                res.sendStatus(404)
+            }
+        }).catch(err => {
+            if (err.message == 'INGREDIENT_CONFLICT') {
+                res.status(409).json({ message: `Ingredient ${ingredient_id} already in recipe ${recipe_id}` })
+            } else {
+                res.status(500).json({ message: 'Something is broken' })
+            }
+        })
+})
 
 module.exports = router
