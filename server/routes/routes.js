@@ -164,4 +164,18 @@ router.get('/recipes/:recipeId/ingredients/:ingredientId', (req, res) => {
         })
 })
 
+router.get('/recipes/view/:id', (req, res) => {
+    let { id } = req.params
+    db.getRecipe(id)
+        .then(recipeDetail => {
+            db.getIngredients(id)
+                .then(ingredients => {
+                    res.json({ ...recipeDetail, ingredients })
+                })
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+})
+
 module.exports = router

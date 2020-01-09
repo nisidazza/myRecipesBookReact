@@ -58,7 +58,7 @@ class RecipesList extends React.Component {
                                         <Link to={`/recipe/${recipe.id}`}>
                                             <button>Update</button>
                                         </Link>
-                                        <Link to=''>
+                                        <Link to={`/recipes/view/${recipe.id}`}>
                                             <button>View</button>
                                         </Link>
                                     </div>

@@ -56,8 +56,6 @@ class Recipe extends React.Component {
                     <RecipeNewIngredient recipeId={recipeDetails.id} onAddedIngredient={this.visualizeAddedIngredient} />
                     {renderIngredients(ingredients, recipeDetails.id)}
                 </section>
-
-
             </>
         )
     }
