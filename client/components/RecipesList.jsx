@@ -56,7 +56,10 @@ class RecipesList extends React.Component {
                                     <div>
                                         <button onClick={() => this.deleteRecipe(recipe.id, i)}>Delete</button>
                                         <Link to={`/recipe/${recipe.id}`}>
-                                            <button>View Details</button>
+                                            <button>Update</button>
+                                        </Link>
+                                        <Link to=''>
+                                            <button>View</button>
                                         </Link>
                                     </div>
                                     <hr></hr>
