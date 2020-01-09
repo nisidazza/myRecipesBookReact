@@ -153,10 +153,9 @@ function updateIngredientInRecipe(recipe_id, ingredient_id, quantity, db = conne
 
 function getIngredientInRecipe(recipeId, ingredientId, db = connection) {
     return db.select('recipes_ingredients.ingredient_id AS id', 'ingredients.name', 'recipes_ingredients.quantity')
-    .from('recipes')
-    .innerJoin('recipes_ingredients', 'recipes_ingredients.recipe_id', 'recipes.id')
-    .innerJoin('ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
-    .where('recipes.id', recipeId)
+    .from('ingredients')
+    .innerJoin('recipes_ingredients', 'recipes_ingredients.ingredient_id', 'ingredients.id')
+    .where('recipes_ingredients.recipe_id', recipeId)
     .where('ingredients.id', ingredientId)
 }
 

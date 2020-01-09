@@ -1,5 +1,5 @@
 import React from 'react'
-import { apiGetIngredients } from '../apis/recipesApi'
+import { apiGetIngredients, apiAddIngredientToRecipe } from '../apis/recipesApi'
 
 class RecipeNewIngredient extends React.Component {
     constructor(props) {
@@ -8,9 +8,9 @@ class RecipeNewIngredient extends React.Component {
         this.state = {
             ingredients: [],
             newIngredient: {
-                quantity: null,
-                recipe_id: null,
-                ingredient_id: -1
+                quantity: '',
+                recipe_id: this.props.recipeId,
+                ingredient_id: -1,
             }
         }
 
@@ -30,11 +30,24 @@ class RecipeNewIngredient extends React.Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        const newIngredient = this.state.newIngredient
+        apiAddIngredientToRecipe(newIngredient.recipe_id, newIngredient.ingredient_id, newIngredient.quantity)
+            .then((ingredientId) => {
+                if (ingredientId > 0) {
+                    this.setState({
+                        newIngredient: {
+                            quantity: "",
+                            ingredient_id: -1,
+                        }
+                    })
+                    this.props.onAddedIngredient(newIngredient.recipe_id, ingredientId)
+                } else {
+                    //TO DO HANDLE ERROR
+                }
+            })
 
-        //TO DO CALL API
-        //TO DO FORCE UPDATE
-        this.props.onAddedIngredient()
+
     }
 
     handleChange = (e) => {
@@ -51,15 +64,15 @@ class RecipeNewIngredient extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <select name='ingredient_id' onChange={this.handleChange} value={this.state.newIngredient.ingredient_id}>
-                        <option key="0" value='-1' disable>-- Please choose... --</option>
+                        <option key="0" value='-1' disable='true'>-- Please choose... --</option>
                         {this.state.ingredients.map((ingredient, y) => {
                             return (
                                 <option key={y + 1} value={ingredient.id}>{ingredient.name}</option>
                             )
                         })}
                     </select>
-                    <input type='text' name='quantity' placeholder='insert quantity' onChange={this.handleChange}></input>
-                    <input type="submit" value="Save"></input>
+                    <input type='text' name='quantity' placeholder='insert quantity' value={this.state.newIngredient.quantity} onChange={this.handleChange}></input>
+                    <input type="submit" value="Add"></input>
                 </form>
             </div>
         )

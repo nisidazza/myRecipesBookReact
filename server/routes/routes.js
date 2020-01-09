@@ -146,4 +146,22 @@ router.post('/recipes/:recipe_id/ingredients/:ingredient_id', (req, res) => {
         })
 })
 
+router.get('/recipes/:recipeId/ingredients/:ingredientId', (req, res) => {
+    const { recipeId } = req.params
+    const { ingredientId } = req.params
+    const quantity = req.body.quantity
+    const name = req.body.name
+    db.getIngredientInRecipe(recipeId, ingredientId, quantity, name)
+        .then(ingredient => {
+            if (ingredient.length > 0) {
+                res.status(200).json(ingredient[0])
+            } else {
+                res.sendStatus(404)
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+})
+
 module.exports = router

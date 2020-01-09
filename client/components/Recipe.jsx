@@ -1,5 +1,5 @@
 import React from 'react'
-import { apiGetRecipeDetails } from '../apis/recipesApi'
+import { apiGetRecipeDetails, apiGetIngredientFromRecipe } from '../apis/recipesApi'
 import RecipeDetails from './RecipeDetails'
 import RecipeIngredient from './RecipeIngredient'
 import RecipeNewIngredient from './RecipeNewIngredient'
@@ -13,6 +13,8 @@ class Recipe extends React.Component {
             recipe: null,
             mode: "view"
         }
+
+        this.visualizeAddedIngredient = this.visualizeAddedIngredient.bind(this)
     }
 
     componentDidMount() {
@@ -30,9 +32,13 @@ class Recipe extends React.Component {
             })
     }
 
-    visualizeAddedIngredient(id) {
-        //TO DO: get ingredient from database
-        //TO DO: run a setState and add the new ingredient (from the database) to this.state.recipe.ingredients
+    visualizeAddedIngredient(recipeId, ingredientId) {
+        apiGetIngredientFromRecipe(recipeId, ingredientId)
+            .then(ingredient => {
+                this.setState({
+                    ingredients: this.state.recipe.ingredients.push(ingredient)
+                })
+            })
     }
 
     render() {
@@ -45,9 +51,13 @@ class Recipe extends React.Component {
         return (
             <>
                 <RecipeDetails recipe={recipeDetails} />
-                {renderIngredients(ingredients, recipeDetails.id)}
-                <button>Add Ingredient</button>
-                <RecipeNewIngredient onAddedIngredient={this.visualizeAddedIngredient}/>
+                <section>
+                    <h4>Ingredients</h4>
+                    <RecipeNewIngredient recipeId={recipeDetails.id} onAddedIngredient={this.visualizeAddedIngredient} />
+                    {renderIngredients(ingredients, recipeDetails.id)}
+                </section>
+
+
             </>
         )
     }
@@ -55,17 +65,17 @@ class Recipe extends React.Component {
 
 function renderIngredients(ingredients, recipeId) {
     return (
-        <section>
-            <h4>Ingredients</h4>
-
-            {ingredients.map((ingredient, j) => {
-                return (
-                    <div key={j}> 
-                        <RecipeIngredient ingredient={ingredient} recipeId={recipeId} />
-                    </div>
-                )
-            })}
-        </section>
+        <>
+            {
+                ingredients.map((ingredient, j) => {
+                    return (
+                        <div key={j}>
+                            <RecipeIngredient ingredient={ingredient} recipeId={recipeId} />
+                        </div>
+                    )
+                })
+            }
+        </>
 
     )
 }

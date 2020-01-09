@@ -77,3 +77,38 @@ export function apiDeleteIngredientFromRecipe(recipe_id, ingredient_id) {
             throw Error('Unexpected HTTP Code ' + res.status)
         })
 }
+
+export function apiGetIngredientFromRecipe(recipe_id, ingredient_id) {
+    return request.get(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
+        .catch(() => {
+            throw Error('API route not found')
+        })
+        .then(res => {
+            if (res.status == 200) {
+                return res.body
+            } else {
+                throw Error('Unexpected HTTP Code ' + res.status)
+            }
+        })
+}
+
+export function apiAddIngredientToRecipe(recipe_id, ingredient_id, quantity) {
+    return request.post(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
+        .send({
+            quantity
+        }).catch(() => {
+            throw Error('API route not found')
+        })
+        .then(res => {
+            if (res.status == 201) {
+                return ingredient_id
+            } else if (res.status == 404) {
+                return -1
+            } else if (res.status == 409) {
+                return -1
+            } else {
+                return -1
+            }
+        })
+
+}
