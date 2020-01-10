@@ -113,7 +113,7 @@ export function apiAddIngredientToRecipe(recipe_id, ingredient_id, quantity) {
 }
 
 export function apiGetRecipeView(id) {
-    return request.get(`${recipesUrl}/view/${id}`)
+    return request.get(`api/v1/view/${id}`)
     .catch(() => {
         throw Error('you need to implement an API route for /api/v1/recipes/:id')
     })

@@ -164,7 +164,7 @@ router.get('/recipes/:recipeId/ingredients/:ingredientId', (req, res) => {
         })
 })
 
-router.get('/recipes/view/:id', (req, res) => {
+router.get('/view/:id', (req, res) => {
     let { id } = req.params
     db.getRecipe(id)
         .then(recipeDetail => {

@@ -41,6 +41,10 @@ class RecipesList extends React.Component {
             .catch(err => this.setState({ error: err.message }))
     }
 
+    viewRecipe = (id) => {
+        ap
+    }
+
     render() {
         return (
             <div>
@@ -58,7 +62,7 @@ class RecipesList extends React.Component {
                                         <Link to={`/recipe/${recipe.id}`}>
                                             <button>Update</button>
                                         </Link>
-                                        <Link to={`/recipes/view/${recipe.id}`}>
+                                        <Link to={`/view/${recipe.id}`}>
                                             <button>View</button>
                                         </Link>
                                     </div>
