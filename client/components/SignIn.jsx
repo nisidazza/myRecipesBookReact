@@ -1,5 +1,6 @@
 import React from 'react'
 import { signIn, isAuthenticated } from 'authenticare/client'
+import { Link } from 'react-router-dom'
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class SignIn extends React.Component {
         this.loginData[e.target.id] = e.target.value
     }
 
-    handleClick = () => {
+    handleSubmit = (e) => {
+        e.preventDefault()
         signIn(
             this.loginData,
             {
@@ -23,21 +25,23 @@ class SignIn extends React.Component {
             }
         ).then((token) => {
             if (isAuthenticated()) {
-                this.props.history.push('/')
+                this.props.history.push('/recipes')
             }
         })
     }
 
     render() {
         return (
-            <>
+            <form onSubmit={this.handleSubmit}>
                 <h3>Sign In</h3>
                 Username: <input type='text' id='username' onChange={this.handleChange}></input>
                 <br />
                 Password: <input type='password' id='password' onChange={this.handleChange}></input>
                 <br />
-                <button onClick={this.handleClick}>Sign In</button>
-            </>
+                <div>
+                    <input value='Sign In' type='submit' />
+                </div>
+            </form>
         )
     }
 

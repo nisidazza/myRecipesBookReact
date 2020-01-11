@@ -13,7 +13,6 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <h1>My Recipes Book</h1>
                 <Route path='/' component={Nav} />
                 <Route path='/register' component={Register} />
                 <Route path='/signin' component={SignIn} />
