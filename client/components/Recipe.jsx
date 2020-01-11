@@ -50,12 +50,14 @@ class Recipe extends React.Component {
 
         return (
             <>
-                <RecipeDetails recipe={recipeDetails} />
-                <section>
-                    <h4>Ingredients</h4>
-                    <RecipeNewIngredient recipeId={recipeDetails.id} onAddedIngredient={this.visualizeAddedIngredient} />
-                    {renderIngredients(ingredients, recipeDetails.id)}
-                </section>
+                <div>
+                    <RecipeDetails recipe={recipeDetails} />
+                    <section>
+                        <h4>Ingredients</h4>
+                        <RecipeNewIngredient recipeId={recipeDetails.id} onAddedIngredient={this.visualizeAddedIngredient} />
+                        {renderIngredients(ingredients, recipeDetails.id)}
+                    </section>
+                </div>
             </>
         )
     }

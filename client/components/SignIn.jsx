@@ -34,9 +34,9 @@ class SignIn extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <h3>Sign In</h3>
-                Username: <input type='text' id='username' onChange={this.handleChange}></input>
+                Username: <input type='text' id='username' autoComplete='off' onChange={this.handleChange}></input>
                 <br />
-                Password: <input type='password' id='password' onChange={this.handleChange}></input>
+                Password: <input type='password' id='password' autoComplete='off' onChange={this.handleChange}></input>
                 <br />
                 <div>
                     <input value='Sign In' type='submit' />

@@ -15,33 +15,38 @@ export default function Nav() {
     }
 
     return (
-        <nav className='navbar navbar-expand-lg navbar-light bg-light ' role='navigation'>
-
+        <nav className='navbar navbar-expand-sm navbar-light bg-light'>
             <a className="navbar-brand" href="/">
                 {/* <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""/> */}
                 My Recipes Book</a>
-            <Link to='/recipes'>Home</Link>
-            <div className='collapse navbar-collapse flex-grow-0 text-right'>
+            <div className='navbar-collapse collapse justify-content-stretch" id="navbar6' role="navigation">
                 <ul className='navbar-nav'>
-                <IfAuthenticated>
-                    <li className='nav-item w-100 pl-2'>
-                    <Link to='#' className='nav-link' onClick={logOff}>Log Off</Link></li>
-                    <li className='nav-item w-100 pl-2'><p>Welcome, {getUserName()}!</p></li>
-                </IfAuthenticated>
-                </ul>
-                <ul className='navbar-nav ml-auto'>
-                <IfNotAuthenticated>
-                    <div className='d-flex'>
-                        <div className='p-2'>
-                           <li className='nav-item w-100 pl-2'><Link to='/register'className='nav-link'>Register</Link></li> 
-                        </div>
-                        <div className='p-2'>
-                        <li className='nav-item w-100 pl-2'><Link to='/signin'className='nav-link'>Sign In</Link></li> 
-                        </div>
-                    </div>
-                </IfNotAuthenticated>
+                    <li className='nav-item'>
+                        <Link className='nav-link' to='/'>Home</Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link className='nav-link' to='/recipes'>Recipes List</Link>
+                    </li>
                 </ul>
             </div>
+            <ul className='navbar-nav ml-auto'>
+                <IfAuthenticated>
+                    <div className='d-flex p-2'>
+                        <li className='nav-item w-100 pl-1'><p className='nav-item'>Welcome, {getUserName()}!</p></li>
+                        <li className='nav-item w-100 pl-2'>
+                            <Link to='#' className='nav-link' onClick={logOff}>Log Off</Link>
+                        </li>
+                    </div>
+                </IfAuthenticated>
+            </ul>
+            <ul className='navbar-nav ml-auto'>
+                <IfNotAuthenticated>
+                    <div className='d-flex p-2'>
+                        <li className='nav-item w-100 pl-2'><Link to='/register' className='nav-link'>Register</Link></li>
+                        <li className='nav-item w-100 pl-2'><Link to='/signin' className='nav-link'>Sign In</Link></li>
+                    </div>
+                </IfNotAuthenticated>
+            </ul>
         </nav>
     )
 }
