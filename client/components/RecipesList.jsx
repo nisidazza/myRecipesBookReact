@@ -24,7 +24,7 @@ class RecipesList extends React.Component {
                 })
             })
     }
-    
+
 
     deleteRecipe = (id, i) => {
         apiDeleteRecipe(id)
@@ -41,9 +41,7 @@ class RecipesList extends React.Component {
             .catch(err => this.setState({ error: err.message }))
     }
 
-    viewRecipe = (id) => {
-        ap
-    }
+
 
     render() {
         return (
@@ -56,7 +54,6 @@ class RecipesList extends React.Component {
                                 <div>
                                     <li><strong>{recipe.title}</strong></li>
                                     <p>Category: {recipe.category}</p>
-                                    {/* <p>{recipe.id}</p> */}
                                     <div>
                                         <button onClick={() => this.deleteRecipe(recipe.id, i)}>Delete</button>
                                         <Link to={`/recipe/${recipe.id}`}>
