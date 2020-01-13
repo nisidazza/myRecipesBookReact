@@ -5,6 +5,7 @@ div.card-footer {
     background-color: transparent;
 }
 
+
 div.jumbotron-fluid.text-center {
     padding: 0.3em;
     background-color: darksalmon;
@@ -12,6 +13,10 @@ div.jumbotron-fluid.text-center {
 
 div.recipe-list-container {
     min-height: 100%;
+}
+
+div.row.mt-3 {
+    margin-top: 0 !important;
 }
 
 h1#title {
@@ -36,3 +41,4 @@ nav.navbar.fixed.navbar-expand-sm {
     background-color: lightgrey;
     padding: 0;
 }
+

@@ -14,17 +14,25 @@ module.exports = {
             test: /\.jsx?$/,
             loader: 'babel-loader',
             exclude: /node_modules/
-        }]
-    },
-    resolve: {
-        extensions: ['.js', '.jsx']
-    },
-    plugins: [
-        new Dotenv(),
-        new InjectEnvironmentPlugin({regex: /^PUBLIC/i}),
-    ],
-    devtool: 'source-map',
-    devServer: {
-        contentBase: './public'
+        },
+        {
+            test: /\.(png|jpe?g|gif)$/i,
+            use: [
+                {
+                    loader: 'file-loader',
+                },
+            ]
+        }],
+        resolve: {
+            extensions: ['.js', '.jsx']
+        },
+        plugins: [
+            new Dotenv(),
+            new InjectEnvironmentPlugin({ regex: /^PUBLIC/i }),
+        ],
+        devtool: 'source-map',
+        devServer: {
+            contentBase: './public'
+        }
     }
 }
