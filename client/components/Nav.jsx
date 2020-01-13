@@ -49,8 +49,8 @@ class Nav extends React.Component {
                             </div>
                             <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                                 <ul className='navbar-nav ml-auto'>
-                                    <li className='nav-item p-2'><h5 className='nav-item'>Welcome, {this.getUserName()}!</h5></li>
-                                    <li className='nav-item p-0'>
+                                    <li className='nav-item p-2 mt-2'><h5 className='nav-item'>Welcome, {this.getUserName()}!</h5></li>
+                                    <li className='nav-item p-0 mt-2'>
                                         <Link to='#' className='nav-link' onClick={this.handleLogOff}>Log Off</Link>
                                     </li>
                                 </ul>

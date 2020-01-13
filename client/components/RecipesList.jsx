@@ -45,31 +45,38 @@ class RecipesList extends React.Component {
     render() {
         return (
             <div className='recipe-list-container'>
-                <div className='row mt-3'>
+                <div className='row mt-0'>
                     {this.state.recipes.map((recipe, i) => {
                         return (
                             <div className='col-lg-4' key={i}>
                                 <div className='card w-75 mx-auto mt-3' id='recipe-card' >
-                                    <img className='card-img-top' src={'images/book.jpg'} alt='Book'/>
+                                    <img className='card-img-top' src={'images/book.jpg'} alt='Book' />
                                     <div className='card-body'>
                                         <h5 className='card-title text-md-left'><strong>{recipe.title}</strong></h5>
                                         <h6 className='card-subtitle mb-2 text-muted'>Category: {recipe.category}</h6>
                                         <div className='card-footer'>
-                                            <button onClick={() => this.deleteRecipe(recipe.id, i)}>Delete</button>
-                                            <Link to={`/recipe/${recipe.id}`}>
-                                                <button>Update</button>
-                                            </Link>
-                                            <Link to={`/view/${recipe.id}`}>
-                                                <button>View</button>
-                                            </Link>
+                                            <div className='btn-toolbar justify-content-between' role='toolbar' aria-label='Toolbar with button groups'>
+                                                <div className='btn-group mr-2' role='group' aria-label='First group'>
+                                                    <Link to={`/recipe/${recipe.id}`}>
+                                                        <button type='button' className='btn btn-info mr-2'>Update</button>
+                                                    </Link>
+                                                    <Link to={`/view/${recipe.id}`}>
+                                                        <button type='button' className='btn btn-info'>View</button>
+                                                    </Link>
+                                                </div>
+                                                <div className='btn-group' role='group' aria-label='Second group'>
+                                                    <button type='button' className='btn btn-danger' onClick={() => this.deleteRecipe(recipe.id, i)}>Delete</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         )
-                    })}
-                </div>
-            </div>
+                    })
+                    }
+                </div >
+            </div >
         )
     }
 }
