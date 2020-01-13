@@ -1,6 +1,6 @@
 import React from 'react'
 import { signIn, isAuthenticated } from 'authenticare/client'
-import { Link } from 'react-router-dom'
+
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class SignIn extends React.Component {
             }
         ).then((token) => {
             if (isAuthenticated()) {
-                this.props.history.push('/recipes')
+                this.props.history.push('/')
             }
         })
     }

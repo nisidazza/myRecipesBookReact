@@ -45,30 +45,30 @@ class RecipesList extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2>Recipes List</h2>
-                <ul>
+            <div className='recipe-list-container'>
+                <div className='row mt-3'>
                     {this.state.recipes.map((recipe, i) => {
                         return (
-                            <div key={i}>
-                                <div>
-                                    <li><strong>{recipe.title}</strong></li>
-                                    <p>Category: {recipe.category}</p>
-                                    <div>
-                                        <button onClick={() => this.deleteRecipe(recipe.id, i)}>Delete</button>
-                                        <Link to={`/recipe/${recipe.id}`}>
-                                            <button>Update</button>
-                                        </Link>
-                                        <Link to={`/view/${recipe.id}`}>
-                                            <button>View</button>
-                                        </Link>
+                            <div className='col-lg-4' key={i}>
+                                <div className='card w-75 mx-auto mt-1 mb-1'>
+                                    <div className='card-body'>
+                                        <h5 className='card-title text-md-left'><strong>{recipe.title}</strong></h5>
+                                        <h6 className='card-subtitle mb-2 text-muted'>Category: {recipe.category}</h6>
+                                        <div className='card-footer'>
+                                            <button onClick={() => this.deleteRecipe(recipe.id, i)}>Delete</button>
+                                            <Link to={`/recipe/${recipe.id}`}>
+                                                <button>Update</button>
+                                            </Link>
+                                            <Link to={`/view/${recipe.id}`}>
+                                                <button>View</button>
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <hr></hr>
                                 </div>
                             </div>
                         )
                     })}
-                </ul>
+                </div>
             </div>
         )
     }

@@ -26,7 +26,6 @@ class RecipeView extends React.Component {
             return ""
         }
         let { ingredients, ...recipeDetails } = this.state.recipe
-        console.log(ingredients)
         return (
             <>
                 <div>

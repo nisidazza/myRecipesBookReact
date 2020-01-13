@@ -25,44 +25,47 @@ class Nav extends React.Component {
     render() {
         return (
             <>
-                <div className="jumbotron text-center" style={{ marginBottom: '0' }}>
-                    <h1>My Recipe Book</h1>
-                    <p>Keep track of your favourite recipes!</p>
+                <div className='jumbotron-fluid text-center' style={{ marginBottom: '0' }}>
+                    <h1 className='display-4' id='title'>My Recipe Book</h1>
+                    <p className='lead' id='statement' >Keep track of your favourite recipes!</p>
                 </div>
-                <nav className='navbar navbar-expand-sm navbar-light bg-light'>
-                    <div className='navbar-collapse collapse justify-content-stretch" id="navbar6' role="navigation">
+                <nav className='navbar fixed navbar-expand-sm'>
+                    <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                         <ul className='navbar-nav'>
                             <li className='nav-item'>
-                                <Link className='nav-link' to='/'>Home</Link>
+                                <Link className='nav-link' to='/homepage'>Homepage</Link>
                             </li>
                         </ul>
-                    </div>
-                    <ul className='navbar-nav ml-auto'>
                         <IfAuthenticated>
-                            <div className='row'>
-                                <div className='col-4'>
-                                    <p className='nav-item'>
+                            <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+                                <ul className='navbar-nav'>
+                                    <li className='nav-item'>
                                         <Link className='nav-link' to='/recipes'>Recipes List</Link>
-                                    </p>
-                                </div>
+                                    </li>
+                                    {/* <li className='nav-item'>
+                                        <Link className='nav-link' to='#'>Add New Recipe</Link>
+                                    </li> */}
+                                </ul>
                             </div>
-                            <div className='d-flex p-2'>
-                                <li className='nav-item w-100 pl-1'><p className='nav-item'>Welcome, {this.getUserName()}!</p></li>
-                                <li className='nav-item w-100 pl-2'>
-                                    <Link to='#' className='nav-link' onClick={this.handleLogOff}>Log Off</Link>
-                                </li>
+                            <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+                                <ul className='navbar-nav ml-auto'>
+                                    <li className='nav-item p-2'><h5 className='nav-item'>Welcome, {this.getUserName()}!</h5></li>
+                                    <li className='nav-item p-0'>
+                                        <Link to='#' className='nav-link' onClick={this.handleLogOff}>Log Off</Link>
+                                    </li>
+                                </ul>
                             </div>
-
                         </IfAuthenticated>
-                    </ul>
-                    <ul className='navbar-nav ml-auto'>
-                        <IfNotAuthenticated>
-                            <div className='d-flex p-2'>
-                                <li className='nav-item w-100 pl-2'><Link to='/register' className='nav-link'>Register</Link></li>
-                                <li className='nav-item w-100 pl-2'><Link to='/signin' className='nav-link'>Sign In</Link></li>
-                            </div>
-                        </IfNotAuthenticated>
-                    </ul>
+
+                        <ul className='navbar-nav ml-auto'>
+                            <IfNotAuthenticated>
+                                <div className='d-flex p-2'>
+                                    <li className='nav-item w-100 pl-2'><Link to='/register' className='nav-link'>Register</Link></li>
+                                    <li className='nav-item w-100 pl-2'><Link to='/signin' className='nav-link'>Sign In</Link></li>
+                                </div>
+                            </IfNotAuthenticated>
+                        </ul>
+                    </div>
                 </nav>
             </>
         )

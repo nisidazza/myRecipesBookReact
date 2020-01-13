@@ -1,0 +1,38 @@
+div.card-footer {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-top: 1em;
+    background-color: transparent;
+}
+
+div.jumbotron-fluid.text-center {
+    padding: 0.3em;
+    background-color: darksalmon;
+}
+
+div.recipe-list-container {
+    min-height: 100%;
+}
+
+h1#title {
+    margin-bottom: 0.1em;
+}
+
+html, body {
+    width: auto !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+h6.card-subtitle.mb-2.text-muted {
+    padding-bottom: 0.3em;
+}
+
+p#statement {
+    margin-bottom: 0;
+}
+
+nav.navbar.fixed.navbar-expand-sm {
+    background-color: lightgrey;
+    padding: 0;
+}
