@@ -1,3 +1,6 @@
+.book {
+    background-image: url(./book.jpg);
+}
 div.card-footer {
     padding-bottom: 0;
     padding-left: 0;

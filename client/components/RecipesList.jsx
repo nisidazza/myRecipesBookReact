@@ -1,7 +1,6 @@
 import React from 'react'
 import { apiGetRecipes, apiDeleteRecipe } from '../apis/recipesApi'
 import { Link } from 'react-router-dom'
-import cookbook from '../../public/images/cookbook.jpg'
 
 class RecipesList extends React.Component {
     constructor(props) {
@@ -51,7 +50,7 @@ class RecipesList extends React.Component {
                         return (
                             <div className='col-lg-4' key={i}>
                                 <div className='card w-75 mx-auto mt-3' id='recipe-card' >
-                                    <img className='card-img-top' src={cookbook} alt='Card image cap'/>
+                                    <img className='card-img-top' src={'images/book.jpg'} alt='Book'/>
                                     <div className='card-body'>
                                         <h5 className='card-title text-md-left'><strong>{recipe.title}</strong></h5>
                                         <h6 className='card-subtitle mb-2 text-muted'>Category: {recipe.category}</h6>
