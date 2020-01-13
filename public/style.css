@@ -9,7 +9,6 @@ div.card-footer {
     padding-top: 1em;
 }
 
-
 div.jumbotron-fluid.text-center {
     background-color: darksalmon;
     padding: 0.3em;
@@ -24,9 +23,11 @@ h1#title {
 }
 
 html, body {
-    width: auto !important;
+    font-family: 'Montserrat', sans-serif ;
+    font-family: 'Lato', sans-serif !important;
     overflow-x: hidden;
     overflow-y: auto;
+    width: auto !important;
 }
 
 h6.card-subtitle.mb-2.text-muted {
@@ -41,4 +42,3 @@ nav.navbar.fixed.navbar-expand-sm {
     background-color: rosybrown;
     padding: 0;
 }
-
