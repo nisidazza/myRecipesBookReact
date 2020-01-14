@@ -14,18 +14,17 @@ module.exports = {
             test: /\.jsx?$/,
             loader: 'babel-loader',
             exclude: /node_modules/
-        },
-        ],
-        resolve: {
-            extensions: ['.js', '.jsx']
-        },
-        plugins: [
-            new Dotenv(),
-            new InjectEnvironmentPlugin({ regex: /^PUBLIC/i }),
-        ],
-        devtool: 'source-map',
-        devServer: {
-            contentBase: './public'
-        }
+        }]
+    },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
+    plugins: [
+        new Dotenv(),
+        new InjectEnvironmentPlugin({ regex: /^PUBLIC/i }),
+    ],
+    devtool: 'source-map',
+    devServer: {
+        contentBase: './public'
     }
 }
