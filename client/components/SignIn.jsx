@@ -32,16 +32,27 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <h3>Sign In</h3>
-                Username: <input type='text' id='username' autoComplete='off' onChange={this.handleChange}></input>
-                <br />
-                Password: <input type='password' id='password' autoComplete='off' onChange={this.handleChange}></input>
-                <br />
-                <div>
-                    <input value='Sign In' type='submit' />
+            <form className='mx-auto' style={{ maxWidth: '500px', margin: 'auto' }} onSubmit={this.handleSubmit}>
+                <h5 className='text-center mt-5'>Sign-In Form </h5>
+                <div className='border mt-4'>
+                    <div className='form-group row m-2 col-xs-3'>
+                        <div className='input-container mx-auto mt-3 col-xs-3'>
+                            <i class="fa fa-user icon" />
+                            <input type='text' className='form-control' id='username' placeholder='Username' autoComplete='off' onChange={this.handleChange}></input>
+                        </div>
+                    </div>
+                    <div className='form-group row m-2'>
+                        <div className='input-container mx-auto col-xs-3'>
+                            <i class="fa fa-key icon"></i>
+                            <input type='password' className='form-control' id='password' placeholder='Password' autoComplete='off' aria-describedby='passwordHelpBlock' onChange={this.handleChange}></input>
+                        </div>
+                    </div>
+                    <div className='input-container mx-auto mb-4 col-xs-3'>
+                        <input value='Sign In' type='submit' className='btn btn-outline-success mx-auto' />
+                    </div>
                 </div>
-            </form>
+            </form >
+
         )
     }
 

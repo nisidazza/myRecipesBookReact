@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 a.nav-link {
     color: black;
 }
@@ -23,7 +27,7 @@ h1#title {
 }
 
 html, body {
-    font-family: 'Montserrat', sans-serif ;
+    font-family: 'Montserrat', sans-serif;
     font-family: 'Lato', sans-serif !important;
     overflow-x: hidden;
     overflow-y: auto;
@@ -33,6 +37,23 @@ html, body {
 h6.card-subtitle.mb-2.text-muted {
     padding-bottom: 0.3em;
 }
+
+div.border.mt-4{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div.input-container.col-xs-3{
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.icon {
+    padding: 10px;
+    background: darkgrey;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+  }
 
 p#statement {
     margin-bottom: 0;
