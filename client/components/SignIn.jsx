@@ -33,7 +33,7 @@ class SignIn extends React.Component {
     render() {
         return (
             <form className='mx-auto' style={{ maxWidth: '500px', margin: 'auto' }} onSubmit={this.handleSubmit}>
-                <h5 className='text-center mt-5'>Sign-In Form </h5>
+                <h4 className='text-center mt-5'>Sign-In Form </h4>
                 <div className='border mt-4'>
                     <div className='form-group row m-2 col-xs-3'>
                         <div className='input-container mx-auto mt-3 col-xs-3'>
@@ -44,7 +44,7 @@ class SignIn extends React.Component {
                     <div className='form-group row m-2'>
                         <div className='input-container mx-auto col-xs-3'>
                             <i class="fa fa-key icon"></i>
-                            <input type='password' className='form-control' id='password' placeholder='Password' autoComplete='off' aria-describedby='passwordHelpBlock' onChange={this.handleChange}></input>
+                            <input type='password' className='form-control' id='password' placeholder='Password' autoComplete='off'  onChange={this.handleChange}></input>
                         </div>
                     </div>
                     <div className='input-container mx-auto mb-4 col-xs-3'>
