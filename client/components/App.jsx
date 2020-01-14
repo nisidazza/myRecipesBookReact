@@ -7,6 +7,7 @@ import Register from './Register'
 import SignIn from './SignIn'
 import Recipe from './Recipe'
 import RecipeView from './RecipeView'
+import Homepage from './Homepage'
 
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
                 <Route path='/recipes' component={RecipesList} />
                 <Route path='/recipe/:id' component={Recipe} />
                 <Route path='/view/:id' component={RecipeView} />
+                <Route path='/homepage' component={Homepage}/>
             </Router>
         )
     }
