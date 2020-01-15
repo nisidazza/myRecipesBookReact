@@ -33,7 +33,7 @@ class Nav extends React.Component {
                     <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                         <ul className='navbar-nav'>
                             <li className='nav-item'>
-                                <Link className='nav-link' to='/'>Homepage</Link>
+                                <Link className='nav-link' to='/homepage'>Homepage</Link>
                             </li>
                         </ul>
                         <IfAuthenticated>
