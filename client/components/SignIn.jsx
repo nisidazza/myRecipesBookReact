@@ -37,13 +37,13 @@ class SignIn extends React.Component {
                 <div className='border mt-4'>
                     <div className='form-group row m-2 col-xs-3'>
                         <div className='input-container mx-auto mt-3 col-xs-3'>
-                            <i class="fa fa-user icon" />
+                            <i className="fa fa-user icon" />
                             <input type='text' className='form-control' id='username' placeholder='Username' autoComplete='off' onChange={this.handleChange}></input>
                         </div>
                     </div>
                     <div className='form-group row m-2'>
                         <div className='input-container mx-auto col-xs-3'>
-                            <i class="fa fa-key icon"></i>
+                            <i className="fa fa-key icon"></i>
                             <input type='password' className='form-control' id='password' placeholder='Password' autoComplete='off'  onChange={this.handleChange}></input>
                         </div>
                     </div>
