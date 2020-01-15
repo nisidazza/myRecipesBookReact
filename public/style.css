@@ -2,30 +2,6 @@
     box-sizing: border-box;
 }
 
-a.nav-link {
-    color: black;
-}
-
-div.card-footer {
-    background-color: transparent;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-top: 1em;
-}
-
-div.jumbotron-fluid.text-center {
-    background-color: darksalmon;
-    padding: 0.3em;
-}
-
-div.recipe-list-container {
-    min-height: 100%;
-}
-
-h1#title {
-    margin-bottom: 0.1em;
-}
-
 html, body {
     font-family: 'Montserrat', sans-serif;
     font-family: 'Lato', sans-serif !important;
@@ -34,9 +10,48 @@ html, body {
     width: auto !important;
 }
 
+/*--- NAV ----*/
+
+a.nav-link {
+    color: black;
+}
+
+nav.navbar.fixed.navbar-expand-sm {
+    background-color: rosybrown;
+    padding: 0;
+}
+
+div.jumbotron-fluid.text-center {
+    background-color: darksalmon;
+    padding: 0.3em;
+}
+
+h1#title {
+    margin-bottom: 0.1em;
+}
+
+p#statement {
+    margin-bottom: 0;
+}
+
+/*--- RECIPE LIST*/
+
+div.card-footer {
+    background-color: transparent;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-top: 1em;
+}
+
+div.recipe-list-container {
+    min-height: 100%;
+}
+
 h6.card-subtitle.mb-2.text-muted {
     padding-bottom: 0.3em;
 }
+
+/*SIGNIN - REGISTER*/
 
 div.border.mt-4{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -44,22 +59,14 @@ div.border.mt-4{
 
 div.input-container.col-xs-3{
     display: flex;
-    margin-bottom: 15px;
+    margin-bottom: 1em;
 }
 
 .icon {
-    padding: 10px;
+    padding: 0.6em;
     background: darkgrey;
     color: white;
-    min-width: 50px;
+    min-width: 3em;
     text-align: center;
   }
 
-p#statement {
-    margin-bottom: 0;
-}
-
-nav.navbar.fixed.navbar-expand-sm {
-    background-color: rosybrown;
-    padding: 0;
-}

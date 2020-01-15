@@ -63,8 +63,8 @@ function renderEditMode(handleSubmit, handleChange, ingredientDetail) {
     return (
         <>
             <div>
-                <form onSubmit={handleSubmit}>
-                    {ingredientDetail.name}: <input name="quantity" value={ingredientDetail.quantity} onChange={handleChange} />
+                <form className='form-group mt-3 ml-3' onSubmit={handleSubmit}>
+                    {ingredientDetail.name}: <input name="quantity" value={ingredientDetail.quantity} onChange={handleChange} className='form-control-md col-sm-3 border-info' />
                     <input type="submit" value="Save"></input>
                 </form>
             </div>

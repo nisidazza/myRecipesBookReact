@@ -17,19 +17,19 @@ class RecipeDetail extends React.Component {
         if (this.state.mode == "edit") {
             recipeDetailForm = (
                 <>
-                    <div>
-                        <form onSubmit={this.handleSubmit}>
-                            <label>Title:</label>
-                            <input name="title" value={recipeInfo.title} onChange={this.handleChange} />
+                    <div >
+                        <form className='form-group mt-3 ml-3' onSubmit={this.handleSubmit}>
+                            <label className='mr-2' className='mr-2'>Title:</label>
+                            <input name="title" value={recipeInfo.title} onChange={this.handleChange} className='form-control-md col-sm-3 border-info'/>
                             <br/>
-                            <label>Category:</label>
-                            <input name="category" value={recipeInfo.category} onChange={this.handleChange} />
+                            <label className='mr-2'>Category:</label>
+                            <input name="category" value={recipeInfo.category} onChange={this.handleChange} className='form-control-md col-xs border-info'/>
                             <br/>
-                            <label>Link:</label>
-                            <input name="link" value={recipeInfo.link} onChange={this.handleChange} />
+                            <label className='mr-2'>Link:</label>
+                            <input name="link" value={recipeInfo.link} onChange={this.handleChange} className='form-control-md col-sm-4 border-info'/>
                             <br/>
-                            <label>Notes:</label>
-                            <input name="notes" value={recipeInfo.notes} onChange={this.handleChange} />
+                            <label className='mr-2'>Notes:</label>
+                            <input name="notes" value={recipeInfo.notes} onChange={this.handleChange} className='form-control-md col-sm-3 border-info'/>
                             <br/>
                             <input type="submit" value="Save"></input>
                         </form>
