@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { apiGetRecipeView } from '../apis/recipesApi'
 
 
@@ -48,6 +49,9 @@ class RecipeView extends React.Component {
                         })}
                     </>
                 </div>
+                <Link to={`/recipe/${recipeDetails.id}`}>
+                    <button>Back</button>
+                </Link>
             </>
         )
     }
