@@ -24,7 +24,7 @@ class Nav extends React.Component {
 
     render() {
         return (
-            <>
+            <div id="Nav-jsx-component">
                 <div className='jumbotron-fluid text-center' style={{ marginBottom: '0' }}>
                     <h1 className='display-4 ' id='title'>My Recipe Book</h1>
                     <h4 id='statement' >Keep track of your favourite recipes!</h4>
@@ -67,7 +67,7 @@ class Nav extends React.Component {
                         </ul>
                     </div>
                 </nav>
-            </>
+            </div>
         )
     }
 }

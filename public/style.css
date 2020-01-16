@@ -12,27 +12,27 @@ html, body {
 
 /*--- NAV ----*/
 
-a.nav-link {
+#Nav-jsx-component a.nav-link {
     color: black;
 }
 
-nav.navbar.fixed.navbar-expand-sm {
+#Nav-jsx-component nav.navbar.fixed.navbar-expand-sm {
     background-image: linear-gradient( white, grey);;
     padding: 0;
 }
 
-div.jumbotron-fluid.text-center {
+#Nav-jsx-component div.jumbotron-fluid.text-center {
     background-image: url('images/book.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     padding: 0.3em;
 }
 
-h1#title {
+#Nav-jsx-component h1#title {
     font-weight: bold;
 }
 
-p#statement {
+#Nav-jsx-component p#statement {
     margin-bottom: 0;
 }
 
