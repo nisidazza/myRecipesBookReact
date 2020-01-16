@@ -26,8 +26,8 @@ class Nav extends React.Component {
         return (
             <>
                 <div className='jumbotron-fluid text-center' style={{ marginBottom: '0' }}>
-                    <h1 className='display-4' id='title'>My Recipe Book</h1>
-                    <p className='lead' id='statement' >Keep track of your favourite recipes!</p>
+                    <h1 className='display-4 ' id='title'>My Recipe Book</h1>
+                    <h4 id='statement' >Keep track of your favourite recipes!</h4>
                 </div>
                 <nav className='navbar fixed navbar-expand-sm'>
                     <div className='collapse navbar-collapse' id='navbarSupportedContent'>

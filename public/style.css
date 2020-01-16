@@ -17,17 +17,19 @@ a.nav-link {
 }
 
 nav.navbar.fixed.navbar-expand-sm {
-    background-color: rosybrown;
+    background-image: linear-gradient( white, grey);;
     padding: 0;
 }
 
 div.jumbotron-fluid.text-center {
-    background-color: darksalmon;
+    background-image: url('images/book.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 0.3em;
 }
 
 h1#title {
-    margin-bottom: 0.1em;
+    font-weight: bold;
 }
 
 p#statement {
@@ -53,11 +55,11 @@ h6.card-subtitle.mb-2.text-muted {
 
 /*SIGNIN - REGISTER*/
 
-div.border.mt-4{
+div#border-shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-div.input-container.col-xs-3{
+div.input-container.col-xs-3 {
     display: flex;
     margin-bottom: 1em;
 }
@@ -68,5 +70,10 @@ div.input-container.col-xs-3{
     color: white;
     min-width: 3em;
     text-align: center;
-  }
+}
 
+/*RECIPE*/
+
+div#recipe-form-container {
+    background-color: darkslateblue;
+}
