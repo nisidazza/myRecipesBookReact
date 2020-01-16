@@ -74,7 +74,7 @@ class RecipeNewIngredient extends React.Component {
                             )
                         })}
                     </select>
-                    <input type='text'
+                    <input autoComplete='off' type='text'
                         name='quantity'
                         placeholder='insert quantity'
                         value={this.state.newIngredient.quantity}
