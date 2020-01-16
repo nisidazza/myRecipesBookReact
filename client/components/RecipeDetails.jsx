@@ -40,13 +40,13 @@ class RecipeDetail extends React.Component {
         } else if (this.state.mode == "view") {
             recipeDetailForm = (
                 <>
-                    <section>
+                    <section className='mt-3'>
                         <h2>{recipeInfo.title}</h2>
-                        <p>Category: {recipeInfo.category}</p>
-                        <p>Link: <a href={recipeInfo.link} target='_blank'>{recipeInfo.link}</a></p>
-                        <p>Notes: {recipeInfo.notes}</p>
+                        <p><strong>Category:</strong> {recipeInfo.category}</p>
+                        <p><strong>Link:</strong> <a href={recipeInfo.link} target='_blank'>{recipeInfo.link}</a></p>
+                        <p><strong>Notes:</strong> {recipeInfo.notes}</p>
                     </section>
-                    <button onClick={() => this.setState({ mode: "edit" })}>Edit</button>
+                    <button className='btn-sm btn-info ml-1' onClick={() => this.setState({ mode: "edit" })}>Edit</button>
                 </>
             )
         }

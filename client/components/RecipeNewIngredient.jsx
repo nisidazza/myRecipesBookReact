@@ -62,7 +62,7 @@ class RecipeNewIngredient extends React.Component {
     render() {
         return (
             <div>
-                <form className='form-group mt-2 ml-2' onSubmit={this.handleSubmit}>
+                <form className='form-group mt-2 ml-1' onSubmit={this.handleSubmit}>
                     <select name='ingredient_id' 
                             onChange={this.handleChange} 
                             value={this.state.newIngredient.ingredient_id} 

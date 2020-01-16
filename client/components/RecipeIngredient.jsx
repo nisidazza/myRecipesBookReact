@@ -64,11 +64,11 @@ function renderEditMode(handleSubmit, handleChange, ingredientDetail) {
         <>
             <div className='col-xs-1'>
                 <form className='form-group mt-3 ml-2' onSubmit={handleSubmit}>
-                    {ingredientDetail.name}: <input 
-                    name="quantity" 
-                    value={ingredientDetail.quantity} 
-                    onChange={handleChange} 
-                    className='form-control-md col-md-3 border-info' />
+                    {ingredientDetail.name}: <input
+                        name="quantity"
+                        value={ingredientDetail.quantity}
+                        onChange={handleChange}
+                        className='form-control-md col-md-3 border-info' />
                     <button className='btn-info'>Save</button>
                 </form>
             </div>
@@ -78,15 +78,17 @@ function renderEditMode(handleSubmit, handleChange, ingredientDetail) {
 
 function renderViewMode(handleEditClick, handleDeleteClick, ingredientDetail) {
     return (
-        <>
-            <div key={ingredientDetail.id}>
-                <li>{ingredientDetail.name}: {ingredientDetail.quantity}</li>
+        <div>
+            <div className='row' key={ingredientDetail.id}>
+                <div className='col-sm'>
+                    <p><strong>{ingredientDetail.name}</strong>: {ingredientDetail.quantity}</p>
+                </div>
+                <div className='col-sm'>
+                    <button onClick={handleEditClick} className='btn-sm btn-info ml-1 mb-1'>Edit</button>
+                    <button onClick={handleDeleteClick} className='btn-sm btn-danger ml-1 mb-1'>Delete</button>
+                </div>
             </div>
-            <div>
-                <button onClick={handleEditClick}>Edit</button>
-                <button onClick={handleDeleteClick}>Delete</button>
-            </div>
-        </>
+        </div>
     )
 }
 
