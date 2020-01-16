@@ -17,24 +17,26 @@ class RecipeDetail extends React.Component {
         if (this.state.mode == "edit") {
             recipeDetailForm = (
                 <>
-                    <div >
-                        <form className='form-group mt-3 ml-3' onSubmit={this.handleSubmit}>
-                            <label className='mr-2' className='mr-2'>Title:</label>
-                            <input name="title" value={recipeInfo.title} onChange={this.handleChange} className='form-control-md col-md-6 border-info'/>
-                            <br/>
-                            <label className='mr-2'>Category:</label>
-                            <input name="category" value={recipeInfo.category} onChange={this.handleChange} className='form-control-md col-md-2 border-info'/>
-                            <br/>
-                            <label className='mr-2'>Link:</label>
-                            <input name="link" value={recipeInfo.link} onChange={this.handleChange} className='form-control-md col-md-11 border-info'/>
-                            <br/>
-                            <label className='mr-2'>Notes:</label>
-                            <input name="notes" value={recipeInfo.notes} onChange={this.handleChange} className='form-control-md col-sm-8 border-info'/>
-                            <br/>
-                            {/* <input type="submit" value="Save"></input> */}
-                            <button className='btn-info'>Save</button>
-                        </form>
-                    </div>
+                    <form className='mt-3 ml-3' onSubmit={this.handleSubmit}>
+                        <div className='form-group row'>
+                            <label className='col-sm-2' for="title">Title:</label>
+                            <input id="title" name="title" value={recipeInfo.title} onChange={this.handleChange} className='form-control form-control-sm col-md-6 border-info' />
+                        </div>
+                        <div className='form-group row'>
+                            <label className='col-sm-2'>Category:</label>
+                            <input name="category" value={recipeInfo.category} onChange={this.handleChange} className='form-control form-control-sm col-md-2 border-info' />
+                        </div>
+                        <div className='form-group row'>
+                            <label className='col-sm-2'>Link:</label>
+                            <input name="link" value={recipeInfo.link} onChange={this.handleChange} className='form-control form-control-sm col-md-9 border-info' />
+                        </div>
+                        <div className='form-group row'>
+                            <label className='col-sm-2'>Notes:</label>
+                            <textarea name="notes" value={recipeInfo.notes} onChange={this.handleChange} className='form-control form-control-sm col-md-9 border-info' />
+                        </div>
+                        {/* <input type="submit" value="Save"></input> */}
+                        <button className='btn-info'>Save</button>
+                    </form>
                 </>
             )
         } else if (this.state.mode == "view") {
