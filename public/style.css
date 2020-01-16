@@ -38,42 +38,38 @@ html, body {
 
 /*--- RECIPE LIST*/
 
-div.card-footer {
+#RecipeList-jsx-component div.card-footer {
     background-color: transparent;
     padding-bottom: 0;
     padding-left: 0;
     padding-top: 1em;
 }
 
-div.recipe-list-container {
+#RecipeList-jsx-component div.recipe-list-container {
     min-height: 100%;
 }
 
-h6.card-subtitle.mb-2.text-muted {
+#RecipeList-jsx-component h6.card-subtitle.mb-2.text-muted {
     padding-bottom: 0.3em;
 }
 
 /*SIGNIN - REGISTER*/
-
-div#border-shadow {
+#Register-jsx-component div#border-shadow,
+#SignIn-jsx-component div#border-shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-div.input-container.col-xs-3 {
+#Register-jsx-component div.input-container.col-xs-3,
+#SignIn-jsx-component div.input-container.col-xs-3 {
     display: flex;
     margin-bottom: 1em;
 }
 
-.icon {
+#Register-jsx-component .icon ,
+#SignIn-jsx-component .icon {
     padding: 0.6em;
     background: darkgrey;
     color: white;
     min-width: 3em;
     text-align: center;
-}
-
-/*RECIPE*/
-
-div#recipe-form-container {
-    background-color: darkslateblue;
 }

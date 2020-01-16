@@ -44,7 +44,7 @@ class RecipesList extends React.Component {
 
     render() {
         return (
-            <div className='recipe-list-container'>
+            <div className='recipe-list-container' id='RecipeList-jsx-component'>
                 <div className='row mt-0'>
                     {this.state.recipes.map((recipe, i) => {
                         return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { apiGetRecipeDetails, apiGetIngredientFromRecipe } from '../apis/recipesApi'
 import RecipeDetails from './RecipeDetails'
 import RecipeIngredient from './RecipeIngredient'
@@ -50,18 +50,20 @@ class Recipe extends React.Component {
         let { ingredients, ...recipeDetails } = this.state.recipe
 
         return (
-            <div className='jumbotron-fluid mx-auto' >
-                <div className='my-3' style={{ maxWidth: '800px', margin: 'auto' }}  >
-                    <div className='form-group border p-2' id='border-shadow'>
-                        <RecipeDetails recipe={recipeDetails} />
-                        <section >
-                            <h5>Ingredients</h5>
-                            <RecipeNewIngredient recipeId={recipeDetails.id} onAddedIngredient={this.visualizeAddedIngredient} />
-                            {renderIngredients(ingredients, recipeDetails.id)}
-                            <Link to={`/view/${recipeDetails.id}`}>
-                                <button type='button' className='btn-sm btn-success'>View</button>
-                            </Link>
-                        </section>
+            <div id='Recipe-jsx-component'>
+                <div className='jumbotron-fluid mx-auto' >
+                    <div className='my-3' style={{ maxWidth: '800px', margin: 'auto' }}  >
+                        <div className='form-group border p-2' id='border-shadow'>
+                            <RecipeDetails recipe={recipeDetails} />
+                            <section >
+                                <h5>Ingredients</h5>
+                                <RecipeNewIngredient recipeId={recipeDetails.id} onAddedIngredient={this.visualizeAddedIngredient} />
+                                {renderIngredients(ingredients, recipeDetails.id)}
+                                <Link to={`/view/${recipeDetails.id}`}>
+                                    <button type='button' className='btn-sm btn-success'>View</button>
+                                </Link>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
