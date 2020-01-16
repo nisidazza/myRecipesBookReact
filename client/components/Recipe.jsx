@@ -50,7 +50,7 @@ class Recipe extends React.Component {
 
         return (
             <>
-                <div>
+                <div className='m-5 p-3 border border-info mx-auto' style={{maxWidth:'800px', margin: 'auto'}}>
                     <RecipeDetails recipe={recipeDetails} />
                     <section>
                         <h4>Ingredients</h4>

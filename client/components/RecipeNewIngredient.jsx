@@ -63,7 +63,10 @@ class RecipeNewIngredient extends React.Component {
         return (
             <div>
                 <form className='form-group mt-2 ml-2' onSubmit={this.handleSubmit}>
-                    <select name='ingredient_id' onChange={this.handleChange} value={this.state.newIngredient.ingredient_id} className='border-info form-control-sm'>
+                    <select name='ingredient_id' 
+                            onChange={this.handleChange} 
+                            value={this.state.newIngredient.ingredient_id} 
+                            className='border-info form-control-sm '>
                         <option key="0" value='-1' disable='true'>-- Please choose... --</option>
                         {this.state.ingredients.map((ingredient, y) => {
                             return (
@@ -76,9 +79,9 @@ class RecipeNewIngredient extends React.Component {
                         placeholder='insert quantity'
                         value={this.state.newIngredient.quantity}
                         onChange={this.handleChange}
-                        className='form-control-md col-sm-3 border-info'>
+                        className='form-control-sm col-sm-3 border-info '>
                     </input>
-                    <input type="submit" value="Add"></input>
+                    <button className='btn-sm btn-info ml-1'>Add</button>
                 </form>
             </div>
         )

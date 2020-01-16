@@ -20,18 +20,19 @@ class RecipeDetail extends React.Component {
                     <div >
                         <form className='form-group mt-3 ml-3' onSubmit={this.handleSubmit}>
                             <label className='mr-2' className='mr-2'>Title:</label>
-                            <input name="title" value={recipeInfo.title} onChange={this.handleChange} className='form-control-md col-sm-3 border-info'/>
+                            <input name="title" value={recipeInfo.title} onChange={this.handleChange} className='form-control-md col-md-6 border-info'/>
                             <br/>
                             <label className='mr-2'>Category:</label>
-                            <input name="category" value={recipeInfo.category} onChange={this.handleChange} className='form-control-md col-xs border-info'/>
+                            <input name="category" value={recipeInfo.category} onChange={this.handleChange} className='form-control-md col-md-2 border-info'/>
                             <br/>
                             <label className='mr-2'>Link:</label>
-                            <input name="link" value={recipeInfo.link} onChange={this.handleChange} className='form-control-md col-sm-4 border-info'/>
+                            <input name="link" value={recipeInfo.link} onChange={this.handleChange} className='form-control-md col-md-11 border-info'/>
                             <br/>
                             <label className='mr-2'>Notes:</label>
-                            <input name="notes" value={recipeInfo.notes} onChange={this.handleChange} className='form-control-md col-sm-3 border-info'/>
+                            <input name="notes" value={recipeInfo.notes} onChange={this.handleChange} className='form-control-md col-sm-8 border-info'/>
                             <br/>
-                            <input type="submit" value="Save"></input>
+                            {/* <input type="submit" value="Save"></input> */}
+                            <button className='btn-info'>Save</button>
                         </form>
                     </div>
                 </>
