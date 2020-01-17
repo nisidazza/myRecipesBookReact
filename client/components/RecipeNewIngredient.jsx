@@ -62,26 +62,32 @@ class RecipeNewIngredient extends React.Component {
     render() {
         return (
             <div>
-                <form className='form-group mt-2 ml-1' onSubmit={this.handleSubmit}>
-                    <select name='ingredient_id' 
-                            onChange={this.handleChange} 
-                            value={this.state.newIngredient.ingredient_id} 
-                            className='border-info form-control-sm '>
-                        <option key="0" value='-1' disable='true'>-- Please choose... --</option>
-                        {this.state.ingredients.map((ingredient, y) => {
-                            return (
-                                <option key={y + 1} value={ingredient.id}>{ingredient.name}</option>
-                            )
-                        })}
-                    </select>
-                    <input autoComplete='off' type='text'
-                        name='quantity'
-                        placeholder='insert quantity'
-                        value={this.state.newIngredient.quantity}
-                        onChange={this.handleChange}
-                        className='form-control-sm col-sm-3 border-info '>
-                    </input>
-                    <button className='btn-sm btn-info ml-1'>Add</button>
+                <form className='mt-2' onSubmit={this.handleSubmit}>
+                    <div className='form-group row'>
+                        <div className='col-sm-4 pr-0'>
+                            <select name='ingredient_id'
+                                onChange={this.handleChange}
+                                value={this.state.newIngredient.ingredient_id}
+                                className='border-info form-control form-control-sm'>
+                                <option key='0' value='-1' disable='true'>-- Please choose... --</option>
+                                {this.state.ingredients.map((ingredient, y) => {
+                                    return (
+                                        <option key={y + 1} value={ingredient.id}>{ingredient.name}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                        <div className='col-sm-3'>
+                            <input autoComplete='off' type='text'
+                                name='quantity'
+                                placeholder='insert quantity'
+                                value={this.state.newIngredient.quantity}
+                                onChange={this.handleChange}
+                                className='border border-info form-control form-control-sm'>
+                            </input>
+                        </div>
+                        <button className='btn-sm btn-info ml-1'>Add</button>
+                    </div>
                 </form>
             </div>
         )

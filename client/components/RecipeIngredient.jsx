@@ -62,16 +62,18 @@ class RecipeIngredient extends React.Component {
 function renderEditMode(handleSubmit, handleChange, ingredientDetail) {
     return (
         <>
-            <div className='col-xs-1'>
-                <form className='form-group mt-3 ml-2' onSubmit={handleSubmit}>
-                    {ingredientDetail.name}: <input
+            <form className='mt-3 ml-3' onSubmit={handleSubmit}>
+                <div className='form-group row'>
+                    <label className='col-sm-3'>{ingredientDetail.name}: </label>
+                    <input
                         name="quantity"
                         value={ingredientDetail.quantity}
                         onChange={handleChange}
-                        className='form-control-md col-md-3 border-info' />
+                        className='form-control form-control-sm col-md-4 border border-info mr-1' />
                     <button className='btn-info'>Save</button>
-                </form>
-            </div>
+                </div>
+            </form>
+
         </>
     )
 }

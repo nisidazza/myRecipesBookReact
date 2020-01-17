@@ -52,8 +52,8 @@ class Recipe extends React.Component {
         return (
             <div id='Recipe-jsx-component'>
                 <div className='jumbotron-fluid mx-auto' >
-                    <div className='my-3' style={{ maxWidth: '800px', margin: 'auto' }}  >
-                        <div className='form-group border p-2' id='border-shadow'>
+                    <div className='my-3' style={{ maxWidth: '700px', margin: 'auto' }}  >
+                        <div className='form-group border p-3' id='border-shadow'>
                             <RecipeDetails recipe={recipeDetails} />
                             <section >
                                 <h5>Ingredients</h5>

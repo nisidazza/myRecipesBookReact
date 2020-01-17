@@ -19,8 +19,8 @@ class RecipeDetail extends React.Component {
                 <>
                     <form className='mt-3 ml-3' onSubmit={this.handleSubmit}>
                         <div className='form-group row'>
-                            <label className='col-sm-2' for="title">Title:</label>
-                            <input id="title" name="title" value={recipeInfo.title} onChange={this.handleChange} className='form-control form-control-sm col-md-6 border-info' />
+                            <label className='col-sm-2' >Title:</label>
+                            <input name="title" value={recipeInfo.title} onChange={this.handleChange} className='form-control form-control-sm col-md-6 border-info' />
                         </div>
                         <div className='form-group row'>
                             <label className='col-sm-2'>Category:</label>

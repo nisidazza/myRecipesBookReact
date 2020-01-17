@@ -54,10 +54,6 @@ html, body {
 }
 
 /*SIGNIN - REGISTER*/
-#Register-jsx-component div#border-shadow,
-#SignIn-jsx-component div#border-shadow {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
 
 #Register-jsx-component div.input-container.col-xs-3,
 #SignIn-jsx-component div.input-container.col-xs-3 {
@@ -72,4 +68,12 @@ html, body {
     color: white;
     min-width: 3em;
     text-align: center;
+}
+
+
+/*COMMON CSS*/
+#Recipe-jsx-component div#border-shadow.form-group.border.p-3,
+#Register-jsx-component div#border-shadow,
+#SignIn-jsx-component div#border-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
