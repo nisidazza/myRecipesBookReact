@@ -4,7 +4,7 @@ const router = express.Router()
 const db = require('../db/db')
 
 // GET /api/v1/ingredients
-router.get('/ingredients', (req, res) => {
+router.get('/', (req, res) => {
     db.getListIngredients()
         .then(ingredients => {
             res.json(ingredients)
