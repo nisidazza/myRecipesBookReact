@@ -1,5 +1,6 @@
 const express = require('express')
-const routes = require('./routes/routes')
+const recipesRoutes = require('./routes/recipesRoutes')
+const ingredientsRoutes = require('./routes/ingredientsRoutes')
 const usersRoutes = require('./routes/usersRoutes')
 const authRoutes = require('./routes/auth')
 const server = express()
@@ -11,7 +12,8 @@ server.use(express.json())
 // Serve static files
 server.use(express.static('public'))
 
-server.use('/api/v1', routes)
+server.use('/api/v1', recipesRoutes)
+server.use('/api/v1', ingredientsRoutes)
 server.use('/api/v1', authRoutes)
 server.use('/api/v1/users', usersRoutes)
 
