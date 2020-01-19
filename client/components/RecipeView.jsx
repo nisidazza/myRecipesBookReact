@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { apiGetRecipeView } from '../apis/recipesApi'
+import { apiGetRecipeDetails } from '../apis/recipesApi'
 
 
 class RecipeView extends React.Component {
@@ -14,7 +14,7 @@ class RecipeView extends React.Component {
 
     componentDidMount() {
         const recipeId = this.props.match.params.id
-        apiGetRecipeView(recipeId)
+        apiGetRecipeDetails(recipeId)
             .then(recipe => {
                 this.setState({
                     recipe: recipe
