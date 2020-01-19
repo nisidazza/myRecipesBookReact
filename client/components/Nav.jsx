@@ -40,7 +40,7 @@ class Nav extends React.Component {
                             <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                                 <ul className='navbar-nav'>
                                     <li className='nav-item'>
-                                        <Link className='nav-link' to='/recipes'>Recipes List</Link>
+                                        <Link className='nav-link' to='/recipes/list'>Recipes List</Link>
                                     </li>
                                     {/* <li className='nav-item'>
                                         <Link className='nav-link' to='#'>Add New Recipe</Link>

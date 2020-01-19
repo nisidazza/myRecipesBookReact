@@ -59,7 +59,7 @@ class Recipe extends React.Component {
                                 <h5>Ingredients</h5>
                                 <RecipeNewIngredient recipeId={recipeDetails.id} onAddedIngredient={this.visualizeAddedIngredient} />
                                 {renderIngredients(ingredients, recipeDetails.id)}
-                                <Link to={`/view/${recipeDetails.id}`}>
+                                <Link to={`/recipes/${recipeDetails.id}/view`}>
                                     <button type='button' className='btn-sm btn-success'>View</button>
                                 </Link>
                             </section>

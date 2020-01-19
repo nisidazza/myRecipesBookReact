@@ -18,9 +18,9 @@ class App extends React.Component {
                 <Route path='/register' component={Register} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/ingredients' component={IngredientsList} />
-                <Route path='/recipes' component={RecipesList} />
-                <Route path='/recipe/:id' component={Recipe} />
-                <Route path='/view/:id' component={RecipeView} />
+                <Route path='/recipes/list' component={RecipesList} />
+                <Route path='/recipes/:id/edit' component={Recipe} />
+                <Route path='/recipes/:id/view' component={RecipeView} />
                 <Route path='/homepage' component={Homepage}/>
             </Router>
         )

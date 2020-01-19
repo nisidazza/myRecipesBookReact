@@ -57,10 +57,10 @@ class RecipesList extends React.Component {
                                         <div className='card-footer'>
                                             <div className='btn-toolbar justify-content-between' role='toolbar' aria-label='Toolbar with button groups'>
                                                 <div className='btn-group mr-2' role='group' aria-label='First group'>
-                                                    <Link to={`/recipe/${recipe.id}`}>
+                                                    <Link to={`/recipes/${recipe.id}/edit`}>
                                                         <button type='button' className='btn btn-info mr-2'>Update</button>
                                                     </Link>
-                                                    <Link to={`/view/${recipe.id}`}>
+                                                    <Link to={`/recipes/${recipe.id}/view`}>
                                                         <button type='button' className='btn btn-info'>View</button>
                                                     </Link>
                                                 </div>
