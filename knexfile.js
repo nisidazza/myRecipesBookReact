@@ -2,20 +2,13 @@
 
 module.exports = {
 
-  development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './dev.sqlite3'
-    },
-    useNullAsDefault: true
-  },
-
-  staging: {
+   development: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      database: '127.0.0.1',
+      user:     'postgres',
+      password: 'n1s1d4123',
+      database: 'myRecipeBookReact'
     },
     pool: {
       min: 2,
