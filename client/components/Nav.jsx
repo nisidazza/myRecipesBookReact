@@ -36,17 +36,18 @@ class Nav extends React.Component {
                                 <Link className='nav-link' to='/homepage'>Homepage</Link>
                             </li>
                         </ul>
-                        <IfAuthenticated>
-                            <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-                                <ul className='navbar-nav'>
-                                    <li className='nav-item'>
-                                        <Link className='nav-link' to='/recipes/list'>Recipes List</Link>
-                                    </li>
-                                    {/* <li className='nav-item'>
+
+                        <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+                            <ul className='navbar-nav'>
+                                <li className='nav-item'>
+                                    <Link className='nav-link' to='/recipes/list'>Recipes List</Link>
+                                </li>
+                                {/* <li className='nav-item'>
                                         <Link className='nav-link' to='#'>Add New Recipe</Link>
                                     </li> */}
-                                </ul>
-                            </div>
+                            </ul>
+                        </div>
+                        <IfAuthenticated>
                             <div className='collapse navbar-collapse' id='navbarSupportedContent'>
                                 <ul className='navbar-nav ml-auto'>
                                     <li className='nav-item p-2 mt-2'><h5 className='nav-item'>Welcome, {this.getUserName()}!</h5></li>
