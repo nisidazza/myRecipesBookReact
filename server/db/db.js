@@ -63,25 +63,22 @@ function editRecipe(id, newRecipe, db = connection) {
                     category: newRecipe.category ? newRecipe.category : oldRecipe[0].category,
                     link: newRecipe.link ? newRecipe.link : oldRecipe[0].link,
                     notes: newRecipe.notes ? newRecipe.notes : oldRecipe[0].notes
-                })
-                .then(hasBeenUpdated => {
-                    return db('recipes')
-                        .where('id', id)
-                        .select()
-                        .then(newRecipe => {
-                            return {
-                                hasBeenUpdated,
-                                newRecipe: newRecipe[0]
-                            }
-                        })
+                }, ['*'])
+                .then(updatedRecipes => {
+                    let hasBeenUpdated = updatedRecipes && updatedRecipes.length > 0
+                    let newRecipe = hasBeenUpdated ? updatedRecipes[0] : null
+                    return {
+                        hasBeenUpdated,
+                        newRecipe
+                    }
                 })
         })
 }
 
-function getIngredient(id, db=connection) {
+function getIngredient(id, db = connection) {
     return db('ingredients')
-    .where('id', id)
-    .first()
+        .where('id', id)
+        .first()
 }
 
 function getIngredients(id, db = connection) {
