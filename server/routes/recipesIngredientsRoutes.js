@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../db/db')
+const db = require('../db/dbRecipesIngredients')
 
 router.get('/:ingredientId', (req, res) => {
     const { recipeId } = req.params

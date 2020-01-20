@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../db/db')
+const dbRecipes = require('../db/dbRecipes')
+const dbRecipesIngredients = require('../db/dbRecipesIngredients')
 
 
 //GET /api/v1/recipes
 router.get('/', (req, res) => {
-    db.getListRecipes()
+    dbRecipes.getListRecipes()
         .then(recipes => {
             //console.log(recipes)
             res.json(recipes)
@@ -19,9 +20,9 @@ router.get('/', (req, res) => {
 // GET /api/v1/recipes/:id
 router.get('/:id', (req, res) => {
     const { id } = req.params
-    db.getRecipe(id)
+    dbRecipes.getRecipe(id)
         .then(recipeDetail => {
-            db.getIngredients(id)
+            dbRecipesIngredients.getIngredients(id)
                 .then(ingredients => {
                     res.json({ ...recipeDetail, ingredients })
                 })
@@ -34,7 +35,7 @@ router.get('/:id', (req, res) => {
 // DELETE /api/v1/recipes/:id
 router.delete('/:id', (req, res) => {
     const { id } = req.params
-    db.deleteRecipe(id)
+    dbRecipes.deleteRecipe(id)
         .then(hasBeenDeleted => {
             if (hasBeenDeleted) {
                 res.sendStatus(204)
@@ -50,7 +51,7 @@ router.delete('/:id', (req, res) => {
 router.patch('/:id', (req, res) => {
     const { id } = req.params
     const recipe = req.body
-    db.editRecipe(id, recipe)
+    dbRecipes.editRecipe(id, recipe)
         .then(({ hasBeenUpdated, newRecipe }) => {
             if (hasBeenUpdated) {
                 res.status(200).json(newRecipe)

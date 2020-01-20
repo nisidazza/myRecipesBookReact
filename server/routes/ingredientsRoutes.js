@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../db/db')
+const db = require('../db/dbIngredients')
 
 // GET /api/v1/ingredients
 router.get('/', (req, res) => {
