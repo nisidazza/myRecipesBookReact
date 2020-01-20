@@ -26,4 +26,17 @@ router.get('/:id', (req, res) => {
         })
 })
 
+router.post('/', (req, res) => {
+    const newIngredient = req.body
+    db.addIngredient(newIngredient)
+        .then((addedIngredients) => {
+            res.json(
+                addedIngredients[0]
+            )
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+})
+
 module.exports = router

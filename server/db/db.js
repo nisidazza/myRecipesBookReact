@@ -21,6 +21,12 @@ function addIngredientToRecipe(recipe_id, ingredient_id, quantity, db = connecti
 
 }
 
+function addIngredient(ingredient, db = connection) {
+    return db('ingredients')
+        .insert(ingredient
+            , ['*'])
+}
+
 function addRecipe(title, category, link, notes, db = connection) {
     return db('recipes')
         .insert({
@@ -175,6 +181,7 @@ module.exports = {
     getIngredient,
     getIngredients,
     addRecipe,
+    addIngredient,
     linkRecipeIngredients,
     getListIngredients,
     deleteRecipe,
