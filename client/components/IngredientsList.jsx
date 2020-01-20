@@ -1,5 +1,5 @@
 import React from 'react'
-import { apiGetIngredients } from '../apis/recipesApi'
+import { apiGetIngredients } from '../apis/ingredientsApi'
 
 class IngredientsList extends React.Component {
     constructor(props) {

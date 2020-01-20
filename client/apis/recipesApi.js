@@ -1,7 +1,7 @@
 import request from 'superagent'
 
 const recipesUrl = 'api/v1/recipes'
-const ingredientsUrl = 'api/v1/ingredients'
+
 
 export function apiGetRecipes() {
     return request.get(recipesUrl)
@@ -13,13 +13,7 @@ export function apiGetRecipes() {
         })
 }
 
-export function apiGetIngredients() {
-    return request.get(ingredientsUrl)
-        .catch(() => {
-            throw Error('you need to implement an API route for /api/v1/ingredients')
-        })
-        .then(res => res.body)
-}
+
 
 export function apiDeleteRecipe(id) {
     return request.delete(`${recipesUrl}/${id}`)
