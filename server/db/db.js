@@ -72,6 +72,12 @@ function editRecipe(id, newRecipe, db = connection) {
         })
 }
 
+function getIngredient(id, db=connection) {
+    return db('ingredients')
+    .where('id', id)
+    .first()
+}
+
 function getIngredients(id, db = connection) {
     return db.select('recipes_ingredients.ingredient_id AS id', 'ingredients.name', 'recipes_ingredients.quantity')
         .from('recipes')
@@ -166,6 +172,7 @@ function updateIngredientInRecipe(recipe_id, ingredient_id, quantity, db = conne
 module.exports = {
     getListRecipes,
     getRecipe,
+    getIngredient,
     getIngredients,
     addRecipe,
     linkRecipeIngredients,

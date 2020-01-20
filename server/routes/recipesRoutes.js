@@ -16,11 +16,9 @@ router.get('/', (req, res) => {
         })
 })
 
-
-
 // GET /api/v1/recipes/:id
 router.get('/:id', (req, res) => {
-    let { id } = req.params
+    const { id } = req.params
     db.getRecipe(id)
         .then(recipeDetail => {
             db.getIngredients(id)
@@ -33,7 +31,7 @@ router.get('/:id', (req, res) => {
         })
 })
 
-// DELETE /api/v1/recipes/delete
+// DELETE /api/v1/recipes/:id
 router.delete('/:id', (req, res) => {
     const { id } = req.params
     db.deleteRecipe(id)

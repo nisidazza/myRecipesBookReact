@@ -14,4 +14,16 @@ router.get('/', (req, res) => {
         })
 })
 
+//GET /api/v1/ingredient/:id
+router.get('/:id', (req, res) => {
+    const { id } = req.params
+    db.getIngredient(id)
+        .then(ingredient => {
+            res.json(ingredient)
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+})
+
 module.exports = router
