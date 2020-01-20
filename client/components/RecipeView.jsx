@@ -49,7 +49,7 @@ class RecipeView extends React.Component {
                         })}
                     </>
                 </div>
-                <Link to={`/recipe/${recipeDetails.id}`}>
+                <Link to={`/recipes/${recipeDetails.id}/edit`}>
                     <button>Back</button>
                 </Link>
             </>
