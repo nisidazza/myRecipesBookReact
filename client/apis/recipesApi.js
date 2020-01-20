@@ -3,6 +3,16 @@ import request from 'superagent'
 const recipesUrl = 'api/v1/recipes'
 
 
+export function apiGetPublicRecipes() {
+    return request.get(recipesUrl + '/public')
+    .catch(() => {
+        throw Error('you need to implement an API route for /api/v1/recipes/public')
+    })
+    .then((res) => {
+        return res.body
+    })
+}
+
 export function apiGetRecipes() {
     return request.get(recipesUrl)
         .catch(() => {
@@ -13,11 +23,10 @@ export function apiGetRecipes() {
         })
 }
 
-
-
 export function apiDeleteRecipe(id) {
     return request.delete(`${recipesUrl}/${id}`)
-        .catch(() => {
+        .catch((err) => {
+            console.log(err)
             throw Error('API route not found')
         })
         .then(res => {
@@ -39,7 +48,8 @@ export function apiGetRecipeDetails(id) {
 export function apiUpdateRecipeDetails(recipe) {
     return request.patch(`${recipesUrl}/${recipe.id}`)
         .send(recipe)
-        .catch(() => {
+        .catch((err) => {
+            console.log(err)
             throw Error('API route not found')
         })
         .then(res => {

@@ -41,6 +41,13 @@ function editRecipe(id, newRecipe, db = connection) {
         })
 }
 
+function getPublicRecipes(db=connection) {
+    return db('recipes')
+    .select()
+    .where('is_public', true)
+    .orderBy('recipes.title')
+}
+
 function getListRecipes(db = connection) {
     return db('recipes')
         .select()
@@ -57,6 +64,7 @@ module.exports = {
     addRecipe,
     deleteRecipe,
     editRecipe,
+    getPublicRecipes,
     getListRecipes,
     getRecipe,
 }

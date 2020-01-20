@@ -4,6 +4,16 @@ const router = express.Router()
 const dbRecipes = require('../db/dbRecipes')
 const dbRecipesIngredients = require('../db/dbRecipesIngredients')
 
+// GET /apiv1/recipes/public
+router.get('/public', (req, res) => {
+    dbRecipes.getPublicRecipes()
+        .then(publicRecipes => {
+            res.json(publicRecipes)
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+})
 
 //GET /api/v1/recipes
 router.get('/', (req, res) => {
