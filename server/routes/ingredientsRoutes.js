@@ -3,6 +3,23 @@ const router = express.Router()
 
 const db = require('../db/dbIngredients')
 
+
+router.delete('/:id', (req, res) => {
+    const { id } = req.params
+    db.deleteIngredient(id)
+        .then(hasBeenDeleted => {
+            if (hasBeenDeleted) {
+                res.json({message: `ingredient with id ${id} has been deleted`})
+            } else {
+                res.sendStatus(404)
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+        })
+})
+
+
 // GET /api/v1/ingredients
 router.get('/', (req, res) => {
     db.getListIngredients()
@@ -26,6 +43,15 @@ router.get('/:id', (req, res) => {
         })
 })
 
+router.patch('/:id', (req, res) => {
+    const ingredient = req.body
+    const { id } = req.params
+    db.updateIngredient(id, ingredient)
+        .then((updatedIngredient) => {
+            res.json(updatedIngredient[0])
+        })
+})
+
 router.post('/', (req, res) => {
     const newIngredient = req.body
     db.addIngredient(newIngredient)
@@ -38,5 +64,7 @@ router.post('/', (req, res) => {
             res.status(500).json({ message: 'Something is broken' })
         })
 })
+
+
 
 module.exports = router
