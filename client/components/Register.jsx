@@ -37,13 +37,13 @@ class Register extends React.Component {
                         <div className='form-group row m-2 col-xs-3'>
                             <div className='input-container mx-auto mt-3 col-xs-3'>
                                 <i className="fa fa-user icon" />
-                                <input type='text' className='form-control' id='username' placeholder='Username' onChange={this.handleChange}></input>
+                                <input type='text' className='form-control' id='username' placeholder='Username'  autoComplete='off' onChange={this.handleChange}></input>
                             </div>
                         </div>
                         <div className='form-group row m-2'>
                             <div className='input-container mx-auto col-xs-3'>
                                 <i className="fa fa-key icon"></i>
-                                <input type='password' className='form-control' id='password' placeholder='Password' onChange={this.handleChange}></input>
+                                <input type='password' className='form-control' id='password' placeholder='Password'  autoComplete='off' onChange={this.handleChange}></input>
                             </div>
                         </div>
                         <div className='input-container mx-auto mb-4 col-xs-3'>
