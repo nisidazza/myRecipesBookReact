@@ -6,7 +6,7 @@ const dbUsersRecipes = require('../db/dbUsersRecipes')
 
 //GET /api/v1/recipes/user/:id
 
-router.get('/:id', (req, res) => {
+router.get('/:id/recipes', (req, res) => {
     const userId = req.params.id
     dbUsersRecipes.getUserRecipes(userId)
         .then(userRecipes => {
@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
 
 //GET /api/v1/recipes/user/:id/private
 
-router.get('/:id/private', (req, res) => {
+router.get('/:id/recipes/private', (req, res) => {
     const userId = req.params.id
     dbUsersRecipes.getUserPrivateRecipes(userId)
         .then(privateRecipes => {
