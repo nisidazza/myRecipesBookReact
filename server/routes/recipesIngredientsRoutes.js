@@ -3,6 +3,9 @@ const router = express.Router()
 
 const db = require('../db/dbRecipesIngredients')
 
+
+const { getTokenDecoder } = require('authenticare/server')
+
 router.get('/:ingredientId', (req, res) => {
     const { recipeId } = req.params
     const { ingredientId } = req.params
@@ -21,7 +24,7 @@ router.get('/:ingredientId', (req, res) => {
         })
 })
 
-router.delete('/:ingredient_id', (req, res) => {
+router.delete('/:ingredient_id', getTokenDecoder(), (req, res) => {
     const { recipe_id } = req.params
     const { ingredient_id } = req.params
     db.deleteIngredientFromRecipe(recipe_id, ingredient_id)
@@ -39,7 +42,7 @@ router.delete('/:ingredient_id', (req, res) => {
 
 
 
-router.patch('/:ingredient_id', (req, res) => {
+router.patch('/:ingredient_id', getTokenDecoder(), (req, res) => {
     const { recipe_id } = req.params
     const { ingredient_id } = req.params
     const quantity = req.body.quantity
@@ -61,7 +64,7 @@ router.patch('/:ingredient_id', (req, res) => {
 
 
 
-router.post('/:ingredient_id', (req, res) => {
+router.post('/:ingredient_id', getTokenDecoder(), (req, res) => {
     const { recipe_id } = req.params
     const { ingredient_id } = req.params
     const quantity = req.body.quantity

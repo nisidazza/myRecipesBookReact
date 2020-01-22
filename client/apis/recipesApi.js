@@ -6,6 +6,8 @@ const recipesUrl = 'api/v1/recipes'
 
 export function apiAddIngredientToRecipe(recipe_id, ingredient_id, quantity) {
     return request.post(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
+        .set({ 'Accept': 'application/json' })
+        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
         .send({
             quantity
         }).catch(() => {
@@ -26,6 +28,8 @@ export function apiAddIngredientToRecipe(recipe_id, ingredient_id, quantity) {
 
 export function apiDeleteIngredientFromRecipe(recipe_id, ingredient_id) {
     return request.delete(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
+        .set({ 'Accept': 'application/json' })
+        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
         .catch(() => {
             throw Error('API route not found')
         })
@@ -39,6 +43,8 @@ export function apiDeleteIngredientFromRecipe(recipe_id, ingredient_id) {
 
 export function apiDeleteRecipe(id) {
     return request.delete(`${recipesUrl}/${id}`)
+        .set({ 'Accept': 'application/json' })
+        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
         .catch((err) => {
             console.log(err)
             throw Error('API route not found')
@@ -52,7 +58,7 @@ export function apiDeleteRecipe(id) {
 }
 
 export function apiGetPublicRecipes() {
-    return request.get(recipesUrl + '/public')
+    return request.get(`${recipesUrl}/public`)
         .catch(() => {
             throw Error('you need to implement an API route for /api/v1/recipes/public')
         })
@@ -96,6 +102,8 @@ export function apiGetRecipeDetails(id) {
 
 export function apiUpdateIngredientInRecipe(recipe_id, ingredient) {
     return request.patch(`${recipesUrl}/${recipe_id}/ingredients/${ingredient.id}`)
+        .set({ 'Accept': 'application/json' })
+        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
         .send(ingredient)
         .catch(() => {
             throw Error('API route not found')
@@ -108,6 +116,8 @@ export function apiUpdateIngredientInRecipe(recipe_id, ingredient) {
 
 export function apiUpdateRecipeDetails(recipe) {
     return request.patch(`${recipesUrl}/${recipe.id}`)
+        .set({ 'Accept': 'application/json' })
+        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
         .send(recipe)
         .catch((err) => {
             console.log(err)

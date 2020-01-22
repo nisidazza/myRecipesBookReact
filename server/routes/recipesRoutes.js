@@ -4,6 +4,8 @@ const router = express.Router()
 const dbRecipes = require('../db/dbRecipes')
 const dbRecipesIngredients = require('../db/dbRecipesIngredients')
 
+const { getTokenDecoder } = require('authenticare/server')
+
 // GET /apiv1/recipes/public
 router.get('/public', (req, res) => {
     dbRecipes.getPublicRecipes()
@@ -27,6 +29,7 @@ router.get('/', (req, res) => {
         })
 })
 
+
 // GET /api/v1/recipes/:id
 router.get('/:id', (req, res) => {
     const { id } = req.params
@@ -43,35 +46,55 @@ router.get('/:id', (req, res) => {
 })
 
 // DELETE /api/v1/recipes/:id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', getTokenDecoder(), (req, res) => {
     const { id } = req.params
-    dbRecipes.deleteRecipe(id)
-        .then(hasBeenDeleted => {
-            if (hasBeenDeleted) {
-                res.sendStatus(204)
-            } else {
+    const loggedUser = req.user.id
+    dbRecipes.getRecipe(id)
+        .then(recipe => {
+            if (recipe === undefined) {
                 res.sendStatus(404)
             }
-        })
-        .catch(err => {
-            res.status(500).json({ message: 'Something is broken' })
+            if (loggedUser === recipe.user_id) {
+                dbRecipes.deleteRecipe(id)
+                    .then(hasBeenDeleted => {
+                        if (hasBeenDeleted) {
+                            res.sendStatus(204)
+                        } else {
+                            res.sendStatus(404)
+                        }
+                    })
+                    .catch(err => {
+                        res.status(500).json({ message: 'Something is broken' })
+                    })
+            } else {
+                console.log(`user ${req.user.username} cannot delete recipe ${recipe.title} `)
+                res.sendStatus(403)
+            }
         })
 })
 
-router.patch('/:id', (req, res) => {
+
+router.patch('/:id', getTokenDecoder(), (req, res) => {
     const { id } = req.params
     const recipe = req.body
-    dbRecipes.editRecipe(id, recipe)
-        .then(({ hasBeenUpdated, newRecipe }) => {
-            if (hasBeenUpdated) {
-                res.status(200).json(newRecipe)
-            } else {
-                res.sendStatus(404)
-            }
-        })
-        .catch(err => {
-            res.status(500).json({ message: 'Something is broken' })
-        })
+    const loggedUser = req.user.id
+    if (loggedUser === recipe.user_id) {
+        //console.log('username:', req.user.username)
+        dbRecipes.editRecipe(id, recipe)
+            .then(({ hasBeenUpdated, newRecipe }) => {
+                if (hasBeenUpdated) {
+                    res.status(200).json(newRecipe)
+                } else {
+                    res.sendStatus(404)
+                }
+            })
+            .catch(err => {
+                res.status(500).json({ message: 'Something is broken' })
+            })
+    } else {
+        console.log(`user ${req.user.username} cannot edit recipe ${recipe.title} `)
+        res.sendStatus(403)
+    }
 })
 
 
