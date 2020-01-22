@@ -1,6 +1,6 @@
-exports.seed = knex =>
+exports.seed = async knex => {
 
-    knex('recipes').insert([
+    await knex('recipes').insert([
         {
             id: 1,
             title: 'Pancakes',
@@ -59,7 +59,7 @@ exports.seed = knex =>
             notes: '',
             link: 'https://www.simplyrecipes.com/recipes/homemade_pizza/',
             user_id: 1,
-            is_public:false
+            is_public: false
         },
         {
             id: 7,
@@ -69,7 +69,7 @@ exports.seed = knex =>
             notes: 'add zucchini',
             link: 'https://www.pillsbury.com/recipes/bacon-and-cheese-quiche/19288cf4-0cdc-46cc-bc86-4c9bfa799695',
             user_id: 1,
-            is_public:true
+            is_public: true
         },
         {
             id: 8,
@@ -79,9 +79,9 @@ exports.seed = knex =>
             notes: 'add zucchini',
             link: 'https://www.pillsbury.com/recipes/bacon-and-cheese-quiche/19288cf4-0cdc-46cc-bc86-4c9bfa799695',
             user_id: 2,
-            is_public:true
+            is_public: true
         },
 
-    ]).then(() => {
-        knex.raw('SELECT setval("ingredients_id_seq", (SELECT MAX(id) from "test"))')
-    })
+    ])
+    await knex.raw("SELECT setval('recipes_id_seq', (SELECT MAX(id) from recipes))")
+}

@@ -1,5 +1,5 @@
-exports.seed = knex =>
-    knex('ingredients').insert([
+exports.seed = async knex => {
+    await knex('ingredients').insert([
         {
             id: 1,
             name: 'flour',
@@ -166,6 +166,6 @@ exports.seed = knex =>
         },
 
     ])
-    .then(() => {
-        knex.raw('SELECT setval("ingredients_id_seq", (SELECT MAX(id) from "test"))')
-    })
+
+    await knex.raw("SELECT setval('ingredients_id_seq', (SELECT MAX(id) from ingredients))")
+}
