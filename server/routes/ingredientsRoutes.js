@@ -4,6 +4,9 @@ const router = express.Router()
 const db = require('../db/dbIngredients')
 
 
+
+
+
 router.delete('/:id', (req, res) => {
     const { id } = req.params
     db.deleteIngredient(id)
