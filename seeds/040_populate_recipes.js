@@ -4,7 +4,7 @@ exports.seed = knex =>
         {
             id: 1,
             title: 'Pancakes',
-            category: 'sweet',
+            category: 'breakfast',
             is_complete: true,
             notes: 'delicious!',
             link: 'https://www.allrecipes.com/recipe/45396/easy-pancakes/',
@@ -18,7 +18,7 @@ exports.seed = knex =>
             is_complete: true,
             notes: 'add butter at the end and stir',
             link: 'https://www.delish.com/cooking/recipe-ideas/recipes/a55215/easy-mushroom-risotto-recipe/',
-            user_id: 1,
+            user_id: 2,
             is_public: false
         },
         {
@@ -44,11 +44,11 @@ exports.seed = knex =>
         {
             id: 5,
             title: 'Brownie',
-            category: 'sweet',
+            category: 'dessert',
             is_complete: true,
             notes: 'add chocolate drops',
             link: 'https://www.chelsea.co.nz/browse-recipes/best-brownie/',
-            user_id: 1,
+            user_id: 2,
             is_public: true
         },
         {
@@ -59,8 +59,29 @@ exports.seed = knex =>
             notes: '',
             link: 'https://www.simplyrecipes.com/recipes/homemade_pizza/',
             user_id: 1,
+            is_public:false
+        },
+        {
+            id: 7,
+            title: 'Bacon and Cheese Quiche',
+            category: 'savoury',
+            is_complete: true,
+            notes: 'add zucchini',
+            link: 'https://www.pillsbury.com/recipes/bacon-and-cheese-quiche/19288cf4-0cdc-46cc-bc86-4c9bfa799695',
+            user_id: 1,
             is_public:true
         },
+        {
+            id: 8,
+            title: 'Caesar Salad',
+            category: 'salad',
+            is_complete: true,
+            notes: 'add zucchini',
+            link: 'https://www.pillsbury.com/recipes/bacon-and-cheese-quiche/19288cf4-0cdc-46cc-bc86-4c9bfa799695',
+            user_id: 2,
+            is_public:true
+        },
+
     ]).then(() => {
         knex.raw('SELECT setval("ingredients_id_seq", (SELECT MAX(id) from "test"))')
     })

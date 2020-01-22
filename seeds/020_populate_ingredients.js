@@ -136,6 +136,35 @@ exports.seed = knex =>
             id: 34,
             name: 'oregano',
         },
+        {
+            id: 35,
+            name: 'pie crust'
+        },
+        {
+            id: 36,
+            name: 'slices bacon'
+        },
+        {
+            id: 37,
+            name: 'Swiss or Cheddar cheese'
+        },
+        {
+            id: 38,
+            name: ' baguette'
+        },
+        {
+            id: 39,
+            name: 'lemon juice'
+        },
+        {
+            id: 40,
+            name: 'romaine lettuce'
+        },
+        {
+            id: 41,
+            name: 'croutons'
+        },
+
     ])
     .then(() => {
         knex.raw('SELECT setval("ingredients_id_seq", (SELECT MAX(id) from "test"))')

@@ -250,4 +250,100 @@ exports.seed = knex =>
             ingredient_id: 23,
             quantity: 'q.s'
         },
+        {
+            recipe_id: 7,
+            ingredient_id: 35,
+            quantity: '1'
+        },
+        {
+            recipe_id: 7,
+            ingredient_id: 6,
+            quantity: '250ml'
+        },
+        {
+            recipe_id: 7,
+            ingredient_id: 5,
+            quantity: '4'
+        },
+        {
+            recipe_id: 7,
+            ingredient_id: 4,
+            quantity: '1/4 teaspoon'
+        },
+        {
+            recipe_id: 7,
+            ingredient_id: 17,
+            quantity: '1/4 teaspoon'
+        },
+        {
+            recipe_id: 7,
+            ingredient_id: 36,
+            quantity: '8'
+        },
+        {
+            recipe_id: 7,
+            ingredient_id: 37,
+            quantity: '1 cup'
+        },
+        {
+            recipe_id: 7,
+            ingredient_id: 16,
+            quantity: '1/4 cup'
+        },
+        {
+            recipe_id: 7,
+            ingredient_id: 9,
+            quantity: '1/4'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 7,
+            quantity: '1/2 cup'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 11,
+            quantity: '4'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 38,
+            quantity: '1'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 39,
+            quantity: '1/4'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 16,
+            quantity: '1 tablespoon'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 5,
+            quantity: '2'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 17,
+            quantity: '1/4 teaspoon'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 4,
+            quantity: '1/2 teaspoon'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 40,
+            quantity: '4-6 small heads'
+        },
+        {
+            recipe_id: 8,
+            ingredient_id: 41,
+            quantity: 'q.s'
+        },
+
     ])
