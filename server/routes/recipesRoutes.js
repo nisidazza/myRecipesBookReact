@@ -7,7 +7,7 @@ const dbRecipesIngredients = require('../db/dbRecipesIngredients')
 const { getTokenDecoder } = require('authenticare/server')
 
 // GET /apiv1/recipes/public
-router.get('/public', (req, res) => {
+router.get('/public', getTokenDecoder(), (req, res) => {
     dbRecipes.getPublicRecipes()
         .then(publicRecipes => {
             res.json(publicRecipes)
@@ -18,7 +18,7 @@ router.get('/public', (req, res) => {
 })
 
 //GET /api/v1/recipes
-router.get('/', (req, res) => {
+router.get('/', getTokenDecoder(), (req, res) => {
     dbRecipes.getListRecipes()
         .then(recipes => {
             //console.log(recipes)
@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 
 
 // GET /api/v1/recipes/:id
-router.get('/:id', (req, res) => {
+router.get('/:id',getTokenDecoder(), (req, res) => {
     const { id } = req.params
     dbRecipes.getRecipe(id)
         .then(recipeDetail => {
