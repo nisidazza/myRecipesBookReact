@@ -1,13 +1,9 @@
-import request from 'superagent'
-import { getEncodedToken } from 'authenticare/client'
-
+import {httpClient} from './httpClient'
 const recipesUrl = 'api/v1/recipes'
 
 
 export function apiAddIngredientToRecipe(recipe_id, ingredient_id, quantity) {
-    return request.post(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
-        .set({ 'Accept': 'application/json' })
-        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
+    return httpClient.post(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
         .send({
             quantity
         }).catch(() => {
@@ -27,9 +23,7 @@ export function apiAddIngredientToRecipe(recipe_id, ingredient_id, quantity) {
 }
 
 export function apiDeleteIngredientFromRecipe(recipe_id, ingredient_id) {
-    return request.delete(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
-        .set({ 'Accept': 'application/json' })
-        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
+    return httpClient.delete(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
         .catch(() => {
             throw Error('API route not found')
         })
@@ -42,9 +36,7 @@ export function apiDeleteIngredientFromRecipe(recipe_id, ingredient_id) {
 }
 
 export function apiDeleteRecipe(id) {
-    return request.delete(`${recipesUrl}/${id}`)
-        .set({ 'Accept': 'application/json' })
-        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
+    return httpClient.delete(`${recipesUrl}/${id}`)
         .catch((err) => {
             console.log(err)
             throw Error('API route not found')
@@ -58,7 +50,7 @@ export function apiDeleteRecipe(id) {
 }
 
 export function apiGetPublicRecipes() {
-    return request.get(`${recipesUrl}/public`)
+    return httpClient.get(`${recipesUrl}/public`)
         .catch(() => {
             throw Error('you need to implement an API route for /api/v1/recipes/public')
         })
@@ -68,8 +60,19 @@ export function apiGetPublicRecipes() {
 }
 
 
+export function apiGetUserPrivateRecipes() {
+    return httpClient.get(`${recipesUrl}/private`)
+        .catch(() => {
+            throw Error('you need to implement an API route for /api/v1/recipes/private')
+        })
+        .then((res) => {
+            return res.body
+        })
+}
+
+
 export function apiGetIngredientFromRecipe(recipe_id, ingredient_id) {
-    return request.get(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
+    return httpClient.get(`${recipesUrl}/${recipe_id}/ingredients/${ingredient_id}`)
         .catch(() => {
             throw Error('API route not found')
         })
@@ -82,8 +85,10 @@ export function apiGetIngredientFromRecipe(recipe_id, ingredient_id) {
         })
 }
 
+
+
 export function apiGetRecipes() {
-    return request.get(recipesUrl)
+    return httpClient.get(recipesUrl)
         .catch(() => {
             throw Error('you need to implement an API route for /api/v1/recipes')
         })
@@ -93,7 +98,7 @@ export function apiGetRecipes() {
 }
 
 export function apiGetRecipeDetails(id) {
-    return request.get(`${recipesUrl}/${id}`)
+    return httpClient.get(`${recipesUrl}/${id}`)
         .catch(() => {
             throw Error('you need to implement an API route for /api/v1/recipes/:id')
         })
@@ -101,9 +106,7 @@ export function apiGetRecipeDetails(id) {
 }
 
 export function apiUpdateIngredientInRecipe(recipe_id, ingredient) {
-    return request.patch(`${recipesUrl}/${recipe_id}/ingredients/${ingredient.id}`)
-        .set({ 'Accept': 'application/json' })
-        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
+    return httpClient.patch(`${recipesUrl}/${recipe_id}/ingredients/${ingredient.id}`)
         .send(ingredient)
         .catch(() => {
             throw Error('API route not found')
@@ -115,9 +118,7 @@ export function apiUpdateIngredientInRecipe(recipe_id, ingredient) {
 
 
 export function apiUpdateRecipeDetails(recipe) {
-    return request.patch(`${recipesUrl}/${recipe.id}`)
-        .set({ 'Accept': 'application/json' })
-        .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
+    return httpClient.patch(`${recipesUrl}/${recipe.id}`)
         .send(recipe)
         .catch((err) => {
             console.log(err)
@@ -128,5 +129,3 @@ export function apiUpdateRecipeDetails(recipe) {
             throw Error('Unexpected HTTP Code ' + res.status)
         })
 }
-
-
