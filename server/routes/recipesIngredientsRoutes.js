@@ -2,11 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 const db = require('../db/dbRecipesIngredients')
-
-
 const { getTokenDecoder } = require('authenticare/server')
 
-router.get('/:ingredientId', (req, res) => {
+router.get('/:recipe_id/ingredients/:ingredientId', (req, res) => {
     const { recipeId } = req.params
     const { ingredientId } = req.params
     const quantity = req.body.quantity
@@ -21,10 +19,11 @@ router.get('/:ingredientId', (req, res) => {
         })
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
+            console.log(err)
         })
 })
 
-router.delete('/:ingredient_id', getTokenDecoder(), (req, res) => {
+router.delete('/:recipe_id/ingredients/:ingredient_id', getTokenDecoder(), (req, res) => {
     const { recipe_id } = req.params
     const { ingredient_id } = req.params
     db.deleteIngredientFromRecipe(recipe_id, ingredient_id)
@@ -37,12 +36,11 @@ router.delete('/:ingredient_id', getTokenDecoder(), (req, res) => {
         })
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
+            console.log(err)
         })
 })
 
-
-
-router.patch('/:ingredient_id', getTokenDecoder(), (req, res) => {
+router.patch('/:recipe_id/ingredients/:ingredient_id', getTokenDecoder(), (req, res) => {
     const { recipe_id } = req.params
     const { ingredient_id } = req.params
     const quantity = req.body.quantity
@@ -57,14 +55,14 @@ router.patch('/:ingredient_id', getTokenDecoder(), (req, res) => {
             } else {
                 res.sendStatus(404)
             }
-        }).catch(err => {
+        })
+        .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
+            console.log(err)
         })
 })
 
-
-
-router.post('/:ingredient_id', getTokenDecoder(), (req, res) => {
+router.post('/:recipe_id/ingredients/:ingredient_id', getTokenDecoder(), (req, res) => {
     const { recipe_id } = req.params
     const { ingredient_id } = req.params
     const quantity = req.body.quantity
@@ -75,11 +73,13 @@ router.post('/:ingredient_id', getTokenDecoder(), (req, res) => {
             } else {
                 res.sendStatus(404)
             }
-        }).catch(err => {
+        })
+        .catch(err => {
             if (err.message == 'INGREDIENT_CONFLICT') {
                 res.status(409).json({ message: `Ingredient ${ingredient_id} already in recipe ${recipe_id}` })
             } else {
                 res.status(500).json({ message: 'Something is broken' })
+                console.log(err)
             }
         })
 })

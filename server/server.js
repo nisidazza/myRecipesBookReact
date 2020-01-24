@@ -3,7 +3,6 @@ const recipesRoutes = require('./routes/recipesRoutes')
 const ingredientsRoutes = require('./routes/ingredientsRoutes')
 const recipesIngredientsRoutes = require('./routes/recipesIngredientsRoutes')
 const authRoutes = require('./routes/auth')
-const usersRoutes = require('./routes/usersRoutes')
 const server = express()
 
 // Middleware
@@ -15,8 +14,7 @@ server.use(express.static('public'))
 
 server.use('/api/v1/recipes', recipesRoutes)
 server.use('/api/v1/ingredients', ingredientsRoutes)
-server.use('/api/v1/recipes/:recipe_id/ingredients', recipesIngredientsRoutes)
-server.use('/api/v1/users', usersRoutes)
+server.use('/api/v1/recipes', recipesIngredientsRoutes)
 server.use('/api/v1', authRoutes)
 
 module.exports = server

@@ -2,74 +2,106 @@ const express = require('express')
 const router = express.Router()
 
 const dbRecipes = require('../db/dbRecipes')
+const dbUserRecipes = require('../db/dbUsersRecipes')
 const dbRecipesIngredients = require('../db/dbRecipesIngredients')
 
 const { getTokenDecoder } = require('authenticare/server')
 
 // GET /apiv1/recipes/public
-router.get('/public', getTokenDecoder(), (req, res) => {
+router.get('/public', (req, res) => {
     dbRecipes.getPublicRecipes()
         .then(publicRecipes => {
             res.json(publicRecipes)
         })
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
+            console.log(err)
         })
 })
 
-//GET /api/v1/recipes
-router.get('/', getTokenDecoder(), (req, res) => {
-    dbRecipes.getListRecipes()
-        .then(recipes => {
-            //console.log(recipes)
-            res.json(recipes)
+
+//GET /api/v1/recipes --- all public and user private
+router.get('/', getTokenDecoder(false), (req, res) => {
+    dbRecipes.getPublicRecipes()
+        .then(publicRecipes => {
+            if (req.user) {
+                dbUserRecipes.getUserPrivateRecipes(req.user.id)
+                    .then(privateRecipes => {
+                        const recipes = publicRecipes.concat(privateRecipes)
+                        res.json(recipes)
+                    })
+            } else {
+                res.json(publicRecipes)
+            }
         })
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
+            console.log(err)
         })
 })
 
+router.get('/private', getTokenDecoder(), (req, res) => {
+    const loggedUserId = req.user.id
+    dbUserRecipes.getUserPrivateRecipes(loggedUserId)
+        .then(privateRecipes => {
+            res.json(privateRecipes)
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+            console.log(err)
+        })
+})
 
 // GET /api/v1/recipes/:id
-router.get('/:id',getTokenDecoder(), (req, res) => {
+router.get('/:id', getTokenDecoder(false), (req, res) => {
     const { id } = req.params
     dbRecipes.getRecipe(id)
         .then(recipeDetail => {
-            dbRecipesIngredients.getIngredients(id)
-                .then(ingredients => {
-                    res.json({ ...recipeDetail, ingredients })
-                })
+            if (recipeDetail) {
+                const userIsAuthenticatedAndMatches = (req.user && (req.user.id == id))
+                if (recipeDetail.is_public || userIsAuthenticatedAndMatches) {
+                    dbRecipesIngredients.getIngredients(id)
+                        .then(ingredients => {
+                            res.json({ ...recipeDetail, ingredients })
+                        })
+                }
+            } else {
+                res.sendStatus(404)
+            }
         })
         .catch(err => {
             res.status(500).json({ message: 'Something is broken' })
+            console.log(err)
         })
 })
 
 // DELETE /api/v1/recipes/:id
 router.delete('/:id', getTokenDecoder(), (req, res) => {
     const { id } = req.params
-    const loggedUser = req.user.id
+    const loggedUserId = req.user.id
     dbRecipes.getRecipe(id)
         .then(recipe => {
-            if (recipe === undefined) {
+            if (recipe) {
+                if (loggedUserId === recipe.user_id) {
+                    dbRecipes.deleteRecipe(id)
+                        .then(hasBeenDeleted => {
+                            if (hasBeenDeleted) {
+                                res.sendStatus(204)
+                            } else {
+                                res.sendStatus(404)
+                            }
+                        })
+                } else {
+                    console.log(`user ${req.user.username} cannot delete recipe ${recipe.title} `)
+                    res.sendStatus(403)
+                }
+            } else {
                 res.sendStatus(404)
             }
-            if (loggedUser === recipe.user_id) {
-                dbRecipes.deleteRecipe(id)
-                    .then(hasBeenDeleted => {
-                        if (hasBeenDeleted) {
-                            res.sendStatus(204)
-                        } else {
-                            res.sendStatus(404)
-                        }
-                    })
-                    .catch(err => {
-                        res.status(500).json({ message: 'Something is broken' })
-                    })
-            } else {
-                console.log(`user ${req.user.username} cannot delete recipe ${recipe.title} `)
-                res.sendStatus(403)
-            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Something is broken' })
+            console.log(err)
         })
 })
 
@@ -90,6 +122,7 @@ router.patch('/:id', getTokenDecoder(), (req, res) => {
             })
             .catch(err => {
                 res.status(500).json({ message: 'Something is broken' })
+                console.log(err)
             })
     } else {
         console.log(`user ${req.user.username} cannot edit recipe ${recipe.title} `)
