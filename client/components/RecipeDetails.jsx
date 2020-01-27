@@ -68,7 +68,7 @@ class RecipeDetail extends React.Component {
         apiUpdateRecipeDetails(this.state.recipe)
             .catch((error) => {
                 this.setState({
-                    recipe: this.props.pippo,
+                    recipe: this.props.recipe,
                     errormessage: error.message
                 })
             })
