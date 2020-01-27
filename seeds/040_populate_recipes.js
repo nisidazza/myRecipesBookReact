@@ -78,8 +78,8 @@ exports.seed = async knex => {
             is_complete: true,
             notes: 'add zucchini',
             link: 'https://www.pillsbury.com/recipes/bacon-and-cheese-quiche/19288cf4-0cdc-46cc-bc86-4c9bfa799695',
-            user_id: 2,
-            is_public: true
+            user_id: 1,
+            is_public: false
         },
 
     ])
