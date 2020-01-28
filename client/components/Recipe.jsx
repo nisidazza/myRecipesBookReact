@@ -50,10 +50,9 @@ class Recipe extends React.Component {
         let { ingredients, ...recipeDetails } = this.state.recipe
 
         return (
-            <div id='Recipe-jsx-component'>
-                <div className='jumbotron-fluid mx-auto' >
-                    <div className='my-3' style={{ maxWidth: '700px', margin: 'auto' }}  >
-                        <div className='form-group border p-3' id='border-shadow'>
+            <div id='Recipe-jsx-component'/*style={{ maxWidth: '700px', maxHeight: '100%', margin: 'auto' }}*/ >
+                    <form style={{ maxWidth: '700px', backgroundColor: 'white', margin:'auto'}} >
+                        <div className=' border p-3' id='border-shadow'>
                             <RecipeDetails recipe={recipeDetails} />
                             <section >
                                 <h5>Ingredients</h5>
@@ -64,8 +63,7 @@ class Recipe extends React.Component {
                                 </Link>
                             </section>
                         </div>
-                    </div>
-                </div>
+                    </form> 
             </div>
         )
     }
