@@ -14,7 +14,7 @@ class Homepage extends React.Component {
           <IfAuthenticated>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link not-active" href="#">
                   Search
                 </a>
               </li>
@@ -24,7 +24,7 @@ class Homepage extends React.Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link not-active" href="#">
                   Add Recipe
                 </a>
               </li>
@@ -33,7 +33,7 @@ class Homepage extends React.Component {
           <IfNotAuthenticated>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link not-active" href="#">
                   Search
                 </a>
               </li>
