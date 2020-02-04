@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IfAuthenticated, IfNotAuthenticated } from "./Authenticated";
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -10,23 +11,39 @@ class Homepage extends React.Component {
     return (
       <div id="Homepage-jsx-component">
         <nav className="navbar">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/recipes/list">
-                Recipes List
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Add Recipe
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Search
-              </a>
-            </li>
-          </ul>
+          <IfAuthenticated>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Search
+                </a>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/recipes/list">
+                  Recipes List
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Add Recipe
+                </a>
+              </li>
+            </ul>
+          </IfAuthenticated>
+          <IfNotAuthenticated>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Search
+                </a>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/recipes/list">
+                  Recipes List
+                </Link>
+              </li>
+            </ul>
+          </IfNotAuthenticated>
         </nav>
         {/* <div className="container mt-5 mb-5">
                     <div className="row">

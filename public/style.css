@@ -38,6 +38,7 @@ html, body {
 #Nav-jsx-component nav.navbar.fixed.navbar-expand-sm {
     background-image: linear-gradient( white, grey);
     padding: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #Nav-jsx-component div.jumbotron-fluid.text-center {
@@ -49,6 +50,18 @@ html, body {
 
 #Nav-jsx-component h1#title {
     font-weight: bold;
+    text-shadow: 2px 2px 4px #f3eded;
+}
+
+#Nav-jsx-component h4#statement {
+    text-shadow: 2px 2px 4px #f3eded;
+    font-size: 1.8em;
+}
+
+#Nav-jsx-component h5.nav-item {
+    font-weight: bold;
+    color: olivedrab;
+    text-shadow: 2px 2px 4px #f3eded;
 }
 
 #Nav-jsx-component p#statement {
@@ -99,12 +112,15 @@ html, body {
     background-color: #111;
     overflow-x: hidden;
     align-items: unset;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 #Homepage-jsx-component a.nav-link {
     color: black;
 }
 
-#Homepage-jsx-component a.nav-link:hover {
+#Homepage-jsx-component a.nav-link:hover,
+#Nav-jsx-component a.nav-link:hover {
     color: white;
 }
