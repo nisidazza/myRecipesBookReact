@@ -77,8 +77,10 @@ html, body {
     padding-top: 1em;
 }
 
-#RecipeList-jsx-component div.recipe-list-container {
+div#RecipeList-jsx-component.recipe-list-container {
     min-height: 100%;
+    /*background-image: linear-gradient(to bottom right, olivedrab, white);*/
+    background-image: radial-gradient(farthest-corner at 60% 55%, olivedrab, white);
 }
 
 #RecipeList-jsx-component h6.card-subtitle.mb-2.text-muted {
