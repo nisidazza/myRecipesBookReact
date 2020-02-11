@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { HashRouter as Router, Route } from 'react-router-dom'
 import IngredientsList from './IngredientsList'
 import RecipesList from './RecipesList'
 import Nav from './Nav'
@@ -8,6 +8,7 @@ import SignIn from './SignIn'
 import Recipe from './Recipe'
 import RecipeView from './RecipeView'
 import Homepage from './Homepage'
+import AddRecipe from './AddRecipe'
 
 
 class App extends React.Component {
@@ -19,6 +20,7 @@ class App extends React.Component {
                 <Route path='/signin' component={SignIn} />
                 <Route path='/ingredients' component={IngredientsList} />
                 <Route path='/recipes/list' component={RecipesList} />
+                <Route path='/recipes/add' component={AddRecipe}/>
                 <Route path='/recipes/:id/edit' component={Recipe} />
                 <Route path='/recipes/:id/view' component={RecipeView} />
                 <Route path='/homepage' component={Homepage}/>
