@@ -139,16 +139,28 @@ router.patch("/:id", getTokenDecoder(), (req, res) => {
 
 router.post("/", getTokenDecoder(), (req, res) => {
   let newRecipe = req.body;
-  newRecipe.user_id = req.user.id,
-
+  let ingredients = newRecipe.ingredients;
+  delete newRecipe.ingredients; //delete ingredients column to prevent error "column "ingredients" of relation "recipes" does not exist"
+  newRecipe.user_id = req.user.id;
   dbRecipes
     .addRecipe(newRecipe)
-    .then(res.sendStatus(200))
-    // dbRecipesIngredients
-    //   .addIngredientToRecipe(newRecipeId, ingredient_id, quantity)
-    //   .then(ingredients => {
-    //     res.json({ ...newRecipe, ingredients });
-    //   });
+    .then(recipeDetails => {
+      let newRecipeId = recipeDetails[0].id;
+      if (ingredients == undefined || ingredients.length == 0) {
+        res.json(recipeDetails[0])
+      } else {
+        for (let i = 0; i < ingredients.length; i++) {
+          ingredients[i].recipe_id = newRecipeId;
+          ingredients[i].ingredient_id = ingredients[i].id;
+          delete ingredients[i].id;
+        }
+        dbRecipesIngredients
+          .addMultipleIngredientsToRecipe(ingredients)
+          .then(newIngredients => {
+            res.json({ ...recipeDetails[0], newIngredients });
+          });
+      }
+    })
     .catch(err => {
       res.status(500).json({ message: "Something is broken" });
       console.log(err);
