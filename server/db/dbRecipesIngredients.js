@@ -89,11 +89,25 @@ function updateIngredientInRecipe(
     });
 }
 
+function addMultipleIngredientsToRecipe(ingredients,db = connection) {
+  return db("recipes_ingredients")
+    .insert(ingredients, "*")
+    .then(newIngredients => {
+      for (let i = 0; i < newIngredients.length; i++) {
+        delete newIngredients[i].recipe_id
+        newIngredients[i].id = newIngredients[i].ingredient_id;
+        delete newIngredients[i].ingredient_id        
+      }
+      return newIngredients
+    })
+}
+
 module.exports = {
   getIngredients,
   getRecipesByIngredient,
   addIngredientToRecipe,
   deleteIngredientFromRecipe,
   updateIngredientInRecipe,
-  getIngredientInRecipe
+  getIngredientInRecipe,
+  addMultipleIngredientsToRecipe
 };
