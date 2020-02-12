@@ -27,20 +27,16 @@ export function apiAddRecipe(recipe) {
   return httpClient
     .post(recipesUrl)
     .send(recipe)
-    .catch((err) => {
-      console.log('ERROR:', err)
+    .catch(err => {
+      console.log("ERROR:", err);
       throw Error("API not found");
     })
     .then(res => {
-      if (res.status == 201) {
-        console.log('RES.BODY:', res.body)
+      if (res.status == 200) {
+        console.log("RES.BODY:", res.body);
         return res.body;
-      } else if (res.status == 404) {
-        return -1;
-      } else if (res.status == 409) {
-        return -1;
       } else {
-        return -1;
+        throw Error("Unexpected HTTP Code " + res.status);
       }
     });
 }
