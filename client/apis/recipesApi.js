@@ -25,13 +25,15 @@ export function apiAddIngredientToRecipe(recipe_id, ingredient_id, quantity) {
 
 export function apiAddRecipe(recipe) {
   return httpClient
-    .post(`${recipesUrl}/add`)
+    .post(recipesUrl)
     .send(recipe)
-    .catch(err => {
+    .catch((err) => {
+      console.log('ERROR:', err)
       throw Error("API not found");
     })
     .then(res => {
       if (res.status == 201) {
+        console.log('RES.BODY:', res.body)
         return res.body;
       } else if (res.status == 404) {
         return -1;

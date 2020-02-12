@@ -51,7 +51,7 @@ class Recipe extends React.Component {
 
         return (
             <div id='Recipe-jsx-component'>
-                    <div style={{ maxWidth: '700px', backgroundColor: 'white', margin:'auto'}} >
+                    <div className='form-container'>
                         <div className=' border p-3' id='border-shadow'>
                             <RecipeDetails recipe={recipeDetails} />
                             <section >

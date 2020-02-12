@@ -34,8 +34,7 @@ class RecipeDetail extends React.Component {
                             <label className='col-sm-2'>Notes:</label>
                             <textarea name="notes" value={recipeInfo.notes} onChange={this.handleChange} className='form-control form-control-sm col-md-9 border-info' />
                         </div>
-                        {/* <input type="submit" value="Save"></input> */}
-                        <button className='btn-info'>Save</button>
+                        <input className='btn-info' type="submit" value="Save"/>
                     </form>
                 </>
             )
