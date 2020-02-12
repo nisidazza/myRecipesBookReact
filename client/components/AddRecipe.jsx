@@ -1,7 +1,5 @@
 import React from "react";
 import { apiAddRecipe } from "../apis/recipesApi";
-import { apiGetIngredients } from "../apis/ingredientsApi";
-import RecipeNewIngredient from "./RecipeNewIngredient";
 
 class AddRecipe extends React.Component {
   constructor(props) {
@@ -11,7 +9,7 @@ class AddRecipe extends React.Component {
       newRecipe: {
         is_public: false,
         is_complete: false
-      },
+      }
     };
   }
 
@@ -55,33 +53,32 @@ class AddRecipe extends React.Component {
               </div>
               <div className="form-group">
                 <div className="form-check form-check-inline row pl-0">
-                  <label className="form-check-label col-sm-10" for="is_public">
+                  <label
+                    className="form-check-label col-sm-10"
+                    htmlFor="is_public"
+                  >
                     Public:
                   </label>
                   <input
                     type="checkbox"
                     name="is_public"
-                    onChange={this.handleCheckbox1}
+                    onChange={this.handleCheckbox}
                     className="form-check-input form-control-sm border-info ml-0"
                   />
                   <label
                     className="form-check-label col-sm-10"
-                    for="is_complete"
+                    htmlFor="is_complete"
                   >
                     Completed:
                   </label>
                   <input
                     type="checkbox"
                     name="is_complete"
-                    onChange={this.handleCheckbox2}
+                    onChange={this.handleCheckbox}
                     className="form-check-input form-control-sm  border-info ml-0"
                   />
                 </div>
               </div>
-              {/* <section>
-            <h6>Ingredients:</h6>
-            <RecipeNewIngredient />
-          </section> */}
               <div>
                 <input type="submit" value="Save" className="btn-info row" />
               </div>
@@ -105,30 +102,21 @@ class AddRecipe extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     apiAddRecipe(this.state.newRecipe).then(res => {
-      if (res == 200) {
-        console.log(res);
-        this.setState({ recipeAdded: true });
+      if (res.status == 200) {
+        history.push(`recipes/${newRecipe.id}/edit`);
       }
     });
   };
 
-  handleCheckbox1 = () => {
+  handleCheckbox = (e) => {
     this.setState({
       newRecipe: {
         ...this.state.newRecipe,
-        is_public: !this.state.newRecipe.is_public
+        [e.target.name]: !this.state.newRecipe[e.target.name]
       }
     });
   };
 
-  handleCheckbox2 = () => {
-    this.setState({
-      newRecipe: {
-        ...this.state.newRecipe,
-        is_complete: !this.state.newRecipe.is_complete
-      }
-    });
-  };
 }
 
 export default AddRecipe;
