@@ -12,6 +12,7 @@ class AddRecipe extends React.Component {
       }
     };
   }
+  
 
   render() {
     return (
@@ -96,16 +97,16 @@ class AddRecipe extends React.Component {
         [e.target.name]: e.target.value
       }
     });
-    console.log(this.state);
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    apiAddRecipe(this.state.newRecipe).then(res => {
-      if (res.status == 200) {
-        history.push(`recipes/${newRecipe.id}/edit`);
+    apiAddRecipe(this.state.newRecipe)
+    .then((res) => {
+        const newRecipeId = res.id
+        this.props.history.push(`${newRecipeId}/edit`);
       }
-    });
+    );
   };
 
   handleCheckbox = (e) => {
@@ -116,6 +117,7 @@ class AddRecipe extends React.Component {
       }
     });
   };
+  
 
 }
 
