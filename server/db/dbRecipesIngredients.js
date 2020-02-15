@@ -55,6 +55,7 @@ function getIngredientInRecipe(recipeId, ingredientId, db = connection) {
   return db
     .select(
       "recipes_ingredients.ingredient_id AS id",
+      "recipes_ingredients.recipe_id",
       "ingredients.name",
       "recipes_ingredients.quantity"
     )

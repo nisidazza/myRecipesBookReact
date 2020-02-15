@@ -4,12 +4,10 @@ const router = express.Router()
 const db = require('../db/dbRecipesIngredients')
 const { getTokenDecoder } = require('authenticare/server')
 
-router.get('/:recipe_id/ingredients/:ingredientId', (req, res) => {
-    const { recipeId } = req.params
-    const { ingredientId } = req.params
-    const quantity = req.body.quantity
-    const name = req.body.name
-    db.getIngredientInRecipe(recipeId, ingredientId, quantity, name)
+router.get('/:recipe_id/ingredients/:ingredient_id', (req, res) => {
+    const { recipe_id } = req.params
+    const { ingredient_id } = req.params
+    db.getIngredientInRecipe(recipe_id, ingredient_id)
         .then(ingredient => {
             if (ingredient.length > 0) {
                 res.status(200).json(ingredient[0])
