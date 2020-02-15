@@ -33,7 +33,8 @@ class RecipeNewIngredient extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const newIngredient = this.state.newIngredient
-        apiAddIngredientToRecipe(newIngredient.recipe_id, newIngredient.ingredient_id, newIngredient.quantity)
+        const  recipe_id = this.props.recipeId
+        apiAddIngredientToRecipe(recipe_id, newIngredient.ingredient_id, newIngredient.quantity)
             .then((ingredientId) => {
                 if (ingredientId > 0) {
                     this.setState({
@@ -42,7 +43,7 @@ class RecipeNewIngredient extends React.Component {
                             ingredient_id: -1,
                         }
                     })
-                    this.props.onAddedIngredient(newIngredient.recipe_id, ingredientId)
+                    this.props.onAddedIngredient(recipe_id, ingredientId)
                 } else {
                     //TO DO HANDLE ERROR
                 }
