@@ -18,7 +18,7 @@ class RecipeDetail extends React.Component {
     if (this.state.mode == "edit") {
       recipeDetailForm = (
         <>
-          <form className="mt-3 ml-3" onSubmit={this.handleSubmit}>
+          <form className="mt-3" onSubmit={this.handleSubmit}>
             <div className="form-group row">
               <label className="col-sm-2">Title:</label>
               <input
@@ -85,16 +85,16 @@ class RecipeDetail extends React.Component {
                 />
               </div>
             </div>
-            <input className="btn-info" type="submit" value="Save" />
+            <input className="btn-sm btn-info" type="submit" value="Save" />
           </form>
         </>
       );
     } else if (this.state.mode == "view") {
       recipeDetailForm = (
         <>
-          <section className="mt-3">
-            <h2>{recipeInfo.title}</h2>
-            <p>
+          <section className="mt-2">
+            <h2 className="text-center card-header">{recipeInfo.title}</h2>
+            <p className="mt-2">
               <strong>Category:</strong> {recipeInfo.category}
             </p>
             <p>
@@ -108,7 +108,7 @@ class RecipeDetail extends React.Component {
             </p>
           </section>
           <button
-            className="btn-sm btn-info ml-1"
+            className={this.props.editable ? "btn-sm btn-info" : "hidden"} 
             onClick={() => this.setState({ mode: "edit" })}
           >
             Edit

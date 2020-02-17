@@ -20,6 +20,10 @@ html, body {
     width: auto !important;
 }
 
+.hidden {
+    display:none;
+}
+
 /*--- RECIPE ---*/
 
 #AddRecipe-jsx-component,
@@ -32,6 +36,11 @@ html, body {
     opacity: 0.95;
     padding-bottom: 1em;
     padding-top: 1em;
+}
+
+#Recipe-jsx-component h2.text-center.card-header {
+    background-color: white !important;
+    font-style: italic;
 }
 
 /*--- NAV ----*/
