@@ -11,10 +11,9 @@ import RecipeNewIngredient from "./RecipeNewIngredient";
 class Recipe extends React.Component {
   constructor(props) {
     super(props);
-    //console.log(props)
+    //console.log(this.props.location.search)
     this.state = {
-      recipe: null,
-      mode: "view"
+      recipe: null
     };
 
     this.visualizeAddedIngredient = this.visualizeAddedIngredient.bind(this);
