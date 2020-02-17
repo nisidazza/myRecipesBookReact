@@ -14,6 +14,7 @@ class App extends React.Component {
     return (
       <Router>
         <Route path="/" component={Nav} />
+        <Route path="/homepage" component={Homepage} />
         <Route path="/register" component={Register} />
         <Route path="/signin" component={SignIn} />
         <Route path="/ingredients" component={IngredientsList} />
@@ -21,7 +22,7 @@ class App extends React.Component {
         <Route path="/listrecipes/" component={RecipesList} />
         <Route path="/addrecipe/" component={AddRecipe} />
 
-        <Route path="/homepage" component={Homepage} />
+        
       </Router>
     );
   }

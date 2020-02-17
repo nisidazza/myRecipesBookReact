@@ -10,29 +10,7 @@ class Homepage extends React.Component {
   render() {
     return (
       <div id="Homepage-jsx-component">
-        <nav className="navbar">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link not-active" to="#">
-                Search
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/listrecipes/">
-                Recipes List
-              </Link>
-            </li>
-            <IfAuthenticated>
-              <li className="nav-item">
-                <Link className="nav-link" to="/addrecipe">
-                  Add Recipe
-                </Link>
-              </li>
-            </IfAuthenticated>
-            <IfNotAuthenticated>
-            </IfNotAuthenticated>
-          </ul>
-        </nav>
+        <h1>Welcome!</h1>
       </div>
     );
   }

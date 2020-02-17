@@ -80,6 +80,28 @@ class Nav extends React.Component {
             </IfNotAuthenticated>
           </ul>
         </nav>
+        <nav className="navbar sidenav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link not-active" to="#">
+                Search
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/listrecipes/">
+                Recipes List
+              </Link>
+            </li>
+            <IfAuthenticated>
+              <li className="nav-item">
+                <Link className="nav-link" to="/addrecipe">
+                  Add Recipe
+                </Link>
+              </li>
+            </IfAuthenticated>
+            <IfNotAuthenticated></IfNotAuthenticated>
+          </ul>
+        </nav>
       </div>
     );
   }
