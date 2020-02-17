@@ -23,14 +23,7 @@ function editRecipe(id, newRecipe, db = connection) {
       return db("recipes")
         .where("id", id)
         .update(
-          {
-            title: newRecipe.title ? newRecipe.title : oldRecipe[0].title,
-            category: newRecipe.category
-              ? newRecipe.category
-              : oldRecipe[0].category,
-            link: newRecipe.link ? newRecipe.link : oldRecipe[0].link,
-            notes: newRecipe.notes ? newRecipe.notes : oldRecipe[0].notes
-          },
+            newRecipe,
           ["*"]
         )
         .then(updatedRecipes => {
