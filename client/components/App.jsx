@@ -17,16 +17,10 @@ class App extends React.Component {
         <Route path="/register" component={Register} />
         <Route path="/signin" component={SignIn} />
         <Route path="/ingredients" component={IngredientsList} />
-        <Route path="/recipes/list" component={RecipesList} />
-        <Route path="/recipes/add" component={AddRecipe} />
-        <Route
-          path="/recipes/:id/edit"
-          render={props => <Recipe {...props} editable={true} />}
-        />
-        <Route
-          path="/recipes/:id/view"
-          render={props => <Recipe {...props} editable={false} />}
-        />
+        <Route path="/recipes/:id" component={Recipe} />
+        <Route path="/listrecipes/" component={RecipesList} />
+        <Route path="/addrecipe/" component={AddRecipe} />
+
         <Route path="/homepage" component={Homepage} />
       </Router>
     );

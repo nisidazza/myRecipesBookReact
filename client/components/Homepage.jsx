@@ -11,39 +11,27 @@ class Homepage extends React.Component {
     return (
       <div id="Homepage-jsx-component">
         <nav className="navbar">
-          <IfAuthenticated>
-            <ul className="navbar-nav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link not-active" to="#">
+                Search
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/listrecipes/">
+                Recipes List
+              </Link>
+            </li>
+            <IfAuthenticated>
               <li className="nav-item">
-                <Link className="nav-link not-active" to="#">
-                  Search
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/recipes/list">
-                  Recipes List
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/recipes/add">
+                <Link className="nav-link" to="/addrecipe">
                   Add Recipe
                 </Link>
               </li>
-            </ul>
-          </IfAuthenticated>
-          <IfNotAuthenticated>
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link not-active" href="#">
-                  Search
-                </a>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/recipes/list">
-                  Recipes List
-                </Link>
-              </li>
-            </ul>
-          </IfNotAuthenticated>
+            </IfAuthenticated>
+            <IfNotAuthenticated>
+            </IfNotAuthenticated>
+          </ul>
         </nav>
       </div>
     );
