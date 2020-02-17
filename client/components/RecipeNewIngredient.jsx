@@ -84,18 +84,20 @@ class RecipeNewIngredient extends React.Component {
                 })}
               </select>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-4">
               <input
                 autoComplete="off"
                 type="text"
                 name="quantity"
-                placeholder="insert quantity"
+                placeholder="insert quantity..."
                 value={this.state.newIngredient.quantity}
                 onChange={this.handleChange}
-                className="border border-info form-control form-control-sm"
+                className="border border-info form-control form-control-sm p-1 pl-2"
               ></input>
             </div>
-            <button className="btn-sm btn-info ml-1">Add</button>
+            <div className="col-sm-3">
+              <button className="btn-sm btn-info ml-1">Add</button>
+            </div>
           </div>
         </form>
       </div>
