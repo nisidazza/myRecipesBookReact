@@ -44,26 +44,18 @@ class RecipeIngredient extends React.Component {
   };
 
   render() {
-    const ingredientDetail = this.state.ingredient;
-    let ingredientForm;
     if (this.state.mode == "deleted") {
       return "";
     } else {
       if (this.state.mode == "edit") {
-        ingredientForm = this.renderEditMode();
+        return <>{this.renderEditMode()}</>;
       } else if (this.state.mode == "view") {
-        ingredientForm = renderViewMode(
-          this.handleEditClick,
-          this.handleDeleteClick,
-          ingredientDetail,
-          this.props.editable
-        );
+        return <>{this.renderViewMode()}</>;
       }
-      return <>{ingredientForm}</>;
     }
   }
 
-   renderEditMode = () => {
+  renderEditMode = () => {
     return (
       <>
         <form className="mt-3" onSubmit={this.handleSubmit}>
@@ -80,42 +72,40 @@ class RecipeIngredient extends React.Component {
         </form>
       </>
     );
-  }
+  };
 
-
-}
-
-
-
-function renderViewMode(handleEditClick, handleDeleteClick, ingredientDetail, editable) {
-  return (
-    <div>
-      <div className="row" key={ingredientDetail.id}>
-        <div className="col-sm">
-          <p>
-            <strong>{ingredientDetail.name}</strong>:{" "}
-            {ingredientDetail.quantity}
-          </p>
-        </div>
-        <div className="col-sm-4">
-          <button
-            onClick={handleEditClick}
-            className={
-              editable ? "btn-sm btn-info ml-1 mb-1" : "hidden"
-            }
-          >
-            Edit
-          </button>
-          <button
-            onClick={handleDeleteClick}
-            className= {editable ? "btn-sm btn-danger ml-1 mb-1" : "hidden"}
-          >
-            Delete
-          </button>
+  renderViewMode() {
+    return (
+      <div>
+        <div className="row" key={this.state.ingredient.id}>
+          <div className="col-sm">
+            <p>
+              <strong>{this.state.ingredient.name}</strong>:{" "}
+              {this.state.ingredient.quantity}
+            </p>
+          </div>
+          <div className="col-sm-4">
+            <button
+              onClick={this.handleEditClick}
+              className={
+                this.props.editable ? "btn-sm btn-info ml-1 mb-1" : "hidden"
+              }
+            >
+              Edit
+            </button>
+            <button
+              onClick={this.handleDeleteClick}
+              className={
+                this.props.editable ? "btn-sm btn-danger ml-1 mb-1" : "hidden"
+              }
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default RecipeIngredient;
