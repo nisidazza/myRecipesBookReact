@@ -6,7 +6,6 @@ import Nav from "./Nav";
 import Register from "./Register";
 import SignIn from "./SignIn";
 import Recipe from "./Recipe";
-import RecipeView from "./RecipeView";
 import Homepage from "./Homepage";
 import AddRecipe from "./AddRecipe";
 
