@@ -12,7 +12,6 @@ class AddRecipe extends React.Component {
       }
     };
   }
-  
 
   render() {
     return (
@@ -25,7 +24,7 @@ class AddRecipe extends React.Component {
                 <input
                   name="title"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-6 border-info"
+                  className="form-control form-control-sm col-md-8 border-info"
                 />
               </div>
               <div className="form-group row">
@@ -33,7 +32,7 @@ class AddRecipe extends React.Component {
                 <input
                   name="category"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-6 border-info"
+                  className="form-control form-control-sm col-md-8 border-info"
                 />
               </div>
               <div className="form-group row">
@@ -41,7 +40,7 @@ class AddRecipe extends React.Component {
                 <input
                   name="link"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-6 border-info"
+                  className="form-control form-control-sm col-md-8 border-info"
                 />
               </div>
               <div className="form-group row">
@@ -49,7 +48,7 @@ class AddRecipe extends React.Component {
                 <input
                   name="notes"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-6 border-info"
+                  className="form-control form-control-sm col-md-8 border-info"
                 />
               </div>
               <div className="form-group">
@@ -81,7 +80,11 @@ class AddRecipe extends React.Component {
                 </div>
               </div>
               <div>
-                <input type="submit" value="Save" className="btn-info row" />
+                <input
+                  type="submit"
+                  value="Save"
+                  className="btn-info row ml-1"
+                />
               </div>
             </form>
           </div>
@@ -101,15 +104,13 @@ class AddRecipe extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    apiAddRecipe(this.state.newRecipe)
-    .then((res) => {
-        const newRecipeId = res.id
-        this.props.history.push(`${newRecipeId}/edit`);
-      }
-    );
+    apiAddRecipe(this.state.newRecipe).then(res => {
+      const newRecipeId = res.id;
+      this.props.history.push(`/recipes/${newRecipeId}/?editable=true`);
+    });
   };
 
-  handleCheckbox = (e) => {
+  handleCheckbox = e => {
     this.setState({
       newRecipe: {
         ...this.state.newRecipe,
@@ -117,8 +118,6 @@ class AddRecipe extends React.Component {
       }
     });
   };
-  
-
 }
 
 export default AddRecipe;
