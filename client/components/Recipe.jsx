@@ -7,13 +7,19 @@ import {
 import RecipeDetails from "./RecipeDetails";
 import RecipeIngredient from "./RecipeIngredient";
 import RecipeNewIngredient from "./RecipeNewIngredient";
+import { getDecodedToken } from "authenticare/client";
 
 class Recipe extends React.Component {
   constructor(props) {
     super(props);
-    //console.log(this.props.location.search)
+
+    const params = new URLSearchParams(this.props.location.search);
+    const editable = params.get("editable");
+
     this.state = {
-      recipe: null
+      recipe: null,
+      editable: editable == "true" ? true : false,
+      userCanEdit: null
     };
 
     this.visualizeAddedIngredient = this.visualizeAddedIngredient.bind(this);
@@ -21,17 +27,28 @@ class Recipe extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.fetchRecipeDetail(id);
-  }
-
-  fetchRecipeDetail(id) {
-    apiGetRecipeDetails(id).then(response => {
+    apiGetRecipeDetails(id).then(recipe => {
+      const decodedToken = getDecodedToken();
+      let userCanEdit;
+      if (decodedToken) {
+        userCanEdit = decodedToken.id == recipe.user_id;
+      } else {
+        userCanEdit = false;
+      }
       this.setState({
-        recipe: response
+        recipe: recipe,
+        userCanEdit: userCanEdit
       });
-      //console.log(response)
     });
   }
+
+  handleToggleMode = e => {
+    if (e.target.name == "view") {
+      this.setState({ editable: false });
+    } else if (e.target.name == "edit") {
+      this.setState({ editable: true });
+    }
+  };
 
   visualizeAddedIngredient(recipeId, ingredientId) {
     apiGetIngredientFromRecipe(recipeId, ingredientId).then(ingredient => {
@@ -53,14 +70,14 @@ class Recipe extends React.Component {
         <div className="form-container">
           <div className=" border px-4 py-3" id="border-shadow">
             <RecipeDetails
-              editable={this.props.editable}
+              editable={this.state.editable && this.state.userCanEdit}
               recipe={recipeDetails}
             />
             <section>
               <h6 className="mt-2">
                 <strong>Ingredients</strong>
               </h6>
-              {this.props.editable ? (
+              {this.state.editable && this.state.userCanEdit ? (
                 <RecipeNewIngredient
                   recipeId={recipeDetails.id}
                   onAddedIngredient={this.visualizeAddedIngredient}
@@ -72,21 +89,31 @@ class Recipe extends React.Component {
               {renderIngredients(
                 ingredients,
                 recipeDetails.id,
-                this.props.editable
+                this.state.editable && this.state.userCanEdit
               )}
 
-              {this.props.editable ? (
-                <Link to={`/recipes/${recipeDetails.id}/view`}>
-                  <button type="button" className="btn-sm btn-success">
+              {this.state.userCanEdit ? (
+                this.state.editable ? (
+                  <button
+                    type="button"
+                    name="view"
+                    className="btn-sm btn-success"
+                    onClick={this.handleToggleMode}
+                  >
                     View
                   </button>
-                </Link>
-              ) : (
-                <Link to={`/recipes/${recipeDetails.id}/edit`}>
-                  <button type="button" className="btn-sm btn-success">
+                ) : (
+                  <button
+                    type="button"
+                    name="edit"
+                    className="btn-sm btn-success"
+                    onClick={this.handleToggleMode}
+                  >
                     Edit
                   </button>
-                </Link>
+                )
+              ) : (
+                <></>
               )}
             </section>
           </div>
@@ -98,19 +125,21 @@ class Recipe extends React.Component {
 
 function renderIngredients(ingredients, recipeId, editable) {
   return (
-    <>
+    <ul>
       {ingredients.map((ingredient, j) => {
         return (
-          <div key={j}>
-            <RecipeIngredient
-              editable={editable}
-              ingredient={ingredient}
-              recipeId={recipeId}
-            />
-          </div>
+          <li>
+            <div key={j}>
+              <RecipeIngredient
+                editable={editable}
+                ingredient={ingredient}
+                recipeId={recipeId}
+              />
+            </div>
+          </li>
         );
       })}
-    </>
+    </ul>
   );
 }
 
