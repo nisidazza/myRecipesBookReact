@@ -29,15 +29,32 @@ html, body {
     display: none;
 }
 
+div#Homepage-jsx-component,
+div#Recipe-jsx-component,
+div#AddRecipe-jsx-component,
+div#RecipeList-jsx-component {
+    padding-top:12em;
+    padding-left: 9.5em;
+    padding-right: 1.5em;
+    padding-bottom: 2em;
+}
+
+
+div.form-container {
+    width: 50%;
+    background-color: white;
+    margin: auto;
+    margin-top:2em;
+}
+
 /*--- RECIPE ---*/
 
-div#AddRecipe-jsx-component, div#Recipe-jsx-component {
+div#AddRecipe-jsx-component, 
+div#Recipe-jsx-component {
     background-color: gainsboro;
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.95;
-    padding-bottom: 2em;
-    padding-top: 3em;
     margin: 0 auto;
     min-height: 100%;
 }
@@ -48,6 +65,12 @@ div#AddRecipe-jsx-component, div#Recipe-jsx-component {
 }
 
 /*--- NAV ----*/
+
+div#Nav-jsx-component {
+    position:fixed;
+    width:100%;
+    z-index:1;
+}
 
 #Nav-jsx-component a.nav-link {
     color: black;
@@ -86,43 +109,10 @@ div#AddRecipe-jsx-component, div#Recipe-jsx-component {
     margin-bottom: 0;
 }
 
-/*--- RECIPE LIST*/
 
-#RecipeList-jsx-component div.card-footer {
-    background-color: transparent;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-top: 1em;
-}
+/*---SIDENAV --- */
 
-div#RecipeList-jsx-component.recipe-list-container {
-    min-height: 100%;
-    /*background-image: linear-gradient(to bottom right, olivedrab, white);*/
-    background-image: radial-gradient(farthest-corner at 60% 55%, olivedrab, white);
-}
-
-#RecipeList-jsx-component h6.card-subtitle.mb-2.text-muted {
-    padding-bottom: 0.3em;
-}
-
-/*SIGNIN - REGISTER*/
-
-#Register-jsx-component div.input-container.col-xs-3, #SignIn-jsx-component div.input-container.col-xs-3 {
-    display: flex;
-    margin-bottom: 1em;
-}
-
-#Register-jsx-component .icon, #SignIn-jsx-component .icon {
-    padding: 0.6em;
-    background: darkgrey;
-    color: white;
-    min-width: 3em;
-    text-align: center;
-}
-
-/*HOMEPAGE*/
-
-#Homepage-jsx-component nav.navbar {
+#Nav-jsx-component  nav.navbar.sidenav {
     background-image: linear-gradient(olivedrab, white) !important;
     height: 100%;
     width: 160px;
@@ -135,23 +125,61 @@ div#RecipeList-jsx-component.recipe-list-container {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#Homepage-jsx-component a.nav-link {
+#Nav-jsx-component  a.nav-link {
     color: black;
 }
 
-#Homepage-jsx-component a.nav-link.not-active {
+#Nav-jsx-component  a.nav-link.not-active {
     pointer-events: none;
     cursor: default;
     text-decoration: none;
     color: darkgrey;
 }
 
-#Homepage-jsx-component a.nav-link:hover, #Nav-jsx-component a.nav-link:hover {
+#Nav-jsx-component a.nav-link:hover, #Nav-jsx-component a.nav-link:hover {
     color: white;
 }
 
-div.form-container {
-    width: 50%;
-    background-color: white;
-    margin: auto;
+
+/*--- RECIPE LIST ----*/
+
+#RecipeList-jsx-component div.card-footer {
+    background-color: transparent;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-top: 1em;
 }
+
+div#RecipeList-jsx-component.row {
+    min-height: 100%;
+    /*background-image: linear-gradient(to bottom right, olivedrab, white);*/
+    background-image: radial-gradient(farthest-corner at 60% 55%, olivedrab, white);
+}
+
+#RecipeList-jsx-component h6.card-subtitle.mb-2.text-muted {
+    padding-bottom: 0.3em;
+}
+
+
+/*SIGNIN - REGISTER*/
+
+#Register-jsx-component div.input-container.col-xs-3, #SignIn-jsx-component div.input-container.col-xs-3 {
+    display: flex;
+    margin-bottom: 1em;
+
+}
+
+#Register-jsx-component .icon, #SignIn-jsx-component .icon {
+    padding: 0.6em;
+    background: darkgrey;
+    color: white;
+    min-width: 3em;
+    text-align: center;
+}
+
+div#Register-jsx-component,
+div#SignIn-jsx-component {
+    padding-top:15em;
+}
+
+/*HOMEPAGE*/
