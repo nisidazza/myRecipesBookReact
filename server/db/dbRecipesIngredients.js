@@ -69,6 +69,23 @@ function getIngredientInRecipe(recipeId, ingredientId, db = connection) {
     .where("ingredients.id", ingredientId);
 }
 
+
+function getRecipesMatchingAllIngredients(ingredient_ids, number_of_ingredients_to_skip = 0, db = connection) {
+  return db("recipes_ingredients")
+    .select("recipe_id")
+    .groupBy("recipe_id")
+    .havingRaw(
+      "sum(case when ingredient_id in (" + ingredient_ids.map(_ => "?").join(",") + ") then 1 else 0 end) <= count(*) AND " +
+      "sum(case when ingredient_id in (" + ingredient_ids.map(_ => "?").join(",") + ") then 1 else 0 end) >= count(*) - ?",
+      ingredient_ids.concat(ingredient_ids).concat(number_of_ingredients_to_skip)
+    )
+    .then(recipe_ids_obj => {
+      return db("recipes")
+        .select()
+        .whereIn("id", recipe_ids_obj.map(item => item.recipe_id))
+    });
+}
+
 function getRecipesByIngredient(ingredientId, db = connection) {
   return db("recipes_ingredients")
     .innerJoin("recipes", "recipes.id", "recipes_ingredients.recipe_id")
@@ -110,5 +127,6 @@ module.exports = {
   deleteIngredientFromRecipe,
   updateIngredientInRecipe,
   getIngredientInRecipe,
-  addMultipleIngredientsToRecipe
+  addMultipleIngredientsToRecipe,
+  getRecipesMatchingAllIngredients
 };

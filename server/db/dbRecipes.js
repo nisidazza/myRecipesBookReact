@@ -44,22 +44,6 @@ function getListRecipes(db = connection) {
     .orderBy("recipes.title");
 }
 
-function getRecipesMatchingAllIngredients(ingredient_ids, number_of_ingredients_to_skip = 0, db = connection) {
-  return db("recipes_ingredients")
-    .select("recipe_id")
-    .groupBy("recipe_id")
-    .havingRaw(
-      "sum(case when ingredient_id in (" + ingredient_ids.map(_ => "?").join(",") + ") then 1 else 0 end) <= count(*) AND " +
-      "sum(case when ingredient_id in (" + ingredient_ids.map(_ => "?").join(",") + ") then 1 else 0 end) >= count(*) - ?",
-      ingredient_ids.concat(ingredient_ids).concat(number_of_ingredients_to_skip)
-    )
-    .then(recipe_ids_obj => {
-      return db("recipes")
-        .select()
-        .whereIn("id", recipe_ids_obj.map(item => item.recipe_id))
-    });
-}
-
 function getRecipe(id, db = connection) {
   return db("recipes")
     .where("id", id)
@@ -72,6 +56,5 @@ module.exports = {
   editRecipe,
   getPublicRecipes,
   getListRecipes,
-  getRecipe,
-  getRecipesMatchingAllIngredients
+  getRecipe
 };
