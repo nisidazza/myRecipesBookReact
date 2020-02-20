@@ -42,6 +42,7 @@ router.get("/", getTokenDecoder(false), (req, res) => {
     });
 });
 
+
 router.get("/private", getTokenDecoder(), (req, res) => {
   const loggedUserId = req.user.id;
   dbUserRecipes
@@ -147,7 +148,7 @@ router.post("/", getTokenDecoder(), (req, res) => {
     .then(recipeDetails => {
       let newRecipeId = recipeDetails[0].id;
       if (ingredients == undefined || ingredients.length == 0) {
-        res.json(recipeDetails[0])
+        res.json(recipeDetails[0]);
       } else {
         for (let i = 0; i < ingredients.length; i++) {
           ingredients[i].recipe_id = newRecipeId;
