@@ -29,6 +29,7 @@ html, body {
     display: none;
 }
 
+div#SearchByIngredients-jsx-component,
 div#Homepage-jsx-component,
 div#Recipe-jsx-component,
 div#AddRecipe-jsx-component,
@@ -182,4 +183,14 @@ div#SignIn-jsx-component {
     padding-top:15em;
 }
 
-/*HOMEPAGE*/
+/*SEARCH*/
+
+span.chip._7ahQImyV4dj0EpcNOjnwA.false {
+    font-size:1em;
+    background-color: olivedrab;
+}
+
+div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover,
+.lhyQmCtWOINviMz0WG_gr.highlight.false.option {
+    background-color: lightgrey;
+}
