@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
-import IngredientsList from "./IngredientsList";
+import SearchByIngredients from "./SearchByIngredients";
 import RecipesList from "./RecipesList";
 import Nav from "./Nav";
 import Register from "./Register";
@@ -17,12 +17,10 @@ class App extends React.Component {
         <Route path="/homepage" component={Homepage} />
         <Route path="/register" component={Register} />
         <Route path="/signin" component={SignIn} />
-        <Route path="/ingredients" component={IngredientsList} />
         <Route path="/recipes/:id" component={Recipe} />
+        <Route path="/search/" component={SearchByIngredients} />
         <Route path="/listrecipes/" component={RecipesList} />
         <Route path="/addrecipe/" component={AddRecipe} />
-
-        
       </Router>
     );
   }
