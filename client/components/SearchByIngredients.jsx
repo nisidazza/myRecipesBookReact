@@ -1,5 +1,6 @@
 import React from "react";
 import { apiGetIngredients } from "../apis/ingredientsApi";
+import { apiGetRecipesMatchingAllIngredients } from "../apis/recipes2Api";
 import { Multiselect } from "multiselect-react-dropdown";
 
 class SearchByIngredients extends React.Component {
@@ -7,14 +8,20 @@ class SearchByIngredients extends React.Component {
     super(props);
 
     this.state = {
-      ingredients: []
+      ingredients: [],
+      selected_ingredient_ids: []
     };
   }
 
-  onSelect(selectedList, selectedItem) {
-    console.log(selectedList);
-    console.log(selectedItem);
-  }
+  onSelect = selectedList => {
+    const {selected_ingredient_ids} = this.state
+    for (let i = 0; i < selectedList.length; i++) {
+      let ingredientId = selectedList[i].id;
+      selected_ingredient_ids.push(ingredientId);
+    }
+    console.log(selected_ingredient_ids)
+    return selected_ingredient_ids
+  };
 
   componentDidMount() {
     this.fetchIngredients();
@@ -28,17 +35,12 @@ class SearchByIngredients extends React.Component {
     });
   };
 
-  handleChange = e => {
-    console.log(e.target.value);
-  };
-
   render() {
-    let ingredients = this.state.ingredients;
+    let { ingredients } = this.state;
     let options = [];
     for (let i = 0; i < ingredients.length; i++) {
       options.push(ingredients[i]);
     }
-    console.log(options);
 
     return (
       <div id="SearchByIngredients-jsx-component">
@@ -52,7 +54,12 @@ class SearchByIngredients extends React.Component {
             />
           </div>
           <div className="col-sm-3 pr-0">
-            <button className="btn-sm btn-info ml-1">Search</button>
+            <button
+              onClick={this.searchForRecipes}
+              className="btn-sm btn-info ml-1"
+            >
+              Search
+            </button>
           </div>
         </div>
       </div>
