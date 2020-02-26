@@ -75,6 +75,7 @@ class SearchByIngredients extends React.Component {
             <button
               onClick={this.searchForRecipes}
               className="btn-sm btn-info ml-1"
+              title="Search for recipes that contain all the selected ingredients"
             >
               Search
             </button>
