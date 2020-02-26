@@ -84,13 +84,24 @@ exports.seed = async knex => {
         {
             id: 9,
             title: 'Classic Ragu Bolognese',
-            category: 'sauce',
+            category: 'main',
             is_complete: true,
             notes: 'add some chilli and italian herbs',
-            link: 'https://www.bonappetit.com/recipe/classic-rag-bolognese',
+            link: 'https://www.epicurious.com/recipes/food/views/classic-ragu-bolognese-365181',
             user_id: 2,
             is_public: false
         },
+        {
+            id: 10,
+            title: 'Baked Potatoes',
+            category: 'sides',
+            is_complete: false,
+            notes: 'add some garlic',
+            link: 'https://www.allrecipes.com/recipe/54679/perfect-baked-potato/',
+            user_id: 2,
+            is_public: false
+        },
+
 
     ])
     await knex.raw("SELECT setval('recipes_id_seq', (SELECT MAX(id) from recipes))")
