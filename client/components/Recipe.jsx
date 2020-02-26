@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   apiGetRecipeDetails,
   apiGetIngredientFromRecipe
@@ -128,8 +127,8 @@ function renderIngredients(ingredients, recipeId, editable) {
     <ul>
       {ingredients.map((ingredient, j) => {
         return (
-          <li>
-            <div key={j}>
+          <li key={j}>
+            <div>
               <RecipeIngredient
                 editable={editable}
                 ingredient={ingredient}
