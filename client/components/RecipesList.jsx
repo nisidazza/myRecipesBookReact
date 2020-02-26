@@ -1,5 +1,5 @@
 import React from "react";
-import { apiGetRecipes, apiDeleteRecipe } from "../apis/recipesApi";
+import {apiDeleteRecipe } from "../apis/recipesApi";
 import { Link } from "react-router-dom";
 import { IfAuthenticated, IfNotAuthenticated } from "./Authenticated";
 import { getDecodedToken } from "authenticare/client";
@@ -9,21 +9,9 @@ class RecipesList extends React.Component {
     super(props);
 
     this.state = {
-      recipes: []
+      recipes: this.props.recipes
     };
   }
-
-  componentDidMount() {
-    this.fetchRecipes();
-  }
-
-  fetchRecipes = () => {
-    apiGetRecipes().then(recipes => {
-      this.setState({
-        recipes: recipes
-      });
-    });
-  };
 
   deleteRecipe = (id, i) => {
     apiDeleteRecipe(id)
