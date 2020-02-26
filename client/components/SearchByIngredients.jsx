@@ -2,6 +2,7 @@ import React from "react";
 import { apiGetIngredients } from "../apis/ingredientsApi";
 import { apiGetRecipesMatchingAllIngredients } from "../apis/recipes2Api";
 import { Multiselect } from "multiselect-react-dropdown";
+import RecipesList from "./RecipesList";
 
 class SearchByIngredients extends React.Component {
   constructor(props) {
@@ -9,19 +10,36 @@ class SearchByIngredients extends React.Component {
 
     this.state = {
       ingredients: [],
-      selected_ingredient_ids: []
+      recipes: [],
+      selected_ingredient_ids: [],
+      randomNumber: 0
     };
+
+    console.log("state : ", this.state);
   }
 
+
   onSelect = selectedList => {
-    const {selected_ingredient_ids} = this.state
-    for (let i = 0; i < selectedList.length; i++) {
-      let ingredientId = selectedList[i].id;
-      selected_ingredient_ids.push(ingredientId);
-    }
-    console.log(selected_ingredient_ids)
-    return selected_ingredient_ids
+    let selected_ingredient_ids = selectedList.map(item => item.id);    
+    this.setState({
+      selected_ingredient_ids
+    })
+    console.log("this.state: ", this.state)
   };
+  
+  searchForRecipes = () => {
+    let randomNumber = Math.random()
+    console.log(this.state.selected_ingredient_ids)
+    apiGetRecipesMatchingAllIngredients(this.state.selected_ingredient_ids).then(
+      recipes => {
+        this.setState({
+          recipes,
+          randomNumber
+        });
+        console.log("recipes :", recipes)
+      }  
+    )
+  }
 
   componentDidMount() {
     this.fetchIngredients();
@@ -61,6 +79,9 @@ class SearchByIngredients extends React.Component {
               Search
             </button>
           </div>
+        </div>
+        <div>
+          <RecipesList recipes={this.state.recipes} key={this.state.randomNumber} />
         </div>
       </div>
     );

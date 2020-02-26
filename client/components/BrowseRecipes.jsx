@@ -7,7 +7,8 @@ class BrowseRecipes extends React.Component {
     super(props);
 
     this.state = {
-      recipes: null
+      recipes: [],
+      randomNumber: 0
     };
   }
 
@@ -16,23 +17,26 @@ class BrowseRecipes extends React.Component {
   }
 
   fetchRecipes = () => {
+    let randomNumber = Math.random();
     apiGetRecipes().then(recipes => {
       this.setState({
-        recipes: recipes
+        recipes,
+        randomNumber
       });
     });
   };
 
   render() {
-    if (this.state.recipes !== null) {
-      return (
-        <>
-          <RecipesList recipes={this.state.recipes} />
-        </>
-      );
-    } else {
-        return (<></>)
-    }
+    return (
+      <>
+        <div id="BrowseRecipes-jsx-component">
+          <RecipesList
+            recipes={this.state.recipes}
+            key={this.state.randomNumber}
+          />
+        </div>
+      </>
+    );
   }
 }
 
