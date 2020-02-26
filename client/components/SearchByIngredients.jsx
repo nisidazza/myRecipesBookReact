@@ -1,6 +1,6 @@
 import React from "react";
 import { apiGetIngredients } from "../apis/ingredientsApi";
-import { apiGetRecipesMatchingAllIngredients } from "../apis/recipes2Api";
+import { apiGetRecipesMatchingAllIngredients } from "../apis/recipesSearchApi";
 import { Multiselect } from "multiselect-react-dropdown";
 import RecipesList from "./RecipesList";
 

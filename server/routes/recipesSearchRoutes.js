@@ -3,7 +3,7 @@ const router = express.Router();
 
 const dbRecipesIngredients = require("../db/dbRecipesIngredients");
 
-//GET - /api/v1/recipes2
+//GET - /api/v1/recipes/search
 
 router.get("/", (req, res) => {
   let ingredient_ids_string = req.query.ingredient_ids;

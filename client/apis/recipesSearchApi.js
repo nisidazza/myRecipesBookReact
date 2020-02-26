@@ -1,12 +1,12 @@
 import { httpClient } from "./httpClient";
-const recipes2Url = "api/v1/recipes2";
+const recipesSearchUrl = "api/v1/recipes-search";
 
 export function apiGetRecipesMatchingAllIngredients(ingredient_ids) {
   return httpClient
-    .get(`${recipes2Url}?ingredient_ids=${ingredient_ids}`)
+    .get(`${recipesSearchUrl}?ingredient_ids=${ingredient_ids}`)
     .catch(() => {
       throw Error(
-        "you need to implement an API route for /api/v1/recipes2"
+        "you need to implement an API route for /api/v1/recipes-search"
       );
     })
     .then(res => {
