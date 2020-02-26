@@ -63,7 +63,7 @@ router.get("/:id", getTokenDecoder(false), (req, res) => {
     .getRecipe(id)
     .then(recipeDetail => {
       if (recipeDetail) {
-        const userIsAuthenticatedAndMatches = req.user && req.user.id == id;
+        const userIsAuthenticatedAndMatches = req.user && req.user.id == recipeDetail.user_id;
         if (recipeDetail.is_public || userIsAuthenticatedAndMatches) {
           dbRecipesIngredients.getIngredients(id).then(ingredients => {
             res.json({ ...recipeDetail, ingredients });
