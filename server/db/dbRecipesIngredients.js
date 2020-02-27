@@ -69,20 +69,32 @@ function getIngredientInRecipe(recipeId, ingredientId, db = connection) {
     .where("ingredients.id", ingredientId);
 }
 
-
-function getRecipesMatchingAllIngredients(ingredient_ids, number_of_ingredients_to_skip = 0, db = connection) {
+function getRecipesMatchingAllIngredients(
+  ingredient_ids,
+  number_of_ingredients_to_skip = 0,
+  db = connection
+) {
   return db("recipes_ingredients")
     .select("recipe_id")
     .groupBy("recipe_id")
     .havingRaw(
-      "sum(case when ingredient_id in (" + ingredient_ids.map(_ => "?").join(",") + ") then 1 else 0 end) <= count(*) AND " +
-      "sum(case when ingredient_id in (" + ingredient_ids.map(_ => "?").join(",") + ") then 1 else 0 end) >= count(*) - ?",
-      ingredient_ids.concat(ingredient_ids).concat(number_of_ingredients_to_skip)
+      "sum(case when ingredient_id in (" +
+        ingredient_ids.map(_ => "?").join(",") +
+        ") then 1 else 0 end) <= count(*) AND " +
+        "sum(case when ingredient_id in (" +
+        ingredient_ids.map(_ => "?").join(",") +
+        ") then 1 else 0 end) >= count(*) - ?",
+      ingredient_ids
+        .concat(ingredient_ids)
+        .concat(number_of_ingredients_to_skip)
     )
     .then(recipe_ids_obj => {
       return db("recipes")
         .select()
-        .whereIn("id", recipe_ids_obj.map(item => item.recipe_id))
+        .whereIn(
+          "id",
+          recipe_ids_obj.map(item => item.recipe_id)
+        );
     });
 }
 
@@ -91,6 +103,20 @@ function getRecipesByIngredient(ingredientId, db = connection) {
     .innerJoin("recipes", "recipes.id", "recipes_ingredients.recipe_id")
     .where("recipes_ingredients.ingredient_id", ingredientId)
     .select("recipes.id", "recipes.title");
+}
+
+function getRecipesByIngredients(ingredient_ids, db = connection) {
+  return db("recipes_ingredients")
+    .distinct("recipe_id")
+    .whereIn("recipes_ingredients.ingredient_id", ingredient_ids)
+    .then(recipe_ids_obj => {
+      return db("recipes")
+        .select()
+        .whereIn(
+          "id",
+          recipe_ids_obj.map(item => item.recipe_id)
+        );
+    });
 }
 
 function updateIngredientInRecipe(
@@ -107,17 +133,17 @@ function updateIngredientInRecipe(
     });
 }
 
-function addMultipleIngredientsToRecipe(ingredients,db = connection) {
+function addMultipleIngredientsToRecipe(ingredients, db = connection) {
   return db("recipes_ingredients")
     .insert(ingredients, "*")
     .then(newIngredients => {
       for (let i = 0; i < newIngredients.length; i++) {
-        delete newIngredients[i].recipe_id
+        delete newIngredients[i].recipe_id;
         newIngredients[i].id = newIngredients[i].ingredient_id;
-        delete newIngredients[i].ingredient_id        
+        delete newIngredients[i].ingredient_id;
       }
-      return newIngredients
-    })
+      return newIngredients;
+    });
 }
 
 module.exports = {
@@ -128,5 +154,6 @@ module.exports = {
   updateIngredientInRecipe,
   getIngredientInRecipe,
   addMultipleIngredientsToRecipe,
-  getRecipesMatchingAllIngredients
+  getRecipesMatchingAllIngredients,
+  getRecipesByIngredients
 };
