@@ -33,6 +33,7 @@ class BrowseRecipes extends React.Component {
           <RecipesList
             recipes={this.state.recipes}
             key={this.state.randomNumber}
+            openInNewTab={false}
           />
         </div>
       </>

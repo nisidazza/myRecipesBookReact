@@ -13,7 +13,8 @@ class SearchByIngredients extends React.Component {
       recipes: [],
       selected_ingredient_ids: [],
       randomKeyToReconstructComponent: 0,
-      showError: false
+      showError: false,
+      matchAllIngredients: true
     };
 
     console.log("state : ", this.state);
@@ -31,7 +32,7 @@ class SearchByIngredients extends React.Component {
     let randomKeyToReconstructComponent = Math.random();
     console.log(this.state.selected_ingredient_ids);
     let searchPromise;
-    if(true) {
+    if(this.state.matchAllIngredients) {
       searchPromise = apiGetRecipesMatchingAllIngredients(
         this.state.selected_ingredient_ids
       )
