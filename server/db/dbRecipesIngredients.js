@@ -71,6 +71,7 @@ function getIngredientInRecipe(recipeId, ingredientId, db = connection) {
 
 function getRecipesMatchingAllIngredients(
   ingredient_ids,
+  user_id = -1,
   number_of_ingredients_to_skip = 0,
   db = connection
 ) {
@@ -94,7 +95,9 @@ function getRecipesMatchingAllIngredients(
         .whereIn(
           "id",
           recipe_ids_obj.map(item => item.recipe_id)
-        );
+        )
+        .where("is_public", true)
+        .orWhere("user_id", user_id);
     });
 }
 
@@ -105,7 +108,11 @@ function getRecipesByIngredient(ingredientId, db = connection) {
     .select("recipes.id", "recipes.title");
 }
 
-function getRecipesByIngredients(ingredient_ids, db = connection) {
+function getRecipesByIngredients(
+  ingredient_ids,
+  user_id = -1,
+  db = connection
+) {
   return db("recipes_ingredients")
     .distinct("recipe_id")
     .whereIn("recipes_ingredients.ingredient_id", ingredient_ids)
@@ -115,7 +122,9 @@ function getRecipesByIngredients(ingredient_ids, db = connection) {
         .whereIn(
           "id",
           recipe_ids_obj.map(item => item.recipe_id)
-        );
+        )
+        .where("is_public", true)
+        .orWhere("user_id", user_id);
     });
 }
 
