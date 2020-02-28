@@ -1,9 +1,6 @@
 /*COMMON CSS*/
 
-#Recipe-jsx-component div#border-shadow, 
-#AddRecipe-jsx-component div#border-shadow, 
-#Register-jsx-component div#border-shadow, 
-#SignIn-jsx-component div#border-shadow {
+#Recipe-jsx-component div#border-shadow, #AddRecipe-jsx-component div#border-shadow, #Register-jsx-component div#border-shadow, #SignIn-jsx-component div#border-shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -11,12 +8,11 @@
     box-sizing: border-box;
 }
 
-div#app{
+div#app {
     height: 100% !important;
     width: 100% !important;
     position: absolute;
 }
-
 
 html, body {
     font-family: 'Montserrat', sans-serif;
@@ -29,29 +25,23 @@ html, body {
     display: none;
 }
 
-div#SearchByIngredients-jsx-component,
-div#Homepage-jsx-component,
-div#Recipe-jsx-component,
-div#AddRecipe-jsx-component,
-div#BrowseRecipes-jsx-component {
-    padding-top:12em;
+div#SearchByIngredients-jsx-component, div#Homepage-jsx-component, div#Recipe-jsx-component, div#AddRecipe-jsx-component, div#BrowseRecipes-jsx-component {
+    padding-top: 12em;
     padding-left: 9.5em;
     padding-right: 1.5em;
     padding-bottom: 2em;
 }
 
-
 div.form-container {
     width: 50%;
     background-color: white;
     margin: auto;
-    margin-top:2em;
+    margin-top: 2em;
 }
 
 /*--- RECIPE ---*/
 
-div#AddRecipe-jsx-component, 
-div#Recipe-jsx-component {
+div#AddRecipe-jsx-component, div#Recipe-jsx-component {
     background-color: gainsboro;
     background-repeat: no-repeat;
     background-size: cover;
@@ -68,9 +58,9 @@ div#Recipe-jsx-component {
 /*--- NAV ----*/
 
 div#Nav-jsx-component {
-    position:fixed;
-    width:100%;
-    z-index:1;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
 
 #Nav-jsx-component a.nav-link {
@@ -110,10 +100,9 @@ div#Nav-jsx-component {
     margin-bottom: 0;
 }
 
-
 /*---SIDENAV --- */
 
-#Nav-jsx-component  nav.navbar.sidenav {
+#Nav-jsx-component nav.navbar.sidenav {
     background-image: linear-gradient(olivedrab, white) !important;
     height: 100%;
     width: 160px;
@@ -126,11 +115,11 @@ div#Nav-jsx-component {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#Nav-jsx-component  a.nav-link {
+#Nav-jsx-component a.nav-link {
     color: black;
 }
 
-#Nav-jsx-component  a.nav-link.not-active {
+#Nav-jsx-component a.nav-link.not-active {
     pointer-events: none;
     cursor: default;
     text-decoration: none;
@@ -140,7 +129,6 @@ div#Nav-jsx-component {
 #Nav-jsx-component a.nav-link:hover, #Nav-jsx-component a.nav-link:hover {
     color: white;
 }
-
 
 /*--- RECIPE LIST ----*/
 
@@ -161,13 +149,11 @@ div#RecipeList-jsx-component.row {
     padding-bottom: 0.3em;
 }
 
-
 /*SIGNIN - REGISTER*/
 
 #Register-jsx-component div.input-container.col-xs-3, #SignIn-jsx-component div.input-container.col-xs-3 {
     display: flex;
     margin-bottom: 1em;
-
 }
 
 #Register-jsx-component .icon, #SignIn-jsx-component .icon {
@@ -178,19 +164,17 @@ div#RecipeList-jsx-component.row {
     text-align: center;
 }
 
-div#Register-jsx-component,
-div#SignIn-jsx-component {
-    padding-top:15em;
+div#Register-jsx-component, div#SignIn-jsx-component {
+    padding-top: 15em;
 }
 
 /*SEARCH*/
 
 span.chip._7ahQImyV4dj0EpcNOjnwA.false {
-    font-size:1em;
+    font-size: 1em;
     background-color: olivedrab;
 }
 
-div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover,
-.lhyQmCtWOINviMz0WG_gr.highlight.false.option {
+div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover, .lhyQmCtWOINviMz0WG_gr.highlight.false.option {
     background-color: lightgrey;
 }
