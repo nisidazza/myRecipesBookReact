@@ -8,22 +8,15 @@ class SearchByIngredients extends React.Component {
   constructor(props) {
     super(props);
 
-    this.multiselectRef = React.createRef();
-
     this.state = {
       ingredients: [],
       recipes: [],
       selected_ingredient_ids: [],
-      randomNumber: 0,
-      message: false
+      randomKeyToReconstructComponent: 0,
+      showError: false
     };
 
     console.log("state : ", this.state);
-  }
-
-  resetValues() {
-    // By calling the belowe method will reset the selected values programatically
-    this.multiselectRef.current.resetSelectedValues();
   }
 
   onSelect = selectedList => {
@@ -35,26 +28,26 @@ class SearchByIngredients extends React.Component {
   };
 
   searchForRecipes = () => {
-    let randomNumber = Math.random();
+    let randomKeyToReconstructComponent = Math.random();
     console.log(this.state.selected_ingredient_ids);
-    apiGetRecipesMatchingAllIngredients(
-      this.state.selected_ingredient_ids
-    ).then(recipes => {
-      if (recipes.length == 0) {
-        this.setState({
-          message: true
-        })
-        this.resetValues();
-      } else {
-        this.setState({
-          recipes,
-          randomNumber
-        })
-        this.resetValues();
-      }
+    let searchPromise;
+    if(true) {
+      searchPromise = apiGetRecipesMatchingAllIngredients(
+        this.state.selected_ingredient_ids
+      )
+    } else {
+      searchPromise = null
+    }
+    searchPromise.then(recipes => {
+      this.setState({
+        recipes,
+        randomKeyToReconstructComponent,
+        showError: recipes.length == 0
+      })
       console.log("recipes :", recipes);
     });
   };
+
 
   componentDidMount() {
     this.fetchIngredients();
@@ -67,6 +60,12 @@ class SearchByIngredients extends React.Component {
       });
     });
   };
+
+  closeAlert = () => {
+    this.setState({
+      showError : false
+    })
+  }
 
   render() {
     let { ingredients } = this.state;
@@ -84,6 +83,7 @@ class SearchByIngredients extends React.Component {
                 options={options}
                 displayValue="name"
                 onSelect={this.onSelect}
+                onRemove={this.onSelect}
                 closeIcon="close"
                 placeholder="Select Ingredients"
                 ref={this.multiselectRef}
@@ -100,9 +100,9 @@ class SearchByIngredients extends React.Component {
               </button>
             </div>
           </div>
-          {this.state.message ? (
+          {this.state.showError  ? (
             <div
-              className="alert alert-warning alert-dismissible fade show w-50 mt-4"
+              className="alert alert-warning alert-dismissible fade show w-50 mt-4 collapse"
               role="alert"
             >
               <strong>Sorry</strong>, there are no recipes matching all the
@@ -110,8 +110,8 @@ class SearchByIngredients extends React.Component {
               <button
                 type="button"
                 className="close"
-                data-dismiss="alert"
                 aria-label="Close"
+                onClick={this.closeAlert}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -120,7 +120,8 @@ class SearchByIngredients extends React.Component {
             <div>
               <RecipesList
                 recipes={this.state.recipes}
-                key={this.state.randomNumber}
+                key={this.state.randomKeyToReconstructComponent}
+                openInNewTab={true}
               />
             </div>
           )}
