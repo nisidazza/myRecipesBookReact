@@ -96,8 +96,9 @@ function getRecipesMatchingAllIngredients(
           "id",
           recipe_ids_obj.map(item => item.recipe_id)
         )
-        .where("is_public", true)
-        .orWhere("user_id", user_id);
+        .andWhere(function() {
+          this.where("is_public", true).orWhere("user_id", user_id);
+        });
     });
 }
 
@@ -123,8 +124,9 @@ function getRecipesByIngredients(
           "id",
           recipe_ids_obj.map(item => item.recipe_id)
         )
-        .where("is_public", true)
-        .orWhere("user_id", user_id);
+        .andWhere(function() {
+          this.where("is_public", true).orWhere("user_id", user_id);
+        });
     });
 }
 
