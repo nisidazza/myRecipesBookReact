@@ -79,12 +79,18 @@ class AddRecipe extends React.Component {
                   />
                 </div>
               </div>
-              <div>
+              <div className="row">
                 <input
                   type="submit"
                   value="Save"
-                  className="btn-info row ml-1"
+                  className="btn-info row ml-2"
                 />
+                <div className="ml-4">
+                  <p className="mb-0 mt-1 p-1">
+                    Please, save your recipe details so you can add the
+                    ingredients!
+                  </p>
+                </div>
               </div>
             </form>
           </div>
