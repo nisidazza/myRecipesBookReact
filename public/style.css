@@ -39,6 +39,14 @@ div.form-container {
     margin-top: 2em;
 }
 
+
+/* --- ADD RECIPE --- */
+div#AddRecipe-jsx-component p.mb-0.mt-1 {
+    font-size: 0.95em;
+    color: orangered;
+}
+
+
 /*--- RECIPE ---*/
 
 div#AddRecipe-jsx-component, div#Recipe-jsx-component {
