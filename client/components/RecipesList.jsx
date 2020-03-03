@@ -113,7 +113,10 @@ class RecipesList extends React.Component {
                         )}
                       </IfAuthenticated>
                       <IfNotAuthenticated>
-                        <Link to={`/recipes/${recipe.id}/`}>
+                        <Link
+                          to={`/recipes/${recipe.id}/`}
+                          target={this.state.openInNewTab ? "_blank" : ""}
+                        >
                           <button type="button" className="btn btn-info">
                             View
                           </button>
