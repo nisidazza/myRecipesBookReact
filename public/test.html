@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input type="file" id="files" name="files" />
+    <output id="list"></output>
+
+    <script>
+      function handleFileSelect(evt) {
+        var files = evt.target.files; // FileList object
+
+        const formData = new FormData();
+        formData.append("myFile", files[0]);
+
+        fetch("/api/vnext/upload", {
+          method: "POST",
+          body: formData
+        })
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+           alert(data.message);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+
+        // files is a FileList of File objects. List some properties.
+        // for (var i = 0, f; (f = files[i]); i++) {
+        //   var fileReader = new FileReader()
+        //   var arrayBuffer = fileReader.readAsArrayBuffer(f);
+        //   console.log()
+        // }
+      }
+
+      document
+        .getElementById("files")
+        .addEventListener("change", handleFileSelect, false);
+    </script>
+  </body>
+</html>
