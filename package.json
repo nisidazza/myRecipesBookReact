@@ -47,6 +47,7 @@
   "homepage": "https://github.com/nisidazza/myRecipesBookReact#readme",
   "dependencies": {
     "authenticare": "^0.4.6",
+    "cloudinary": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.20.9",
