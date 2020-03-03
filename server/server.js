@@ -4,6 +4,7 @@ const recipesSearchRoutes = require('./routes/recipesSearchRoutes')
 const ingredientsRoutes = require('./routes/ingredientsRoutes')
 const recipesIngredientsRoutes = require('./routes/recipesIngredientsRoutes')
 const authRoutes = require('./routes/auth')
+const expRoutes = require('./routes/experiments')
 const server = express()
 
 // Middleware
@@ -18,5 +19,6 @@ server.use('/api/v1/recipes-search', recipesSearchRoutes)
 server.use('/api/v1/ingredients', ingredientsRoutes)
 server.use('/api/v1/recipes', recipesIngredientsRoutes)
 server.use('/api/v1', authRoutes)
+server.use('/api/vnext', expRoutes)
 
 module.exports = server
