@@ -84,7 +84,7 @@ class Nav extends React.Component {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/search/">
-                Search
+                Search By Ingredients
               </Link>
             </li>
             <li className="nav-item">

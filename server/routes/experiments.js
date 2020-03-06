@@ -1,15 +1,16 @@
-const express = require('express')
-const router = express.Router()
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+const express = require("express");
+const router = express.Router();
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
-router.post('/upload', upload.single('myFile'), (req,res) => {
-    console.log(req)
-    res.json({
-            message : req.file.path
-        })
-})
+const cloudinary = require('../cloudinaryConfig')
 
+router.post("/upload", upload.single("myFile"), (req, res) => {
+  console.log(req);
+  cloudinary.uploader.upload(req.file.path)
+  .then(image => {
+      res.json({message : image.url})
+  })
+});
 
-
-module.exports = router
+module.exports = router;

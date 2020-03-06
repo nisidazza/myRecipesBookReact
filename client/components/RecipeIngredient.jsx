@@ -84,11 +84,11 @@ class RecipeIngredient extends React.Component {
               {this.state.ingredient.quantity}
             </p>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4 pl-0">
             <button
               onClick={this.handleEditClick}
               className={
-                this.props.editable ? "btn-sm btn-info ml-1 mb-1" : "hidden"
+                this.props.editable ? "btn-sm btn-info mr-1" : "hidden"
               }
             >
               Edit
@@ -96,7 +96,7 @@ class RecipeIngredient extends React.Component {
             <button
               onClick={this.handleDeleteClick}
               className={
-                this.props.editable ? "btn-sm btn-danger ml-1 mb-1" : "hidden"
+                this.props.editable ? "btn-sm btn-danger" : "hidden"
               }
             >
               Delete

@@ -95,8 +95,8 @@ class RecipeNewIngredient extends React.Component {
                 className="border border-info form-control form-control-sm p-1 pl-2"
               ></input>
             </div>
-            <div className="col-sm-3">
-              <button className="btn-sm btn-info ml-1">Add</button>
+            <div className="col-sm-4">
+              <button className="btn-sm btn-info">Add</button>
             </div>
           </div>
         </form>

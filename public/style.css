@@ -15,8 +15,8 @@ div#app {
 }
 
 html, body {
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Lato', sans-serif !important;
+    font-family: 'Open Sans Condensed', sans-serif !important;
+    font-family: 'Abel', sans-serif !important; 
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -39,13 +39,12 @@ div.form-container {
     margin-top: 2em;
 }
 
-
 /* --- ADD RECIPE --- */
+
 div#AddRecipe-jsx-component p.mb-0.mt-1 {
     font-size: 0.95em;
     color: orangered;
 }
-
 
 /*--- RECIPE ---*/
 
@@ -58,10 +57,16 @@ div#AddRecipe-jsx-component, div#Recipe-jsx-component {
     min-height: 100%;
 }
 
-#Recipe-jsx-component h2.text-center.card-header {
+#Recipe-jsx-component p.text-center.card-header {
     background-color: white !important;
     font-style: italic;
+    font-size: 2em;
 }
+
+#Recipe-jsx-component li {
+    list-style-type: square;
+}
+
 
 /*--- NAV ----*/
 
@@ -113,7 +118,7 @@ div#Nav-jsx-component {
 #Nav-jsx-component nav.navbar.sidenav {
     background-image: linear-gradient(olivedrab, white) !important;
     height: 100%;
-    width: 160px;
+    width: 140px;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -147,17 +152,11 @@ div#Nav-jsx-component {
     padding-top: 1em;
 }
 
-div#RecipeList-jsx-component.row {
-    min-height: 100%;
-    /*background-image: linear-gradient(to bottom right, olivedrab, white);*/
-    background-image: radial-gradient(farthest-corner at 60% 55%, olivedrab, white);
-}
-
 #RecipeList-jsx-component h6.card-subtitle.mb-2.text-muted {
     padding-bottom: 0.3em;
 }
 
-/*SIGNIN - REGISTER*/
+/* --- SIGNIN - REGISTER --- */
 
 #Register-jsx-component div.input-container.col-xs-3, #SignIn-jsx-component div.input-container.col-xs-3 {
     display: flex;
@@ -176,7 +175,7 @@ div#Register-jsx-component, div#SignIn-jsx-component {
     padding-top: 15em;
 }
 
-/*SEARCH*/
+/* --- SEARCH --- */
 
 span.chip._7ahQImyV4dj0EpcNOjnwA.false {
     font-size: 1em;
@@ -185,4 +184,20 @@ span.chip._7ahQImyV4dj0EpcNOjnwA.false {
 
 div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover, .lhyQmCtWOINviMz0WG_gr.highlight.false.option {
     background-color: lightgrey;
+}
+
+/* --- RECIPE DETAILS --- */
+
+div.btn-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 0.5em;
+}
+
+button.img-btn {
+    z-index: 2;
+    position: absolute;
+    font-size: 0.6em;
+    top: 2%;
+    left: 1%;
 }

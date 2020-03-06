@@ -128,13 +128,11 @@ function renderIngredients(ingredients, recipeId, editable) {
       {ingredients.map((ingredient, j) => {
         return (
           <li key={j}>
-            <div>
               <RecipeIngredient
                 editable={editable}
                 ingredient={ingredient}
                 recipeId={recipeId}
               />
-            </div>
           </li>
         );
       })}

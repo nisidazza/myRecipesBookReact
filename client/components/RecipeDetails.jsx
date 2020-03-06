@@ -13,7 +13,7 @@ class RecipeDetail extends React.Component {
 
   render() {
     const recipeInfo = this.state.recipe;
-    console.log(recipeInfo)
+    console.log(recipeInfo);
     let recipeDetailForm;
     if (this.state.mode == "edit") {
       recipeDetailForm = (
@@ -79,7 +79,7 @@ class RecipeDetail extends React.Component {
                 <input
                   type="checkbox"
                   name="is_complete"
-                  defaultChecked = {recipeInfo.is_complete}
+                  defaultChecked={recipeInfo.is_complete}
                   onChange={this.handleCheckbox}
                   className="form-check-input form-control-sm  border-info ml-0"
                 />
@@ -93,7 +93,14 @@ class RecipeDetail extends React.Component {
       recipeDetailForm = (
         <>
           <section className="mt-2">
-            <h2 className="text-center card-header">{recipeInfo.title}</h2>
+            <p className="text-center card-header">{recipeInfo.title}</p>
+            <div className="btn-container"> 
+              <img
+                src="/images/brownies.jpg"
+                className="rounded mx-auto d-block img-thumbnail mr-1"
+              ></img>
+              <button className="btn-info img-btn ">Upload new image</button>
+            </div>
             <p className="mt-2">
               <strong>Category:</strong> {recipeInfo.category}
             </p>
@@ -108,7 +115,7 @@ class RecipeDetail extends React.Component {
             </p>
           </section>
           <button
-            className={this.props.editable ? "btn-sm btn-info" : "hidden"} 
+            className={this.props.editable ? "btn-sm btn-info" : "hidden"}
             onClick={() => this.setState({ mode: "edit" })}
           >
             Edit
@@ -154,12 +161,12 @@ class RecipeDetail extends React.Component {
 
   handleCheckbox = e => {
     this.setState({
-        recipe: {
-          ...this.state.recipe,
-          [e.target.name]: e.target.checked ? true : false
-        }
-      });
-  }
+      recipe: {
+        ...this.state.recipe,
+        [e.target.name]: e.target.checked ? true : false
+      }
+    });
+  };
 }
 
 export default RecipeDetail;
