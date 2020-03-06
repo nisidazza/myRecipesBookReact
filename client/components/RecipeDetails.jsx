@@ -96,7 +96,7 @@ class RecipeDetail extends React.Component {
             <p className="text-center card-header">{recipeInfo.title}</p>
             <div className="btn-container"> 
               <img
-                src="/images/brownies.jpg"
+                src="/images/test-image.png"
                 className="rounded mx-auto d-block img-thumbnail mr-1"
               ></img>
               <button className="btn-info img-btn ">Upload new image</button>
