@@ -7,13 +7,33 @@ class RecipeDetail extends React.Component {
 
     this.state = {
       recipe: this.props.recipe,
-      mode: "view"
+      mode: "view",
     };
+
+    this.widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "hqwayz2au",
+        uploadPreset: "brd7s5mq"
+      },
+      (error, result) => {
+        this.checkUploadImage(result)
+        }
+    )
   }
+
+  checkUploadImage = (result) => {
+    console.log(result)
+    if (result && result.event === "success") {
+      console.log("Done! Here is the image info: ", result.info);
+  }
+}
+
+  openWidget = () => {
+    this.widget.open();
+  };
 
   render() {
     const recipeInfo = this.state.recipe;
-    console.log(recipeInfo);
     let recipeDetailForm;
     if (this.state.mode == "edit") {
       recipeDetailForm = (
@@ -94,12 +114,14 @@ class RecipeDetail extends React.Component {
         <>
           <section className="mt-2">
             <p className="text-center card-header">{recipeInfo.title}</p>
-            <div className="btn-container"> 
+            <div className="btn-container">
               <img
                 src="/images/test-image.png"
                 className="rounded mx-auto d-block img-thumbnail mr-1"
               ></img>
-              <button className="btn-info img-btn ">Upload new image</button>
+              <button className="btn-info img-btn" onClick={this.openWidget}>
+                Upload new image
+              </button>
             </div>
             <p className="mt-2">
               <strong>Category:</strong> {recipeInfo.category}
