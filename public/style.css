@@ -16,7 +16,7 @@ div#app {
 
 html, body {
     font-family: 'Open Sans Condensed', sans-serif !important;
-    font-family: 'Abel', sans-serif !important; 
+    font-family: 'Abel', sans-serif !important;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -66,7 +66,6 @@ div#AddRecipe-jsx-component, div#Recipe-jsx-component {
 #Recipe-jsx-component li {
     list-style-type: square;
 }
-
 
 /*--- NAV ----*/
 
@@ -192,6 +191,12 @@ div.btn-container {
     position: relative;
     display: inline-block;
     margin-top: 0.5em;
+    margin-left: 1.5em;
+}
+
+img.rounded.mx-auto.d-block.img-thumbnail.mr-1 {
+    width: 600px;
+    height: auto;
 }
 
 button.img-btn {
