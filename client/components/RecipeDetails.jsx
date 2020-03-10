@@ -11,16 +11,18 @@ class RecipeDetail extends React.Component {
     };
   }
 
+  uploadWidget = cloudinary.createUploadWidget(
+    {
+      cloudName: "hqwayz2au",
+      uploadPreset: "brd7s5mq"
+    },
+    (error, result) => {
+      this.checkUploadImage(result);
+    }
+  );
+
   openUploadWidget = () => {
-    cloudinary.openUploadWidget(
-      {
-        cloudName: "hqwayz2au",
-        uploadPreset: "brd7s5mq"
-      },
-      (error, result) => {
-        this.checkUploadImage(result);
-      }
-    );
+    this.uploadWidget.open();
   };
 
   checkUploadImage = result => {
