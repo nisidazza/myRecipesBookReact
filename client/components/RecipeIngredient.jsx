@@ -84,7 +84,7 @@ class RecipeIngredient extends React.Component {
               {this.state.ingredient.quantity}
             </p>
           </div>
-          <div className="col-sm-4 pl-0">
+          <div className="col-sm-3 pl-0">
             <button
               onClick={this.handleEditClick}
               className={

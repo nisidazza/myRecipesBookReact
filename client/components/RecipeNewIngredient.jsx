@@ -84,7 +84,7 @@ class RecipeNewIngredient extends React.Component {
                 })}
               </select>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-5">
               <input
                 autoComplete="off"
                 type="text"
@@ -95,7 +95,7 @@ class RecipeNewIngredient extends React.Component {
                 className="border border-info form-control form-control-sm p-1 pl-2"
               ></input>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-3 pl-2">
               <button className="btn-sm btn-info">Add</button>
             </div>
           </div>

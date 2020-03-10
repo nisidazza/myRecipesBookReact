@@ -191,11 +191,10 @@ div.btn-container {
     position: relative;
     display: inline-block;
     margin-top: 0.5em;
-    margin-left: 1.5em;
 }
 
 img.rounded.mx-auto.d-block.img-thumbnail.mr-1 {
-    width: 600px;
+    width: 900px;
     height: auto;
 }
 
