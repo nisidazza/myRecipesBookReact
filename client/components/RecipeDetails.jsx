@@ -7,29 +7,31 @@ class RecipeDetail extends React.Component {
 
     this.state = {
       recipe: this.props.recipe,
-      mode: "view",
+      mode: "view"
     };
+  }
 
-    this.widget = window.cloudinary.createUploadWidget(
+  openUploadWidget = () => {
+    cloudinary.openUploadWidget(
       {
         cloudName: "hqwayz2au",
         uploadPreset: "brd7s5mq"
       },
       (error, result) => {
-        this.checkUploadImage(result)
-        }
-    )
-  }
+        this.checkUploadImage(result);
+      }
+    );
+  };
 
-  checkUploadImage = (result) => {
-    console.log(result)
+  checkUploadImage = result => {
+    console.log("Check Upload Result", result);
     if (result && result.event === "success") {
-      console.log("Done! Here is the image info: ", result.info);
-  }
-}
-
-  openWidget = () => {
-    this.widget.open();
+      let recipe = this.state.recipe;
+      recipe.img_url = result.info.url;      
+      this.setState({
+        recipe
+      });
+    }
   };
 
   render() {
@@ -39,6 +41,21 @@ class RecipeDetail extends React.Component {
       recipeDetailForm = (
         <>
           <form className="mt-3" onSubmit={this.handleSubmit}>
+            <div className="form-group row">
+              <img
+                src={recipeInfo.img_url}
+                className="rounded mx-auto d-block img-thumbnail mr-1"
+              ></img>
+              <div className="btn-container">
+                <button
+                  type="button"
+                  className="btn-info img-btn"
+                  onClick={this.openUploadWidget}
+                >
+                  Upload new image
+                </button>
+              </div>
+            </div>
             <div className="form-group row">
               <label className="col-sm-2">Title:</label>
               <input
@@ -113,15 +130,12 @@ class RecipeDetail extends React.Component {
       recipeDetailForm = (
         <>
           <section className="mt-2">
-            <p className="text-center card-header">{recipeInfo.title}</p>
+            <p className="text-center card-header" style={{border: "none"}}>{recipeInfo.title}</p>
             <div className="btn-container">
               <img
-                src="/images/test-image.png"
+                src={recipeInfo.img_url ? recipeInfo.img_url : "images/test-image.png" }
                 className="rounded mx-auto d-block img-thumbnail mr-1"
               ></img>
-              <button className="btn-info img-btn" onClick={this.openWidget}>
-                Upload new image
-              </button>
             </div>
             <p className="mt-2">
               <strong>Category:</strong> {recipeInfo.category}
