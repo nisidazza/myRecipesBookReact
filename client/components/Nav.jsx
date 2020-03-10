@@ -19,7 +19,7 @@ class Nav extends React.Component {
 
   handleLogOff = () => {
     logOff();
-    this.props.history.push("/");
+    this.props.history.push("/signin");
   };
 
   render() {
