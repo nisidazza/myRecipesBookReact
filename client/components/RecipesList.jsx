@@ -44,8 +44,10 @@ class RecipesList extends React.Component {
                 <div className="card w-65 mx-auto mt-3" id="recipe-card">
                   <img
                     className="card-img-top"
-                    src={"images/book.jpg"}
+                    src={recipe.img_url ? recipe.img_url : "images/test-image.png"}
                     alt="Book"
+                    height="350px"
+                    style={{objectFit:"contain"}}
                   />
                   <div className="card-body">
                     <h5 className="card-title text-md-left">
