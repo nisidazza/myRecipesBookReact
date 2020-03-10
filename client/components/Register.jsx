@@ -20,7 +20,7 @@ class Register extends React.Component {
       baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
     }).then(token => {
       if (isAuthenticated()) {
-        this.props.history.push("/homepage");
+        this.props.history.push("/listrecipes");
       }
     });
   };

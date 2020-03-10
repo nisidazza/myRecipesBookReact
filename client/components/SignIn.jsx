@@ -25,7 +25,7 @@ class SignIn extends React.Component {
             }
         ).then((token) => {
             if (isAuthenticated()) {
-                this.props.history.push('/homepage')
+                this.props.history.push('/listrecipes')
             }
         })
     }
