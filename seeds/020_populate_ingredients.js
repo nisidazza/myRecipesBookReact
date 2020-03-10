@@ -195,7 +195,25 @@ exports.seed = async knex => {
         {
             id: 49,
             name: 'tagliatelle or fettuccine'
+        },
+        {
+            id: 50,
+            name: 'potatoes'
+        },
+        {
+            id: 51,
+            name: 'Cheddar cheese'
+        },
+        {
+            id: 52,
+            name: 'rosemary'
+        },
+        {
+            id: 53,
+            name: 'thyme'
         }
+
+
     ])
 
     await knex.raw("SELECT setval('ingredients_id_seq', (SELECT MAX(id) from ingredients))")
