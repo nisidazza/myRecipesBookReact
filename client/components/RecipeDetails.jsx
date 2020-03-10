@@ -27,7 +27,7 @@ class RecipeDetail extends React.Component {
     console.log("Check Upload Result", result);
     if (result && result.event === "success") {
       let recipe = this.state.recipe;
-      recipe.img_url = result.info.url;      
+      recipe.img_url = result.info.url;
       this.setState({
         recipe
       });
@@ -42,14 +42,18 @@ class RecipeDetail extends React.Component {
         <>
           <form className="mt-3" onSubmit={this.handleSubmit}>
             <div className="form-group row">
-              <img
-                src={recipeInfo.img_url}
-                className="rounded mx-auto d-block img-thumbnail mr-1"
-              ></img>
               <div className="btn-container">
+                <img
+                  src={
+                    recipeInfo.img_url
+                      ? recipeInfo.img_url
+                      : "images/test-image.png"
+                  }
+                  className="rounded mx-auto d-block img-thumbnail mr-1"
+                ></img>
                 <button
                   type="button"
-                  className="btn-info img-btn"
+                  className="btn-sm btn-info img-btn"
                   onClick={this.openUploadWidget}
                 >
                   Upload new image
@@ -130,10 +134,16 @@ class RecipeDetail extends React.Component {
       recipeDetailForm = (
         <>
           <section className="mt-2">
-            <p className="text-center card-header" style={{border: "none"}}>{recipeInfo.title}</p>
+            <p className="text-center card-header" style={{ border: "none" }}>
+              {recipeInfo.title}
+            </p>
             <div className="btn-container">
               <img
-                src={recipeInfo.img_url ? recipeInfo.img_url : "images/test-image.png" }
+                src={
+                  recipeInfo.img_url
+                    ? recipeInfo.img_url
+                    : "images/test-image.png"
+                }
                 className="rounded mx-auto d-block img-thumbnail mr-1"
               ></img>
             </div>
