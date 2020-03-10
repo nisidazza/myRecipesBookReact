@@ -21,7 +21,7 @@ exports.seed = async knex => {
             link: 'https://www.delish.com/cooking/recipe-ideas/recipes/a55215/easy-mushroom-risotto-recipe/',
             user_id: 2,
             is_public: false,
-            img_url: ""
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583877492/zrjmfympjnvmaojdr5uh.jpg"
         },
         {
             id: 3,
@@ -32,7 +32,7 @@ exports.seed = async knex => {
             link: 'https://www.thekitchn.com/how-to-make-pork-dumplings-cooking-lessons-from-the-kitchn-216163',
             user_id: 1,
             is_public: false,
-            img_url: ""
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583878511/t5oszia34emmqidb8zhc.jpg"
         },
         {
             id: 4,
@@ -43,7 +43,7 @@ exports.seed = async knex => {
             link: 'https://www.incredibleegg.org/recipe/basic-scrambled-eggs/',
             user_id: 1,
             is_public: true,
-            img_url: ""
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583878178/rdocc0autdsbyyfnjr6u.jpg"
         },
         {
             id: 5,
@@ -54,7 +54,7 @@ exports.seed = async knex => {
             link: 'https://www.chelsea.co.nz/browse-recipes/best-brownie/',
             user_id: 2,
             is_public: true,
-            img_url: ""
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583874596/susn6kjl9kpprumfh9zs.jpg"
         },
         {
             id: 6,
@@ -65,7 +65,7 @@ exports.seed = async knex => {
             link: 'https://www.simplyrecipes.com/recipes/homemade_pizza/',
             user_id: 1,
             is_public: false,
-            img_url: ""
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583828747/labgifgndooppbiwg4li.jpg"
         },
         {
             id: 7,
@@ -87,7 +87,7 @@ exports.seed = async knex => {
             link: 'https://www.pillsbury.com/recipes/bacon-and-cheese-quiche/19288cf4-0cdc-46cc-bc86-4c9bfa799695',
             user_id: 1,
             is_public: false,
-            img_url: ""
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583878647/kwe441rsmrdetobj0ezc.jpg"
         },
         {
             id: 9,
@@ -98,7 +98,7 @@ exports.seed = async knex => {
             link: 'https://www.epicurious.com/recipes/food/views/classic-ragu-bolognese-365181',
             user_id: 2,
             is_public: false,
-            img_url: ""
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583875393/av7cofu0ak55gobwe9sw.jpg"
         },
         {
             id: 10,
@@ -109,7 +109,7 @@ exports.seed = async knex => {
             link: 'https://www.allrecipes.com/recipe/54679/perfect-baked-potato/',
             user_id: 2,
             is_public: false,
-            img_url: ""
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583874714/j8dum8jn0pro8jvaodsk.jpg"
         },
 
 
