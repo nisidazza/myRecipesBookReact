@@ -9,7 +9,8 @@ exports.seed = async knex => {
             notes: 'delicious!',
             link: 'https://www.allrecipes.com/recipe/45396/easy-pancakes/',
             user_id: 1,
-            is_public: true
+            is_public: true,
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583797872/ml2rmpczpler3i6qapcn.jpg"
         },
         {
             id: 2,
@@ -19,7 +20,8 @@ exports.seed = async knex => {
             notes: 'add butter at the end and stir',
             link: 'https://www.delish.com/cooking/recipe-ideas/recipes/a55215/easy-mushroom-risotto-recipe/',
             user_id: 2,
-            is_public: false
+            is_public: false,
+            img_url: ""
         },
         {
             id: 3,
@@ -29,7 +31,8 @@ exports.seed = async knex => {
             notes: 'add prawns',
             link: 'https://www.thekitchn.com/how-to-make-pork-dumplings-cooking-lessons-from-the-kitchn-216163',
             user_id: 1,
-            is_public: false
+            is_public: false,
+            img_url: ""
         },
         {
             id: 4,
@@ -39,7 +42,8 @@ exports.seed = async knex => {
             notes: '',
             link: 'https://www.incredibleegg.org/recipe/basic-scrambled-eggs/',
             user_id: 1,
-            is_public: true
+            is_public: true,
+            img_url: ""
         },
         {
             id: 5,
@@ -49,7 +53,8 @@ exports.seed = async knex => {
             notes: 'add chocolate drops',
             link: 'https://www.chelsea.co.nz/browse-recipes/best-brownie/',
             user_id: 2,
-            is_public: true
+            is_public: true,
+            img_url: ""
         },
         {
             id: 6,
@@ -59,7 +64,8 @@ exports.seed = async knex => {
             notes: '',
             link: 'https://www.simplyrecipes.com/recipes/homemade_pizza/',
             user_id: 1,
-            is_public: false
+            is_public: false,
+            img_url: ""
         },
         {
             id: 7,
@@ -69,7 +75,8 @@ exports.seed = async knex => {
             notes: 'add zucchini',
             link: 'https://www.pillsbury.com/recipes/bacon-and-cheese-quiche/19288cf4-0cdc-46cc-bc86-4c9bfa799695',
             user_id: 1,
-            is_public: true
+            is_public: true,
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583798028/enr9binod1bpmao849qf.jpg"
         },
         {
             id: 8,
@@ -79,7 +86,8 @@ exports.seed = async knex => {
             notes: 'add zucchini',
             link: 'https://www.pillsbury.com/recipes/bacon-and-cheese-quiche/19288cf4-0cdc-46cc-bc86-4c9bfa799695',
             user_id: 1,
-            is_public: false
+            is_public: false,
+            img_url: ""
         },
         {
             id: 9,
@@ -89,7 +97,8 @@ exports.seed = async knex => {
             notes: 'add some chilli and italian herbs',
             link: 'https://www.epicurious.com/recipes/food/views/classic-ragu-bolognese-365181',
             user_id: 2,
-            is_public: false
+            is_public: false,
+            img_url: ""
         },
         {
             id: 10,
@@ -99,7 +108,8 @@ exports.seed = async knex => {
             notes: 'add some garlic',
             link: 'https://www.allrecipes.com/recipe/54679/perfect-baked-potato/',
             user_id: 2,
-            is_public: false
+            is_public: false,
+            img_url: ""
         },
 
 
