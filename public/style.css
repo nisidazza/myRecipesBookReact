@@ -49,7 +49,7 @@ div#AddRecipe-jsx-component p.mb-0.mt-1 {
 /*--- RECIPE ---*/
 
 div#AddRecipe-jsx-component, div#Recipe-jsx-component {
-    background-color: gainsboro;
+    background-color: antiquewhite;
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.95;
@@ -177,6 +177,7 @@ div#Nav-jsx-component {
 div#Register-jsx-component, div#SignIn-jsx-component {
     padding-top: 15em;
     min-height: 100%;
+    background-color:antiquewhite;
 }
 
 div#Register-jsx-component #border-shadow, div#SignIn-jsx-component #border-shadow {
