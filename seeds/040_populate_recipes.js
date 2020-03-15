@@ -98,7 +98,7 @@ exports.seed = async knex => {
             link: 'https://www.epicurious.com/recipes/food/views/classic-ragu-bolognese-365181',
             user_id: 2,
             is_public: false,
-            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583875393/av7cofu0ak55gobwe9sw.jpg"
+            img_url: "http://res.cloudinary.com/hqwayz2au/image/upload/v1584246138/av7cofu0ak55gobwe9sw.jpg"
         },
         {
             id: 10,
