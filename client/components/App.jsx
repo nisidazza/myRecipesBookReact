@@ -14,7 +14,6 @@ class App extends React.Component {
     return (
       <Router>
         <Route path="/" component={Nav} />
-        <Redirect exact from="/" to="/listrecipes/"/>
         <Route path="/homepage" component={Homepage} />
         <Route path="/register" component={Register} />
         <Route path="/signin" component={SignIn} />
