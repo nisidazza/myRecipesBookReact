@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Redirect } from "react-router-dom";
 import SearchByIngredients from "./SearchByIngredients";
 import BrowseRecipes from "./BrowseRecipes";
 import Nav from "./Nav";
@@ -14,6 +14,7 @@ class App extends React.Component {
     return (
       <Router>
         <Route path="/" component={Nav} />
+        <Redirect exact from="/" to="/listrecipes/"/>
         <Route path="/homepage" component={Homepage} />
         <Route path="/register" component={Register} />
         <Route path="/signin" component={SignIn} />
