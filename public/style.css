@@ -155,6 +155,10 @@ div#Nav-jsx-component {
     padding-bottom: 0.3em;
 }
 
+#RecipeList-jsx-component div#recipe-card {
+    box-shadow:5px 10px 8px #888888;
+}
+
 /* --- SIGNIN - REGISTER --- */
 
 #Register-jsx-component div.input-container.col-xs-3, #SignIn-jsx-component div.input-container.col-xs-3 {
@@ -172,7 +176,13 @@ div#Nav-jsx-component {
 
 div#Register-jsx-component, div#SignIn-jsx-component {
     padding-top: 15em;
+    min-height: 100%;
 }
+
+div#Register-jsx-component #border-shadow, div#SignIn-jsx-component #border-shadow {
+    background-color: white;
+}
+
 
 /* --- SEARCH --- */
 
