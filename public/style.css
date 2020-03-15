@@ -214,3 +214,15 @@ button.btn-info.img-btn {
     bottom: 0%;
     right: 0%;
 }
+
+
+/* --- HOMEPAGE --- */
+
+div#Homepage-jsx-component {
+    background-image:url("images/under-construction.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+    margin-top:200px;
+    margin-left:100px;
+}

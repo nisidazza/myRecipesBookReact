@@ -10,7 +10,6 @@ class Homepage extends React.Component {
   render() {
     return (
       <div id="Homepage-jsx-component">
-        <h1>Welcome!</h1>
       </div>
     );
   }
