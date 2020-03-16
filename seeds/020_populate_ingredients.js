@@ -62,11 +62,11 @@ exports.seed = async knex => {
         },
         {
             id: 16,
-            name: 'parmesan',
+            name: 'parmesan cheese',
         },
         {
             id: 17,
-            name: 'pepper',
+            name: 'black pepper',
         },
         {
             id: 18,
@@ -211,9 +211,39 @@ exports.seed = async knex => {
         {
             id: 53,
             name: 'thyme'
+        },
+        {
+            id: 54,
+            name: 'black sesame seeds'
+        },
+        {
+            id: 55,
+            name: 'salmon, fresh and pin-boned'
+        },
+        {
+            id: 56,
+            name: 'sweet chilli sauce'
+        },
+        {
+            id: 57,
+            name: 'lime'
+        },
+        {
+            id: 58,
+            name: 'fresh ginger'
+        },
+        {
+            id: 59,
+            name: 'bok choy, kai larn, tat soi or similar'
+        },
+        {
+            id: 63,
+            name: 'breadcrumbs'
+        },
+        {
+            id: 64,
+            name: 'garlic powder'
         }
-
-
     ])
 
     await knex.raw("SELECT setval('ingredients_id_seq', (SELECT MAX(id) from ingredients))")

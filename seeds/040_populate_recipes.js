@@ -104,13 +104,35 @@ exports.seed = async knex => {
             id: 10,
             title: 'Baked Potatoes',
             category: 'sides',
-            is_complete: false,
+            is_complete: true,
             notes: 'add some garlic',
             link: 'https://www.allrecipes.com/recipe/54679/perfect-baked-potato/',
             user_id: 2,
             is_public: false,
             img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1583874714/j8dum8jn0pro8jvaodsk.jpg"
         },
+        {
+            id: 11,
+            title: 'Lime, chilli and ginger glazed salmon',
+            category: 'main',
+            is_complete: true,
+            notes: 'Rice - basmati, sushi or jasmine rice',
+            link: 'https://www.eatwell.co.nz/recipe/7044/Lime-chilli-and-ginger-glazed-salmon-with-Asian-rice-and-greens/?frmcol=1634',
+            user_id: 2,
+            is_public: true,
+            img_url: "http://res.cloudinary.com/hqwayz2au/image/upload/v1584397999/wecdniid1mihbokj23c8.jpg"
+        },
+        {
+            id: 12,
+            title: 'Polpette, Italian meatballs',
+            category: 'main',
+            is_complete: true,
+            notes: 'Extra olive oil for frying if using this method',
+            link: 'https://nonnasway.com/polpette-italian-meatballs/',
+            user_id: 1,
+            is_public: true,
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1584401018/toltj3g3jkzcdeafigzq.jpg"
+        }
 
 
     ])

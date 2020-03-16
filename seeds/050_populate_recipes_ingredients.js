@@ -346,74 +346,219 @@ exports.seed = async knex => {
             quantity: 'q.s'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 7,
             quantity: '2 tablespoon'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 42,
             quantity: '2'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 43,
             quantity: '2'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 44,
             quantity: '2'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 45,
             quantity: '500gr'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 46,
             quantity: '500gr'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 47,
             quantity: '1/2 cup'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 48,
             quantity: '3 cups'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 19,
             quantity: '1 cup'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 4,
             quantity: 'q.s'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 17,
             quantity: 'q.s'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 6,
             quantity: '1 cup'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 16,
             quantity: 'q.s'
         },
         {
-            recipe_id:9 ,
+            recipe_id: 9,
             ingredient_id: 49,
             quantity: '80gr PP'
+        },
+        {
+            recipe_id: 10,
+            ingredient_id: 50,
+            quantity: '1 medium'
+        },
+        {
+            recipe_id: 10,
+            ingredient_id: 7,
+            quantity: '1 teaspoon'
+        },
+        {
+            recipe_id: 10,
+            ingredient_id: 4,
+            quantity: '1/2 teaspoon'
+        },
+        {
+            recipe_id: 10,
+            ingredient_id: 10,
+            quantity: '2 teaspoons'
+        },
+        {
+            recipe_id: 10,
+            ingredient_id: 17,
+            quantity: '1 pinch freshly ground'
+        },
+        {
+            recipe_id: 10,
+            ingredient_id: 37,
+            quantity: '1/4 cup'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 14,
+            quantity: '1½ cups'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 28,
+            quantity: '1 tablespoon'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 10,
+            quantity: '1 knob'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 54,
+            quantity: '1 tablespoon'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 55,
+            quantity: '4 fillets'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 56,
+            quantity: '1 tablespoon'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 57,
+            quantity: '1'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 58,
+            quantity: '1 piece'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 59,
+            quantity: '4 bunches'
+        },
+        {
+            recipe_id: 11,
+            ingredient_id: 30,
+            quantity: '1 dash'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 46,
+            quantity: '455 gr'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 45,
+            quantity: '225 gr'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 26,
+            quantity: '225 gr'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 13,
+            quantity: '50 gr'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 11,
+            quantity: '2 - minced'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 7,
+            quantity: '2 tablespoons'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 6,
+            quantity: '2 tablespoons'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 63,
+            quantity: '125gr'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 16,
+            quantity: '3/4 cups'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 5,
+            quantity: '4 - large'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 4,
+            quantity: '2 tablespoons'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 17,
+            quantity: '1 tablespoon'
+        },
+        {
+            recipe_id: 12,
+            ingredient_id: 64,
+            quantity: '1 teaspoon'
         }
     ])
 }
