@@ -149,11 +149,22 @@ exports.seed = async knex => {
             title: 'Tiramisu',
             category: 'dessert',
             is_complete: true,
-            notes: 'use Amaretto/Almond liqueur or Baileys in place of Marsala wine ',
+            notes: 'use Amaretto/Almond liqueur or Baileys in place of Marsala wine',
             link: 'https://sallysbakingaddiction.com/tiramisu/#tasty-recipes-71824',
             user_id: 3,
             is_public: true,
             img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1584411313/emqjw9ptvtmrarqzwscx.jpg"
+        },
+        {
+            id: 15,
+            title: 'Apple Pie',
+            category: 'dessert',
+            is_complete: true,
+            notes: '',
+            link: 'https://www.allrecipes.com/recipe/12682/apple-pie-by-grandma-ople/',
+            user_id: 3,
+            is_public: true,
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1584414480/gr9uq1jvbvftsmslmy0j.jpg"
         }
 
 

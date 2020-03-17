@@ -669,6 +669,41 @@ exports.seed = async knex => {
             recipe_id: 14,
             ingredient_id: 32,
             quantity: 'q.s.'
+        },
+        {
+            recipe_id: 15,
+            ingredient_id: 80,
+            quantity: '1'
+        },
+        {
+            recipe_id: 15,
+            ingredient_id: 10,
+            quantity: '1/2 cup - unsalted'
+        },
+        {
+            recipe_id: 15,
+            ingredient_id: 1,
+            quantity: '3 tablespoons - all-purpose'
+        },
+        {
+            recipe_id: 15,
+            ingredient_id: 24,
+            quantity: '1/4 cup'
+        },
+        {
+            recipe_id: 15,
+            ingredient_id: 2,
+            quantity: '1/2 cup'
+        },
+        {
+            recipe_id: 15,
+            ingredient_id: 81,
+            quantity: '1/2 cup'
+        },
+        {
+            recipe_id: 15,
+            ingredient_id: 79,
+            quantity: '8 - peeled, cored and sliced'
         }
     ])
 }
