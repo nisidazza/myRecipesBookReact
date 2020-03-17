@@ -120,7 +120,7 @@ exports.seed = async knex => {
             link: 'https://www.eatwell.co.nz/recipe/7044/Lime-chilli-and-ginger-glazed-salmon-with-Asian-rice-and-greens/?frmcol=1634',
             user_id: 2,
             is_public: true,
-            img_url: "http://res.cloudinary.com/hqwayz2au/image/upload/v1584397999/wecdniid1mihbokj23c8.jpg"
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1584409531/u1ikw1umiirqhdsjvgeh.jpg"
         },
         {
             id: 12,
@@ -132,6 +132,28 @@ exports.seed = async knex => {
             user_id: 1,
             is_public: true,
             img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1584401018/toltj3g3jkzcdeafigzq.jpg"
+        },
+        {
+            id: 13,
+            title: 'Spring minestrone',
+            category: 'main',
+            is_complete: true,
+            notes: 'crusty bread to serve',
+            link: 'https://www.olivemagazine.com/recipes/healthy/spring-minestrone/',
+            user_id: 3,
+            is_public: true,
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1584410041/em66czzidxmn4xlh6qfa.jpg"
+        },
+        {
+            id: 14,
+            title: 'Tiramisu',
+            category: 'dessert',
+            is_complete: true,
+            notes: 'use Amaretto/Almond liqueur or Baileys in place of Marsala wine ',
+            link: 'https://sallysbakingaddiction.com/tiramisu/#tasty-recipes-71824',
+            user_id: 3,
+            is_public: true,
+            img_url: "https://res.cloudinary.com/hqwayz2au/image/upload/v1584411313/emqjw9ptvtmrarqzwscx.jpg"
         }
 
 

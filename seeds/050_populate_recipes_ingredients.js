@@ -108,7 +108,7 @@ exports.seed = async knex => {
         {
             recipe_id: 3,
             ingredient_id: 26,
-            quantity: '300gr'
+            quantity: '300g'
         },
         {
             recipe_id: 3,
@@ -168,7 +168,7 @@ exports.seed = async knex => {
         {
             recipe_id: 5,
             ingredient_id: 10,
-            quantity: '200gr'
+            quantity: '200g'
         },
         {
             recipe_id: 5,
@@ -203,17 +203,17 @@ exports.seed = async knex => {
         {
             recipe_id: 6,
             ingredient_id: 18,
-            quantity: '5gr'
+            quantity: '5g'
         },
         {
             recipe_id: 6,
             ingredient_id: 1,
-            quantity: '350gr'
+            quantity: '350g'
         },
         {
             recipe_id: 6,
             ingredient_id: 4,
-            quantity: '25gr'
+            quantity: '25g'
         },
         {
             recipe_id: 6,
@@ -228,12 +228,12 @@ exports.seed = async knex => {
         {
             recipe_id: 6,
             ingredient_id: 21,
-            quantity: '500gr'
+            quantity: '500g'
         },
         {
             recipe_id: 6,
             ingredient_id: 20,
-            quantity: '100gr'
+            quantity: '100g'
         },
         {
             recipe_id: 6,
@@ -368,12 +368,12 @@ exports.seed = async knex => {
         {
             recipe_id: 9,
             ingredient_id: 45,
-            quantity: '500gr'
+            quantity: '500g'
         },
         {
             recipe_id: 9,
             ingredient_id: 46,
-            quantity: '500gr'
+            quantity: '500g'
         },
         {
             recipe_id: 9,
@@ -413,7 +413,7 @@ exports.seed = async knex => {
         {
             recipe_id: 9,
             ingredient_id: 49,
-            quantity: '80gr PP'
+            quantity: '80g PP'
         },
         {
             recipe_id: 10,
@@ -498,22 +498,22 @@ exports.seed = async knex => {
         {
             recipe_id: 12,
             ingredient_id: 46,
-            quantity: '455 gr'
+            quantity: '455g'
         },
         {
             recipe_id: 12,
             ingredient_id: 45,
-            quantity: '225 gr'
+            quantity: '225g'
         },
         {
             recipe_id: 12,
             ingredient_id: 26,
-            quantity: '225 gr'
+            quantity: '225g'
         },
         {
             recipe_id: 12,
             ingredient_id: 13,
-            quantity: '50 gr'
+            quantity: '50g'
         },
         {
             recipe_id: 12,
@@ -533,7 +533,7 @@ exports.seed = async knex => {
         {
             recipe_id: 12,
             ingredient_id: 63,
-            quantity: '125gr'
+            quantity: '125g'
         },
         {
             recipe_id: 12,
@@ -559,6 +559,116 @@ exports.seed = async knex => {
             recipe_id: 12,
             ingredient_id: 64,
             quantity: '1 teaspoon'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 65,
+            quantity: '77g'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 27,
+            quantity: 'a bunch'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 66,
+            quantity: '1 bulb'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 11,
+            quantity: '2'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 48,
+            quantity: '1 litre'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 67,
+            quantity: '2 x 400g tins'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 68,
+            quantity: '125g'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 69,
+            quantity: '150g'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 70,
+            quantity: '100g'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 71,
+            quantity: '125g'
+        },
+        {
+            recipe_id: 13,
+            ingredient_id: 16,
+            quantity: '50g'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 72,
+            quantity: '300ml'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 73,
+            quantity: '90ml'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 74,
+            quantity: '40-45'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 75,
+            quantity: '450g'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 76,
+            quantity: '60ml'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 5,
+            quantity: '4 large'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 2,
+            quantity: '100g'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 77,
+            quantity: '480ml'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 78,
+            quantity: '1/2 teaspoon'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 4,
+            quantity: '1/8 teaspoon'
+        },
+        {
+            recipe_id: 14,
+            ingredient_id: 32,
+            quantity: 'q.s.'
         }
     ])
 }

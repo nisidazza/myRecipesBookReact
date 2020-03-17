@@ -106,7 +106,7 @@ exports.seed = async knex => {
         },
         {
             id: 27,
-            name: 'spring onion',
+            name: 'spring onions',
         },
         {
             id: 28,
@@ -126,7 +126,7 @@ exports.seed = async knex => {
         },
         {
             id: 32,
-            name: 'cocoa',
+            name: 'cocoa powder',
         },
         {
             id: 33,
@@ -243,6 +243,62 @@ exports.seed = async knex => {
         {
             id: 64,
             name: 'garlic powder'
+        },
+        {
+            id: 65,
+            name: 'diced pancetta'
+        },
+        {
+            id: 66,
+            name: 'fennel'
+        },
+        {
+            id: 67,
+            name: 'cannellini beans'
+        },
+        {
+            id: 68,
+            name: 'asparagus tips'
+        },
+        {
+            id: 69,
+            name: 'sugar snap peas'
+        },
+        {
+            id: 70,
+            name: 'frozen peas'
+        },
+        {
+            id: 71,
+            name: 'baby spinach'
+        },
+        {
+            id: 72,
+            name: 'espresso coffee'
+        },
+        {
+            id: 73,
+            name: 'Marsala wine'
+        },
+        {
+            id: 74,
+            name: 'ladyfingers'
+        },
+        {
+            id: 75,
+            name: 'mascarpone'
+        },
+        {
+            id: 76,
+            name: 'rum'
+        },
+        {
+            id: 77,
+            name: ' heavy cream'
+        },
+        {
+            id: 78,
+            name: 'pure vanilla extract'
         }
     ])
 
