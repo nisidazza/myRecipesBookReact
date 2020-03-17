@@ -299,6 +299,170 @@ exports.seed = async knex => {
         {
             id: 78,
             name: 'pure vanilla extract'
+        },
+        {
+            id: 79,
+            name: 'apples'
+        },
+        {
+            id: 80,
+            name: 'pastry'
+        },
+        {
+            id: 81,
+            name: 'brown sugar'
+        },
+        {
+            id: 82,
+            name: 'oranges'
+        },
+        {
+            id: 83,
+            name: 'strawberries'
+        },
+        {
+            id: 84,
+            name: 'raspberries'
+        },
+        {
+            id: 85,
+            name: 'blueberries'
+        },
+        {
+            id: 86,
+            name: 'bananas'
+        },
+        {
+            id: 87,
+            name: 'grapefruits'
+        },
+        {
+            id: 88,
+            name: 'avocados'
+        },
+        {
+            id: 89,
+            name: 'tomatoes'
+        },
+        {
+            id: 90,
+            name: 'pears'
+        },
+        {
+            id: 91,
+            name: 'pumpkin'
+        },
+        {
+            id: 92,
+            name: 'zucchini'
+        },
+        {
+            id: 93,
+            name: 'broccoli'
+        },
+        {
+            id: 94,
+            name: 'cauliflower'
+        },
+        {
+            id: 95,
+            name: 'silverbeet'
+        },
+        {
+            id: 96,
+            name: 'shallots'
+        },
+        {
+            id: 97,
+            name: 'cucumber'
+        },
+        {
+            id: 98,
+            name: 'lentils'
+        },
+        {
+            id: 99,
+            name: 'peas'
+        },
+        {
+            id: 100,
+            name: 'tofu'
+        },
+        {
+            id: 101,
+            name: 'soybeans'
+        },
+        {
+            id: 102,
+            name: 'shrimps'
+        },
+        {
+            id: 103,
+            name: 'mayonnaise'
+        },
+        {
+            id: 104,
+            name: 'lemons'
+        },
+        {
+            id: 105,
+            name: 'capsicum'
+        },
+        {
+            id: 106,
+            name: 'eggplant'
+        },
+        {
+            id: 107,
+            name: 'lettuce'
+        },
+        {
+            id: 108,
+            name: 'fish fillets'
+        },
+        {
+            id: 109,
+            name: 'Balsamic vinegar'
+        },
+        {
+            id: 110,
+            name: 'bay leaves'
+        },
+        {
+            id: 111,
+            name: 'coriander'
+        },
+        {
+            id: 112,
+            name: 'sage'
+        },
+        {
+            id: 113,
+            name: 'peppery mint'
+        },
+        {
+            id: 114,
+            name: 'chives'
+        },
+        {
+            id: 115,
+            name: 'lemon grass'
+        },
+        {
+            id: 116,
+            name: 'curry'
+        },
+        {
+            id: 117,
+            name: 'chili powder'
+        },
+        {
+            id: 118,
+            name: 'ground nutmeg'
+        },
+        {
+            id: 119,
+            name: 'italian herbs'
         }
     ])
 
