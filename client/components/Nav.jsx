@@ -19,7 +19,7 @@ class Nav extends React.Component {
 
   handleLogOff = () => {
     logOff();
-    this.props.history.push("/signin");
+    this.props.history.push("/");
   };
 
   render() {
@@ -38,7 +38,7 @@ class Nav extends React.Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/homepage">
+                <Link className="nav-link" to="/">
                   Homepage
                 </Link>
               </li>

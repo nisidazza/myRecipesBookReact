@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route, Redirect } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import SearchByIngredients from "./SearchByIngredients";
 import BrowseRecipes from "./BrowseRecipes";
 import Nav from "./Nav";
@@ -13,14 +13,16 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Route path="/" component={Nav} />
-        <Route path="/homepage" component={Homepage} />
-        <Route path="/register" component={Register} />
-        <Route path="/signin" component={SignIn} />
-        <Route path="/recipes/:id" component={Recipe} />
-        <Route path="/search/" component={SearchByIngredients} />
-        <Route path="/listrecipes/" component={BrowseRecipes} />
-        <Route path="/addrecipe/" component={AddRecipe} />
+        <Route component={Nav}/>
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/listrecipes/" component={BrowseRecipes} />
+          <Route path="/recipes/:id" component={Recipe} />
+          <Route exact path="/search/" component={SearchByIngredients} />
+          <Route exact path="/addrecipe/" component={AddRecipe} />
+        </Switch>
       </Router>
     );
   }
