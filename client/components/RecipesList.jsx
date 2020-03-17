@@ -45,8 +45,8 @@ class RecipesList extends React.Component {
                   <img
                     className="card-img-top"
                     src={recipe.img_url ? recipe.img_url : "images/test-image.png"}
-                    alt="Book"
-                    height="350px"
+                    alt="Recipe Image"
+                    height="250px"
                     style={{objectFit:"cover"}}
                   />
                   <div className="card-body">
