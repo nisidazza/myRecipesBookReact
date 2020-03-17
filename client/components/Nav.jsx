@@ -6,6 +6,10 @@ import { IfAuthenticated, IfNotAuthenticated } from "./Authenticated";
 class Nav extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      message: ""
+    };
   }
 
   getUserName = () => {
@@ -19,8 +23,18 @@ class Nav extends React.Component {
 
   handleLogOff = () => {
     logOff();
-    this.props.history.push("/");
+    this.setState({
+      message : ""
+    })
+    this.props.history.push("/signin");
   };
+
+  handleMessage = (e) => {
+    console.log(e.target.name)
+    this.setState({
+      message : "You are in the " + e.target.name + " page"
+    })
+  }
 
   render() {
     return (
@@ -37,11 +51,7 @@ class Nav extends React.Component {
         <nav className="navbar fixed navbar-expand-sm">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link" to="/">
-                  Homepage
-                </Link>
-              </li>
+              <li className="nav-item ml-2">{this.state.message}</li>
             </ul>
           </div>
 
@@ -82,20 +92,25 @@ class Nav extends React.Component {
         </nav>
         <nav className="navbar sidenav">
           <ul className="navbar-nav">
+            <li className="nav-item" >
+              <Link className="nav-link" to="/home" name="Home" onClick={this.handleMessage}>
+                Homepage
+              </Link>
+            </li>
             <IfAuthenticated>
               <li className="nav-item">
-                <Link className="nav-link" to="/addrecipe">
+                <Link className="nav-link" to="/addrecipe" name="Add Recipe" onClick={this.handleMessage}>
                   Add Recipe
                 </Link>
               </li>
             </IfAuthenticated>
             <li className="nav-item">
-              <Link className="nav-link" to="/listrecipes/">
+              <Link className="nav-link" to="/listrecipes/" name="Recipes List" onClick={this.handleMessage}>
                 Recipes List
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/search/">
+              <Link className="nav-link" to="/search/" name="Search by Ingredients" onClick={this.handleMessage}>
                 Search By Ingredients
               </Link>
             </li>
