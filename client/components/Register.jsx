@@ -28,7 +28,7 @@ class Register extends React.Component {
   render() {
     return (
       <div id="Register-jsx-component">
-        <div className="mx-auto" style={{ maxWidth: "500px", margin: "auto" }}>
+        <form className="mx-auto" style={{ maxWidth: "500px", margin: "auto" }}>
           <h4 className="text-center mt-5">Register Form</h4>
           <div className="border mt-4" id="border-shadow">
             <div className="form-group row m-2 col-xs-3">
@@ -67,7 +67,7 @@ class Register extends React.Component {
             </div>
           </div>
           {/* TO DO: add confirm password field */}
-        </div>
+        </form>
       </div>
     );
   }
