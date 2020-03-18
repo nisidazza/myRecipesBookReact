@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { logOff, getDecodedToken } from "authenticare/client";
 import { IfAuthenticated, IfNotAuthenticated } from "./Authenticated";
+import UserAuthentication from "./UserAuthentication";
 
 class Nav extends React.Component {
   constructor(props) {
@@ -13,26 +13,24 @@ class Nav extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener("pageHasChanged", e => {
-      this.setState({
-        message : "You are in the " + e.detail.pageTitle + " page"
-      })
-    }, false)
+    document.addEventListener(
+      "pageHasChanged",
+      e => {
+        this.setState({
+          message: "You are in the " + e.detail.pageTitle + " page"
+        });
+      },
+      false
+    );
+
+    document.addEventListener(
+      "logOff",
+      e => {
+        this.props.history.push("/");
+      },
+      false
+    );
   }
-
-  getUserName = () => {
-    let myToken = getDecodedToken();
-    if (myToken) {
-      return myToken.username;
-    } else {
-      return "";
-    }
-  };
-
-  handleLogOff = () => {
-    logOff();
-    this.props.history.push("/");
-  };
 
   render() {
     return (
@@ -52,45 +50,11 @@ class Nav extends React.Component {
               <li className="nav-item ml-2">{this.state.message}</li>
             </ul>
           </div>
-
-          <IfAuthenticated>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item p-2 mt-2">
-                  <h5 className="nav-item">Welcome, {this.getUserName()}!</h5>
-                </li>
-                <li className="nav-item p-0 mt-2">
-                  <Link to="#" className="nav-link" onClick={this.handleLogOff}>
-                    Log Off
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </IfAuthenticated>
-
-          <ul className="navbar-nav ml-auto">
-            <IfNotAuthenticated>
-              <div className="d-flex p-2">
-                <li className="nav-item w-100 pl-2">
-                  <Link to="/register" className="nav-link">
-                    Register
-                  </Link>
-                </li>
-                <li className="nav-item w-100 pl-2">
-                  <Link to="/signin" className="nav-link">
-                    Sign In
-                  </Link>
-                </li>
-              </div>
-            </IfNotAuthenticated>
-          </ul>
+          <UserAuthentication />
         </nav>
         <nav className="navbar sidenav">
           <ul className="navbar-nav">
-            <li className="nav-item" >
+            <li className="nav-item">
               <Link className="nav-link" to="/home">
                 Homepage
               </Link>

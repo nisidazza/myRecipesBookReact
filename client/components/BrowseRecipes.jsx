@@ -14,10 +14,20 @@ class BrowseRecipes extends React.Component {
 
   componentDidMount() {
     this.fetchRecipes();
-    let event = new CustomEvent("pageHasChanged", {detail: {pageTitle : "Recipes List"}})
-    document.dispatchEvent(event)
-  }
 
+    let event = new CustomEvent("pageHasChanged", {
+      detail: { pageTitle: "Recipes List" }
+    });
+    document.dispatchEvent(event);
+
+    document.addEventListener(
+      "logOff",
+      e => {
+        this.fetchRecipes();
+      },
+      false
+    );
+  }
 
   fetchRecipes = () => {
     let randomNumber = Math.random();
