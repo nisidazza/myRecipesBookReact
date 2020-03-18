@@ -29,7 +29,11 @@ router.get("/", getTokenDecoder(false), (req, res) => {
         dbUserRecipes
           .getUserPrivateRecipes(req.user.id)
           .then(privateRecipes => {
-            const recipes = publicRecipes.concat(privateRecipes);
+            let recipes = publicRecipes.concat(privateRecipes);
+            recipes = recipes.sort((recipeA, recipeB) => {
+              return recipeB.title > recipeA.title ? -1 : 1;
+            });
+            console.log(recipes)
             res.json(recipes);
           });
       } else {
@@ -41,7 +45,6 @@ router.get("/", getTokenDecoder(false), (req, res) => {
       console.log(err);
     });
 });
-
 
 router.get("/private", getTokenDecoder(), (req, res) => {
   const loggedUserId = req.user.id;
@@ -63,7 +66,8 @@ router.get("/:id", getTokenDecoder(false), (req, res) => {
     .getRecipe(id)
     .then(recipeDetail => {
       if (recipeDetail) {
-        const userIsAuthenticatedAndMatches = req.user && req.user.id == recipeDetail.user_id;
+        const userIsAuthenticatedAndMatches =
+          req.user && req.user.id == recipeDetail.user_id;
         if (recipeDetail.is_public || userIsAuthenticatedAndMatches) {
           dbRecipesIngredients.getIngredients(id).then(ingredients => {
             res.json({ ...recipeDetail, ingredients });
