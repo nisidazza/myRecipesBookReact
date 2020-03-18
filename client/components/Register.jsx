@@ -11,6 +11,13 @@ class Register extends React.Component {
     };
   }
 
+  componentDidMount() {
+    let event = new CustomEvent("pageHasChanged", {
+      detail: { pageTitle: "Register" }
+    });
+    document.dispatchEvent(event);
+  }
+
   handleChange = e => {
     this.loginData[e.target.id] = e.target.value;
   };
