@@ -7,6 +7,11 @@ class Homepage extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    let event = new CustomEvent("pageHasChanged", {detail: {pageTitle : "Home"}})
+    document.dispatchEvent(event)
+  }
+
   render() {
     return (
       <div id="Homepage-jsx-component">

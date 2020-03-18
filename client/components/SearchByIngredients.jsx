@@ -23,6 +23,14 @@ class SearchByIngredients extends React.Component {
     console.log("state : ", this.state);
   }
 
+  componentDidMount() {
+    this.fetchIngredients();
+    let event = new CustomEvent("pageHasChanged", {
+      detail: { pageTitle: "Search by Ingredients" }
+    });
+    document.dispatchEvent(event);
+  }
+
   onSelect = selectedList => {
     let selected_ingredient_ids = selectedList.map(item => item.id);
     this.setState({
@@ -53,10 +61,6 @@ class SearchByIngredients extends React.Component {
       console.log("recipes :", recipes);
     });
   };
-
-  componentDidMount() {
-    this.fetchIngredients();
-  }
 
   fetchIngredients = () => {
     apiGetIngredients().then(ingredients => {
@@ -118,7 +122,11 @@ class SearchByIngredients extends React.Component {
                 onChange={this.handleCheckBox}
                 checked={this.state.matchAllIngredients}
               />
-              <label className="form-check-label" style={{fontSize:"0.9em"}} htmlFor="matchAll">
+              <label
+                className="form-check-label"
+                style={{ fontSize: "0.9em" }}
+                htmlFor="matchAll"
+              >
                 Match all ingredients
               </label>
             </div>

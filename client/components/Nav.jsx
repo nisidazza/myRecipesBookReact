@@ -12,6 +12,14 @@ class Nav extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.addEventListener("pageHasChanged", e => {
+      this.setState({
+        message : "You are in the " + e.detail.pageTitle + " page"
+      })
+    }, false)
+  }
+
   getUserName = () => {
     let myToken = getDecodedToken();
     if (myToken) {
@@ -23,18 +31,8 @@ class Nav extends React.Component {
 
   handleLogOff = () => {
     logOff();
-    this.setState({
-      message : ""
-    })
-    this.props.history.push("/signin");
+    this.props.history.push("/");
   };
-
-  handleMessage = (e) => {
-    console.log(e.target.name)
-    this.setState({
-      message : "You are in the " + e.target.name + " page"
-    })
-  }
 
   render() {
     return (
@@ -93,24 +91,24 @@ class Nav extends React.Component {
         <nav className="navbar sidenav">
           <ul className="navbar-nav">
             <li className="nav-item" >
-              <Link className="nav-link" to="/home" name="Home" onClick={this.handleMessage}>
+              <Link className="nav-link" to="/home">
                 Homepage
               </Link>
             </li>
             <IfAuthenticated>
               <li className="nav-item">
-                <Link className="nav-link" to="/addrecipe" name="Add Recipe" onClick={this.handleMessage}>
+                <Link className="nav-link" to="/addrecipe">
                   Add Recipe
                 </Link>
               </li>
             </IfAuthenticated>
             <li className="nav-item">
-              <Link className="nav-link" to="/listrecipes/" name="Recipes List" onClick={this.handleMessage}>
+              <Link className="nav-link" to="/listrecipes/">
                 Recipes List
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/search/" name="Search by Ingredients" onClick={this.handleMessage}>
+              <Link className="nav-link" to="/search/">
                 Search By Ingredients
               </Link>
             </li>

@@ -13,6 +13,11 @@ class AddRecipe extends React.Component {
     };
   }
 
+  componentDidMount() {
+    let event = new CustomEvent("pageHasChanged", {detail: {pageTitle : "Add Recipe"}})
+    document.dispatchEvent(event)
+  }
+
   render() {
     return (
       <div id="AddRecipe-jsx-component">
