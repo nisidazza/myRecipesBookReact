@@ -26,6 +26,7 @@ html, body {
 }
 
 div#SearchByIngredients-jsx-component, div#Homepage-jsx-component, div#Recipe-jsx-component, div#AddRecipe-jsx-component, div#BrowseRecipes-jsx-component {
+    background-color:antiquewhite;
     padding-top: 12em;
     padding-left: 9.5em;
     padding-right: 1.5em;
@@ -188,6 +189,10 @@ div#Register-jsx-component #border-shadow, div#SignIn-jsx-component #border-shad
 
 /* --- SEARCH --- */
 
+div#SearchByIngredients-jsx-component {
+    min-height: 100%;
+}
+
 span.chip._7ahQImyV4dj0EpcNOjnwA.false {
     font-size: 1em;
     background-color: olivedrab;
@@ -196,6 +201,11 @@ span.chip._7ahQImyV4dj0EpcNOjnwA.false {
 div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover, .lhyQmCtWOINviMz0WG_gr.highlight.false.option {
     background-color: lightgrey;
 }
+
+div._2OR24XnUXt8OCrysr3G0XI {
+    background-color: white;
+}
+
 
 /* --- RECIPE DETAILS --- */
 
