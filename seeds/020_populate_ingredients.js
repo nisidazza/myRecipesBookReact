@@ -463,6 +463,10 @@ exports.seed = async knex => {
         {
             id: 119,
             name: 'italian herbs'
+        },
+        {
+            id: 120,
+            name: 'sausages'
         }
     ])
 
