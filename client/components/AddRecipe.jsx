@@ -23,7 +23,7 @@ class AddRecipe extends React.Component {
       <div id="AddRecipe-jsx-component">
         <div className="form-container">
           <div className="border p-3" id="border-shadow">
-            <form className="mt-3 ml-3" autocomplete="off" onSubmit={this.handleSubmit}>
+            <form className="mt-3 ml-3" autoComplete="off" onSubmit={this.handleSubmit}>
               <div className="form-group row">
                 <label className="col-sm-2">Title:</label>
                 <input

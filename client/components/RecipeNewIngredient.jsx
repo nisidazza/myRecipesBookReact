@@ -63,7 +63,7 @@ class RecipeNewIngredient extends React.Component {
   render() {
     return (
       <div>
-        <form className="mt-2" autocomplete="off" onSubmit={this.handleSubmit}>
+        <form className="mt-2" autoComplete="off" onSubmit={this.handleSubmit}>
           <div className="form-group row">
             <div className="col-sm-4 pr-0">
               <select
