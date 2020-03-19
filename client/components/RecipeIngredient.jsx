@@ -36,22 +36,19 @@ class RecipeIngredient extends React.Component {
   };
 
   handleDeleteClick = () => {
-    this.setState({ mode: "deleted" });
     apiDeleteIngredientFromRecipe(
       this.props.recipeId,
       this.state.ingredient.id
-    );
+    ).then(() => {
+      this.props.onDelete();
+    });
   };
 
   render() {
-    if (this.state.mode == "deleted") {
-      return "";
-    } else {
-      if (this.state.mode == "edit") {
-        return <>{this.renderEditMode()}</>;
-      } else if (this.state.mode == "view") {
-        return <>{this.renderViewMode()}</>;
-      }
+    if (this.state.mode == "edit") {
+      return <>{this.renderEditMode()}</>;
+    } else if (this.state.mode == "view") {
+      return <>{this.renderViewMode()}</>;
     }
   }
 
@@ -95,9 +92,7 @@ class RecipeIngredient extends React.Component {
             </button>
             <button
               onClick={this.handleDeleteClick}
-              className={
-                this.props.editable ? "btn-sm btn-danger" : "hidden"
-              }
+              className={this.props.editable ? "btn-sm btn-danger" : "hidden"}
             >
               Delete
             </button>

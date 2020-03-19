@@ -41,6 +41,14 @@ class Recipe extends React.Component {
     });
   }
 
+  buildOnDeleteHandler = index => {
+    return () => {
+      this.setState({
+        ingredients: this.state.recipe.ingredients.splice(index, 1)
+      })     
+    };
+  };
+
   handleToggleMode = e => {
     if (e.target.name == "view") {
       this.setState({ editable: false });
@@ -85,7 +93,7 @@ class Recipe extends React.Component {
                 <></>
               )}
 
-              {renderIngredients(
+              {this.renderIngredients(
                 ingredients,
                 recipeDetails.id,
                 this.state.editable && this.state.userCanEdit
@@ -120,24 +128,25 @@ class Recipe extends React.Component {
       </div>
     );
   }
-}
 
-function renderIngredients(ingredients, recipeId, editable) {
-  return (
-    <ul>
-      {ingredients.map((ingredient, j) => {
-        return (
-          <li key={j}>
+  renderIngredients = (ingredients, recipeId, editable) => {
+    return (
+      <ul>
+        {ingredients.map((ingredient, j) => {
+          return (
+            <li key={j}>
               <RecipeIngredient
                 editable={editable}
                 ingredient={ingredient}
                 recipeId={recipeId}
+                onDelete={this.buildOnDeleteHandler(j)}
               />
-          </li>
-        );
-      })}
-    </ul>
-  );
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
 }
 
 export default Recipe;
