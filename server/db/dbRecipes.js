@@ -5,10 +5,15 @@ function addRecipe(newRecipe, db = connection) {
 }
 
 function deleteRecipe(id, db = connection) {
-  return db("recipes")
-    .where("id", id)
-    .first()
-    .delete();
+  return db("recipes_ingredients")
+    .where("recipe_id", id)
+    .delete()
+    .then(() => {
+      return db("recipes")
+        .where("id", id)
+        .first()
+        .delete();
+    });
 }
 
 function editRecipe(id, newRecipe, db = connection) {
