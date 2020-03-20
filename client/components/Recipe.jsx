@@ -69,21 +69,13 @@ class Recipe extends React.Component {
     if (this.state.recipe == null) {
       return (
         <div
-          className="alert alert-warning alert-dismissible fade show" style={{marginTop:"20em", marginLeft: "25em", width:"50%"}}
+          className="alert alert-warning" style={{marginTop:"20em", marginLeft: "25em", width:"50%"}}
           role="alert"
         >
           <p style={{marginBottom:0, textAlign:"center"}}>
             "Sorry, this recipe does not exist or you are not allowed to see
             it."
           </p>
-          <button
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
       );
     }
