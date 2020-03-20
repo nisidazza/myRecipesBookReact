@@ -45,7 +45,7 @@ class Recipe extends React.Component {
     return () => {
       this.setState({
         ingredients: this.state.recipe.ingredients.splice(index, 1)
-      })     
+      });
     };
   };
 
@@ -67,7 +67,25 @@ class Recipe extends React.Component {
 
   render() {
     if (this.state.recipe == null) {
-      return "";
+      return (
+        <div
+          className="alert alert-warning alert-dismissible fade show"
+          role="alert"
+        >
+          <p>
+            "Sorry, this recipe does not exist or you are not allowed to see
+            it."
+          </p>
+          <button
+            type="button"
+            className="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      );
     }
 
     let { ingredients, ...recipeDetails } = this.state.recipe;
