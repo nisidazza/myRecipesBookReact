@@ -19,8 +19,6 @@ class SearchByIngredients extends React.Component {
       showError: false,
       matchAllIngredients: false
     };
-
-    console.log("state : ", this.state);
   }
 
   componentDidMount() {
@@ -36,12 +34,10 @@ class SearchByIngredients extends React.Component {
     this.setState({
       selected_ingredient_ids
     });
-    console.log("this.state: ", this.state);
   };
 
   searchForRecipes = () => {
     let randomKeyToReconstructComponent = Math.random();
-    console.log(this.state.selected_ingredient_ids);
     let searchPromise;
     if (this.state.matchAllIngredients) {
       searchPromise = apiGetRecipesMatchingAllIngredients(
@@ -58,7 +54,6 @@ class SearchByIngredients extends React.Component {
         randomKeyToReconstructComponent,
         showError: recipes.length == 0
       });
-      console.log("recipes :", recipes);
     });
   };
 
@@ -77,7 +72,6 @@ class SearchByIngredients extends React.Component {
   };
 
   handleCheckBox = e => {
-    console.log("checkbox value: ", e.target.checked);
     this.setState({
       matchAllIngredients: e.target.checked
     });

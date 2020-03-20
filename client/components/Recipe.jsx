@@ -67,17 +67,19 @@ class Recipe extends React.Component {
 
   render() {
     if (this.state.recipe == null) {
-      return (
-        <div
-          className="alert alert-warning" style={{marginTop:"20em", marginLeft: "25em", width:"50%"}}
-          role="alert"
-        >
-          <p style={{marginBottom:0, textAlign:"center"}}>
-            "Sorry, this recipe does not exist or you are not allowed to see
-            it."
-          </p>
-        </div>
-      );
+      return ""
+      // NEED TO BE REVIEWED     
+      // (
+      //   <div
+      //     className="alert alert-warning" style={{marginTop:"20em", marginLeft: "25em", width:"50%"}}
+      //     role="alert"
+      //   >
+      //     <p style={{marginBottom:0, textAlign:"center"}}>
+      //       "Sorry, this recipe does not exist or you are not allowed to see
+      //       it."
+      //     </p>
+      //   </div>
+      // );
     }
 
     let { ingredients, ...recipeDetails } = this.state.recipe;

@@ -26,7 +26,6 @@ class RecipeDetail extends React.Component {
   };
 
   checkUploadImage = result => {
-    console.log("Check Upload Result", result);
     if (result && result.event === "success") {
       let recipe = this.state.recipe;
       recipe.img_url = result.info.url;
