@@ -69,10 +69,10 @@ class Recipe extends React.Component {
     if (this.state.recipe == null) {
       return (
         <div
-          className="alert alert-warning alert-dismissible fade show"
+          className="alert alert-warning alert-dismissible fade show" style={{marginTop:"20em", marginLeft: "25em", width:"50%"}}
           role="alert"
         >
-          <p>
+          <p style={{marginBottom:0, textAlign:"center"}}>
             "Sorry, this recipe does not exist or you are not allowed to see
             it."
           </p>
