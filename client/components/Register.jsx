@@ -5,9 +5,12 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
 
-    this.loginData = {
-      username: "",
-      password: ""
+    this.state = {
+      loginData: {
+        username: "",
+        password: "",
+        email: ""
+      }
     };
   }
 
@@ -19,11 +22,11 @@ class Register extends React.Component {
   }
 
   handleChange = e => {
-    this.loginData[e.target.id] = e.target.value;
+    this.state.loginData[e.target.id] = e.target.value;
   };
 
   handleClick = () => {
-    register(this.loginData, {
+    register(this.state.loginData, {
       baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
     }).then(token => {
       if (isAuthenticated()) {
@@ -59,6 +62,32 @@ class Register extends React.Component {
                   className="form-control"
                   id="password"
                   placeholder="Password"
+                  autoComplete="off"
+                  onChange={this.handleChange}
+                ></input>
+              </div>
+            </div>
+            <div className="form-group row m-2">
+              <div className="input-container mx-auto col-xs-3">
+                <i className="fa fa-key icon"></i>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="confirm-password"
+                  placeholder="Confirm Password"
+                  autoComplete="off"
+                  // onChange={this.handleChange}
+                ></input>
+              </div>
+            </div>
+            <div className="form-group row m-2">
+              <div className="input-container mx-auto col-xs-3">
+                <i className="fa fa-envelope icon" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="email"
+                  placeholder="Email"
                   autoComplete="off"
                   onChange={this.handleChange}
                 ></input>
