@@ -10,7 +10,8 @@ exports.seed = async knex => {
         {
             id: 2,
             username: "Nisida",
-            hash: await generateHash("1987")
+            hash: await generateHash("1987"),
+            email: "nisida.azzalini@gmail.com"
         },
         {
             id: 3,
