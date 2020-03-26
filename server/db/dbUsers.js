@@ -15,7 +15,8 @@ function createUser(user, db = connection) {
             return db('users')
                 .insert({
                     username: user.username,
-                    hash: passwordHash
+                    hash: passwordHash,
+                    email: user.email
                 })
         })
 }
