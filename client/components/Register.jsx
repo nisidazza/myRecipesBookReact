@@ -10,7 +10,10 @@ class Register extends React.Component {
         username: "",
         password: "",
         email: ""
-      }
+      },
+      confirmPassword: "",
+      errorMessage: [],
+      isValid: true
     };
   }
 
@@ -21,18 +24,72 @@ class Register extends React.Component {
     document.dispatchEvent(event);
   }
 
-  handleChange = e => {
+  handleLoginData = e => {
     this.state.loginData[e.target.id] = e.target.value;
   };
 
-  handleClick = () => {
-    register(this.state.loginData, {
-      baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
-    }).then(token => {
-      if (isAuthenticated()) {
-        this.props.history.push("/listrecipes");
-      }
+  handlePasswordConfirmation = e => {
+    this.setState({
+      confirmPassword: e.target.value
     });
+  };
+
+  handleClick = e => {
+    e.preventDefault();
+    if (this.validate()) {
+      register(this.state.loginData, {
+        baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
+      }).then(token => {
+        if (isAuthenticated()) {
+          this.props.history.push("/listrecipes");
+        }
+      });
+    }
+  };
+
+  validate = () => {
+    let isValid = true;
+    let errorMessage = [];
+
+    if (this.state.loginData.username == "") {
+      isValid = false;
+      errorMessage.push("Please choose a username");
+    }
+
+    if (
+      this.state.loginData.password == "" ||
+      !this.state.loginData.password.match(/[a-z]/g) ||
+      !this.state.loginData.password.match(/[A-Z]/g) ||
+      !this.state.loginData.password.match(/[0-9]/g) ||
+      !this.state.loginData.password.match(/[^a-zA-Z\d]/g) ||
+      this.state.loginData.password.length < 8
+    ) {
+      isValid = false;
+      errorMessage.push(
+        "A valid password must contain at least 1 uppercase character, at least 1 lowercase character, at least 1 digit, at least 1 special character and minimum 8 characters"
+      );
+    }
+
+    if (
+      this.state.confirmPassword == "" ||
+      this.state.confirmPassword !== this.state.loginData.password
+    ) {
+      isValid = false;
+      errorMessage.push("Password and Confirm Password do not match");
+    }
+    if (
+      this.state.loginData.email == "" ||
+      !this.state.loginData.email.match(/\S+@\S+\.\S+/)
+    ) {
+      isValid = false;
+      errorMessage.push("Please insert a valid email address");
+    }
+
+    this.setState({
+      isValid,
+      errorMessage
+    });
+    return isValid;
   };
 
   render() {
@@ -50,7 +107,7 @@ class Register extends React.Component {
                   id="username"
                   placeholder="Username"
                   autoComplete="off"
-                  onChange={this.handleChange}
+                  onChange={this.handleLoginData}
                 ></input>
               </div>
             </div>
@@ -63,7 +120,7 @@ class Register extends React.Component {
                   id="password"
                   placeholder="Password"
                   autoComplete="off"
-                  onChange={this.handleChange}
+                  onChange={this.handleLoginData}
                 ></input>
               </div>
             </div>
@@ -76,7 +133,7 @@ class Register extends React.Component {
                   id="confirm-password"
                   placeholder="Confirm Password"
                   autoComplete="off"
-                  // onChange={this.handleChange}
+                  onChange={this.handlePasswordConfirmation}
                 ></input>
               </div>
             </div>
@@ -84,22 +141,35 @@ class Register extends React.Component {
               <div className="input-container mx-auto col-xs-3">
                 <i className="fa fa-envelope icon" />
                 <input
-                  type="text"
+                  type="email"
                   className="form-control"
                   id="email"
                   placeholder="Email"
                   autoComplete="off"
-                  onChange={this.handleChange}
+                  onChange={this.handleLoginData}
                 ></input>
               </div>
             </div>
             <div className="input-container mx-auto mb-4 col-xs-3">
-              <button
+              <input
+                value="Register"
+                type="submit"
                 className="btn btn-outline-success mx-auto"
                 onClick={this.handleClick}
-              >
-                Register
-              </button>
+              ></input>
+            </div>
+            <div>
+              {!this.state.isValid ? (
+                <div className="form-group row m-2">
+                  <div>
+                    <ul style={{ listStyle: "none" }}>
+                      {this.state.errorMessage.map((msg, i) => {
+                        return <li key={i}>{msg}</li>;
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              ) : null}
             </div>
           </div>
           {/* TO DO: add confirm password field */}
