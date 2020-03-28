@@ -1,5 +1,6 @@
 import React from "react";
 import { register, isAuthenticated } from "authenticare/client";
+import Validator from "./Validator";
 
 class Register extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class Register extends React.Component {
       errorMessage: [],
       isValid: true
     };
+
+    this.validator = React.createRef();
   }
 
   componentDidMount() {
@@ -36,7 +39,7 @@ class Register extends React.Component {
 
   handleClick = e => {
     e.preventDefault();
-    if (this.validate()) {
+    if (this.validator.current.validate()) {
       register(this.state.loginData, {
         baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
       }).then(token => {
@@ -47,49 +50,45 @@ class Register extends React.Component {
     }
   };
 
-  validate = () => {
-    let isValid = true;
-    let errorMessage = [];
+  getValidationRules = () => {
+    let rules = [];
 
-    if (this.state.loginData.username == "") {
-      isValid = false;
-      errorMessage.push("Please choose a username");
-    }
-
-    if (
-      this.state.loginData.password == "" ||
-      !this.state.loginData.password.match(/[a-z]/g) ||
-      !this.state.loginData.password.match(/[A-Z]/g) ||
-      !this.state.loginData.password.match(/[0-9]/g) ||
-      !this.state.loginData.password.match(/[^a-zA-Z\d]/g) ||
-      this.state.loginData.password.length < 8
-    ) {
-      isValid = false;
-      errorMessage.push(
-        "A valid password must contain at least 1 uppercase character, at least 1 lowercase character, at least 1 digit, at least 1 special character and minimum 8 characters"
-      );
-    }
-
-    if (
-      this.state.confirmPassword == "" ||
-      this.state.confirmPassword !== this.state.loginData.password
-    ) {
-      isValid = false;
-      errorMessage.push("Password and Confirm Password do not match");
-    }
-    if (
-      this.state.loginData.email == "" ||
-      !this.state.loginData.email.match(/\S+@\S+\.\S+/)
-    ) {
-      isValid = false;
-      errorMessage.push("Please insert a valid email address");
-    }
-
-    this.setState({
-      isValid,
-      errorMessage
+    rules.push({
+      conditional: () => {
+        return this.state.loginData.username !== "" 
+      },
+      errorMessage: "Please choose a username"
     });
-    return isValid;
+
+    rules.push({
+      conditional: () => {
+        return (
+          this.state.loginData.password.match(/[a-z]/g) &&
+          this.state.loginData.password.match(/[A-Z]/g) &&
+          this.state.loginData.password.match(/[0-9]/g) &&
+          this.state.loginData.password.match(/[^a-zA-Z\d]/g) &&
+          this.state.loginData.password.length >= 8
+        );
+      },
+      errorMessage:
+        "A valid password must contain at least 1 uppercase character, at least 1 lowercase character, at least 1 digit, at least 1 special character and minimum 8 characters"
+    });
+
+    rules.push({
+      conditional: () => {
+        return this.state.confirmPassword == this.state.loginData.password;
+      },
+      errorMessage: "Password and Confirm Password do not match"
+    });
+
+    rules.push({
+      conditional: () => {
+        return this.state.loginData.email !== "" && this.state.loginData.email.match(/\S+@\S+\.\S+/);
+      },
+      errorMessage: "Please insert a valid email address"
+    });
+
+    return rules;
   };
 
   render() {
@@ -159,20 +158,9 @@ class Register extends React.Component {
               ></input>
             </div>
             <div>
-              {!this.state.isValid ? (
-                <div className="form-group row m-2">
-                  <div>
-                    <ul style={{ listStyle: "none" }}>
-                      {this.state.errorMessage.map((msg, i) => {
-                        return <li key={i}>{msg}</li>;
-                      })}
-                    </ul>
-                  </div>
-                </div>
-              ) : null}
+              <Validator rules={this.getValidationRules()} ref={this.validator} />
             </div>
           </div>
-          {/* TO DO: add confirm password field */}
         </form>
       </div>
     );
