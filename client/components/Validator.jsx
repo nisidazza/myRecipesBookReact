@@ -19,16 +19,26 @@ class Validator extends React.Component {
     */
   }
 
+  showError = errorMessage => {
+    let errorMessages = [];
+    errorMessages.push(errorMessage);
+
+    this.setState({
+      isValid: false,
+      errorMessages
+    });
+  };
+
   validate = () => {
     let isValid = true;
     let errorMessages = [];
 
-    for(let i=0; i<this.props.rules.length; i++){
-        let rule = this.props.rules[i]
-        if(!rule.conditional()) {
-            isValid = false
-            errorMessages.push(rule.errorMessage)
-        }
+    for (let i = 0; i < this.props.rules.length; i++) {
+      let rule = this.props.rules[i];
+      if (!rule.conditional()) {
+        isValid = false;
+        errorMessages.push(rule.errorMessage);
+      }
     }
 
     this.setState({
