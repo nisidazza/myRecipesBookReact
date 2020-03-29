@@ -50,7 +50,7 @@ class SignIn extends React.Component {
                   type="text"
                   className="form-control"
                   id="username"
-                  placeholder="Username"
+                  placeholder="Email address"
                   autoComplete="off"
                   onChange={this.handleChange}
                 ></input>
