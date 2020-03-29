@@ -10,7 +10,6 @@ class Register extends React.Component {
       loginData: {
         username: "",
         password: "",
-        email: ""
       },
       confirmPassword: "",
       errorMessage: [],
@@ -42,11 +41,27 @@ class Register extends React.Component {
     if (this.validator.current.validate()) {
       register(this.state.loginData, {
         baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
-      }).then(token => {
-        if (isAuthenticated()) {
-          this.props.history.push("/listrecipes");
-        }
-      });
+      })
+        .then(response => {
+          if (isAuthenticated()) {
+            this.props.history.push("/listrecipes");
+          }
+        })
+        .catch(error => {
+          if (
+            error &&
+            error.response &&
+            error.response.body &&
+            error.response.body.errorType == "USERNAME_UNAVAILABLE"
+          ) {
+            this.validator.current.showError("Sorry, that email address already exists!");
+          } else {
+            this.validator.current.showError(
+              "Something went wrong. Please,try again!"
+            );
+            throw error;
+          }
+        });
     }
   };
 
@@ -55,9 +70,12 @@ class Register extends React.Component {
 
     rules.push({
       conditional: () => {
-        return this.state.loginData.username !== "" 
+        return (
+          this.state.loginData.username !== "" &&
+          this.state.loginData.username.match(/\S+@\S+\.\S+/)
+        );
       },
-      errorMessage: "Please choose a username"
+      errorMessage: "Please, insert a valid email address"
     });
 
     rules.push({
@@ -81,13 +99,6 @@ class Register extends React.Component {
       errorMessage: "Password and Confirm Password do not match"
     });
 
-    rules.push({
-      conditional: () => {
-        return this.state.loginData.email !== "" && this.state.loginData.email.match(/\S+@\S+\.\S+/);
-      },
-      errorMessage: "Please insert a valid email address"
-    });
-
     return rules;
   };
 
@@ -97,14 +108,14 @@ class Register extends React.Component {
         <form className="mx-auto" style={{ maxWidth: "500px", margin: "auto" }}>
           <h4 className="text-center mt-5">Register Form</h4>
           <div className="border mt-4" id="border-shadow">
-            <div className="form-group row m-2 mt-4 col-xs-3">
+            <div className="form-group row m-2 mt-4">
               <div className="input-container mx-auto mt-3 col-xs-3">
                 <i className="fa fa-user icon" />
                 <input
                   type="text"
                   className="form-control"
                   id="username"
-                  placeholder="Username"
+                  placeholder="Email address"
                   autoComplete="off"
                   onChange={this.handleLoginData}
                 ></input>
@@ -136,19 +147,6 @@ class Register extends React.Component {
                 ></input>
               </div>
             </div>
-            <div className="form-group row m-2">
-              <div className="input-container mx-auto col-xs-3">
-                <i className="fa fa-envelope icon" />
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Email"
-                  autoComplete="off"
-                  onChange={this.handleLoginData}
-                ></input>
-              </div>
-            </div>
             <div className="input-container mx-auto mb-4 col-xs-3">
               <input
                 value="Register"
@@ -158,7 +156,10 @@ class Register extends React.Component {
               ></input>
             </div>
             <div>
-              <Validator rules={this.getValidationRules()} ref={this.validator} />
+              <Validator
+                rules={this.getValidationRules()}
+                ref={this.validator}
+              />
             </div>
           </div>
         </form>
