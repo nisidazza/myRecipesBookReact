@@ -5,18 +5,17 @@ exports.seed = async knex => {
         {
             id: 1,
             username: "Pippo",
-            hash: await generateHash("123")
+            hash: await generateHash("P1ppo@123")
         },
         {
             id: 2,
-            username: "Nisida",
-            hash: await generateHash("1987"),
-            email: "nisida.azzalini@gmail.com"
+            username: "nisida.azzalini@gmail.com",
+            hash: await generateHash("cP3_wyz0")
         },
         {
             id: 3,
             username: "FoodLover",
-            hash: await generateHash("time4cooking")
+            hash: await generateHash("Time4c%king")
         }
     ])
     await knex.raw("SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));")
