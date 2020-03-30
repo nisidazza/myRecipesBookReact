@@ -4,7 +4,7 @@ exports.seed = async knex => {
     await knex('users').insert([
         {
             id: 1,
-            username: "Pippo",
+            username: "Pippo.Pi@live.com",
             hash: await generateHash("P1ppo@123")
         },
         {
@@ -14,7 +14,7 @@ exports.seed = async knex => {
         },
         {
             id: 3,
-            username: "FoodLover",
+            username: "Food.Lover@yahoo.com",
             hash: await generateHash("Time4c%king")
         }
     ])
