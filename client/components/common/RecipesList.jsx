@@ -1,7 +1,7 @@
 import React from "react";
-import { apiDeleteRecipe } from "../apis/recipesApi";
+import { apiDeleteRecipe } from "../../apis/recipesApi";
 import { Link } from "react-router-dom";
-import { IfAuthenticated, IfNotAuthenticated } from "./Authenticated";
+import { IfAuthenticated, IfNotAuthenticated } from "./utilities/Authenticated";
 import { getDecodedToken } from "authenticare/client";
 
 class RecipesList extends React.Component {

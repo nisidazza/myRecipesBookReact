@@ -1,6 +1,6 @@
 import React from "react";
 import { register, isAuthenticated } from "authenticare/client";
-import Validator from "./Validator";
+import Validator from "../common/utilities/Validator";
 
 class Register extends React.Component {
   constructor(props) {

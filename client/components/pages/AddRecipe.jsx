@@ -1,5 +1,5 @@
 import React from "react";
-import { apiAddRecipe } from "../apis/recipesApi";
+import { apiAddRecipe } from "../../apis/recipesApi";
 
 class AddRecipe extends React.Component {
   constructor(props) {

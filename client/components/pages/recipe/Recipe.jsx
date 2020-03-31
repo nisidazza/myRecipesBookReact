@@ -2,7 +2,7 @@ import React from "react";
 import {
   apiGetRecipeDetails,
   apiGetIngredientFromRecipe
-} from "../apis/recipesApi";
+} from "../../../apis/recipesApi";
 import RecipeDetails from "./RecipeDetails";
 import RecipeIngredient from "./RecipeIngredient";
 import RecipeNewIngredient from "./RecipeNewIngredient";

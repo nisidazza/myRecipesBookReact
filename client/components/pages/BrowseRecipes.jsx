@@ -1,6 +1,6 @@
 import React from "react";
-import { apiGetRecipes } from "../apis/recipesApi";
-import RecipesList from "./RecipesList";
+import { apiGetRecipes } from "../../apis/recipesApi";
+import RecipesList from "../common/RecipesList";
 
 class BrowseRecipes extends React.Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React from "react";
 import {
   apiUpdateIngredientInRecipe,
   apiDeleteIngredientFromRecipe
-} from "../apis/recipesApi";
+} from "../../../apis/recipesApi";
 
 class RecipeIngredient extends React.Component {
   constructor(props) {

@@ -1,5 +1,6 @@
 import React from "react";
 import { signIn, isAuthenticated } from "authenticare/client";
+import Validator from "../common/utilities/Validator";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -9,6 +10,8 @@ class SignIn extends React.Component {
       username: "",
       password: ""
     };
+
+    this.validator = React.createRef();
   }
 
   componentDidMount() {
@@ -26,11 +29,29 @@ class SignIn extends React.Component {
     e.preventDefault();
     signIn(this.loginData, {
       baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
-    }).then(token => {
-      if (isAuthenticated()) {
-        this.props.history.push("/listrecipes");
-      }
-    });
+    })
+      .then(token => {
+        if (isAuthenticated()) {
+          this.props.history.push("/listrecipes");
+        }
+      })
+      .catch(error => {
+        if (
+          error &&
+          error.response &&
+          error.response.body &&
+          error.response.body.errorType == "INVALID_CREDENTIALS"
+        ) {
+          this.validator.current.showError(
+            "Sorry, wrong username + password combination!"
+          );
+        } else {
+          this.validator.current.showError(
+            "Something went wrong. Please,try again!"
+          );
+          throw error;
+        }
+      });
   };
 
   render() {
@@ -74,6 +95,11 @@ class SignIn extends React.Component {
                 value="Sign In"
                 type="submit"
                 className="btn btn-outline-success mx-auto"
+              />
+            </div>
+            <div>
+              <Validator
+                ref={this.validator}
               />
             </div>
           </div>

@@ -1,13 +1,13 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import SearchByIngredients from "./SearchByIngredients";
-import BrowseRecipes from "./BrowseRecipes";
-import Nav from "./Nav";
-import Register from "./Register";
-import SignIn from "./SignIn";
-import Recipe from "./Recipe";
-import Homepage from "./Homepage";
-import AddRecipe from "./AddRecipe";
+import SearchByIngredients from "./pages/SearchByIngredients";
+import BrowseRecipes from "./pages/BrowseRecipes";
+import Nav from "./navigation/Nav";
+import Register from "./pages/Register";
+import SignIn from "./pages/SignIn";
+import Recipe from "./pages/recipe/Recipe";
+import Homepage from "./pages/Homepage";
+import AddRecipe from "./pages/AddRecipe";
 
 class App extends React.Component {
   render() {

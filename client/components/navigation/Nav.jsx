@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { IfAuthenticated, IfNotAuthenticated } from "./Authenticated";
+import { IfAuthenticated, IfNotAuthenticated } from "../common/utilities/Authenticated";
 import UserAuthentication from "./UserAuthentication";
 
 class Nav extends React.Component {

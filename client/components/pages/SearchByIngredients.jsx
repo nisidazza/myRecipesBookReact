@@ -1,11 +1,11 @@
 import React from "react";
-import { apiGetIngredients } from "../apis/ingredientsApi";
+import { apiGetIngredients } from "../../apis/ingredientsApi";
 import {
   apiGetRecipesMatchingAllIngredients,
   apiGetRecipesByIngredients
-} from "../apis/recipesSearchApi";
+} from "../../apis/recipesSearchApi";
 import { Multiselect } from "multiselect-react-dropdown";
-import RecipesList from "./RecipesList";
+import RecipesList from "../common/RecipesList";
 
 class SearchByIngredients extends React.Component {
   constructor(props) {
