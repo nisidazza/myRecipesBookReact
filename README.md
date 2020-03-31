@@ -4,6 +4,14 @@ Keep track of your favourite recipes
 
 https://nisida-book-recipes-react.herokuapp.com/#/
 
+Link to my project Diagram Video
+
+https://www.youtube.com/watch?v=NcoKnBe5KOs&feature=youtu.be
+
+Link to My Recipe Book project presentation
+
+https://www.youtube.com/watch?v=ahCB_8OARCI
+
 ## The Tech
 
 - React
