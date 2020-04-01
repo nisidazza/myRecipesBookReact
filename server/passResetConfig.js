@@ -1,5 +1,6 @@
 var passReset = require("pass-reset");
 const { getUserByName } = require('./db/dbUsers')
+const {addUserToken} = require('./db/dbPassResetTokens')
 
 //expiration
 passReset.expireTimeout(60, "minutes");
@@ -16,13 +17,23 @@ passReset.sendEmail((email, resets, callback) => {
     });
     callback(null, true);
     })*/
+    console.log(resets[0].token)
     callback(null)
 });
 
 passReset.storage.setStore({
     create: (id, token, callback) => {
-        let expire = passReset.expireTimeout()
-        callback(null)
+        let expireTimeMinutes = passReset.expireTimeout()
+        let date = new Date()
+        date.setUTCMinutes(date.getUTCMinutes() + expireTimeMinutes);
+        let expireDate = date.toUTCString()
+        return addUserToken(id, token, expireDate)
+        .then(() => {
+            callback(null)
+        })
+        .catch(err => {
+            callback(err)
+        })            
     },
     lookup: (token, callback) => {
         callback("lookup - not implemented")

@@ -11,7 +11,7 @@ router.post(
   passwordReset.requestResetToken({
     loginParam: "login",
     callbackURL: "/{token}",
-    next: true
+    next: false
   }),
   function(req, res) {
     // ...something
