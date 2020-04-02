@@ -3,8 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
-require('dotenv').config()
-mailgun = require('mailgun-js')({ apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN})
+
 
 
 
@@ -20,7 +19,6 @@ router.post("/upload", upload.single("myFile"), (req, res) => {
 
 
 router.post('/email', (req,res) => {
-
   const data = {
     from: 'Excited User <me@samples.mailgun.org>',
     to: 'nisida.azzalini@gmail.com',
