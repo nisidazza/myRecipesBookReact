@@ -1,6 +1,10 @@
 /*COMMON CSS*/
 
-#Recipe-jsx-component div#border-shadow, #AddRecipe-jsx-component div#border-shadow, #Register-jsx-component div#border-shadow, #SignIn-jsx-component div#border-shadow {
+#Recipe-jsx-component div#border-shadow, 
+#AddRecipe-jsx-component div#border-shadow, 
+#Register-jsx-component div#border-shadow, 
+#SignIn-jsx-component div#border-shadow,
+#RecoveryEmail-jsx-component div#border-shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -172,12 +176,16 @@ div#Nav-jsx-component {
 
 /* --- SIGNIN - REGISTER --- */
 
-#Register-jsx-component div.input-container.col-xs-3, #SignIn-jsx-component div.input-container.col-xs-3 {
+#Register-jsx-component div.input-container, 
+#SignIn-jsx-component div.input-container,
+#RecoveryEmail-jsx-component {
     display: flex;
     margin-bottom: 1em;
 }
 
-#Register-jsx-component .icon, #SignIn-jsx-component .icon {
+#Register-jsx-component .icon, 
+#SignIn-jsx-component .icon,
+#RecoveryEmail-jsx-component {
     padding: 0.6em;
     background: darkgrey;
     color: white;
@@ -185,16 +193,24 @@ div#Nav-jsx-component {
     text-align: center;
 }
 
-div#Register-jsx-component, div#SignIn-jsx-component {
+div#Register-jsx-component, 
+div#SignIn-jsx-component,
+div#RecoveryEmail-jsx-component {
     padding-top: 15em;
     min-height: 100%;
     background-color:antiquewhite;
 }
 
-div#Register-jsx-component #border-shadow, div#SignIn-jsx-component #border-shadow {
+div#Register-jsx-component #border-shadow, 
+div#SignIn-jsx-component #border-shadow, 
+div#RecoveryEmail-jsx-component {
     background-color: white;
 }
 
+#SignIn-jsx-component div.forgot-psw{
+    margin-bottom:1em;
+    margin-left:6em;
+}
 
 /* --- SEARCH --- */
 
@@ -246,4 +262,10 @@ div#Homepage-jsx-component {
     min-height: 100%;
     margin-top:200px;
     margin-left:100px;
+}
+
+/*--- RECOVERY EMAIL ---*/
+
+#RecoveryEmail-jsx-component h4, p {
+  color: black;
 }
