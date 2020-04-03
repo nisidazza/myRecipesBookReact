@@ -1,6 +1,10 @@
 var passReset = require("pass-reset");
 const { getUserByName } = require("./db/dbUsers");
-const { addUserToken, getUserToken } = require("./db/dbPassResetTokens");
+const {
+  addUserToken,
+  getToken,
+  deleteToken
+} = require("./db/dbPassResetTokens");
 const { updatePassword } = require("./db/dbUsers");
 
 const mailgun = require("mailgun-js")({
@@ -58,37 +62,43 @@ passReset.storage.setStore({
       });
   },
   lookup: (token, callback) => {
-    return getUserToken(token)
+    return getToken(token)
       .then(tokenRow => {
         //opt: verify the user is not auth
         let currentDateTime = new Date();
         let tokenExpireDateTime = new Date(tokenRow[0].expire_date_time);
         //verify token is valid
-        if(currentDateTime > tokenExpireDateTime) {
-          return callback(null, null)
-        } 
-        callback(null, tokenRow[0].user_id)
+        if (currentDateTime > tokenExpireDateTime) {
+          return callback(null, null);
+        }
+        callback(null, tokenRow[0].user_id);
       })
       .catch(err => {
         callback(err);
       });
   },
   destroy: (token, callback) => {
-    callback("destroy - not implemented");
+    return deleteToken(token)
+      .then(numberOfDeletedRows => {
+        callback(null);
+      })
+      .catch(err => {
+        callback(err);
+      });
   }
 });
 
-passReset.setPassword((id, password, callback) => {  
+passReset.setPassword((id, password, callback) => {
   return updatePassword(id, password)
-  .then(numberOfUpdatedRows => {
-    if(numberOfUpdatedRows == 0) {
-      return callback(null, false, "Could not update password.")
-    } 
-    callback(null, true)
-  })
-  .catch(err => {
-    callback("SQL ERROR: " + err)
-  })
+    .then(numberOfUpdatedRows => {
+      if (numberOfUpdatedRows == 0) {
+        return callback(null, false, "Could not update password.");
+      }
+      callback(null, true);
+    })
+    .catch(err => {
+      callback("SQL ERROR: " + err);
+    });
 });
 
 passReset.lookupUsers((login, callback) => {

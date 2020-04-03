@@ -13,13 +13,20 @@ function addUserToken(user_id, token, expire_date_time, db = connection) {
     });
 }
 
-function getUserToken(token, db=connection){
+function getToken(token, db=connection){
   return db("password_reset_tokens")
   .select()
   .where("token", token)
 }
 
+function deleteToken(token, db=connection){
+  return db("password_reset_tokens")
+  .where("token", token)
+  .delete()
+}
+
 module.exports = {
   addUserToken,
-  getUserToken
+  getToken,
+  deleteToken
 };
