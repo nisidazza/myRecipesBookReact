@@ -1,6 +1,7 @@
 var passReset = require("pass-reset");
 const { getUserByName } = require("./db/dbUsers");
-const { addUserToken } = require("./db/dbPassResetTokens");
+const { addUserToken, getUserToken } = require("./db/dbPassResetTokens");
+const { updatePassword } = require("./db/dbUsers");
 
 const mailgun = require("mailgun-js")({
   apiKey: process.env.MAILGUN_API_KEY,
@@ -10,7 +11,7 @@ const mailgun = require("mailgun-js")({
 const expireTimeout = {
   value: 60,
   type: "minutes"
-}
+};
 
 //expiration
 passReset.expireTimeout(expireTimeout.value, expireTimeout.type);
@@ -42,18 +43,6 @@ passReset.sendEmail((email, resets, callback) => {
   console.log(resets[0].token);
 });
 
-passReset.setPassword(function(id, password, callback) {
-  if (password.length < 8) {
-      return callback(null, false, 'Password must be at least 8 characters');
-  }
-  var hash = doHash(password);
-  var update = { $set: { password: hash } };
-  User.update({ id: id }, update, { }, function(err) {
-      if (err) {return callback(err);}
-      callback(null, true);
-  });
-});
-
 passReset.storage.setStore({
   create: (id, token, callback) => {
     let expireTimeMinutes = passReset.expireTimeout();
@@ -69,11 +58,37 @@ passReset.storage.setStore({
       });
   },
   lookup: (token, callback) => {
-    callback("lookup - not implemented");
+    return getUserToken(token)
+      .then(tokenRow => {
+        //opt: verify the user is not auth
+        let currentDateTime = new Date();
+        let tokenExpireDateTime = new Date(tokenRow[0].expire_date_time);
+        //verify token is valid
+        if(currentDateTime > tokenExpireDateTime) {
+          return callback(null, null)
+        } 
+        callback(null, tokenRow[0].user_id)
+      })
+      .catch(err => {
+        callback(err);
+      });
   },
   destroy: (token, callback) => {
     callback("destroy - not implemented");
   }
+});
+
+passReset.setPassword((id, password, callback) => {  
+  return updatePassword(id, password)
+  .then(numberOfUpdatedRows => {
+    if(numberOfUpdatedRows == 0) {
+      return callback(null, false, "Could not update password.")
+    } 
+    callback(null, true)
+  })
+  .catch(err => {
+    callback("SQL ERROR: " + err)
+  })
 });
 
 passReset.lookupUsers((login, callback) => {
