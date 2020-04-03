@@ -24,10 +24,11 @@ router.put(
     tokenParam: "token",
     passwordParam: "password",
     confirmParam: "confirm",
-    next: true
+    next: false
   }),
   function(req, res) {
     // ...something
+    res.sendStatus(404);
   }
 );
 
