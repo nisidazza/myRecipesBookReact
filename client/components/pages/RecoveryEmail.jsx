@@ -26,7 +26,6 @@ class RecoveryEmail extends React.Component {
 
   handleChange = e => {
     this.state[e.target.id] = e.target.value;
-    console.log(this.state[e.target.id]);
   };
 
   handleRecoveryEmailSubmit = e => {
@@ -80,14 +79,14 @@ class RecoveryEmail extends React.Component {
                 ""
               )}
             </div>
-            <div>
+            <div className="recovery-email">
               {this.state.outcome == this.possibleOutcomes.success ? (
-                <p>
+                <p className='outcome'>
                   “An email has been sent to {this.state.username} with further
                   instructions.”
                 </p>
               ) : this.state.outcome == this.possibleOutcomes.error ? (
-                <p>"Something went wrong"</p>
+                <p className='outcome'>"Sorry, something went wrong!"</p>
               ) : (
                 ""
               )}

@@ -234,6 +234,12 @@ div#ResetPassword-jsx-component #border-shadow {
     display: flex;
 }
 
+#RecoveryEmail-jsx-component, 
+#ResetPassword-jsx-component p.outcome {
+  text-align: center;
+  color:royalblue;
+}
+
 
 /* --- SEARCH --- */
 
