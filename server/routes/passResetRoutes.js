@@ -5,7 +5,7 @@ const passwordReset = require("../passResetConfig");
 
 //Route for requesting a new reset token
 router.post(
-  "/password/reset",
+  "/password/requestToken",
   passwordReset.requestResetToken({
     loginParam: "login",
     callbackURL: "/resetPassword/?token={token}",
