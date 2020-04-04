@@ -9,6 +9,7 @@ import Recipe from "./pages/recipe/Recipe";
 import Homepage from "./pages/Homepage";
 import AddRecipe from "./pages/AddRecipe";
 import RecoveryEmail from "./pages/RecoveryEmail";
+import ResetPassword from "./pages/ResetPassword";
 
 class App extends React.Component {
   render() {
@@ -25,6 +26,7 @@ class App extends React.Component {
           <Route exact path="/search/" component={SearchByIngredients} />
           <Route exact path="/addrecipe/" component={AddRecipe} />
           <Route exact path="/recovery/email/" component={RecoveryEmail} />
+          <Route exact path="/resetPassword/" component={ResetPassword} />
         </Switch>
       </Router>
     );
