@@ -101,7 +101,7 @@ class SignIn extends React.Component {
               <Validator ref={this.validator} />
             </div>
             <div className="forgot-psw">
-              <a href="#">Forgot your Password?</a>
+              <a href="#/recovery/email/" target="_blank">Forgot your Password?</a>
             </div>
           </div>
         </form>
