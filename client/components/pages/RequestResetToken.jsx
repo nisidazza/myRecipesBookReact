@@ -1,7 +1,7 @@
 import React from "react";
 import { apiRequestResetToken } from "../../apis/resetPasswordApi";
 
-class RecoveryEmail extends React.Component {
+class RequestResetToken extends React.Component {
   possibleOutcomes = {
     undefined: undefined,
     success: "success",
@@ -42,7 +42,7 @@ class RecoveryEmail extends React.Component {
 
   render() {
     return (
-      <div id="RecoveryEmail-jsx-component">
+      <div id="RequestResetToken-jsx-component">
         <form
           className="mx-auto"
           style={{ maxWidth: "500px", marginTop: "100px" }}
@@ -98,4 +98,4 @@ class RecoveryEmail extends React.Component {
   }
 }
 
-export default RecoveryEmail;
+export default RequestResetToken;

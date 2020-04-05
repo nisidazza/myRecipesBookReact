@@ -8,7 +8,7 @@ import SignIn from "./pages/SignIn";
 import Recipe from "./pages/recipe/Recipe";
 import Homepage from "./pages/Homepage";
 import AddRecipe from "./pages/AddRecipe";
-import RecoveryEmail from "./pages/RecoveryEmail";
+import RequestResetToken from "./pages/RequestResetToken";
 import ResetPassword from "./pages/ResetPassword";
 
 class App extends React.Component {
@@ -25,7 +25,7 @@ class App extends React.Component {
           <Route path="/recipes/:id" component={Recipe} />
           <Route exact path="/search/" component={SearchByIngredients} />
           <Route exact path="/addrecipe/" component={AddRecipe} />
-          <Route exact path="/recovery/email/" component={RecoveryEmail} />
+          <Route exact path="/recovery/email/" component={RequestResetToken} />
           <Route exact path="/resetPassword/" component={ResetPassword} />
         </Switch>
       </Router>

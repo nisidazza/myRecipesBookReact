@@ -4,7 +4,7 @@
 #AddRecipe-jsx-component div#border-shadow, 
 #Register-jsx-component div#border-shadow, 
 #SignIn-jsx-component div#border-shadow,
-#RecoveryEmail-jsx-component div#border-shadow,
+#RequestResetToken-jsx-component div#border-shadow,
 #ResetPassword-jsx-component div#border-shadow{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -184,7 +184,7 @@ div#Nav-jsx-component {
 
 #Register-jsx-component div.input-container, 
 #SignIn-jsx-component div.input-container,
-#RecoveryEmail-jsx-component div.input-container,
+#RequestResetToken-jsx-component div.input-container,
 #ResetPassword-jsx-component div.input-container {
     display: flex;
     margin-bottom: 1em;
@@ -201,7 +201,7 @@ div#Nav-jsx-component {
 
 div#Register-jsx-component, 
 div#SignIn-jsx-component,
-div#RecoveryEmail-jsx-component,
+div#RequestResetToken-jsx-component,
 div#ResetPassword-jsx-component{
     padding-top: 15em;
     min-height: 100%;
@@ -210,7 +210,7 @@ div#ResetPassword-jsx-component{
 
 div#Register-jsx-component #border-shadow, 
 div#SignIn-jsx-component #border-shadow, 
-div#RecoveryEmail-jsx-component #border-shadow,
+div#RequestResetToken-jsx-component #border-shadow,
 div#ResetPassword-jsx-component #border-shadow {
     background-color: white;
 }
@@ -224,17 +224,17 @@ div#ResetPassword-jsx-component #border-shadow {
 
 /*--- RECOVERY EMAIL - RESET-PASSWORD  ---*/
 
-#RecoveryEmail-jsx-component, 
+#RequestResetToken-jsx-component, 
 #ResetPassword-jsx-component h4, p {
   color: black;
 }
 
-#RecoveryEmail-jsx-component div.input-container,
+#RequestResetToken-jsx-component div.input-container,
 #ResetPassword-jsx-component div.input-container {
     display: flex;
 }
 
-#RecoveryEmail-jsx-component, 
+#RequestResetToken-jsx-component, 
 #ResetPassword-jsx-component p.outcome {
   text-align: center;
   color:royalblue;
