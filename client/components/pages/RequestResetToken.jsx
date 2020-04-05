@@ -49,7 +49,7 @@ class RequestResetToken extends React.Component {
           onSubmit={this.handleRecoveryEmailSubmit}
         >
           <div className="text-center">
-            <h4>Forgot Password?</h4>
+            <h4 className="psw-recovery">Forgot Password?</h4>
             <p>
               No worries! Just enter the email address you provided and we'll
               send you a reset password link.
@@ -79,7 +79,7 @@ class RequestResetToken extends React.Component {
                 ""
               )}
             </div>
-            <div className="recovery-email">
+            <div className="request-reset-token-msg">
               {this.state.outcome == this.possibleOutcomes.success ? (
                 <p className='outcome'>
                   “An email has been sent to {this.state.username} with further

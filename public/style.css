@@ -219,14 +219,20 @@ div#ResetPassword-jsx-component #border-shadow {
 
 #SignIn-jsx-component div.forgot-psw{
     margin-bottom:1em;
-    margin-left:6em;
+    text-align: center;
 }
 
 /*--- RECOVERY EMAIL - RESET-PASSWORD  ---*/
 
-#RequestResetToken-jsx-component, 
-#ResetPassword-jsx-component h4, p {
+#RequestResetToken-jsx-component p, 
+#ResetPassword-jsx-component p {
   color: black;
+}
+
+#RequestResetToken-jsx-component h4.psw-recovery, 
+#ResetPassword-jsx-component h4.psw-recovery {
+    color:orangered;
+    font-weight: bold;
 }
 
 #RequestResetToken-jsx-component div.input-container,
@@ -234,12 +240,15 @@ div#ResetPassword-jsx-component #border-shadow {
     display: flex;
 }
 
-#RequestResetToken-jsx-component, 
+#RequestResetToken-jsx-component p.outcome, 
 #ResetPassword-jsx-component p.outcome {
   text-align: center;
   color:royalblue;
 }
 
+#RequestResetToken-jsx-component div.request-reset-token-msg {
+    margin: 0, 1.3em;
+}
 
 /* --- SEARCH --- */
 

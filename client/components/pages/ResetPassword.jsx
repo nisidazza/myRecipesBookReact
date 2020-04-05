@@ -90,7 +90,7 @@ class ResetPassword extends React.Component {
           onSubmit={this.handleResetPasswordSubmit}
         >
           <div className="text-center mt-5">
-            <h4>Reset Password</h4>
+            <h4 className="psw-recovery">Reset Password</h4>
             <p>You can reset your password using this form!</p>
           </div>
           <div className="border mt-4" id="border-shadow">

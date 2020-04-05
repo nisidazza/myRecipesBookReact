@@ -54,9 +54,9 @@ class Validator extends React.Component {
         {!this.state.isValid ? (
           <div className="form-group row m-2">
             <div>
-              <ul style={{ listStyle: "none" }}>
+              <ul>
                 {this.state.errorMessages.map((msg, i) => {
-                  return <li key={i}>{msg}</li>;
+                  return <li style={{color: "red"}} key={i}>{msg}</li>;
                 })}
               </ul>
             </div>
