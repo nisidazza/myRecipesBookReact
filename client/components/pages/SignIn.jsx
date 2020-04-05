@@ -25,7 +25,7 @@ class SignIn extends React.Component {
     this.loginData[e.target.id] = e.target.value;
   };
 
-  handleSubmit = e => {
+  handleSignInSubmit = e => {
     e.preventDefault();
     signIn(this.loginData, {
       baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
@@ -60,7 +60,7 @@ class SignIn extends React.Component {
         <form
           className="mx-auto"
           style={{ maxWidth: "500px", margin: "auto" }}
-          onSubmit={this.handleSubmit}
+          onSubmit={this.handleSignInSubmit}
         >
           <h4 className="text-center mt-5">Sign-In Form </h4>
           <div className="border mt-4" id="border-shadow">
