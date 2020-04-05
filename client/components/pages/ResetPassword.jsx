@@ -1,6 +1,7 @@
 import React from "react";
-import {Redirect} from 'react-router'
+import { Redirect } from "react-router";
 import { apiResetPassword } from "../../apis/resetPasswordApi";
+import Validator from "../common/utilities/Validator";
 
 class ResetPassword extends React.Component {
   possibleOutcomes = {
@@ -21,6 +22,8 @@ class ResetPassword extends React.Component {
       confirmPsw: "",
       outcome: this.possibleOutcomes.undefined
     };
+
+    this.validator = React.createRef();
   }
 
   componentDidMount() {
@@ -36,17 +39,46 @@ class ResetPassword extends React.Component {
 
   handleResetPasswordSubmit = e => {
     e.preventDefault();
-    apiResetPassword(
-      this.state.token,
-      this.state.password,
-      this.state.confirmPsw
-    ).then(outcome => {
-      this.setState({
-        outcome: outcome.success
-          ? this.possibleOutcomes.success
-          : this.possibleOutcomes.error
+    if (this.validator.current.validate()) {
+      apiResetPassword(
+        this.state.token,
+        this.state.password,
+        this.state.confirmPsw
+      ).then(outcome => {
+        this.setState({
+          outcome: outcome.success
+            ? this.possibleOutcomes.success
+            : this.possibleOutcomes.error
+        });
       });
+    }
+  };
+
+  getValidationRules = () => {
+    let rules = [];
+
+    rules.push({
+      conditional: () => {
+        return (
+          this.state.password.match(/[a-z]/g) &&
+          this.state.password.match(/[A-Z]/g) &&
+          this.state.password.match(/[0-9]/g) &&
+          this.state.password.match(/[^a-zA-Z\d]/g) &&
+          this.state.password.length >= 8
+        );
+      },
+      errorMessage:
+        "A valid password must contain at least 1 uppercase character, at least 1 lowercase character, at least 1 digit, at least 1 special character and minimum 8 characters"
     });
+
+    rules.push({
+      conditional: () => {
+        return this.state.confirmPsw == this.state.password;
+      },
+      errorMessage: "Password and Confirm Password do not match"
+    });
+
+    return rules;
   };
 
   render() {
@@ -94,10 +126,16 @@ class ResetPassword extends React.Component {
               />
             </div>
             <div>
+              <Validator
+                rules={this.getValidationRules()}
+                ref={this.validator}
+              />
+            </div>
+            <div>
               {this.state.outcome == this.possibleOutcomes.success ? (
                 <Redirect to="/signin" />
               ) : this.state.outcome == this.possibleOutcomes.error ? (
-                <p className='outcome'>Sorry, something went wrong!</p>
+                <p className="outcome">Sorry, something went wrong! Please, try again.</p>
               ) : (
                 ""
               )}
