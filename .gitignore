@@ -42,3 +42,5 @@ dev.sqlite3-journal
 bundle.js*
 
 .env
+
+.vs
