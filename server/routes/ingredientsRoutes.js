@@ -3,6 +3,7 @@ const router = express.Router()
 
 const db = require('../db/dbIngredients')
 
+// DELETE /api/v1/ingredients/:id
 router.delete('/:id', (req, res) => {
     const { id } = req.params
     db.deleteIngredient(id)
@@ -44,6 +45,7 @@ router.get('/:id', (req, res) => {
         })
 })
 
+//PATCH /api/v1/ingredient/:id
 router.patch('/:id', (req, res) => {
     const ingredient = req.body
     const { id } = req.params
@@ -57,18 +59,20 @@ router.patch('/:id', (req, res) => {
         })
 })
 
-router.post('/', (req, res) => {
-    const newIngredient = req.body
+// POST /api/v1/ingredients
+router.post('/', (req,res) => {
+    let newIngredient = req.body;
     db.addIngredient(newIngredient)
-        .then((addedIngredients) => {
-            res.json(
-                addedIngredients[0]
-            )
-        })
-        .catch(err => {
-            res.status(500).json({ message: 'Something is broken' })
-            console.log(err)
-        })
+    .then(hasBeenAdded => {
+        if(hasBeenAdded) {
+            res.status(201).json(req.body)
+        } else {
+            res.sendStatus(404)
+        }
+    })
+    .catch(err => {
+        res.status(500).json({message: 'Something went wrong. Please, try again.'})
+    })
 })
 
 
