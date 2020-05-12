@@ -1,7 +1,7 @@
 import React from "react";
 import {
   apiGetRecipeDetails,
-  apiGetIngredientFromRecipe
+  apiGetIngredientFromRecipe,
 } from "../../../apis/recipesApi";
 import RecipeDetails from "./RecipeDetails";
 import RecipeIngredient from "./RecipeIngredient";
@@ -18,7 +18,8 @@ class Recipe extends React.Component {
     this.state = {
       recipe: null,
       editable: editable == "true" ? true : false,
-      userCanEdit: null
+      userCanEdit: null,
+      showForm: false
     };
 
     this.visualizeAddedIngredient = this.visualizeAddedIngredient.bind(this);
@@ -26,7 +27,7 @@ class Recipe extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    apiGetRecipeDetails(id).then(recipe => {
+    apiGetRecipeDetails(id).then((recipe) => {
       const decodedToken = getDecodedToken();
       let userCanEdit;
       if (decodedToken) {
@@ -36,20 +37,20 @@ class Recipe extends React.Component {
       }
       this.setState({
         recipe: recipe,
-        userCanEdit: userCanEdit
+        userCanEdit: userCanEdit,
       });
     });
   }
 
-  buildOnDeleteHandler = index => {
+  buildOnDeleteHandler = (index) => {
     return () => {
       this.setState({
-        ingredients: this.state.recipe.ingredients.splice(index, 1)
+        ingredients: this.state.recipe.ingredients.splice(index, 1),
       });
     };
   };
 
-  handleToggleMode = e => {
+  handleToggleMode = (e) => {
     if (e.target.name == "view") {
       this.setState({ editable: false });
     } else if (e.target.name == "edit") {
@@ -57,29 +58,23 @@ class Recipe extends React.Component {
     }
   };
 
+  handleShowForm = (e) => {
+    this.setState({
+      showForm: true
+    }) 
+  }
+
   visualizeAddedIngredient(recipeId, ingredientId) {
-    apiGetIngredientFromRecipe(recipeId, ingredientId).then(ingredient => {
+    apiGetIngredientFromRecipe(recipeId, ingredientId).then((ingredient) => {
       this.setState({
-        ingredients: this.state.recipe.ingredients.push(ingredient)
+        ingredients: this.state.recipe.ingredients.push(ingredient),
       });
     });
   }
 
   render() {
     if (this.state.recipe == null) {
-      return ""
-      // NEED TO BE REVIEWED     
-      // (
-      //   <div
-      //     className="alert alert-warning" style={{marginTop:"20em", marginLeft: "25em", width:"50%"}}
-      //     role="alert"
-      //   >
-      //     <p style={{marginBottom:0, textAlign:"center"}}>
-      //       "Sorry, this recipe does not exist or you are not allowed to see
-      //       it."
-      //     </p>
-      //   </div>
-      // );
+      return "";
     }
 
     let { ingredients, ...recipeDetails } = this.state.recipe;
@@ -111,6 +106,20 @@ class Recipe extends React.Component {
                 this.state.editable && this.state.userCanEdit
               )}
 
+              <p>
+                Is the ingredient you are looking for not in the list?
+                <button
+                  type="button"
+                  name="showForm"
+                  className="btn-sm btn-outline-warning"
+                  onClick={this.handleShowForm}
+                >
+                  Click here to add it!
+                </button>
+              </p>
+              {
+                this.state.showForm ? (<p>Form Here!</p>) : (<></>)
+              }
               {this.state.userCanEdit ? (
                 this.state.editable ? (
                   <button
