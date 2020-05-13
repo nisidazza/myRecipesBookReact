@@ -1,6 +1,7 @@
 import React from "react";
 import { apiAddIngredientToRecipe } from "../../../apis/recipesApi";
 import { apiGetIngredients } from "../../../apis/ingredientsApi";
+import AddNewIngredient from "../AddNewIngredient";
 
 class RecipeNewIngredient extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class RecipeNewIngredient extends React.Component {
 
     this.state = {
       ingredients: [],
-      newIngredient: this.resetIngredient()
+      newIngredient: this.resetIngredient(),
+      showForm: false
     };
   }
 
@@ -17,24 +19,24 @@ class RecipeNewIngredient extends React.Component {
   }
 
   fetchIngredients = () => {
-    apiGetIngredients().then(ingredients => {
+    apiGetIngredients().then((ingredients) => {
       this.setState({
-        ingredients: ingredients
+        ingredients: ingredients,
       });
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const newIngredient = this.state.newIngredient;
     apiAddIngredientToRecipe(
       newIngredient.recipe_id,
       newIngredient.ingredient_id,
       newIngredient.quantity
-    ).then(ingredientId => {
+    ).then((ingredientId) => {
       if (ingredientId > 0) {
         this.setState({
-          newIngredient: this.resetIngredient()
+          newIngredient: this.resetIngredient(),
         });
         this.props.onAddedIngredient(newIngredient.recipe_id, ingredientId);
       } else {
@@ -47,20 +49,27 @@ class RecipeNewIngredient extends React.Component {
     return {
       quantity: "",
       recipe_id: this.props.recipeId,
-      ingredient_id: -1
+      ingredient_id: -1,
     };
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
       newIngredient: {
         ...this.state.newIngredient,
-        [e.target.name]: e.target.value
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
+  handleShowForm = () => {
+    this.setState({
+      showForm: true
+    }) 
+  }
+
   render() {
+    const addedIngredient = this.state.newIngredient
     return (
       <div>
         <form className="mt-2" autoComplete="off" onSubmit={this.handleSubmit}>
@@ -100,6 +109,18 @@ class RecipeNewIngredient extends React.Component {
             </div>
           </div>
         </form>
+        <p>
+          Is the ingredient you are looking for not in the list?
+          <button
+            type="button"
+            name="showForm"
+            className="btn-sm btn-outline-warning"
+            onClick={this.handleShowForm}
+          >
+            Click here to add it!
+          </button>
+        </p>
+        {this.state.showForm ? <AddNewIngredient newIngredient={addedIngredient} onSave={() => this.fetchIngredients()} handleShowForm={this.handleShowForm}/> : ""}
       </div>
     );
   }

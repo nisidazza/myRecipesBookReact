@@ -187,7 +187,7 @@ exports.seed = async knex => {
         },
         {
             id: 38,
-            name: ' baguette',
+            name: 'baguette',
             is_reviewed: true
         },
         {
@@ -367,7 +367,7 @@ exports.seed = async knex => {
         },
         {
             id: 77,
-            name: ' heavy cream',
+            name: 'heavy cream',
             is_reviewed: true
         },
         {

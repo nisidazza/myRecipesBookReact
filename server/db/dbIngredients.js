@@ -15,7 +15,6 @@ function getIngredient(id, db = connection) {
 function getListIngredients(db = connection) {
     return db('ingredients')
         .select()
-        .where('is_reviewed', true)
         .orderBy('ingredients.name')
 }
 

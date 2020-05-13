@@ -8,6 +8,7 @@ import RecipeIngredient from "./RecipeIngredient";
 import RecipeNewIngredient from "./RecipeNewIngredient";
 import { getDecodedToken } from "authenticare/client";
 
+
 class Recipe extends React.Component {
   constructor(props) {
     super(props);
@@ -18,11 +19,9 @@ class Recipe extends React.Component {
     this.state = {
       recipe: null,
       editable: editable == "true" ? true : false,
-      userCanEdit: null,
-      showForm: false
+      userCanEdit: null
     };
 
-    this.visualizeAddedIngredient = this.visualizeAddedIngredient.bind(this);
   }
 
   componentDidMount() {
@@ -58,13 +57,7 @@ class Recipe extends React.Component {
     }
   };
 
-  handleShowForm = (e) => {
-    this.setState({
-      showForm: true
-    }) 
-  }
-
-  visualizeAddedIngredient(recipeId, ingredientId) {
+  visualizeAddedIngredient = (recipeId, ingredientId) => {
     apiGetIngredientFromRecipe(recipeId, ingredientId).then((ingredient) => {
       this.setState({
         ingredients: this.state.recipe.ingredients.push(ingredient),
@@ -105,21 +98,6 @@ class Recipe extends React.Component {
                 recipeDetails.id,
                 this.state.editable && this.state.userCanEdit
               )}
-
-              <p>
-                Is the ingredient you are looking for not in the list?
-                <button
-                  type="button"
-                  name="showForm"
-                  className="btn-sm btn-outline-warning"
-                  onClick={this.handleShowForm}
-                >
-                  Click here to add it!
-                </button>
-              </p>
-              {
-                this.state.showForm ? (<p>Form Here!</p>) : (<></>)
-              }
               {this.state.userCanEdit ? (
                 this.state.editable ? (
                   <button
