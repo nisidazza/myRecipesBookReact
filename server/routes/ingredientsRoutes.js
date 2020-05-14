@@ -47,7 +47,8 @@ router.get('/:id', (req, res) => {
 
 //PATCH /api/v1/ingredient/:id
 router.patch('/:id', (req, res) => {
-    const ingredient = req.body
+    let ingredient = req.body
+    ingredient.name = ingredient.name.trim() 
     const { id } = req.params
     db.updateIngredient(id, ingredient)
         .then((updatedIngredient) => {
@@ -62,6 +63,7 @@ router.patch('/:id', (req, res) => {
 // POST /api/v1/ingredients
 router.post('/', (req,res) => {
     let newIngredient = req.body;
+    newIngredient.name = newIngredient.name.trim()
     db.addIngredient(newIngredient)
     .then(hasBeenAdded => {
         if(hasBeenAdded) {
