@@ -44,11 +44,11 @@ class SignIn extends React.Component {
         ) {
           this.validator.current.showError(
             "Sorry, wrong username + password combination!"
-          );
+          )
         } else {
           this.validator.current.showError(
             "Something went wrong. Please,try again!"
-          );
+          )
           throw error;
         }
       });

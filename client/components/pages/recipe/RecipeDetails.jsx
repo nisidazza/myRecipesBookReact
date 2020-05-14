@@ -1,20 +1,21 @@
 import React from "react";
 import { apiUpdateRecipeDetails } from "../../../apis/recipesApi";
 
+
 class RecipeDetail extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       recipe: this.props.recipe,
-      mode: "view"
+      mode: "view",
     };
   }
 
   uploadWidget = cloudinary.createUploadWidget(
     {
       cloudName: "hqwayz2au",
-      uploadPreset: "brd7s5mq"
+      uploadPreset: "brd7s5mq",
     },
     (error, result) => {
       this.checkUploadImage(result);
@@ -25,48 +26,48 @@ class RecipeDetail extends React.Component {
     this.uploadWidget.open();
   };
 
-  checkUploadImage = result => {
+  checkUploadImage = (result) => {
     if (result && result.event === "success") {
       let recipe = this.state.recipe;
       recipe.img_url = result.info.url;
       this.setState({
-        recipe
+        recipe,
       });
     }
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ mode: "view" });
-    apiUpdateRecipeDetails(this.state.recipe)
-      .catch(error => {
-        this.setState({
-          recipe: this.props.recipe,
-          errormessage: error.message
+      apiUpdateRecipeDetails(this.state.recipe)
+        .catch((error) => {
+          this.setState({
+            recipe: this.props.recipe,
+            errormessage: error.message,
+          });
+        })
+        .then((recipe) => {
+          this.setState({
+            recipe
+          });
         });
-      })
-      .then(recipe => {
-        this.setState({
-          recipe
-        });
-      });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
       recipe: {
         ...this.state.recipe,
-        [e.target.name]: e.target.value
-      }
+        [e.target.name]: e.target.value,
+      },
     });
   };
 
-  handleCheckbox = e => {
+  handleCheckbox = (e) => {
     this.setState({
       recipe: {
         ...this.state.recipe,
-        [e.target.name]: e.target.checked ? true : false
-      }
+        [e.target.name]: e.target.checked ? true : false,
+      },
     });
   };
 
@@ -98,25 +99,27 @@ class RecipeDetail extends React.Component {
             <label className="col-sm-2">Title:</label>
             <input
               name="title"
-              value={recipeInfo.title || ''}
+              value={recipeInfo.title}
               onChange={this.handleChange}
               className="form-control form-control-sm col-md-6 border-info"
+              required
             />
           </div>
           <div className="form-group row">
             <label className="col-sm-2">Category:</label>
             <input
               name="category"
-              value={recipeInfo.category || ''}
+              value={recipeInfo.category}
               onChange={this.handleChange}
               className="form-control form-control-sm col-md-2 border-info"
+              required
             />
           </div>
           <div className="form-group row">
             <label className="col-sm-2">Link:</label>
             <input
               name="link"
-              value={recipeInfo.link || ''}
+              value={recipeInfo.link}
               onChange={this.handleChange}
               className="form-control form-control-sm col-md-9 border-info"
             />
@@ -125,7 +128,7 @@ class RecipeDetail extends React.Component {
             <label className="col-sm-2">Notes:</label>
             <textarea
               name="notes"
-              value={recipeInfo.notes || ''}
+              value={recipeInfo.notes}
               onChange={this.handleChange}
               className="form-control form-control-sm col-md-9 border-info"
             />
