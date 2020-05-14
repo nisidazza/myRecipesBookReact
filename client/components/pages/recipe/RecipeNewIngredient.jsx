@@ -22,6 +22,7 @@ class RecipeNewIngredient extends React.Component {
     apiGetIngredients().then((ingredients) => {
       this.setState({
         ingredients: ingredients,
+        showForm: false
       });
     });
   };
