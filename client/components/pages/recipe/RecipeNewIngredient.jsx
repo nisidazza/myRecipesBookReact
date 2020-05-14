@@ -121,7 +121,7 @@ class RecipeNewIngredient extends React.Component {
             Click here to add it!
           </button>
         </p>
-        {this.state.showForm ? <AddNewIngredient newIngredient={addedIngredient} onSave={() => this.fetchIngredients()} handleShowForm={this.handleShowForm}/> : ""}
+        {this.state.showForm ? <AddNewIngredient newIngredient={addedIngredient} onSave={this.fetchIngredients} /> : ""}
       </div>
     );
   }
