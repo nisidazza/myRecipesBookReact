@@ -1,11 +1,6 @@
 /*COMMON CSS*/
 
-#Recipe-jsx-component div#border-shadow, 
-#AddRecipe-jsx-component div#border-shadow, 
-#Register-jsx-component div#border-shadow, 
-#SignIn-jsx-component div#border-shadow,
-#RequestResetToken-jsx-component div#border-shadow,
-#ResetPassword-jsx-component div#border-shadow{
+#Recipe-jsx-component div#border-shadow, #AddRecipe-jsx-component div#border-shadow, #Register-jsx-component div#border-shadow, #SignIn-jsx-component div#border-shadow, #RequestResetToken-jsx-component div#border-shadow, #ResetPassword-jsx-component div#border-shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -30,12 +25,8 @@ html, body {
     display: none;
 }
 
-div#SearchByIngredients-jsx-component, 
-div#Homepage-jsx-component, 
-div#Recipe-jsx-component, 
-div#AddRecipe-jsx-component, 
-div#BrowseRecipes-jsx-component {
-    background-color:antiquewhite;
+div#SearchByIngredients-jsx-component, div#Homepage-jsx-component, div#Recipe-jsx-component, div#AddRecipe-jsx-component, div#BrowseRecipes-jsx-component {
+    background-color: antiquewhite;
     padding-top: 12em;
     padding-left: 9.5em;
     padding-right: 1.5em;
@@ -58,8 +49,7 @@ div#AddRecipe-jsx-component p.mb-0.mt-1 {
 
 /*--- RECIPE ---*/
 
-div#AddRecipe-jsx-component, 
-div#Recipe-jsx-component {
+div#AddRecipe-jsx-component, div#Recipe-jsx-component {
     background-color: antiquewhite;
     background-repeat: no-repeat;
     background-size: cover;
@@ -92,7 +82,7 @@ div#Nav-jsx-component {
 
 #Nav-jsx-component nav.navbar.fixed.navbar-expand-sm {
     background-image: linear-gradient( white, grey);
-    height:2.5em;
+    height: 2.5em;
     padding: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -140,12 +130,12 @@ div#Nav-jsx-component {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#Nav-jsx-component li.nav-item.homepage{
+#Nav-jsx-component li.nav-item.homepage {
     border-bottom: 1px solid rgba(0, 0, 0, 0.19);
 }
 
 #Nav-jsx-component ul.navbar-nav {
-    text-align:center;
+    text-align: center;
 }
 
 #Nav-jsx-component a.nav-link {
@@ -177,21 +167,17 @@ div#Nav-jsx-component {
 }
 
 #RecipeList-jsx-component div#recipe-card {
-    box-shadow:5px 10px 8px #888888;
+    box-shadow: 5px 10px 8px #888888;
 }
 
 /* --- SIGNIN - REGISTER - RECOVERY EMAIL - RESET PASSWORD --- */
 
-#Register-jsx-component div.input-container, 
-#SignIn-jsx-component div.input-container,
-#RequestResetToken-jsx-component div.input-container,
-#ResetPassword-jsx-component div.input-container {
+#Register-jsx-component div.input-container, #SignIn-jsx-component div.input-container, #RequestResetToken-jsx-component div.input-container, #ResetPassword-jsx-component div.input-container {
     display: flex;
     margin-bottom: 1em;
 }
 
-#Register-jsx-component .icon, 
-#SignIn-jsx-component .icon {
+#Register-jsx-component .icon, #SignIn-jsx-component .icon {
     padding: 0.6em;
     background: darkgrey;
     color: white;
@@ -199,51 +185,41 @@ div#Nav-jsx-component {
     text-align: center;
 }
 
-div#Register-jsx-component, 
-div#SignIn-jsx-component,
-div#RequestResetToken-jsx-component,
-div#ResetPassword-jsx-component{
+div#Register-jsx-component, div#SignIn-jsx-component, div#RequestResetToken-jsx-component, div#ResetPassword-jsx-component {
     padding-top: 15em;
     min-height: 100%;
-    background-color:antiquewhite;
+    background-color: antiquewhite;
 }
 
-div#Register-jsx-component #border-shadow, 
-div#SignIn-jsx-component #border-shadow, 
-div#RequestResetToken-jsx-component #border-shadow,
-div#ResetPassword-jsx-component #border-shadow {
+div#Register-jsx-component #border-shadow, div#SignIn-jsx-component #border-shadow, div#RequestResetToken-jsx-component #border-shadow, div#ResetPassword-jsx-component #border-shadow {
     background-color: white;
 }
 
-/* --- SIGN-IN --- */ 
+/* --- SIGN-IN --- */
 
-#SignIn-jsx-component div.forgot-psw{
-    margin-bottom:1em;
+#SignIn-jsx-component div.forgot-psw {
+    margin-bottom: 1em;
     text-align: center;
 }
 
 /*--- RECOVERY EMAIL - RESET-PASSWORD  ---*/
 
-#RequestResetToken-jsx-component p, 
-#ResetPassword-jsx-component p {
-  color: black;
+#RequestResetToken-jsx-component p, #ResetPassword-jsx-component p {
+    color: black;
 }
 
-#RequestResetToken-jsx-component h4.psw-recovery, 
-#ResetPassword-jsx-component h4.psw-recovery {
-    color:orangered;
+#RequestResetToken-jsx-component h4.psw-recovery, #ResetPassword-jsx-component h4.psw-recovery {
+    color: orangered;
     font-weight: bold;
 }
 
-#RequestResetToken-jsx-component div.input-container,
-#ResetPassword-jsx-component div.input-container {
+#RequestResetToken-jsx-component div.input-container, #ResetPassword-jsx-component div.input-container {
     display: flex;
 }
 
-#RequestResetToken-jsx-component p.outcome, 
-#ResetPassword-jsx-component p.outcome {
-  text-align: center;
-  color:royalblue;
+#RequestResetToken-jsx-component p.outcome, #ResetPassword-jsx-component p.outcome {
+    text-align: center;
+    color: royalblue;
 }
 
 #RequestResetToken-jsx-component div.request-reset-token-msg {
@@ -269,7 +245,6 @@ div._2OR24XnUXt8OCrysr3G0XI {
     background-color: white;
 }
 
-
 /* --- RECIPE DETAILS --- */
 
 div.btn-container {
@@ -290,15 +265,36 @@ button.btn-info.img-btn {
     right: 0%;
 }
 
+/* --- RECIPE NEW INGREDIENT --- */
+
+#RecipeNewIngredient-jsx-component p {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #007bff;
+}
+
+#RecipeNewIngredient-jsx-component button.btn-link {
+    font-style: italic;
+}
+
+/* --- ADD NEW INGREDIENT --- */
+
+#AddNewIngredient-jsx-component label {
+    margin-top: 0.2em;
+}
+
+#AddNewIngredient-jsx-component input.form-control {
+    padding-left: 0;
+    padding-right: 0;
+}
 
 /* --- HOMEPAGE --- */
 
 div#Homepage-jsx-component {
-    background-image:url("images/under-construction.jpg");
+    background-image: url("images/under-construction.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100%;
-    margin-top:200px;
-    margin-left:100px;
+    margin-top: 200px;
+    margin-left: 100px;
 }
-

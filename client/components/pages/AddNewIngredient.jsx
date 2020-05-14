@@ -21,9 +21,8 @@ class AddNewIngredient extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    apiAddNewIngredient(this.state.newIngredient)
-    .then((newIngredient) => {
-        console.log(newIngredient)
+    apiAddNewIngredient(this.state.newIngredient).then((newIngredient) => {
+      console.log(newIngredient);
       if (newIngredient.status == 201) {
         const { onSave } = this.props;
         onSave();
@@ -34,20 +33,24 @@ class AddNewIngredient extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="AddNewIngredient-jsx-component">
         <form className="mt-3" autoComplete="off" onSubmit={this.handleSubmit}>
           <div className="form-group row">
-            <label className="col-sm-2">Name:</label>
-            <input
-              name="name"
-              value={
-                this.state.newIngredient ? this.state.newIngredient.name : ""
-              }
-              onChange={this.handleOnChange}
-              className="form-control form-control-sm col-md-6 border-info"
-            />
-            <input className="btn-sm btn-info" type="submit" value="Save" />
-            
+            <label className="col-sm-1 pl-2">Name:</label>
+            <div className="col-sm-8 ml-1">
+              <input
+                name="name"
+                value={
+                  this.state.newIngredient ? this.state.newIngredient.name : ""
+                }
+                onChange={this.handleOnChange}
+                className="form-control form-control-sm border-info"
+              />
+            </div>
+
+            <div className="col-sm-2 pl-1">
+              <input className="btn-sm btn-info" type="submit" value="Save" />
+            </div>
           </div>
         </form>
       </div>

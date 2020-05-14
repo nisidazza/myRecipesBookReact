@@ -72,7 +72,7 @@ class RecipeNewIngredient extends React.Component {
   render() {
     const addedIngredient = this.state.newIngredient
     return (
-      <div>
+      <div id="RecipeNewIngredient-jsx-component">
         <form className="mt-2" autoComplete="off" onSubmit={this.handleSubmit}>
           <div className="form-group row">
             <div className="col-sm-4 pr-0">
@@ -110,12 +110,12 @@ class RecipeNewIngredient extends React.Component {
             </div>
           </div>
         </form>
-        <p>
+        <p >
           Is the ingredient you are looking for not in the list?
           <button
             type="button"
             name="showForm"
-            className="btn-sm btn-outline-warning"
+            className="btn-sm btn btn-link"
             onClick={this.handleShowForm}
           >
             Click here to add it!
