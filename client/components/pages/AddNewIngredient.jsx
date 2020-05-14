@@ -1,34 +1,61 @@
 import React from "react";
 import { apiAddNewIngredient } from "../../apis/ingredientsApi";
+import Validator from "../common/utilities/Validator";
 
 class AddNewIngredient extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      newIngredient: null,
+      newIngredient: null
     };
+
+    this.validator = React.createRef();
   }
 
-  handleOnChange = (e) => {
+  handleOnChangeName = (e) => {
     this.setState({
       newIngredient: {
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value
       },
-    });
-    console.log(e.target.value);
+    })
   };
+
+  getValidationRules = () => {
+    let rules = []
+
+    rules.push({
+      conditional: () => {
+        return(
+          this.state.newIngredient !== null && 
+          this.state.newIngredient.name !== "" &&
+          this.state.newIngredient.name.trim() !== ""
+        )
+      },
+      errorMessage: "Please, insert a valid ingredient's name"
+    })
+    return rules;
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    apiAddNewIngredient(this.state.newIngredient).then((newIngredient) => {
-      console.log(newIngredient);
-      if (newIngredient.status == 201) {
-        const { onSave } = this.props;
-        onSave();
-      }
-      // TO DO: error message if ingredient is not added
-    });
+    if(this.validator.current.validate()) {
+      apiAddNewIngredient(this.state.newIngredient)
+      .then((newIngredient) => {
+        if(newIngredient.status == 201){
+            const { onSave } = this.props;
+          onSave();
+        }
+      })
+      .catch((err) => {
+        if(err) {
+          this.validator.current.showError("Please, insert the ingredient's name.")
+        } else {
+          this.validator.current.showError("Something went wrong. Please,try again!")
+          throw err;
+        }
+      })
+    }
   };
 
   render() {
@@ -43,13 +70,17 @@ class AddNewIngredient extends React.Component {
                 value={
                   this.state.newIngredient ? this.state.newIngredient.name : ""
                 }
-                onChange={this.handleOnChange}
+                onChange={this.handleOnChangeName}
                 className="form-control form-control-sm border-info"
               />
             </div>
-
             <div className="col-sm-2 pl-1">
               <input className="btn-sm btn-info" type="submit" value="Save" />
+            </div>
+            <div>
+              { <Validator 
+                ref={this.validator}
+                rules={this.getValidationRules()}/> }
             </div>
           </div>
         </form>
