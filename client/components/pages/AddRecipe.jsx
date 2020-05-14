@@ -1,5 +1,6 @@
 import React from "react";
 import { apiAddRecipe } from "../../apis/recipesApi";
+import Validator from "../common/utilities/Validator";
 
 class AddRecipe extends React.Component {
   constructor(props) {
@@ -7,23 +8,97 @@ class AddRecipe extends React.Component {
 
     this.state = {
       newRecipe: {
+        title: "",
+        category:"",
         is_public: false,
-        is_complete: false
-      }
+        is_complete: false,
+      },
     };
+
+    this.validator = React.createRef();
   }
 
+  handleChange = (e) => {
+    this.setState({
+      newRecipe: {
+        ...this.state.newRecipe,
+        [e.target.name]: e.target.value,
+      }
+    })
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.validator.current.validate()) {
+      apiAddRecipe(this.state.newRecipe)
+      .then((res) => {
+        const newRecipeId = res.id;
+        this.props.history.push(`/recipes/${newRecipeId}/?editable=true`);
+        })
+      .catch(err => {
+        if(err) {
+          this.validator.current.showError("Something went wrong. Please, try again")
+        }
+      })
+    }
+  };
+
+  handleCheckbox = (e) => {
+    this.setState({
+      newRecipe: {
+        ...this.state.newRecipe,
+        [e.target.name]: !this.state.newRecipe[e.target.name],
+      },
+    });
+  };
+
+  getValidationRules = () => {
+    let rules = [];
+
+    rules.push({
+      conditional: () => {
+        console.log(this.state.newRecipe)
+        return (
+          this.state.newRecipe !== null &&
+          this.state.newRecipe.title !== "" &&
+          this.state.newRecipe.title.trim() !== ""
+        );
+      },
+      errorMessage: "Please, insert a valid title",
+    });
+
+    rules.push({
+      conditional: () => {
+        return (
+          this.state.newRecipe !== null &&
+          this.state.newRecipe.category !== "" &&
+          this.state.newRecipe.category.trim() !== ""
+        );
+      },
+      errorMessage: "Please, insert a valid category",
+    });
+
+    return rules;
+  };
+
   componentDidMount() {
-    let event = new CustomEvent("pageHasChanged", {detail: {pageTitle : "Add Recipe"}})
-    document.dispatchEvent(event)
+    let event = new CustomEvent("pageHasChanged", {
+      detail: { pageTitle: "Add Recipe" },
+    });
+    document.dispatchEvent(event);
   }
+
 
   render() {
     return (
       <div id="AddRecipe-jsx-component">
         <div className="form-container">
           <div className="border p-3" id="border-shadow">
-            <form className="mt-3 ml-3" autoComplete="off" onSubmit={this.handleSubmit}>
+            <form
+              className="mt-3 ml-3"
+              autoComplete="off"
+              onSubmit={this.handleSubmit}
+            >
               <div className="form-group row">
                 <label className="col-sm-2">Title:</label>
                 <input
@@ -96,6 +171,10 @@ class AddRecipe extends React.Component {
                     ingredients!
                   </p>
                 </div>
+                <div>{<Validator 
+                  rules={this.getValidationRules()} 
+                  ref={this.validator}/>}
+                </div>
               </div>
             </form>
           </div>
@@ -103,32 +182,6 @@ class AddRecipe extends React.Component {
       </div>
     );
   }
-
-  handleChange = e => {
-    this.setState({
-      newRecipe: {
-        ...this.state.newRecipe,
-        [e.target.name]: e.target.value
-      }
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    apiAddRecipe(this.state.newRecipe).then(res => {
-      const newRecipeId = res.id;
-      this.props.history.push(`/recipes/${newRecipeId}/?editable=true`);
-    });
-  };
-
-  handleCheckbox = e => {
-    this.setState({
-      newRecipe: {
-        ...this.state.newRecipe,
-        [e.target.name]: !this.state.newRecipe[e.target.name]
-      }
-    });
-  };
 }
 
 export default AddRecipe;
