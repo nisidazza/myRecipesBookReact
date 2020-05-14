@@ -9,7 +9,8 @@ class AddRecipe extends React.Component {
     this.state = {
       newRecipe: {
         title: "",
-        category:"",
+        category: "",
+        link: "",
         is_public: false,
         is_complete: false,
       },
@@ -23,23 +24,25 @@ class AddRecipe extends React.Component {
       newRecipe: {
         ...this.state.newRecipe,
         [e.target.name]: e.target.value,
-      }
-    })
+      },
+    });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.validator.current.validate()) {
       apiAddRecipe(this.state.newRecipe)
-      .then((res) => {
-        const newRecipeId = res.id;
-        this.props.history.push(`/recipes/${newRecipeId}/?editable=true`);
+        .then((res) => {
+          const newRecipeId = res.id;
+          this.props.history.push(`/recipes/${newRecipeId}/?editable=true`);
         })
-      .catch(err => {
-        if(err) {
-          this.validator.current.showError("Something went wrong. Please, try again")
-        }
-      })
+        .catch((err) => {
+          if (err) {
+            this.validator.current.showError(
+              "Something went wrong. Please, try again"
+            );
+          }
+        });
     }
   };
 
@@ -57,7 +60,7 @@ class AddRecipe extends React.Component {
 
     rules.push({
       conditional: () => {
-        console.log(this.state.newRecipe)
+        console.log(this.state.newRecipe);
         return (
           this.state.newRecipe !== null &&
           this.state.newRecipe.title !== "" &&
@@ -70,12 +73,23 @@ class AddRecipe extends React.Component {
     rules.push({
       conditional: () => {
         return (
-          this.state.newRecipe !== null &&
-          this.state.newRecipe.category !== "" &&
-          this.state.newRecipe.category.trim() !== ""
+          this.state.newRecipe !== null && this.state.newRecipe.category !== ""
         );
       },
       errorMessage: "Please, insert a valid category",
+    });
+
+    rules.push({
+      conditional: () => {
+        return (
+          this.state.newRecipe !== null &&
+          this.state.newRecipe.link !== "" &&
+          this.state.newRecipe.link.match(
+            /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+          )
+        );
+      },
+      errorMessage: "Please, insert a valid link",
     });
 
     return rules;
@@ -87,7 +101,6 @@ class AddRecipe extends React.Component {
     });
     document.dispatchEvent(event);
   }
-
 
   render() {
     return (
@@ -171,9 +184,13 @@ class AddRecipe extends React.Component {
                     ingredients!
                   </p>
                 </div>
-                <div>{<Validator 
-                  rules={this.getValidationRules()} 
-                  ref={this.validator}/>}
+                <div>
+                  {
+                    <Validator
+                      rules={this.getValidationRules()}
+                      ref={this.validator}
+                    />
+                  }
                 </div>
               </div>
             </form>
