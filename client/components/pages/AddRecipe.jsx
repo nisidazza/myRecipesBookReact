@@ -60,7 +60,6 @@ class AddRecipe extends React.Component {
 
     rules.push({
       conditional: () => {
-        console.log(this.state.newRecipe);
         return (
           this.state.newRecipe !== null &&
           this.state.newRecipe.title !== "" &&
