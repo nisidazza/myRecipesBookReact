@@ -73,7 +73,8 @@ router.post('/', (req,res) => {
         }
     })
     .catch(err => {
-        res.status(500).json({message: 'Something went wrong. Please, try again.'})
+        res.status(409).json({message: 'Conflict. Duplicate data'})
+        console.log(err)
     })
 })
 
