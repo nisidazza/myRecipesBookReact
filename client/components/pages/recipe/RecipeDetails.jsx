@@ -41,16 +41,15 @@ class RecipeDetail extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ mode: "view" });
     if(this.validator.current.validate()){
+    this.setState({ mode: "view" });
       apiUpdateRecipeDetails(this.state.recipe)
-      .catch((error) => {
-        if(err => {
-          this.validator.current.showError("Something wen wrong. Please, try again")
-        })
+      .catch((err) => {
+        if(err){
+          this.validator.current.showError("Something went wrong. Please, try again")
+        }
         this.setState({
-          recipe: this.props.recipe,
-          // errormessage: error.message,
+          recipe: this.props.recipe
         });
       })
       .then((recipe) => {
@@ -87,7 +86,9 @@ class RecipeDetail extends React.Component {
         return (
           this.state.recipe !== null &&
           this.state.recipe.title !== "" &&
-          this.state.recipe.title.trim() !== ""
+          this.state.recipe.title.trim() !== ""  &&
+          this.state.recipe.title.match(/^([^0-9]*)$/) &&
+          this.state.recipe.title.match(/^[a-zA-Z '-]+$/)
         );
       },
       errorMessage: "Please, insert a valid title",
@@ -96,7 +97,11 @@ class RecipeDetail extends React.Component {
     rules.push({
       conditional: () => {
         return (
-          this.state.recipe !== null && this.state.recipe.category !== ""
+          this.state.recipe !== null && 
+          this.state.recipe.category !== "" &&
+          this.state.recipe.category.trim() !== "" &&
+          this.state.recipe.category.match(/^([^0-9]*)$/) &&
+          this.state.recipe.category.match(/^[a-zA-Z '-]+$/)
         );
       },
       errorMessage: "Please, insert a valid category",

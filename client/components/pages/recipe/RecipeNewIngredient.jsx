@@ -10,7 +10,8 @@ class RecipeNewIngredient extends React.Component {
     this.state = {
       ingredients: [],
       newIngredient: this.resetIngredient(),
-      showForm: false
+      showForm: false,
+      errorMessage: ""
     };
   }
 
@@ -34,7 +35,10 @@ class RecipeNewIngredient extends React.Component {
       newIngredient.recipe_id,
       newIngredient.ingredient_id,
       newIngredient.quantity
-    ).then((ingredientId) => {
+    ).catch(err => {
+      console.log(err)
+    })
+    .then((ingredientId) => {
       if (ingredientId > 0) {
         this.setState({
           newIngredient: this.resetIngredient(),

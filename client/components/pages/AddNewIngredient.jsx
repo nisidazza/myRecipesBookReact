@@ -29,7 +29,9 @@ class AddNewIngredient extends React.Component {
         return(
           this.state.newIngredient !== null && 
           this.state.newIngredient.name !== "" &&
-          this.state.newIngredient.name.trim() !== ""
+          this.state.newIngredient.name.trim() !== "" &&
+          this.state.newIngredient.name.match(/^([^0-9]*)$/) &&
+          this.state.newIngredient.name.match(/^[a-zA-Z '-]+$/)
         )
       },
       errorMessage: "Please, insert a valid ingredient's name"
@@ -48,8 +50,8 @@ class AddNewIngredient extends React.Component {
         }
       })
       .catch((err) => {
-        if(err) {
-          this.validator.current.showError("Please, insert the ingredient's name.")
+        if(err.message == "Conflict") {
+          this.validator.current.showError("The ingredient's name already exists")
         } else {
           this.validator.current.showError("Something went wrong. Please,try again!")
           throw err;
