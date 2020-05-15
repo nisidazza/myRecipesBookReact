@@ -1,5 +1,6 @@
 import React from "react";
 import { apiUpdateRecipeDetails } from "../../../apis/recipesApi";
+import Validator from "../../common/utilities/Validator"
 
 
 class RecipeDetail extends React.Component {
@@ -10,6 +11,8 @@ class RecipeDetail extends React.Component {
       recipe: this.props.recipe,
       mode: "view",
     };
+
+    this.validator = React.createRef();
   }
 
   uploadWidget = cloudinary.createUploadWidget(
@@ -39,18 +42,23 @@ class RecipeDetail extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ mode: "view" });
+    if(this.validator.current.validate()){
       apiUpdateRecipeDetails(this.state.recipe)
-        .catch((error) => {
-          this.setState({
-            recipe: this.props.recipe,
-            errormessage: error.message,
-          });
+      .catch((error) => {
+        if(err => {
+          this.validator.current.showError("Something wen wrong. Please, try again")
         })
-        .then((recipe) => {
-          this.setState({
-            recipe
-          });
+        this.setState({
+          recipe: this.props.recipe,
+          // errormessage: error.message,
         });
+      })
+      .then((recipe) => {
+        this.setState({
+          recipe
+        });
+      });
+    } 
   };
 
   handleChange = (e) => {
@@ -69,6 +77,45 @@ class RecipeDetail extends React.Component {
         [e.target.name]: e.target.checked ? true : false,
       },
     });
+  };
+
+  getValidationRules = () => {
+    let rules = []
+
+    rules.push({
+      conditional: () => {
+        return (
+          this.state.recipe !== null &&
+          this.state.recipe.title !== "" &&
+          this.state.recipe.title.trim() !== ""
+        );
+      },
+      errorMessage: "Please, insert a valid title",
+    });
+
+    rules.push({
+      conditional: () => {
+        return (
+          this.state.recipe !== null && this.state.recipe.category !== ""
+        );
+      },
+      errorMessage: "Please, insert a valid category",
+    });
+
+    rules.push({
+      conditional: () => {
+        return (
+          this.state.recipe !== null &&
+          this.state.recipe.link !== "" &&
+          this.state.recipe.link.match(
+            /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+          )
+        );
+      },
+      errorMessage: "Please, insert a valid link",
+    });
+
+    return rules;
   };
 
   renderEditMode = () => {
@@ -102,7 +149,7 @@ class RecipeDetail extends React.Component {
               value={recipeInfo.title}
               onChange={this.handleChange}
               className="form-control form-control-sm col-md-6 border-info"
-              required
+              autoComplete="off"
             />
           </div>
           <div className="form-group row">
@@ -112,7 +159,7 @@ class RecipeDetail extends React.Component {
               value={recipeInfo.category}
               onChange={this.handleChange}
               className="form-control form-control-sm col-md-2 border-info"
-              required
+              autoComplete="off"
             />
           </div>
           <div className="form-group row">
@@ -122,6 +169,7 @@ class RecipeDetail extends React.Component {
               value={recipeInfo.link}
               onChange={this.handleChange}
               className="form-control form-control-sm col-md-9 border-info"
+              autoComplete="off"
             />
           </div>
           <div className="form-group row">
@@ -131,6 +179,7 @@ class RecipeDetail extends React.Component {
               value={recipeInfo.notes}
               onChange={this.handleChange}
               className="form-control form-control-sm col-md-9 border-info"
+              autoComplete="off"
             />
           </div>
           <div className="form-group">
@@ -217,9 +266,11 @@ class RecipeDetail extends React.Component {
     return (
       <>
         {recipeDetailForm}
-        <section>
-          <h1>{this.state.errormessage}</h1>
-        </section>
+        <div>
+            {<Validator 
+            ref={this.validator}
+            rules={this.getValidationRules()}/>}
+          </div>
       </>
     );
   }
