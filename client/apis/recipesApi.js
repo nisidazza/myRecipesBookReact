@@ -115,7 +115,7 @@ export function apiGetRecipes() {
   return httpClient
     .get(recipesUrl)
     .catch(() => {
-      throw Error("you need to implement an API route for /api/v1/recipes");
+      throw Error("API route not found");
     })
     .then(res => {
       return res.body;
@@ -126,7 +126,7 @@ export function apiGetRecipeDetails(id) {
   return httpClient
     .get(`${recipesUrl}/${id}`)
     .catch(() => {
-      throw Error("you need to implement an API route for /api/v1/recipes/:id");
+      throw Error("API route not found");
     })
     .then(res => res.body);
 }
