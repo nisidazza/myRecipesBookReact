@@ -63,7 +63,9 @@ class AddRecipe extends React.Component {
         return (
           this.state.newRecipe !== null &&
           this.state.newRecipe.title !== "" &&
-          this.state.newRecipe.title.trim() !== ""
+          this.state.newRecipe.title.trim() !== ""  &&
+          this.state.newRecipe.title.match(/^([^0-9]*)$/) &&
+          this.state.newRecipe.title.match(/^[a-zA-Z '-]+$/)
         );
       },
       errorMessage: "Please, insert a valid title",
@@ -72,7 +74,11 @@ class AddRecipe extends React.Component {
     rules.push({
       conditional: () => {
         return (
-          this.state.newRecipe !== null && this.state.newRecipe.category !== ""
+          this.state.newRecipe !== null && 
+          this.state.newRecipe.category !== "" &&
+          this.state.newRecipe.category.trim() !== "" &&
+          this.state.newRecipe.category.match(/^([^0-9]*)$/) &&
+          this.state.newRecipe.category.match(/^[a-zA-Z '-]+$/)
         );
       },
       errorMessage: "Please, insert a valid category",
