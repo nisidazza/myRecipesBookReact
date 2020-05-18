@@ -6,7 +6,7 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.table('recipes', table => {
-    table.dropTimestamps()
-  })
+    return knex.schema.table('recipes', table => {
+        table.dropTimestamps()
+    })
 };
