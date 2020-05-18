@@ -83,6 +83,19 @@ export function apiGetPublicRecipes() {
     });
 }
 
+export function apiGetLatestRecipes() {
+  return httpClient
+    .get(`${recipesUrl}/latest`)
+    .catch(() => {
+      throw Error(
+        "you need to implement an API route for /api/v1/recipes/latest"
+      );
+    })
+    .then(res => {
+      return res.body;
+    });
+}
+
 export function apiGetUserPrivateRecipes() {
   return httpClient
     .get(`${recipesUrl}/private`)

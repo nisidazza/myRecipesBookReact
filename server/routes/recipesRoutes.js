@@ -20,6 +20,18 @@ router.get("/public", (req, res) => {
     });
 });
 
+// GET /api/v1/recipes/latest
+router.get("/latest", (req,res) => {
+  dbRecipes
+    .getLatestPublicRecipes()
+    .then(latestRecipes => {
+      res.json(latestRecipes)
+    })
+    .catch(err => {
+      res.status(500).json({message: "Something is broken"});
+    });
+})
+
 //GET /api/v1/recipes --- all public and user private
 router.get("/", getTokenDecoder(false), (req, res) => {
   dbRecipes
