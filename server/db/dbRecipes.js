@@ -36,6 +36,15 @@ function editRecipe(id, newRecipe, db = connection) {
     });
 }
 
+function getLatestPublicRecipes(db = connection) {
+  return db("recipes")
+  .select()
+  .where("is_public", true)
+  .orderBy("created_at", "desc")
+  .limit(5)
+
+}
+
 function getPublicRecipes(db = connection) {
   return db("recipes")
     .select()
@@ -61,5 +70,6 @@ module.exports = {
   editRecipe,
   getPublicRecipes,
   getListRecipes,
-  getRecipe
+  getRecipe,
+  getLatestPublicRecipes
 };
