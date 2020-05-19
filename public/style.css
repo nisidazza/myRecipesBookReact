@@ -298,7 +298,7 @@ div#Homepage-jsx-component {
 }
 
 div#Homepage-jsx-component p.card-subtitle {
-    font-size:0.8em;
+    font-size: 0.8em;
 }
 
 div#Homepage-jsx-component h6.card-title {
@@ -306,5 +306,23 @@ div#Homepage-jsx-component h6.card-title {
 }
 
 div#Homepage-jsx-component div.latest-recipes-container {
-    padding-top: 1em;
+    border-bottom: lightgray 1px ridge;
+    border-top: lightgray 1px ridge;
+    padding: 1em 0.5em;
+}
+
+div#Homepage-jsx-component div.demo-news-container {
+    padding-bottom: 0.5em;
+}
+
+div#Homepage-jsx-component div.news-container {
+    padding: 1em 0.5em;
+}
+
+div#Homepage-jsx-component div.col-6.col-md-4 {
+    border-left: lightgray 1px ridge;
+}
+
+div#Homepage-jsx-component div.card-body.news {
+    background-color: wheat;
 }
