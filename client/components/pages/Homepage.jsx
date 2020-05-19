@@ -27,7 +27,7 @@ class Homepage extends React.Component {
   render() {
     return (
       <div id="Homepage-jsx-component">
-        <div className="demo-news-container">
+        <div className="demo-features-container">
           <div className="row m-0 pl-2">
             <div className="col-md-8 pl-0">
               <div className="row m-0 pl-2">
@@ -42,36 +42,35 @@ class Homepage extends React.Component {
             </div>
             <div className="col-6 col-md-4">
               <div className="row m-0 pl-2">
-                <h5 className="m-0">What's New</h5>
+                <h5 className="m-0">Features</h5>
               </div>
-              <div className="news-container">
+              <div className="features-container">
                 <div className="card">
-                  <div className="card-body news p-1">
-                    <h5 className="card-title">Card title</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      Card subtitle
+                  <div className="card-body features p-1">
+                    <h5 className="card-title features-title">About</h5>
+                    <h6 className="card-subtitle features-subtitle mb-2 text-muted">
+                     My Recipe Book - Your personal recipe organiser.
                     </h6>
-                    <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                    <p className="card-text mb-1">
+                      Save your favourite recipes from websites all in one place,
+                      share them with other people or make them private!
                     </p>
-                    <a href="#" className="card-link">
-                      Card link
-                    </a>
-                    <a href="#" className="card-link">
+                    <Link to="/register" target="_blank" className="card-link">
+                      Register Now!
+                    </Link>
+                    {/* <a href="#" className="card-link">
                       Another link
-                    </a>
+                    </a>  */}
                   </div>
                 </div>
                 <div className="card mt-3">
-                  <div className="card-body news p-1">
-                    <h5 className="card-title">Card title</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      Card subtitle
+                  <div className="card-body features p-1">
+                    <h5 className="card-title features-title">Card Title</h5>
+                    <h6 className="card-subtitle features-subtitle b-2 text-muted">
+                      Card subtitle 
                     </h6>
                     <p className="card-text">
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
+                      
                     </p>
                     <a href="#" className="card-link">
                       Card link
@@ -87,7 +86,7 @@ class Homepage extends React.Component {
         </div>
         <div className="latest-recipes-container">
           <div className="row m-0 pl-2">
-            <h5 className="m-0">Latest Recipes</h5>
+            <h5 className="m-0">What's New</h5>
           </div>
           <div className="row m-0 row-cols-5">
             {this.state.recipes.map((recipe, i) => {
@@ -98,10 +97,7 @@ class Homepage extends React.Component {
                     style={{ width: "14em" }}
                     id="recipe-card"
                   >
-                    <Link
-                      to={`/recipes/${recipe.id}`}
-                      target="_blank"
-                    >
+                    <Link to={`/recipes/${recipe.id}`} target="_blank">
                       <img
                         className="card-img-top"
                         src={

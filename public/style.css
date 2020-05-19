@@ -311,11 +311,11 @@ div#Homepage-jsx-component div.latest-recipes-container {
     padding: 1em 0.5em;
 }
 
-div#Homepage-jsx-component div.demo-news-container {
-    padding-bottom: 0.5em;
+div#Homepage-jsx-component div.demo-features-container {
+    padding-bottom: 1em;
 }
 
-div#Homepage-jsx-component div.news-container {
+div#Homepage-jsx-component div.features-container {
     padding: 1em 0.5em;
 }
 
@@ -323,6 +323,11 @@ div#Homepage-jsx-component div.col-6.col-md-4 {
     border-left: lightgray 1px ridge;
 }
 
-div#Homepage-jsx-component div.card-body.news {
-    background-color: #8aced8;
+div#Homepage-jsx-component div.card-body.features {
+    background-color: seashell;
+}
+
+div#Homepage-jsx-component h6.card-subtitle.features-subtitle {
+    color: red !important;
+    font-weight: bold;
 }
