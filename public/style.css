@@ -293,7 +293,7 @@ button.btn-info.img-btn {
 div#Homepage-jsx-component {
     min-height: 100%;
     max-width: 100%;
-    margin-top: 200px;
+    margin-top: 230px;
     margin-left: 130px;
 }
 
@@ -303,4 +303,8 @@ div#Homepage-jsx-component p.card-subtitle {
 
 div#Homepage-jsx-component h6.card-title {
     font-size: 0.9em;
+}
+
+div#Homepage-jsx-component div.latest-recipes-container {
+    padding-top: 1em;
 }
