@@ -297,11 +297,11 @@ div#Homepage-jsx-component {
     margin-left: 130px;
 }
 
-div#Homepage-jsx-component p.card-subtitle {
+div#Homepage-jsx-component p.card-subtitle.latest-subtitle {
     font-size: 0.8em;
 }
 
-div#Homepage-jsx-component h6.card-title {
+div#Homepage-jsx-component h6.card-title.latest-title {
     font-size: 0.9em;
 }
 
@@ -309,6 +309,10 @@ div#Homepage-jsx-component div.latest-recipes-container {
     border-bottom: lightgray 1px ridge;
     border-top: lightgray 1px ridge;
     padding: 1em 0.5em;
+}
+
+div#Homepage-jsx-component div.row.main-title{
+    background-image: linear-gradient(to right, #17a2b8 ,white);
 }
 
 div#Homepage-jsx-component div.demo-features-container {
@@ -328,6 +332,10 @@ div#Homepage-jsx-component div.card-body.features {
 }
 
 div#Homepage-jsx-component h6.card-subtitle.features-subtitle {
-    color: red !important;
+    color: olivedrab !important;
     font-weight: bold;
 }
+
+div#Homepage-jsx-component h5.card-title.features-title {
+    font-weight: bold;
+} 

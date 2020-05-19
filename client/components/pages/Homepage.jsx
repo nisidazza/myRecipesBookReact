@@ -30,18 +30,18 @@ class Homepage extends React.Component {
         <div className="demo-features-container">
           <div className="row m-0 pl-2">
             <div className="col-md-8 pl-0">
-              <div className="row m-0 pl-2">
+              <div className="row main-title m-0 pl-2">
                 <h5 className="m-0">Watch the Demo!</h5>
               </div>
               <div className="embed-responsive embed-responsive-21by9">
                 <iframe
-                  className="embed-responsive-item pt-3"
+                  className="embed-responsive-item pl-2 pt-3"
                   src="https://www.youtube.com/embed/ahCB_8OARCI"
                 ></iframe>
               </div>
             </div>
             <div className="col-6 col-md-4">
-              <div className="row m-0 pl-2">
+              <div className="row main-title m-0 pl-2">
                 <h5 className="m-0">Features</h5>
               </div>
               <div className="features-container">
@@ -85,7 +85,7 @@ class Homepage extends React.Component {
           </div>
         </div>
         <div className="latest-recipes-container">
-          <div className="row m-0 pl-2">
+          <div className="row main-title m-0 pl-2">
             <h5 className="m-0">What's New</h5>
           </div>
           <div className="row m-0 row-cols-5">
@@ -111,10 +111,10 @@ class Homepage extends React.Component {
                       />
                     </Link>
                     <div className="card-body p-2">
-                      <h6 className="card-title mb-2 text-md-left">
+                      <h6 className="card-title latest-title mb-2 text-md-left">
                         <strong>{recipe.title}</strong>
                       </h6>
-                      <p className="card-subtitle mb-0 text-muted">
+                      <p className="card-subtitle latest-subtitle mb-0 text-muted">
                         Category: {recipe.category}
                       </p>
                     </div>
