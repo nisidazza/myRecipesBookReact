@@ -17,7 +17,8 @@ class SearchByIngredients extends React.Component {
       selected_ingredient_ids: [],
       randomKeyToReconstructComponent: 0,
       showError: false,
-      matchAllIngredients: false
+      matchAllIngredients: false,
+      showRecipes: true
     };
   }
 
@@ -52,7 +53,8 @@ class SearchByIngredients extends React.Component {
       this.setState({
         recipes,
         randomKeyToReconstructComponent,
-        showError: recipes.length == 0
+        showError: recipes.length == 0,
+        showRecipes: true
       });
     });
   };
@@ -77,6 +79,14 @@ class SearchByIngredients extends React.Component {
     });
   };
 
+  handleClearButton = () => {
+    this.setState({
+      recipes: [],
+      showRecipes: false,
+      showError: false
+    })
+  }
+
   render() {
     let { ingredients } = this.state;
     let options = [];
@@ -88,7 +98,7 @@ class SearchByIngredients extends React.Component {
       <>
         <div id="SearchByIngredients-jsx-component">
           <div className="row mt-5">
-            <div className="col-sm-8 pr-0 mr-0">
+            <div className="col-sm-8">
               <Multiselect
                 options={options}
                 displayValue="name"
@@ -103,7 +113,7 @@ class SearchByIngredients extends React.Component {
             <div className="col-sm pl-0">
               <button
                 onClick={this.searchForRecipes}
-                className="btn-md btn-info ml-1 mt-1"
+                className="btn btn-info"
               >
                 Search
               </button>
@@ -151,14 +161,19 @@ class SearchByIngredients extends React.Component {
               </button>
             </div>
           ) : (
-            <div>
+            this.state.showRecipes ? <div>
               <RecipesList
                 recipes={this.state.recipes}
                 key={this.state.randomKeyToReconstructComponent}
                 openInNewTab={true}
               />
-            </div>
+            </div> 
+          : 
+          ""
           )}
+          <div>
+            <button className="btn btn-secondary mt-3" onClick={this.handleClearButton}>Clear Search</button>
+          </div>
         </div>
       </>
     );
