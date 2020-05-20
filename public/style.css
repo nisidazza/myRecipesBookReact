@@ -34,10 +34,11 @@ div#SearchByIngredients-jsx-component, div#Recipe-jsx-component, div#AddRecipe-j
 }
 
 div.form-container {
-    width: 55%;
+    width: 750px;
     background-color: white;
     margin: auto;
     margin-top: 2em;
+    padding: 0;
 }
 
 /* --- ADD RECIPE --- */
@@ -187,6 +188,7 @@ div#Nav-jsx-component {
 
 div#Register-jsx-component, div#SignIn-jsx-component, div#RequestResetToken-jsx-component, div#ResetPassword-jsx-component {
     padding-top: 15em;
+    padding-left: 6em;
     min-height: 100%;
     background-color: antiquewhite;
 }
@@ -211,10 +213,6 @@ div#Register-jsx-component #border-shadow, div#SignIn-jsx-component #border-shad
 #RequestResetToken-jsx-component h4.psw-recovery, #ResetPassword-jsx-component h4.psw-recovery {
     color: orangered;
     font-weight: bold;
-}
-
-#RequestResetToken-jsx-component div.input-container, #ResetPassword-jsx-component div.input-container {
-    display: flex;
 }
 
 #RequestResetToken-jsx-component p.outcome, #ResetPassword-jsx-component p.outcome {

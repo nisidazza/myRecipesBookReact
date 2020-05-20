@@ -74,8 +74,8 @@ class Recipe extends React.Component {
 
     return (
       <div id="Recipe-jsx-component">
-        <div className="form-container">
-          <div className=" border px-5 py-3" id="border-shadow">
+        <div className="container-fluid form-container">
+          <div className="border px-5 py-3" id="border-shadow">
             <RecipeDetails
               editable={this.state.editable && this.state.userCanEdit}
               recipe={recipeDetails}
