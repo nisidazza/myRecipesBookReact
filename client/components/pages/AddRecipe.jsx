@@ -111,12 +111,13 @@ class AddRecipe extends React.Component {
     return (
       <div id="AddRecipe-jsx-component">
         <div className="form-container">
-          <div className="border p-3" id="border-shadow">
+          <div className="border py-4" id="border-shadow">
             <form
-              className="mt-3 ml-3"
+              className="ml-5"
               autoComplete="off"
               onSubmit={this.handleSubmit}
             >
+              <h4 className="text-center mt-1 mb-4">New Recipe Form</h4>
               <div className="form-group row">
                 <label className="col-sm-2">Title:</label>
                 <input
@@ -152,7 +153,7 @@ class AddRecipe extends React.Component {
               <div className="form-group">
                 <div className="form-check form-check-inline row pl-0">
                   <label
-                    className="form-check-label col-sm-10"
+                    className="form-check-label col-sm-7"
                     htmlFor="is_public"
                   >
                     Public:
@@ -161,10 +162,10 @@ class AddRecipe extends React.Component {
                     type="checkbox"
                     name="is_public"
                     onChange={this.handleCheckbox}
-                    className="form-check-input form-control-sm border-info ml-0"
+                    className="form-check-input form-control-sm border-info ml-2"
                   />
                   <label
-                    className="form-check-label col-sm-10"
+                    className="form-check-label col-sm-7"
                     htmlFor="is_complete"
                   >
                     Completed:
@@ -173,22 +174,22 @@ class AddRecipe extends React.Component {
                     type="checkbox"
                     name="is_complete"
                     onChange={this.handleCheckbox}
-                    className="form-check-input form-control-sm  border-info ml-0"
+                    className="form-check-input form-control-sm  border-info ml-2"
                   />
                 </div>
               </div>
-              <div className="row">
-                <input
-                  type="submit"
-                  value="Save"
-                  className="btn-info row ml-2"
-                />
-                <div className="ml-4">
+              <div className="form-group row mb-4">
+                <div className="ml-2">
                   <p className="mb-0 mt-1 p-1">
                     Please, save your recipe details so you can add the
                     ingredients!
                   </p>
                 </div>
+                <input
+                  type="submit"
+                  value="Save"
+                  className="btn-info row ml-2"
+                />
                 <div>
                   {
                     <Validator

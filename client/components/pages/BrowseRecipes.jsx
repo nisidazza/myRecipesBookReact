@@ -5,7 +5,7 @@ import {
   apiGetUserPrivateRecipes,
 } from "../../apis/recipesApi";
 import RecipesList from "../common/RecipesList";
-import { IfAuthenticated, IfNotAuthenticated } from "../common/utilities/Authenticated";
+import { IfAuthenticated} from "../common/utilities/Authenticated";
 
 class BrowseRecipes extends React.Component {
   constructor(props) {
@@ -54,7 +54,6 @@ class BrowseRecipes extends React.Component {
       selectedOption: e.target.value,
     });
     this.fetchRecipes(e.target.value);
-    console.log("event target value: " + e.target.value);
   };
 
   fetchRecipes = (type) => {
@@ -67,24 +66,22 @@ class BrowseRecipes extends React.Component {
     } else if (type == "private") {
       recipesRetrieveFunction = apiGetUserPrivateRecipes;
     }
-    recipesRetrieveFunction().then((allRecipes) => {
+    recipesRetrieveFunction().then((recipes) => {
       this.setState({
-        recipes: allRecipes,
+        recipes: recipes,
         randomNumber,
       });
     });
   };
 
   render() {
-    console.log("selectedOption: " + this.state.selectedOption);
     return (
       <>
         <div id="BrowseRecipes-jsx-component">
           <IfAuthenticated>
             <div className="form-group mt-4">
-              <label htmlFor="recipesListOptions">Select</label>
               <select
-                className="form-control"
+                className="form-control col-sm-4"
                 id={"recipesListOptions"}
                 value={this.state.selectedOption}
                 onChange={this.handleSelectedOption}

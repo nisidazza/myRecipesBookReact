@@ -87,7 +87,7 @@ class SearchByIngredients extends React.Component {
     return (
       <>
         <div id="SearchByIngredients-jsx-component">
-          <div className="row mt-4">
+          <div className="row mt-5">
             <div className="col-sm-8 pr-0 mr-0">
               <Multiselect
                 options={options}

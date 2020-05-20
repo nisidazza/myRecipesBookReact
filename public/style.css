@@ -34,7 +34,7 @@ div#SearchByIngredients-jsx-component, div#Recipe-jsx-component, div#AddRecipe-j
 }
 
 div.form-container {
-    width: 50%;
+    width: 55%;
     background-color: white;
     margin: auto;
     margin-top: 2em;
@@ -81,7 +81,7 @@ div#Nav-jsx-component {
 }
 
 #Nav-jsx-component nav.navbar.fixed.navbar-expand-sm {
-    background-image: linear-gradient( white, grey);
+    background-image: linear-gradient(white 10%, gray 85%,rgb(114, 113, 113) 95%);
     height: 2.5em;
     padding: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -96,11 +96,11 @@ div#Nav-jsx-component {
 
 #Nav-jsx-component h1#title {
     font-weight: bold;
-    text-shadow: 2px 2px 4px #f3eded;
+    text-shadow: 2px 2px 1px #f3eded;
 }
 
 #Nav-jsx-component h4#statement {
-    text-shadow: 2px 2px 4px #f3eded;
+    text-shadow: 2px 2px 1px #f3eded;
     font-size: 1.8em;
 }
 
@@ -117,7 +117,7 @@ div#Nav-jsx-component {
 /*---SIDENAV --- */
 
 #Nav-jsx-component nav.navbar.sidenav {
-    background-image: linear-gradient(olivedrab, white) !important;
+    background-image: linear-gradient(141deg, white -5%, olivedrab 20%, rgb(98, 131, 33) 51%, white 95%) !important;
     height: 100%;
     width: 130px;
     position: fixed;
@@ -312,7 +312,7 @@ div#Homepage-jsx-component div.latest-recipes-container {
 }
 
 div#Homepage-jsx-component div.row.main-title{
-    background-image: linear-gradient(to right, #17a2b8 ,white);
+    background-image: linear-gradient(141deg, white -5%, olivedrab 41%, rgb(233, 232, 232) 81%, gray 95%);
 }
 
 div#Homepage-jsx-component div.demo-features-container {

@@ -86,7 +86,7 @@ class Homepage extends React.Component {
         </div>
         <div className="latest-recipes-container">
           <div className="row main-title m-0 pl-2">
-            <h5 className="m-0">What's New</h5>
+            <h5 className="m-0">Check out some of the latest recipes!</h5>
           </div>
           <div className="row m-0 row-cols-5">
             {this.state.recipes.map((recipe, i) => {
