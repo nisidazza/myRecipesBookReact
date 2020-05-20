@@ -1,6 +1,11 @@
 import React from "react";
-import { apiGetRecipes} from "../../apis/recipesApi";
+import {
+  apiGetRecipes,
+  apiGetPublicRecipes,
+  apiGetUserPrivateRecipes,
+} from "../../apis/recipesApi";
 import RecipesList from "../common/RecipesList";
+import { IfAuthenticated, IfNotAuthenticated } from "../common/utilities/Authenticated";
 
 class BrowseRecipes extends React.Component {
   constructor(props) {
@@ -48,43 +53,52 @@ class BrowseRecipes extends React.Component {
     this.setState({
       selectedOption: e.target.value,
     });
+    this.fetchRecipes(e.target.value);
     console.log("event target value: " + e.target.value);
-   
   };
 
-  fetchRecipes = () => {
+  fetchRecipes = (type) => {
     let randomNumber = Math.random();
-      apiGetRecipes().then((allRecipes) => {
-        this.setState({
-          recipes : allRecipes,
-          randomNumber,
-        });
-      })
-  }
+    let recipesRetrieveFunction;
+    if (!type || type == "all") {
+      recipesRetrieveFunction = apiGetRecipes;
+    } else if (type == "public") {
+      recipesRetrieveFunction = apiGetPublicRecipes;
+    } else if (type == "private") {
+      recipesRetrieveFunction = apiGetUserPrivateRecipes;
+    }
+    recipesRetrieveFunction().then((allRecipes) => {
+      this.setState({
+        recipes: allRecipes,
+        randomNumber,
+      });
+    });
+  };
 
   render() {
     console.log("selectedOption: " + this.state.selectedOption);
     return (
       <>
         <div id="BrowseRecipes-jsx-component">
-          <div className="form-group mt-4">
-            <label htmlFor="recipesListOptions">Select</label>
-            <select
-              className="form-control"
-              id={"recipesListOptions"}
-              value={this.state.selectedOption}
-              onChange={this.handleSelectedOption}
-            >
-              {this.state.options.map((option) => {
-                return (
-                  <option key={option.value} value={option.value}>
-                    {option.name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-
+          <IfAuthenticated>
+            <div className="form-group mt-4">
+              <label htmlFor="recipesListOptions">Select</label>
+              <select
+                className="form-control"
+                id={"recipesListOptions"}
+                value={this.state.selectedOption}
+                onChange={this.handleSelectedOption}
+              >
+                {this.state.options.map((option) => {
+                  return (
+                    <option key={option.value} value={option.value}>
+                      {option.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          </IfAuthenticated>
           <RecipesList
             recipes={this.state.recipes}
             key={this.state.randomNumber}

@@ -49,7 +49,7 @@ div#AddRecipe-jsx-component p.mb-0.mt-1 {
 
 /*--- RECIPE ---*/
 
-div#AddRecipe-jsx-component, div#Recipe-jsx-component {
+div#AddRecipe-jsx-component, div#Recipe-jsx-component, div#RecipeList-jsx-component, div#BrowseRecipes-jsx-component {
     background-color: antiquewhite;
     background-repeat: no-repeat;
     background-size: cover;
