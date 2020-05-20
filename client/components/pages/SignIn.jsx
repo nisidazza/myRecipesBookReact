@@ -43,11 +43,11 @@ class SignIn extends React.Component {
           error.response.body.errorType == "INVALID_CREDENTIALS"
         ) {
           this.validator.current.showError(
-            "Sorry, wrong username + password combination!"
+            "There was an error with your E-Mail/Password combination. Please try again."
           )
         } else {
           this.validator.current.showError(
-            "Something went wrong. Please,try again!"
+            "Authentication credentials were not provided."
           )
           throw error;
         }
