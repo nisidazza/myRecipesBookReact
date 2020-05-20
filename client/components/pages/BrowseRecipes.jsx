@@ -1,5 +1,5 @@
 import React from "react";
-import { apiGetRecipes } from "../../apis/recipesApi";
+import { apiGetRecipes} from "../../apis/recipesApi";
 import RecipesList from "../common/RecipesList";
 
 class BrowseRecipes extends React.Component {
@@ -8,7 +8,22 @@ class BrowseRecipes extends React.Component {
 
     this.state = {
       recipes: [],
-      randomNumber: 0
+      randomNumber: 0,
+      options: [
+        {
+          name: "All",
+          value: "all",
+        },
+        {
+          name: "Public",
+          value: "public",
+        },
+        {
+          name: "Private",
+          value: "private",
+        },
+      ],
+      selectedOption: "all",
     };
   }
 
@@ -16,33 +31,60 @@ class BrowseRecipes extends React.Component {
     this.fetchRecipes();
 
     let event = new CustomEvent("pageHasChanged", {
-      detail: { pageTitle: "Recipes List" }
+      detail: { pageTitle: "Recipes List" },
     });
     document.dispatchEvent(event);
 
     document.addEventListener(
       "logOff",
-      e => {
+      (e) => {
         this.fetchRecipes();
       },
       false
     );
   }
 
-  fetchRecipes = () => {
-    let randomNumber = Math.random();
-    apiGetRecipes().then(recipes => {
-      this.setState({
-        recipes,
-        randomNumber
-      });
+  handleSelectedOption = (e) => {
+    this.setState({
+      selectedOption: e.target.value,
     });
+    console.log("event target value: " + e.target.value);
+   
   };
 
+  fetchRecipes = () => {
+    let randomNumber = Math.random();
+      apiGetRecipes().then((allRecipes) => {
+        this.setState({
+          recipes : allRecipes,
+          randomNumber,
+        });
+      })
+  }
+
   render() {
+    console.log("selectedOption: " + this.state.selectedOption);
     return (
       <>
         <div id="BrowseRecipes-jsx-component">
+          <div className="form-group mt-4">
+            <label htmlFor="recipesListOptions">Select</label>
+            <select
+              className="form-control"
+              id={"recipesListOptions"}
+              value={this.state.selectedOption}
+              onChange={this.handleSelectedOption}
+            >
+              {this.state.options.map((option) => {
+                return (
+                  <option key={option.value} value={option.value}>
+                    {option.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
           <RecipesList
             recipes={this.state.recipes}
             key={this.state.randomNumber}
