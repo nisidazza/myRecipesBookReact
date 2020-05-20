@@ -13,7 +13,7 @@ class BrowseRecipes extends React.Component {
 
     this.state = {
       recipes: [],
-      randomNumber: 0,
+      randomKeyToReconstructComponent: 0,
       options: [
         {
           name: "All",
@@ -57,7 +57,7 @@ class BrowseRecipes extends React.Component {
   };
 
   fetchRecipes = (type) => {
-    let randomNumber = Math.random();
+    let randomKeyToReconstructComponent = Math.random();
     let recipesRetrieveFunction;
     if (!type || type == "all") {
       recipesRetrieveFunction = apiGetRecipes;
@@ -69,7 +69,7 @@ class BrowseRecipes extends React.Component {
     recipesRetrieveFunction().then((recipes) => {
       this.setState({
         recipes: recipes,
-        randomNumber,
+        randomKeyToReconstructComponent,
       });
     });
   };
@@ -98,7 +98,7 @@ class BrowseRecipes extends React.Component {
           </IfAuthenticated>
           <RecipesList
             recipes={this.state.recipes}
-            key={this.state.randomNumber}
+            key={this.state.randomKeyToReconstructComponent}
             openInNewTab={false}
           />
         </div>
