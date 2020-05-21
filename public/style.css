@@ -235,11 +235,17 @@ span.chip._7ahQImyV4dj0EpcNOjnwA.false {
     background-color: olivedrab;
 }
 
-div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover, .lhyQmCtWOINviMz0WG_gr.highlight.false.option {
-    background-color: lightgrey;
+div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover, .lhyQmCtWOINviMz0WG_gr li:hover {
+    background-color: gray;
+    color: white;
 }
 
-div._2OR24XnUXt8OCrysr3G0XI {
+div#SearchByIngredients-jsx-component li.lhyQmCtWOINviMz0WG_gr {
+    background-color: white;
+    color:black;
+}
+
+div#SearchByIngredients-jsx-component div._2OR24XnUXt8OCrysr3G0XI {
     background-color: white;
 }
 

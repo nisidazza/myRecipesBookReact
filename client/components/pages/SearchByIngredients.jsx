@@ -2,7 +2,7 @@ import React from "react";
 import { apiGetIngredients } from "../../apis/ingredientsApi";
 import {
   apiGetRecipesMatchingAllIngredients,
-  apiGetRecipesByIngredients
+  apiGetRecipesByIngredients,
 } from "../../apis/recipesSearchApi";
 import { Multiselect } from "multiselect-react-dropdown";
 import RecipesList from "../common/RecipesList";
@@ -18,22 +18,22 @@ class SearchByIngredients extends React.Component {
       randomKeyToReconstructComponent: 0,
       showError: false,
       matchAllIngredients: false,
-      showRecipes: true
+      showRecipes: true,
     };
   }
 
   componentDidMount() {
     this.fetchIngredients();
     let event = new CustomEvent("pageHasChanged", {
-      detail: { pageTitle: "Search by Ingredients" }
+      detail: { pageTitle: "Search by Ingredients" },
     });
     document.dispatchEvent(event);
   }
 
-  onSelect = selectedList => {
-    let selected_ingredient_ids = selectedList.map(item => item.id);
+  onSelect = (selectedList) => {
+    let selected_ingredient_ids = selectedList.map((item) => item.id);
     this.setState({
-      selected_ingredient_ids
+      selected_ingredient_ids,
     });
   };
 
@@ -49,33 +49,33 @@ class SearchByIngredients extends React.Component {
         this.state.selected_ingredient_ids
       );
     }
-    searchPromise.then(recipes => {
+    searchPromise.then((recipes) => {
       this.setState({
         recipes,
         randomKeyToReconstructComponent,
         showError: recipes.length == 0,
-        showRecipes: true
+        showRecipes: true,
       });
     });
   };
 
   fetchIngredients = () => {
-    apiGetIngredients().then(ingredients => {
+    apiGetIngredients().then((ingredients) => {
       this.setState({
-        ingredients: ingredients
+        ingredients: ingredients,
       });
     });
   };
 
   closeAlert = () => {
     this.setState({
-      showError: false
+      showError: false,
     });
   };
 
-  handleCheckBox = e => {
+  handleCheckBox = (e) => {
     this.setState({
-      matchAllIngredients: e.target.checked
+      matchAllIngredients: e.target.checked,
     });
   };
 
@@ -83,9 +83,9 @@ class SearchByIngredients extends React.Component {
     this.setState({
       recipes: [],
       showRecipes: false,
-      showError: false
-    })
-  }
+      showError: false,
+    });
+  };
 
   render() {
     let { ingredients } = this.state;
@@ -98,7 +98,7 @@ class SearchByIngredients extends React.Component {
       <>
         <div id="SearchByIngredients-jsx-component">
           <div className="row mt-5">
-            <div className="col-sm-8">
+            <div className="col-sm-7">
               <Multiselect
                 options={options}
                 displayValue="name"
@@ -110,15 +110,12 @@ class SearchByIngredients extends React.Component {
                 className="border-info form-control form-control-sm"
               />
             </div>
-            <div className="col-sm pl-0">
-              <button
-                onClick={this.searchForRecipes}
-                className="btn btn-info"
-              >
+            <div className="col-sm-1 pl-0">
+              <button onClick={this.searchForRecipes} className="btn btn-info">
                 Search
               </button>
             </div>
-            <div className="form-check col-sm-3 pt-1">
+            <div className="form-check col-sm-2 pt-1">
               <input
                 type="checkbox"
                 className="form-check-input mt-2"
@@ -134,6 +131,14 @@ class SearchByIngredients extends React.Component {
                 Match all ingredients
               </label>
             </div>
+            <div className="col-sm-1">
+                <button
+                  className="btn btn-danger"
+                  onClick={this.handleClearButton}
+                >
+                  Clear Search
+                </button>
+              </div>
           </div>
           {this.state.showError ? (
             <div
@@ -160,20 +165,17 @@ class SearchByIngredients extends React.Component {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-          ) : (
-            this.state.showRecipes ? <div>
+          ) : this.state.showRecipes ? (
+            <div>
               <RecipesList
                 recipes={this.state.recipes}
                 key={this.state.randomKeyToReconstructComponent}
                 openInNewTab={true}
               />
-            </div> 
-          : 
-          ""
+            </div>
+          ) : (
+            ""
           )}
-          <div>
-            <button className="btn btn-secondary mt-3" onClick={this.handleClearButton}>Clear Search</button>
-          </div>
         </div>
       </>
     );
