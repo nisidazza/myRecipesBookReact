@@ -63,7 +63,7 @@ class AddRecipe extends React.Component {
         return (
           this.state.newRecipe !== null &&
           this.state.newRecipe.title !== "" &&
-          this.state.newRecipe.title.trim() !== ""  &&
+          this.state.newRecipe.title.trim() !== "" &&
           this.state.newRecipe.title.match(/^([^0-9]*)$/) &&
           this.state.newRecipe.title.match(/^[a-zA-Z '-]+$/)
         );
@@ -74,7 +74,7 @@ class AddRecipe extends React.Component {
     rules.push({
       conditional: () => {
         return (
-          this.state.newRecipe !== null && 
+          this.state.newRecipe !== null &&
           this.state.newRecipe.category !== "" &&
           this.state.newRecipe.category.trim() !== "" &&
           this.state.newRecipe.category.match(/^([^0-9]*)$/) &&
@@ -110,14 +110,14 @@ class AddRecipe extends React.Component {
   render() {
     return (
       <div id="AddRecipe-jsx-component">
+        <h4 className="text-center mt-5 mb-1">New Recipe Form</h4>
         <div className="form-container">
-          <div className="border py-4" id="border-shadow">
+          <div className="border pb-4 pt-5" id="border-shadow">
             <form
               className="ml-5"
               autoComplete="off"
               onSubmit={this.handleSubmit}
             >
-              <h4 className="text-center mt-1 mb-4">New Recipe Form</h4>
               <div className="form-group row">
                 <label className="col-sm-2">Title:</label>
                 <input
