@@ -106,20 +106,6 @@ class RecipeDetail extends React.Component {
       },
       errorMessage: "Please, insert a valid category",
     });
-
-    rules.push({
-      conditional: () => {
-        return (
-          this.state.recipe !== null &&
-          this.state.recipe.link !== "" &&
-          this.state.recipe.link.match(
-            /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-          )
-        );
-      },
-      errorMessage: "Please, insert a valid link",
-    });
-
     return rules;
   };
 
