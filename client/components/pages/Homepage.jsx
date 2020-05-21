@@ -52,18 +52,15 @@ class Homepage extends React.Component {
                      My Recipe Book - Your personal recipe organiser.
                     </h6>
                     <p className="card-text mb-1">
-                      Save your favourite recipes from websites all in one place,
+                      Save your favourite recipes from different websites all in one place,
                       share them with other people or make them private!
                     </p>
                     <Link to="/register" target="_blank" className="card-link">
                       Register Now!
                     </Link>
-                    {/* <a href="#" className="card-link">
-                      Another link
-                    </a>  */}
                   </div>
                 </div>
-                <div className="card mt-3">
+                {/* <div className="card mt-3">
                   <div className="card-body features p-1">
                     <h5 className="card-title features-title">Card Title</h5>
                     <h6 className="card-subtitle features-subtitle b-2 text-muted">
@@ -75,11 +72,8 @@ class Homepage extends React.Component {
                     <a href="#" className="card-link">
                       Card link
                     </a>
-                    <a href="#" className="card-link">
-                      Another link
-                    </a>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
