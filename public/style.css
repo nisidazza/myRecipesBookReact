@@ -97,18 +97,18 @@ div#Nav-jsx-component {
 
 #Nav-jsx-component h1#title {
     font-weight: bold;
-    text-shadow: 2px 2px 1px #f3eded;
+    text-shadow: 2px 2px 5px white;
 }
 
 #Nav-jsx-component h4#statement {
-    text-shadow: 2px 2px 1px #f3eded;
+    text-shadow: 2px 2px 5px white;
     font-size: 1.8em;
 }
 
 #Nav-jsx-component h5.nav-item {
     font-weight: bold;
     color: olivedrab;
-    text-shadow: 2px 2px 4px #f3eded;
+    text-shadow: 2px 2px 4px white;
 }
 
 #Nav-jsx-component p#statement {
