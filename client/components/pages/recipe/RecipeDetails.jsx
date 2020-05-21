@@ -178,6 +178,16 @@ class RecipeDetail extends React.Component {
             />
           </div>
           <div className="form-group row">
+            <label className="col-sm-2">Instructions:</label>
+            <textarea
+              name="instructions"
+              value={recipeInfo.instructions}
+              onChange={this.handleChange}
+              className="form-control form-control-sm col-md-9 border-info"
+              autoComplete="off"
+            />
+          </div>
+          <div className="form-group row">
             <label className="col-sm-2">Notes:</label>
             <textarea
               name="notes"
@@ -246,6 +256,9 @@ class RecipeDetail extends React.Component {
             <a href={recipeInfo.link} target="_blank">
               {recipeInfo.link}
             </a>
+          </p>
+          <p>
+            <strong>Instructions:</strong> {recipeInfo.instructions}
           </p>
           <p>
             <strong>Notes:</strong> {recipeInfo.notes}

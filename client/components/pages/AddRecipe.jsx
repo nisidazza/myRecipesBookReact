@@ -143,8 +143,16 @@ class AddRecipe extends React.Component {
                 />
               </div>
               <div className="form-group row">
+                <label className="col-sm-2">Instructions:</label>
+                <textarea
+                  name="instructions"
+                  onChange={this.handleChange}
+                  className="form-control form-control-sm col-md-8 border-info"
+                />
+              </div>
+              <div className="form-group row">
                 <label className="col-sm-2">Notes:</label>
-                <input
+                <textarea
                   name="notes"
                   onChange={this.handleChange}
                   className="form-control form-control-sm col-md-8 border-info"
