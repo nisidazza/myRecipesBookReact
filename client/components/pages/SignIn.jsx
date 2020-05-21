@@ -65,7 +65,7 @@ class SignIn extends React.Component {
           <h4 className="text-center mt-5">Sign-In Form </h4>
           <div className="border mt-4" id="border-shadow">
             <div className="form-group row m-2 mt-4">
-              <div className="input-container mx-auto mt-3 col-xs-4">
+              <div className="input-container mx-auto mt-3 col-md-9">
                 <i className="fa fa-user icon" />
                 <input
                   type="text"
@@ -78,7 +78,7 @@ class SignIn extends React.Component {
               </div>
             </div>
             <div className="form-group row m-2">
-              <div className="input-container mx-auto col-xs-4">
+              <div className="input-container mx-auto col-md-9">
                 <i className="fa fa-key icon"></i>
                 <input
                   type="password"
