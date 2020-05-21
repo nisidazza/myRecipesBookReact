@@ -5,9 +5,10 @@ module.exports = {
     client: "postgresql",
     connection: {
       database: "127.0.0.1",
+      port: 5432,
       user: "postgres",
       password: "n1s1d4123",
-      database: "myRecipeBookReact"
+      database: "myRecipeBookReact",
     },
     debug: true,
     
