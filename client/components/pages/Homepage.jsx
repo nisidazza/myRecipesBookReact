@@ -60,20 +60,6 @@ class Homepage extends React.Component {
                     </Link>
                   </div>
                 </div>
-                {/* <div className="card mt-3">
-                  <div className="card-body features p-1">
-                    <h5 className="card-title features-title">Card Title</h5>
-                    <h6 className="card-subtitle features-subtitle b-2 text-muted">
-                      Card subtitle 
-                    </h6>
-                    <p className="card-text">
-                      
-                    </p>
-                    <a href="#" className="card-link">
-                      Card link
-                    </a>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
