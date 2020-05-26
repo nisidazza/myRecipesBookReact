@@ -55,7 +55,7 @@ class Nav extends React.Component {
         <nav className="navbar sidenav">
           <ul className="navbar-nav">
             <li className="nav-item homepage">
-              <Link className="nav-link" to="/home">
+              <Link className="nav-link" to="/">
                 Homepage
               </Link>
             </li>
