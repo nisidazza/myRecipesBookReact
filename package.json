@@ -4,20 +4,22 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "client": "webpack-dev-server --hot --inline",
-    "server": "node server",
-    "postinstall": "knex migrate:latest & knex seed:run",
     "build": "webpack",
     "start": "node server",
+    "postinstall": "npm run db:migrate:latest",
     "dev": "npm-run-all --parallel watch:build watch:server",
+    "test:file:watch": "npm run test:file --watch",
+    "test:dev": "npm run test:file -- tests",
+    "test:dev:watch": "npm run test:dev -- --watch",
+    "client": "webpack-dev-server --hot --inline",
+    "server": "node server",
     "debug": "node --nolazy --inspect-brk=9229 server",
     "watch:build": "webpack --watch",
     "watch:server": "nodemon --nolazy --inspect=9229 --ignore public/*.* server",
     "test": "jest tests",
     "test:file": "jest --verbose",
-    "test:file:watch": "npm run test:file --watch",
-    "test:dev": "npm run test:file -- tests",
-    "test:dev:watch": "npm run test:dev -- --watch"
+    "db:migrate:latest": "knex migrate:latest",
+    "db:reseed": "knex seed:run"
   },
   "babel": {
     "presets": [
