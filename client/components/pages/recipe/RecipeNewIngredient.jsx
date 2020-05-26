@@ -69,7 +69,7 @@ class RecipeNewIngredient extends React.Component {
 
   handleShowForm = () => {
     this.setState({
-      showForm: true
+      showForm: !this.state.showForm
     }) 
   }
 
