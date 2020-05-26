@@ -57,6 +57,7 @@
     "multiselect-react-dropdown": "^1.4.7",
     "pass-reset": "^0.1.2",
     "pg": "^7.16.1",
+    "reactstrap": "^8.4.1",
     "superagent": "^5.1.3"
   },
   "devDependencies": {
@@ -81,7 +82,7 @@
     "sqlite3": "^4.1.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1",
+    "webpack-dev-server": "^3.11.0",
     "webpack-inject-environment-variables": "^1.0.0"
   }
 }
