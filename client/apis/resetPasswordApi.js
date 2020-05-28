@@ -29,6 +29,8 @@ export function apiResetPassword(token, password, confirm) {
       };
     })
     .catch(err => {
+      //Mailgun - Sandbox domains are restricted to authorized recipients only
+      console.log(err.response.body.error)
       return {
         success: false
       };
