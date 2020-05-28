@@ -59,6 +59,7 @@
     "multiselect-react-dropdown": "^1.4.7",
     "pass-reset": "^0.1.2",
     "pg": "^7.16.1",
+    "react-google-recaptcha": "^2.0.1",
     "reactstrap": "^8.4.1",
     "superagent": "^5.1.3"
   },
