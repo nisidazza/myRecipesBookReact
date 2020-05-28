@@ -1,6 +1,7 @@
 import React from "react";
 import { register, isAuthenticated } from "authenticare/client";
 import Validator from "../common/utilities/Validator";
+import ReCAPTCHA from "react-google-recaptcha";
 
 class Register extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class Register extends React.Component {
       },
       confirmPassword: "",
       errorMessage: [],
-      isValid: true
+      isValid: true,
+      isVerified: false,
     };
 
     this.validator = React.createRef();
@@ -21,48 +23,63 @@ class Register extends React.Component {
 
   componentDidMount() {
     let event = new CustomEvent("pageHasChanged", {
-      detail: { pageTitle: "Register" }
+      detail: { pageTitle: "Register" },
     });
     document.dispatchEvent(event);
   }
 
-  handleLoginData = e => {
+  handleLoginData = (e) => {
     this.state.loginData[e.target.id] = e.target.value;
   };
 
-  handlePasswordConfirmation = e => {
+  handlePasswordConfirmation = (e) => {
     this.setState({
-      confirmPassword: e.target.value
+      confirmPassword: e.target.value,
     });
   };
 
-  handleClick = e => {
+  handleRegistrationSubmit = (e) => {
     e.preventDefault();
-    if (this.validator.current.validate()) {
-      register(this.state.loginData, {
-        baseUrl: process.env.PUBLIC_BASE_API_URL // see .env and webpack.config.js
-      })
-        .then(response => {
-          if (isAuthenticated()) {
-            this.props.history.push("/listrecipes");
-          }
+    if (this.state.isVerified) {
+      if (this.validator.current.validate()) {
+        register(this.state.loginData, {
+          baseUrl: process.env.PUBLIC_BASE_API_URL, // see .env and webpack.config.js
         })
-        .catch(error => {
-          if (
-            error &&
-            error.response &&
-            error.response.body &&
-            error.response.body.errorType == "USERNAME_UNAVAILABLE"
-          ) {
-            this.validator.current.showError("Sorry, that email address already exists!");
-          } else {
-            this.validator.current.showError(
-              "Something went wrong. Please,try again!"
-            );
-            throw error;
-          }
-        });
+          .then((response) => {
+            if (isAuthenticated()) {
+              this.props.history.push("/listrecipes");
+            }
+          })
+          .catch((error) => {
+            if (
+              error &&
+              error.response &&
+              error.response.body &&
+              error.response.body.errorType == "USERNAME_UNAVAILABLE"
+            ) {
+              this.validator.current.showError(
+                "Sorry, that email address already exists!"
+              );
+            } else {
+              this.validator.current.showError(
+                "Something went wrong. Please,try again!"
+              );
+              throw error;
+            }
+          });
+      }
+    } else {
+      this.validator.current.showError(
+        "Please verify that you are not a robot"
+      );
     }
+    throw error;
+  };
+
+  captchaVerified = () => {
+    this.setState({
+      isVerified: true,
+    });
   };
 
   getValidationRules = () => {
@@ -71,11 +88,12 @@ class Register extends React.Component {
     rules.push({
       conditional: () => {
         return (
+          this.state.loginData.username &&
           this.state.loginData.username !== "" &&
           this.state.loginData.username.match(/\S+@\S+\.\S+/)
         );
       },
-      errorMessage: "Please, insert a valid email address"
+      errorMessage: "Please, insert a valid email address",
     });
 
     rules.push({
@@ -89,14 +107,14 @@ class Register extends React.Component {
         );
       },
       errorMessage:
-        "A valid password must contain at least 1 uppercase character, at least 1 lowercase character, at least 1 digit, at least 1 special character and minimum 8 characters"
+        "A valid password must contain at least 1 uppercase character, at least 1 lowercase character, at least 1 digit, at least 1 special character and minimum 8 characters",
     });
 
     rules.push({
       conditional: () => {
         return this.state.confirmPassword == this.state.loginData.password;
       },
-      errorMessage: "Password and Confirm Password do not match"
+      errorMessage: "Password and Confirm Password do not match",
     });
 
     return rules;
@@ -105,7 +123,11 @@ class Register extends React.Component {
   render() {
     return (
       <div id="Register-jsx-component">
-        <form className="mx-auto" style={{ maxWidth: "500px", margin: "auto" }}>
+        <form
+          className="mx-auto"
+          onSubmit={this.handleRegistrationSubmit}
+          style={{ maxWidth: "500px", margin: "auto" }}
+        >
           <h4 className="text-center mt-5">Register Form</h4>
           <div className="border mt-4" id="border-shadow">
             <div className="form-group row m-2 mt-4">
@@ -147,12 +169,17 @@ class Register extends React.Component {
                 ></input>
               </div>
             </div>
+            <div className="input-container mx-auto mb-4 col-md-8">
+              <ReCAPTCHA
+                sitekey="6Ld-Dv0UAAAAAK8mlEf9NDEbEtBsO2OHXfKweXFf"
+                onChange={this.captchaVerified}
+              ></ReCAPTCHA>
+            </div>
             <div className="input-container mx-auto mb-4 col-md-9">
               <input
                 value="Register"
                 type="submit"
                 className="btn btn-outline-success mx-auto"
-                onClick={this.handleClick}
               ></input>
             </div>
             <div>

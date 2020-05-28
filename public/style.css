@@ -187,7 +187,7 @@ div#Nav-jsx-component {
 }
 
 div#Register-jsx-component, div#SignIn-jsx-component, div#RequestResetToken-jsx-component, div#ResetPassword-jsx-component {
-    padding-top: 15em;
+    padding-top: 10em;
     padding-left: 6em;
     min-height: 100%;
     background-color: antiquewhite;
