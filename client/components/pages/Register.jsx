@@ -73,12 +73,7 @@ class Register extends React.Component {
           "Please verify that you are not a robot"
         );
       }
-    } else {
-      this.validator.current.showError(
-        "Please, fill out the registration form"
-      );
-    }
-    throw error;
+    } 
   };
 
   captchaVerified = () => {
