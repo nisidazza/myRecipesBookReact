@@ -13,8 +13,7 @@ function createUser(user, db = connection) {
     .then(passwordHash => {
       return db("users").insert({
         username: user.username,
-        hash: passwordHash,
-        email: user.email
+        hash: passwordHash
       });
     });
 }
