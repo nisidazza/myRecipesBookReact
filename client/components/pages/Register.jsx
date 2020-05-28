@@ -40,8 +40,9 @@ class Register extends React.Component {
 
   handleRegistrationSubmit = (e) => {
     e.preventDefault();
-    if (this.state.isVerified) {
-      if (this.validator.current.validate()) {
+
+    if (this.validator.current.validate()) {
+      if (this.state.isVerified) {
         register(this.state.loginData, {
           baseUrl: process.env.PUBLIC_BASE_API_URL, // see .env and webpack.config.js
         })
@@ -67,10 +68,14 @@ class Register extends React.Component {
               throw error;
             }
           });
+      } else {
+        this.validator.current.showError(
+          "Please verify that you are not a robot"
+        );
       }
     } else {
       this.validator.current.showError(
-        "Please verify that you are not a robot"
+        "Please, fill out the registration form"
       );
     }
     throw error;
