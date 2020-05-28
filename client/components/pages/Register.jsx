@@ -40,40 +40,33 @@ class Register extends React.Component {
 
   handleRegistrationSubmit = (e) => {
     e.preventDefault();
-
     if (this.validator.current.validate()) {
-      if (this.state.isVerified) {
-        register(this.state.loginData, {
-          baseUrl: process.env.PUBLIC_BASE_API_URL, // see .env and webpack.config.js
+      register(this.state.loginData, {
+        baseUrl: process.env.PUBLIC_BASE_API_URL, // see .env and webpack.config.js
+      })
+        .then((response) => {
+          if (isAuthenticated()) {
+            this.props.history.push("/listrecipes");
+          }
         })
-          .then((response) => {
-            if (isAuthenticated()) {
-              this.props.history.push("/listrecipes");
-            }
-          })
-          .catch((error) => {
-            if (
-              error &&
-              error.response &&
-              error.response.body &&
-              error.response.body.errorType == "USERNAME_UNAVAILABLE"
-            ) {
-              this.validator.current.showError(
-                "Sorry, that email address already exists!"
-              );
-            } else {
-              this.validator.current.showError(
-                "Something went wrong. Please,try again!"
-              );
-              throw error;
-            }
-          });
-      } else {
-        this.validator.current.showError(
-          "Please verify that you are not a robot"
-        );
-      }
-    } 
+        .catch((error) => {
+          if (
+            error &&
+            error.response &&
+            error.response.body &&
+            error.response.body.errorType == "USERNAME_UNAVAILABLE"
+          ) {
+            this.validator.current.showError(
+              "Sorry, that email address already exists!"
+            );
+          } else {
+            this.validator.current.showError(
+              "Something went wrong. Please,try again!"
+            );
+            throw error;
+          }
+        });
+    }
   };
 
   captchaVerified = () => {
@@ -115,6 +108,13 @@ class Register extends React.Component {
         return this.state.confirmPassword == this.state.loginData.password;
       },
       errorMessage: "Password and Confirm Password do not match",
+    });
+
+    rules.push({
+      conditional: () => {
+        return this.state.isVerified == true;
+      },
+      errorMessage: "Please verify that you are not a robot",
     });
 
     return rules;
