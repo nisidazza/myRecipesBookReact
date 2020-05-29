@@ -1,20 +1,19 @@
 var passReset = require("pass-reset");
+var sendPasswordResetEmail = require("./mailSender");
+
 const { getUserByName } = require("./db/dbUsers");
+
 const {
   addUserToken,
   getToken,
-  deleteToken
+  deleteToken,
 } = require("./db/dbPassResetTokens");
-const { updatePassword } = require("./db/dbUsers");
 
-const mailgun = require("mailgun-js")({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN
-});
+const { updatePassword } = require("./db/dbUsers");
 
 const expireTimeout = {
   value: 60,
-  type: "minutes"
+  type: "minutes",
 };
 
 //expiration
@@ -30,20 +29,16 @@ resets: [{
 */
 passReset.sendEmail((email, resets, callback) => {
   let userData = resets[0];
-  userData.url = process.env.PUBLIC_BASE_URL + userData.url;
-  const data = {
-    from: "<noreply@nisida-book-recipes-react.herokuapp.com>",
-    to: userData.name,
-    subject: "Reset Password",
-    text: `Hi ${userData.name}, you recently requested to reset your password for your account. Use this link ${userData.url} to reset it. This password reset is only valid for the next ${expireTimeout.value} ${expireTimeout.type}.`
-  };
-  mailgun.messages().send(data, (error, mailgunResponse) => {
-    if (error) {
-      error.message = "Mailgun error. " + error.message;
+  sendPasswordResetEmail(userData, expireTimeout).then(
+    function (data) {
+      console.log("API called successfully. Returned data: " + data);
+      callback(null);
+    },
+    function (error) {
+      error.message = "Sendinblue error. " + error.message;
+      callback(error);
     }
-    callback(error);
-    console.log(mailgunResponse);
-  });
+  );
   console.log(resets[0].token);
 });
 
@@ -57,13 +52,13 @@ passReset.storage.setStore({
       .then(() => {
         callback(null);
       })
-      .catch(err => {
+      .catch((err) => {
         callback(err);
       });
   },
   lookup: (token, callback) => {
     return getToken(token)
-      .then(tokenRow => {
+      .then((tokenRow) => {
         //opt: verify the user is not auth
         let currentDateTime = new Date();
         let tokenExpireDateTime = new Date(tokenRow[0].expire_date_time);
@@ -73,37 +68,37 @@ passReset.storage.setStore({
         }
         callback(null, tokenRow[0].user_id);
       })
-      .catch(err => {
+      .catch((err) => {
         callback(err);
       });
   },
   destroy: (token, callback) => {
     return deleteToken(token)
-      .then(numberOfDeletedRows => {
+      .then((numberOfDeletedRows) => {
         callback(null);
       })
-      .catch(err => {
+      .catch((err) => {
         callback(err);
       });
-  }
+  },
 });
 
 passReset.setPassword((id, password, callback) => {
   return updatePassword(id, password)
-    .then(numberOfUpdatedRows => {
+    .then((numberOfUpdatedRows) => {
       if (numberOfUpdatedRows == 0) {
         return callback(null, false, "Could not update password.");
       }
       callback(null, true);
     })
-    .catch(err => {
+    .catch((err) => {
       callback("SQL ERROR: " + err);
     });
 });
 
 passReset.lookupUsers((login, callback) => {
   return getUserByName(login)
-    .then(user => {
+    .then((user) => {
       if (!user) {
         return callback(null, false);
       }
@@ -112,12 +107,12 @@ passReset.lookupUsers((login, callback) => {
         users: [
           {
             id: user.id,
-            name: user.username
-          }
-        ]
+            name: user.username,
+          },
+        ],
       });
     })
-    .catch(err => {
+    .catch((err) => {
       return callback(err);
     });
 });
