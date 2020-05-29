@@ -6,7 +6,6 @@ const recipesSearchRoutes = require('./routes/recipesSearchRoutes')
 const ingredientsRoutes = require('./routes/ingredientsRoutes')
 const recipesIngredientsRoutes = require('./routes/recipesIngredientsRoutes')
 const authRoutes = require('./routes/auth')
-const expRoutes = require('./routes/experiments')
 const passResetRoutes = require('./routes/passResetRoutes')
 
 
@@ -22,7 +21,6 @@ server.use('/api/v1/recipes-search', recipesSearchRoutes)
 server.use('/api/v1/ingredients', ingredientsRoutes)
 server.use('/api/v1/recipes', recipesIngredientsRoutes)
 server.use('/api/v1', authRoutes)
-server.use('/api/vnext', expRoutes)
 server.use('/api/v1', passResetRoutes)
 
 module.exports = server
