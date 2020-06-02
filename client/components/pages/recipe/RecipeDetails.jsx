@@ -134,7 +134,7 @@ class RecipeDetail extends React.Component {
   renderEditMode = () => {
     const recipeInfo = this.state.recipe;
     return (
-      <>
+      <div id="RecipeDetails-jsx-component">
         <form className="mt-3" onSubmit={this.handleSubmit}>
           <div className="form-group row">
             <div className="img-container">
@@ -239,14 +239,14 @@ class RecipeDetail extends React.Component {
           </div>
           <input className="btn-sm btn-info" type="submit" value="Save" />
         </form>
-      </>
+      </div>
     );
   };
 
   renderViewMode = () => {
     const recipeInfo = this.state.recipe;
     return (
-      <>
+      <div id="RecipeDetails-jsx-component">
         <section className="mt-2">
           <div className="text-center card-header">{recipeInfo.title}</div>
           <div className="img-container">
@@ -286,7 +286,7 @@ class RecipeDetail extends React.Component {
             Edit
           </button>
         </div>
-      </>
+      </div>
     );
   };
 

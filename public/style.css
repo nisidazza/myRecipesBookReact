@@ -1,4 +1,4 @@
-/*COMMON CSS*/
+/*#region --- COMMON CSS --- */
 
 #Recipe-jsx-component div#border-shadow, #AddRecipe-jsx-component div#border-shadow, #Register-jsx-component div#border-shadow, #SignIn-jsx-component div#border-shadow, #RequestResetToken-jsx-component div#border-shadow, #ResetPassword-jsx-component div#border-shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -33,6 +33,15 @@ div#SearchByIngredients-jsx-component, div#Recipe-jsx-component, div#AddRecipe-j
     padding-bottom: 2em;
 }
 
+div#AddRecipe-jsx-component, div#Recipe-jsx-component, div#RecipesList-jsx-component, div#BrowseRecipes-jsx-component {
+    background-color: antiquewhite;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.95;
+    margin: 0 auto;
+    min-height: 100%;
+}
+
 div.form-container {
     width: 750px;
     background-color: white;
@@ -41,23 +50,9 @@ div.form-container {
     padding: 0;
 }
 
-/* --- ADD RECIPE --- */
+/*#endregion*/
 
-div#AddRecipe-jsx-component p.mb-0.mt-1 {
-    font-size: 0.95em;
-    color: orangered;
-}
-
-/*--- RECIPE ---*/
-
-div#AddRecipe-jsx-component, div#Recipe-jsx-component, div#RecipeList-jsx-component, div#BrowseRecipes-jsx-component {
-    background-color: antiquewhite;
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.95;
-    margin: 0 auto;
-    min-height: 100%;
-}
+/*#region --- RECIPE ---*/
 
 #Recipe-jsx-component div.text-center.card-header {
     background-color: white !important;
@@ -71,7 +66,117 @@ div#AddRecipe-jsx-component, div#Recipe-jsx-component, div#RecipeList-jsx-compon
     list-style-type: square;
 }
 
-/*--- NAV ----*/
+/*#endregion*/
+
+/*#region --- ADD RECIPE --- */
+
+div#AddRecipe-jsx-component p.mb-0.mt-1 {
+    font-size: 0.95em;
+    color: orangered;
+}
+
+/*#endregion*/
+
+/*#region --- RECIPE DETAILS --- */
+
+#RecipeDetails-jsx-component div.img-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 1em;
+}
+
+#RecipeDetails-jsx-component img.rounded.mx-auto.d-block.img-thumbnail.mr-1 {
+    width: 900px;
+    height: auto;
+}
+
+#RecipeDetails-jsx-component button.btn-info.img-btn {
+    position: absolute;
+    z-index: 2;
+    bottom: 0%;
+    right: 0%;
+}
+
+/*#endregion*/
+
+/*#region--- RECIPE LIST ----*/
+
+#RecipesList-jsx-component div.card-footer {
+    background-color: transparent;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-top: 1em;
+}
+
+#RecipesList-jsx-component h6.card-subtitle.mb-2.text-muted {
+    padding-bottom: 0.3em;
+}
+
+#RecipesList-jsx-component div#recipe-card {
+    box-shadow: 5px 10px 8px #888888;
+}
+
+/*#endregion*/
+
+/*#region --- RECIPE NEW INGREDIENT --- */
+
+#RecipeNewIngredient-jsx-component p {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #007bff;
+}
+
+#RecipeNewIngredient-jsx-component button.btn-link {
+    font-style: italic;
+}
+
+/*#endregion*/
+
+/*#region --- SEARCH BY INGREDIENT/S--- */
+
+div#SearchByIngredients-jsx-component {
+    min-height: 100%;
+}
+
+span.chip._7ahQImyV4dj0EpcNOjnwA.false {
+    font-size: 1em;
+    background-color: olivedrab;
+}
+
+div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI {
+    background-color: white;
+}
+
+div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover, .lhyQmCtWOINviMz0WG_gr li:hover {
+    background-color: gray;
+    color: white;
+}
+
+div#SearchByIngredients-jsx-component li.lhyQmCtWOINviMz0WG_gr {
+    background-color: white;
+    color: black;
+}
+
+div#SearchByIngredients-jsx-component div._2OR24XnUXt8OCrysr3G0XI {
+    background-color: white;
+}
+
+/*#endregion*/
+
+/*#region --- ADD NEW INGREDIENT --- */
+
+#AddNewIngredient-jsx-component label {
+    margin-top: 0.2em;
+}
+
+#AddNewIngredient-jsx-component input.form-control {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*#endregion*/
+
+/*#region--- NAV ----*/
 
 div#Nav-jsx-component {
     position: fixed;
@@ -84,7 +189,7 @@ div#Nav-jsx-component {
 }
 
 #Nav-jsx-component nav.navbar.fixed.navbar-expand-sm {
-    background-image: linear-gradient(white 10%, gray 85%,rgb(114, 113, 113) 95%);
+    background-image: linear-gradient(white 10%, gray 85%, rgb(114, 113, 113) 95%);
     height: 2.5em;
     padding: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -117,7 +222,9 @@ div#Nav-jsx-component {
     margin-bottom: 0;
 }
 
-/*---SIDENAV --- */
+/*#endregion*/
+
+/*#region---SIDENAV --- */
 
 #Nav-jsx-component nav.navbar.sidenav {
     background-image: linear-gradient(141deg, white -5%, olivedrab 20%, rgb(98, 131, 33) 51%, white 95%) !important;
@@ -156,24 +263,9 @@ div#Nav-jsx-component {
     color: white;
 }
 
-/*--- RECIPE LIST ----*/
+/*#endregion*/
 
-#RecipeList-jsx-component div.card-footer {
-    background-color: transparent;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-top: 1em;
-}
-
-#RecipeList-jsx-component h6.card-subtitle.mb-2.text-muted {
-    padding-bottom: 0.3em;
-}
-
-#RecipeList-jsx-component div#recipe-card {
-    box-shadow: 5px 10px 8px #888888;
-}
-
-/* --- SIGNIN - REGISTER - RECOVERY EMAIL - RESET PASSWORD --- */
+/*#region --- SIGNIN - REGISTER - RECOVERY EMAIL - RESET PASSWORD --- */
 
 #Register-jsx-component div.input-container, #SignIn-jsx-component div.input-container, #RequestResetToken-jsx-component div.input-container, #ResetPassword-jsx-component div.input-container {
     display: flex;
@@ -199,14 +291,18 @@ div#Register-jsx-component #border-shadow, div#SignIn-jsx-component #border-shad
     background-color: white;
 }
 
-/* --- SIGN-IN --- */
+/*#endregion*/
+
+/*#region --- SIGN-IN --- */
 
 #SignIn-jsx-component div.forgot-psw {
     margin-bottom: 1em;
     text-align: center;
 }
 
-/*--- RECOVERY EMAIL - RESET-PASSWORD  ---*/
+/*#endregion*/
+
+/*#region--- RECOVERY EMAIL - RESET-PASSWORD  ---*/
 
 #RequestResetToken-jsx-component p, #ResetPassword-jsx-component p {
     color: black;
@@ -226,75 +322,9 @@ div#Register-jsx-component #border-shadow, div#SignIn-jsx-component #border-shad
     margin: 0, 1.3em;
 }
 
-/* --- SEARCH --- */
+/*#endregion*/
 
-div#SearchByIngredients-jsx-component {
-    min-height: 100%;
-}
-
-span.chip._7ahQImyV4dj0EpcNOjnwA.false {
-    font-size: 1em;
-    background-color: olivedrab;
-}
-
-div#SearchByIngredients-jsx-component ._3vt7_Mh4hRCFbp__dFqBCI li:hover, .lhyQmCtWOINviMz0WG_gr li:hover {
-    background-color: gray;
-    color: white;
-}
-
-div#SearchByIngredients-jsx-component li.lhyQmCtWOINviMz0WG_gr {
-    background-color: white;
-    color:black;
-}
-
-div#SearchByIngredients-jsx-component div._2OR24XnUXt8OCrysr3G0XI {
-    background-color: white;
-}
-
-/* --- RECIPE DETAILS --- */
-
-div.img-container {
-    position: relative;
-    display: inline-block;
-    margin-top: 1em;
-}
-
-img.rounded.mx-auto.d-block.img-thumbnail.mr-1 {
-    width: 900px;
-    height: auto;
-}
-
-button.btn-info.img-btn {
-    position: absolute;
-    z-index: 2;
-    bottom: 0%;
-    right: 0%;
-}
-
-/* --- RECIPE NEW INGREDIENT --- */
-
-#RecipeNewIngredient-jsx-component p {
-    font-size: 0.9em;
-    font-style: italic;
-    color: #007bff;
-}
-
-#RecipeNewIngredient-jsx-component button.btn-link {
-    font-style: italic;
-}
-
-/* --- ADD NEW INGREDIENT --- */
-
-#AddNewIngredient-jsx-component label {
-    margin-top: 0.2em;
-}
-
-#AddNewIngredient-jsx-component input.form-control {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-/* --- HOMEPAGE --- */
+/*#region --- HOMEPAGE --- */
 
 div#Homepage-jsx-component {
     min-height: 100%;
@@ -317,7 +347,7 @@ div#Homepage-jsx-component div.latest-recipes-container {
     padding: 1em 0.5em;
 }
 
-div#Homepage-jsx-component div.row.main-title{
+div#Homepage-jsx-component div.row.main-title {
     background-image: linear-gradient(141deg, white -5%, olivedrab 41%, rgb(233, 232, 232) 81%, gray 95%);
 }
 
@@ -344,4 +374,6 @@ div#Homepage-jsx-component h6.card-subtitle.features-subtitle {
 
 div#Homepage-jsx-component h5.card-title.features-title {
     font-weight: bold;
-} 
+}
+
+/*#endregion*/
