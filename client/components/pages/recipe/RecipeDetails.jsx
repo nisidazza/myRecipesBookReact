@@ -137,7 +137,7 @@ class RecipeDetail extends React.Component {
       <>
         <form className="mt-3" onSubmit={this.handleSubmit}>
           <div className="form-group row">
-            <div className="btn-container">
+            <div className="img-container">
               <img
                 src={
                   recipeInfo.img_url
@@ -193,6 +193,11 @@ class RecipeDetail extends React.Component {
               wrapperClassName="wrapperClassName"
               editorClassName="editorClassName"
               onEditorStateChange={this.onEditorStateChange}
+              toolbar = {{options: ['inline', 'blockType',  'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'remove', 'history'],
+              inline: {
+                options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace']
+                }
+              }}
             />
           </div>
           <div className="form-group row pt-5">
