@@ -7,6 +7,8 @@ const dbRecipesIngredients = require("../db/dbRecipesIngredients");
 
 const { getTokenDecoder } = require("authenticare/server");
 
+var cleanHtml = require("../htmlSanitizer")
+
 // GET /api/v1/recipes/public
 router.get("/public", (req, res) => {
   dbRecipes
@@ -131,6 +133,7 @@ router.patch("/:id", getTokenDecoder(), (req, res) => {
   const { id } = req.params;
   let recipe = req.body;
   recipe.title = recipe.title.trim();
+  recipe.instructions = cleanHtml(recipe.instructions)
   const loggedUser = req.user.id;
   if (loggedUser === recipe.user_id) {
     //console.log('username:', req.user.username)
