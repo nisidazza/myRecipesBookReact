@@ -133,7 +133,7 @@ class Recipe extends React.Component {
       <ul>
         {ingredients.map((ingredient, j) => {
           return (
-            <li key={j}>
+            <li id="ingredientList" key={j}>
               <RecipeIngredient
                 editable={editable}
                 ingredient={ingredient}

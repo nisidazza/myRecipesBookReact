@@ -67,7 +67,7 @@ div#AddRecipe-jsx-component, div#Recipe-jsx-component, div#RecipeList-jsx-compon
     padding-bottom: 0;
 }
 
-#Recipe-jsx-component li {
+#Recipe-jsx-component #ingredientList.li {
     list-style-type: square;
 }
 
