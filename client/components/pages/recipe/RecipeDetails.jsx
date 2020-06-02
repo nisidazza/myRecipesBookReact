@@ -1,15 +1,27 @@
 import React from "react";
 import { apiUpdateRecipeDetails } from "../../../apis/recipesApi";
-import Validator from "../../common/utilities/Validator"
-
+import Validator from "../../common/utilities/Validator";
+import { Editor } from "react-draft-wysiwyg";
+import { ContentState, EditorState, convertToRaw } from "draft-js";
+import { convertFromHTML } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+import "../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 class RecipeDetail extends React.Component {
   constructor(props) {
     super(props);
 
+    const blocksFromHTML = convertFromHTML(this.props.recipe.instructions);
+
     this.state = {
       recipe: this.props.recipe,
       mode: "view",
+      editorState: EditorState.createWithContent(
+        ContentState.createFromBlockArray(
+          blocksFromHTML.contentBlocks,
+          blocksFromHTML.entityMap
+        )
+      ),
     };
 
     this.validator = React.createRef();
@@ -41,23 +53,35 @@ class RecipeDetail extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(this.validator.current.validate()){
-    this.setState({ mode: "view" });
-      apiUpdateRecipeDetails(this.state.recipe)
-      .catch((err) => {
-        if(err){
-          this.validator.current.showError("Something went wrong. Please, try again")
-        }
-        this.setState({
-          recipe: this.props.recipe
+    if (this.validator.current.validate()) {
+      let modifiedRecipe = this.state.recipe;
+      modifiedRecipe.instructions = draftToHtml(
+        convertToRaw(this.state.editorState.getCurrentContent())
+      );
+      this.setState({ mode: "view" });
+      apiUpdateRecipeDetails(modifiedRecipe)
+        .catch((err) => {
+          if (err) {
+            this.validator.current.showError(
+              "Something went wrong. Please, try again"
+            );
+          }
+          this.setState({
+            recipe: this.props.recipe,
+          });
+        })
+        .then((recipe) => {
+          this.setState({
+            recipe,
+          });
         });
-      })
-      .then((recipe) => {
-        this.setState({
-          recipe
-        });
-      });
-    } 
+    }
+  };
+
+  onEditorStateChange = (editorState) => {
+    this.setState({
+      editorState,
+    });
   };
 
   handleChange = (e) => {
@@ -79,14 +103,14 @@ class RecipeDetail extends React.Component {
   };
 
   getValidationRules = () => {
-    let rules = []
+    let rules = [];
 
     rules.push({
       conditional: () => {
         return (
           this.state.recipe !== null &&
           this.state.recipe.title !== "" &&
-          this.state.recipe.title.trim() !== ""  &&
+          this.state.recipe.title.trim() !== "" &&
           this.state.recipe.title.match(/^([^0-9]*)$/) &&
           this.state.recipe.title.match(/^[a-zA-Z '-]+$/)
         );
@@ -97,7 +121,7 @@ class RecipeDetail extends React.Component {
     rules.push({
       conditional: () => {
         return (
-          this.state.recipe !== null && 
+          this.state.recipe !== null &&
           this.state.recipe.category !== "" &&
           this.state.recipe.category.trim() !== "" &&
           this.state.recipe.category.match(/^([^0-9]*)$/) &&
@@ -165,15 +189,15 @@ class RecipeDetail extends React.Component {
           </div>
           <div className="form-group row">
             <label className="col-sm-2">Instructions:</label>
-            <textarea
-              name="instructions"
-              value={recipeInfo.instructions}
-              onChange={this.handleChange}
-              className="form-control form-control-sm col-md-9 border-info"
-              autoComplete="off"
+            <Editor
+              editorState={this.state.editorState}
+              toolbarClassName="toolbarClassName"
+              wrapperClassName="wrapperClassName"
+              editorClassName="editorClassName"
+              onEditorStateChange={this.onEditorStateChange}
             />
           </div>
-          <div className="form-group row">
+          <div className="form-group row pt-5">
             <label className="col-sm-2">Notes:</label>
             <textarea
               name="notes"
@@ -221,10 +245,8 @@ class RecipeDetail extends React.Component {
     return (
       <>
         <section className="mt-2">
-          <p className="text-center card-header" style={{ border: "none" }}>
-            {recipeInfo.title}
-          </p>
-          <div className="btn-container">
+          <div className="text-center card-header">{recipeInfo.title}</div>
+          <div className="img-container">
             <img
               src={
                 recipeInfo.img_url
@@ -234,28 +256,33 @@ class RecipeDetail extends React.Component {
               className="rounded mx-auto d-block img-thumbnail mr-1"
             ></img>
           </div>
-          <p className="mt-2">
+          <div className="mt-2">
             <strong>Category:</strong> {recipeInfo.category}
-          </p>
-          <p>
+          </div>
+          <div className="mt-2">
             <strong>Link:</strong>{" "}
             <a href={recipeInfo.link} target="_blank">
               {recipeInfo.link}
             </a>
-          </p>
-          <p>
-            <strong>Instructions:</strong> {recipeInfo.instructions}
-          </p>
-          <p>
+          </div>
+          <div className="mt-2">
+            <strong>Instructions:</strong>{" "}
+            <div
+              dangerouslySetInnerHTML={{ __html: recipeInfo.instructions }}
+            />
+          </div>
+          <div className="mt-2">
             <strong>Notes:</strong> {recipeInfo.notes}
-          </p>
+          </div>
         </section>
-        <button
-          className={this.props.editable ? "btn-sm btn-info" : "hidden"}
-          onClick={() => this.setState({ mode: "edit" })}
-        >
-          Edit
-        </button>
+        <div className="mt-2">
+          <button
+            className={this.props.editable ? "btn-sm btn-info" : "hidden"}
+            onClick={() => this.setState({ mode: "edit" })}
+          >
+            Edit
+          </button>
+        </div>
       </>
     );
   };
@@ -271,10 +298,8 @@ class RecipeDetail extends React.Component {
       <>
         {recipeDetailForm}
         <div>
-            {<Validator 
-            ref={this.validator}
-            rules={this.getValidationRules()}/>}
-          </div>
+          {<Validator ref={this.validator} rules={this.getValidationRules()} />}
+        </div>
       </>
     );
   }

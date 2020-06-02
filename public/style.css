@@ -59,10 +59,12 @@ div#AddRecipe-jsx-component, div#Recipe-jsx-component, div#RecipeList-jsx-compon
     min-height: 100%;
 }
 
-#Recipe-jsx-component p.text-center.card-header {
+#Recipe-jsx-component div.text-center.card-header {
     background-color: white !important;
     font-style: italic;
     font-size: 2em;
+    border-bottom: black 1px solid;
+    padding-bottom: 0;
 }
 
 #Recipe-jsx-component li {
@@ -251,10 +253,10 @@ div#SearchByIngredients-jsx-component div._2OR24XnUXt8OCrysr3G0XI {
 
 /* --- RECIPE DETAILS --- */
 
-div.btn-container {
+div.img-container {
     position: relative;
     display: inline-block;
-    margin-top: 0.5em;
+    margin-top: 1em;
 }
 
 img.rounded.mx-auto.d-block.img-thumbnail.mr-1 {
