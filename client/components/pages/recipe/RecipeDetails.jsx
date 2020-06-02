@@ -110,9 +110,7 @@ class RecipeDetail extends React.Component {
         return (
           this.state.recipe !== null &&
           this.state.recipe.title !== "" &&
-          this.state.recipe.title.trim() !== "" &&
-          this.state.recipe.title.match(/^([^0-9]*)$/) &&
-          this.state.recipe.title.match(/^[a-zA-Z '-]+$/)
+          this.state.recipe.title.trim() !== ""
         );
       },
       errorMessage: "Please, insert a valid title",
