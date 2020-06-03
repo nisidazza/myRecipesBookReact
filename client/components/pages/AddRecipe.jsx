@@ -1,6 +1,10 @@
 import React from "react";
 import { apiAddRecipe } from "../../apis/recipesApi";
 import Validator from "../common/utilities/Validator";
+import { Editor } from "react-draft-wysiwyg";
+import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 class AddRecipe extends React.Component {
   constructor(props) {
@@ -11,13 +15,22 @@ class AddRecipe extends React.Component {
         title: "",
         category: "",
         link: "",
+        instructions: "",
         is_public: false,
         is_complete: false,
       },
+      editorState: EditorState.createEmpty(),
     };
 
     this.validator = React.createRef();
   }
+
+  onEditorStateChange = (editorState) => {
+    this.setState({
+      editorState,
+    });
+    console.log(editorState);
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -31,7 +44,12 @@ class AddRecipe extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.validator.current.validate()) {
-      apiAddRecipe(this.state.newRecipe)
+      let createdRecipe = this.state.newRecipe;
+      createdRecipe.instructions = draftToHtml(
+        convertToRaw(this.state.editorState.getCurrentContent())
+      );
+      console.log(createdRecipe.instructions);
+      apiAddRecipe(createdRecipe)
         .then((res) => {
           const newRecipeId = res.id;
           this.props.history.push(`/recipes/${newRecipeId}/?editable=true`);
@@ -63,9 +81,7 @@ class AddRecipe extends React.Component {
         return (
           this.state.newRecipe !== null &&
           this.state.newRecipe.title !== "" &&
-          this.state.newRecipe.title.trim() !== "" &&
-          this.state.newRecipe.title.match(/^([^0-9]*)$/) &&
-          this.state.newRecipe.title.match(/^[a-zA-Z '-]+$/)
+          this.state.newRecipe.title.trim() !== ""
         );
       },
       errorMessage: "Please, insert a valid title",
@@ -97,19 +113,15 @@ class AddRecipe extends React.Component {
     return (
       <div id="AddRecipe-jsx-component">
         <h4 className="text-center mt-5 mb-1">New Recipe Form</h4>
-        <div className="form-container">
-          <div className="border pb-4 pt-5" id="border-shadow">
-            <form
-              className="ml-5"
-              autoComplete="off"
-              onSubmit={this.handleSubmit}
-            >
+        <div className="container-fluid form-container">
+          <div className="border p-5" id="border-shadow">
+            <form className="" autoComplete="off" onSubmit={this.handleSubmit}>
               <div className="form-group row">
                 <label className="col-sm-2">Title:</label>
                 <input
                   name="title"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-8 border-info"
+                  className="form-control form-control-sm col-md-9 border-info"
                 />
               </div>
               <div className="form-group row">
@@ -117,7 +129,7 @@ class AddRecipe extends React.Component {
                 <input
                   name="category"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-8 border-info"
+                  className="form-control form-control-sm col-md-9 border-info"
                 />
               </div>
               <div className="form-group row">
@@ -125,23 +137,52 @@ class AddRecipe extends React.Component {
                 <input
                   name="link"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-8 border-info"
+                  className="form-control form-control-sm col-md-9 border-info"
                 />
               </div>
               <div className="form-group row">
                 <label className="col-sm-2">Instructions:</label>
-                <textarea
+                {/* <textarea
                   name="instructions"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-8 border-info"
+                  className="form-control form-control-sm col-md-9 border-info"
+                /> */}
+                <Editor
+                  editorState={this.state.editorState}
+                  toolbarClassName="toolbarClassName"
+                  wrapperClassName="wrapperClassName"
+                  editorClassName="editorClassName"
+                  onEditorStateChange={this.onEditorStateChange}
+                  toolbar={{
+                    options: [
+                      "inline",
+                      "blockType",
+                      "list",
+                      "textAlign",
+                      "colorPicker",
+                      "link",
+                      "emoji",
+                      "remove",
+                      "history",
+                    ],
+                    inline: {
+                      options: [
+                        "bold",
+                        "italic",
+                        "underline",
+                        "strikethrough",
+                        "monospace",
+                      ],
+                    },
+                  }}
                 />
               </div>
-              <div className="form-group row">
+              <div className="form-group row pt-5">
                 <label className="col-sm-2">Notes:</label>
                 <textarea
                   name="notes"
                   onChange={this.handleChange}
-                  className="form-control form-control-sm col-md-8 border-info"
+                  className="form-control form-control-sm col-md-9 border-info"
                 />
               </div>
               <div className="form-group">
