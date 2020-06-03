@@ -161,6 +161,7 @@ router.patch("/:id", getTokenDecoder(), (req, res) => {
 router.post("/", getTokenDecoder(), (req, res) => {
   let newRecipe = req.body;
   newRecipe.title = newRecipe.title.trim()
+  newRecipe.instructions = cleanHtml(newRecipe.instructions)
   let ingredients = newRecipe.ingredients;
   delete newRecipe.ingredients; //delete ingredients column to prevent error "column "ingredients" of relation "recipes" does not exist"
   newRecipe.user_id = req.user.id;
