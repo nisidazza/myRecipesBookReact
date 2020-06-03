@@ -2,8 +2,7 @@ import React from "react";
 import { apiUpdateRecipeDetails } from "../../../apis/recipesApi";
 import Validator from "../../common/utilities/Validator";
 import { Editor } from "react-draft-wysiwyg";
-import { ContentState, EditorState, convertToRaw } from "draft-js";
-import { convertFromHTML } from "draft-js";
+import { ContentState, EditorState, convertToRaw, convertFromHTML } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import "../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
@@ -263,13 +262,13 @@ class RecipeDetail extends React.Component {
             <strong>Category:</strong> {recipeInfo.category}
           </div>
           <div className="mt-2">
-            <strong>Link:</strong>{" "}
+            <strong>Link:</strong>
             <a href={recipeInfo.link} target="_blank">
               {recipeInfo.link}
             </a>
           </div>
           <div className="mt-2">
-            <strong>Instructions:</strong>{" "}
+            <strong>Instructions:</strong>
             <div
               dangerouslySetInnerHTML={{ __html: recipeInfo.instructions }}
             />
