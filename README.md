@@ -2,7 +2,9 @@
 
 Keep track of your favourite recipes
 
-https://nisida-book-recipes-react.herokuapp.com/#/
+~https://nisida-book-recipes-react.herokuapp.com/#/~
+
+Note: this app is not maintained anymore.
 
 Link to my project Diagram Video
 
